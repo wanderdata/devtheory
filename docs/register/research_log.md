@@ -4,6 +4,12 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-02 — Session 4: novelty check
+
+User asked what is publishable. Searched for prior art on the two core framework ideas. Found Fentanes & Levy (2024), Bobba et al. (2021), Franco & Quintero (2025) — L101–L103. Framework Ideas 1 and 3 annotated with prior art. Assessment recorded as D-013.
+
+---
+
 ## 2026-11-02 — Session 3: WP02 (informality) and WP03 (foreign firms)
 
 **Prompt (user):** (1) is informality a drag on growth or a symptom of poor dynamism — investigate fully; (2) foreign firms such as Coca-Cola: jobs, consumer gains, but rents leave and reduce the multiplier — discuss the growth impact without implying they should be excluded.

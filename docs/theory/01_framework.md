@@ -46,7 +46,7 @@ The middle term is invisible both to sector-level shift-share analysis (which se
 
 **Why it matters.** It reconciles tension T1 and redefines the target: the escalator a country needs is *movement from $T$ to $M$*, whatever the industry. A shift into services is not growth-reducing per se; a shift into the $T$ segment of services is.
 
-**Relation to literature.** Extends Lewis (L002) by placing the traditional sector inside every industry; generalizes the within-manufacturing dualism found by Diao et al. (L051) for Africa; connects structural change to misallocation (L031, L033) by making the segment boundary the main locus of misallocation.
+**Relation to literature.** *Prior art (found 2026-11-02, D-013):* Fentanes & Levy (2024, L101) already show for Mexico, with census data covering formal and informal firms, that the formal–informal composition matters more for TFP than sector composition. Idea 1's remaining contribution is (i) the multi-country version using household surveys, (ii) the explicit reconciliation of McMillan–Rodrik with the IMF industry-mix result, and (iii) the three-way decomposition. Extends Lewis (L002) by placing the traditional sector inside every industry; generalizes the within-manufacturing dualism found by Diao et al. (L051) for Africa; connects structural change to misallocation (L031, L033) by making the segment boundary the main locus of misallocation.
 
 ### Idea 2 — The unbundling of the development escalator
 
@@ -81,6 +81,8 @@ $$
 and the economy's average human capital growth depends on the share of person-years spent in $M$-type jobs. A structure dominated by $T$ jobs produces flat experience-wage profiles (Lagakos et al. L048), a thin supply of experienced managers, and — because managers and entrepreneurs come out of $M$ jobs — a thin supply of firms able to grow.
 
 **Why it matters.** Static misallocation estimates (F8) understate the cost of LAC's structure. A worker who spends 20 years as a street vendor loses not only the productivity gap each year but the compounding human capital she would have built. This also explains a LAC puzzle: large schooling expansion with disappointing growth — schooling was not complemented by jobs that build on it.
+
+**Prior art (found 2026-11-02, D-013).** Bobba, Flabbi, Levy & Tejada (2021, L102) show for Mexico that human capital upgrades faster in formal than informal jobs; Franco & Quintero (2025, L103) show it for Chile with an endogenous growth model of segmented learning. Idea 3 is therefore established for two countries; the project's contribution would be cross-country evidence and the link to managerial/entrepreneurial supply (P6).
 
 **Testable core.** Experience-wage slopes should be steeper in $M$ than in $T$ jobs *within the same industry and education level*, and workers moving from $T$ to $M$ should see a change in slope, not only in level.
 
