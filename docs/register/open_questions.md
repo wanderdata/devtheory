@@ -16,3 +16,8 @@
 | OQ-13 | 2026-11-02 | Phase 2 exercises E1 (DVA, retained income, NFX by industry × ownership from TiVA/IO/BoP) and E2 (LAC local multipliers by tradable type). | WP01 §8 | Open |
 | OQ-14 | 2026-11-02 | Formalize the opportunity-cost measure of a job's GDP contribution in the segment framework ($y_M - y_T$) and connect to Idea 1's decomposition. | WP01 §2.3, Idea 1 | Open |
 | OQ-11 | 2026-11-02 | Why was LAC growth faster in 1950–80? Does the framework explain the ISI period (high $M$ absorption under protection, low D) and its end? | Idea 4, Q4 | Open |
+| OQ-15 | 2026-11-02 | Replace news-sourced ILO 2025 informality figures with the ILO Panorama Laboral original tables. | WP02 §2 | Open |
+| OQ-16 | 2026-11-02 | Get country-level offshore-wealth shares for LAC from Alstadsæter–Johannesen–Zucman data (which LAC countries are near 60% of GDP). | WP03 §3.4 | Open |
+| OQ-17 | 2026-11-02 | Obtain LAC FDI income paid (dividends vs. reinvested earnings) by country and sector from ECLAC/BoP data; test P19. | WP03 §3.5 | Open |
+| OQ-18 | 2026-11-02 | Design the S/P/E decomposition of informality using household and firm data (fingerprints in WP02 §6.3). | WP02, P13–P16 | Open |
+| OQ-19 | 2026-11-02 | Update Coca-Cola FEMSA / Arca Continental ownership from current filings; check whether concentrate pricing terms still follow the 2003 structure. | WP03 §1 | Open |

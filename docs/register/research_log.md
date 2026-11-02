@@ -4,6 +4,22 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-02 — Session 3: WP02 (informality) and WP03 (foreign firms)
+
+**Prompt (user):** (1) is informality a drag on growth or a symptom of poor dynamism — investigate fully; (2) foreign firms such as Coca-Cola: jobs, consumer gains, but rents leave and reduce the multiplier — discuss the growth impact without implying they should be excluded.
+
+**Done**
+- `papers/WP02_informality/WP02_informality_drag_or_symptom.md`: three-type typology (structural / policy-induced / evasive); symptom evidence (cheap formalization fails, falls with development, buffer, Chile); drag channels (formality wedge, unfair competition, staying small, narrow tax base, no learning); enforcement evidence; segment-choice threshold model and three loops; policy; P13–P16.
+- `papers/WP03_foreign_firms/WP03_foreign_firms_rents_and_growth.md` + `rent_leakage.py`: Coca-Cola system (rent via concentrate pricing, local bottlers); five profit components; jobs (Costa Rica premium; Mexico retail displacement); consumer gains (Mexico supermarkets); supplier spillovers (Costa Rica, Lithuania) vs. negative horizontal (Venezuela); leakage table; FX asymmetry between export and domestic-market FDI; counterfactuals; P17–P20.
+- Register L079–L100 (19 verified, 3 partly verified). Decisions D-011, D-012. Open questions OQ-15 to OQ-19.
+
+**Key insights**
+- Informality is "a symptom that becomes a cause". Chile's low informality with stagnant TFP is the strongest single piece of evidence that informality is not the root problem.
+- Domestic-market FDI earns pesos but remits dollars — the precise mechanism behind the "rents leave" concern, linking WP03 to WP01's external constraint.
+- Domestic owners who move savings offshore leak nearly as much domestic demand as foreign owners in the illustration; about half of 2025 FDI inflows were reinvested earnings.
+
+---
+
 ## 2026-11-02 — Session 2: WP01, "Which firms are good for growth?"
 
 **Prompt (user):** back to basics — how does a firm contribute to growth in the accounts (exports, imports on both sides of the ledger, wages, distribution, jobs that raise consumption without an equal rise in imports), rooted in theory, with sharp examples; output a working paper on GitHub.

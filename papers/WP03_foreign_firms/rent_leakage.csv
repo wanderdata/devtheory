@@ -1,0 +1,6 @@
+case,taxes,fees_abroad,profits_repatriated,reinvested_at_home,domestic_capital_flight,national_income,first_round_domestic_demand,net_FX
+"Foreign brand, sells at home (beverage-type)",15.0,15,21.0,14.0,0.0,50.0,32.0,-41.6
+"Foreign firm, exports (assembly/mining-type)",15.0,5,27.0,18.0,0.0,50.0,34.4,60.8
+"Foreign firm, profit shifting via transfer prices",11.2,30,19.0,4.8,0.0,46.2,26.5,-50.9
+"Domestic firm, owners reinvest at home",15.0,0,0.0,30.0,0.0,100.0,47.1,-12.0
+"Domestic firm, owners move savings offshore",15.0,0,0.0,10.0,20.0,100.0,35.1,-24.0

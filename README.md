@@ -23,7 +23,7 @@ See [`docs/research_questions.md`](docs/research_questions.md) for the full, dec
 | `docs/research_questions.md` | Questions, sub-questions, and what would count as an answer |
 | `docs/literature/` | Literature review, one note per strand |
 | `docs/theory/` | Conceptual framework, new ideas, and testable propositions |
-| `papers/` | Working papers, each in its own folder with the code that generates its numbers. **WP01:** [Which Firms Are Good for Growth?](papers/WP01_which_firms/WP01_which_firms_are_good_for_growth.md) |
+| `papers/` | Working papers, each in its own folder with the code that generates its numbers. **WP01:** [Which Firms Are Good for Growth?](papers/WP01_which_firms/WP01_which_firms_are_good_for_growth.md) · **WP02:** [Informality: Drag or Symptom?](papers/WP02_informality/WP02_informality_drag_or_symptom.md) · **WP03:** [Foreign Firms, Rents and Growth](papers/WP03_foreign_firms/WP03_foreign_firms_rents_and_growth.md) |
 | `docs/register/research_log.md` | Dated log of every work session: what was done, read, decided |
 | `docs/register/decision_log.md` | Numbered decisions with rationale (definitions, scope, framing choices) |
 | `docs/register/open_questions.md` | Unresolved issues and things to check |
