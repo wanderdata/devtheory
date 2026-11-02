@@ -12,4 +12,7 @@
 | OQ-08 | 2026-11-02 | Check whether Diao et al.'s within-manufacturing dualism (large firms productive but not hiring) holds in LAC manufacturing and services. | Idea 1 | Open |
 | OQ-09 | 2026-11-02 | Do Central America and the Caribbean (maquila, tourism, remittances) fit the framework, or need a separate typology? | Scope | Open |
 | OQ-10 | 2026-11-02 | Verify all *from-memory* register entries before any external output. | D-007 | Open |
+| OQ-12 | 2026-11-02 | Replace WP01's news-sourced Chile current-account figure with Banco Central de Chile BoP yearbook data (primary income by component, mining FDI income). | WP01 §3.1 | Open |
+| OQ-13 | 2026-11-02 | Phase 2 exercises E1 (DVA, retained income, NFX by industry × ownership from TiVA/IO/BoP) and E2 (LAC local multipliers by tradable type). | WP01 §8 | Open |
+| OQ-14 | 2026-11-02 | Formalize the opportunity-cost measure of a job's GDP contribution in the segment framework ($y_M - y_T$) and connect to Idea 1's decomposition. | WP01 §2.3, Idea 1 | Open |
 | OQ-11 | 2026-11-02 | Why was LAC growth faster in 1950–80? Does the framework explain the ISI period (high $M$ absorption under protection, low D) and its end? | Idea 4, Q4 | Open |
