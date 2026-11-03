@@ -4,6 +4,12 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-03 — Session 5: relation to the middle-income trap literature
+
+User asked how the project relates to the MIT literature. Read/verified Eichengreen–Park–Shin (2013), Im & Rosenblatt (2013), Bulman–Eden–Nguyen, Pritchett & Summers (2014), Doner & Schneider (seminar version), Agénor & Canuto (2015); Schneider (2013) via summary. Wrote `docs/literature/09_middle_income_trap.md`. Register L104–L112; D-014; OQ-20, OQ-21.
+
+---
+
 ## 2026-11-02 — Session 4: novelty check
 
 User asked what is publishable. Searched for prior art on the two core framework ideas. Found Fentanes & Levy (2024), Bobba et al. (2021), Franco & Quintero (2025) — L101–L103. Framework Ideas 1 and 3 annotated with prior art. Assessment recorded as D-013.

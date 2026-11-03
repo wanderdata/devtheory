@@ -21,3 +21,5 @@
 | OQ-17 | 2026-11-02 | Obtain LAC FDI income paid (dividends vs. reinvested earnings) by country and sector from ECLAC/BoP data; test P19. | WP03 §3.5 | Open |
 | OQ-18 | 2026-11-02 | Design the S/P/E decomposition of informality using household and firm data (fingerprints in WP02 §6.3). | WP02, P13–P16 | Open |
 | OQ-19 | 2026-11-02 | Update Coca-Cola FEMSA / Arca Continental ownership from current filings; check whether concentrate pricing terms still follow the 2003 structure. | WP03 §1 | Open |
+| OQ-20 | 2026-11-03 | Read Schneider (2013) and the published Doner & Schneider (2016) in full; map each institutional complementarity to a model parameter for WP04. | Strand 9 | Open |
+| OQ-21 | 2026-11-03 | Check Felipe, Abdon & Kumar (2012) 'Tracking the middle-income trap' for the list of trapped countries and how many are LAC; add to register. | Strand 9 §2 | Open |
