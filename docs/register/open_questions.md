@@ -23,7 +23,7 @@
 | OQ-19 | 2026-11-02 | Update Coca-Cola FEMSA / Arca Continental ownership from current filings; check whether concentrate pricing terms still follow the 2003 structure. | WP03 §1 | Open |
 | OQ-20 | 2026-11-03 | Read Schneider (2013) and the published Doner & Schneider (2016) in full; map each institutional complementarity to a model parameter for WP04. | Strand 9 | Open |
 | OQ-21 | 2026-11-03 | Check Felipe, Abdon & Kumar (2012) 'Tracking the middle-income trap' for the list of trapped countries and how many are LAC; add to register. | Strand 9 §2 | Open |
-| OQ-22 | 2026-11-03 | Does a trap exist without the fiscal loop? Add an independent increasing-returns source to the capability loop (manager spillovers, minimum efficient scale) and test. | WP04 §5 | Open |
+| OQ-22 | 2026-11-03 | [Updated D-017: yes, in a narrow band of high fixed wedges] How wide is the trap region without the fiscal loop? Add an independent increasing-returns source to the capability loop (manager spillovers, minimum efficient scale) and test. | WP04 §5 | Open |
 | OQ-23 | 2026-11-03 | Add a services-demand block with low income elasticities to test Idea 5 (absorption constraint). | WP04 §4.5 | Open |
 | OQ-24 | 2026-11-03 | Add external finance with sudden stops so BoP/FX mechanisms (WP01, WP03) can bind. | WP04 §5 | Open |
 | OQ-25 | 2026-11-03 | Add markups and entry to make the incumbent–competition loop explicit (currently proxied by theta_X). | WP04 §5 | Open |

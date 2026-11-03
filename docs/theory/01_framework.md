@@ -128,7 +128,7 @@ Ideas 1, 3, 4 and 5 are implemented in a minimal dynamic model, [`trapmodel`](..
 | Idea 1 — segments, not sectors | three segments (x, n, u); the trap is a large u in every sector | Trap reproduces ~70% traditional share and A ≈ 0.5 |
 | Idea 3 — jobs as human-capital factories | λ_X > λ_N (managers from modern jobs); θ_X > θ_N (learning) | Capability and productivity are complements; neither escapes alone |
 | Idea 4, loop 1 — firm–capability | K dynamics; participation q | Shapes the basin; does not create multiplicity alone |
-| Idea 4, loop 2 — social contract | payroll wedge τ financing b and g | **Creates the trap** in v0.1 |
+| Idea 4, loop 2 — social contract | payroll wedge τ financing b and g | **Sustains the trap**: drives the wedge into the trap region and holds it there; capability and learning loops alone give multiplicity only in a narrow band of high wedges |
 | Idea 4, loop 3 — commodity ratchet | rents R, σ_R, κ_R, δ_idle | Real but conditional on proximity to the threshold |
 | Idea 4, loop 4 — incumbents/competition | only implicit via θ_X | Faster learning escapes; explicit block is a v0.2 task |
 | Idea 5 — absorption constraint | Cobb–Douglas demand for services | **Weak in v0.1**: wedge reform escapes without an export engine |

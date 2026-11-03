@@ -2,6 +2,14 @@
 
 Versioning: MAJOR changes the economic structure in a way that changes conclusions; MINOR adds a mechanism or parameter; PATCH changes calibration, fixes or code only. Every version bump reruns `pytest` and `experiments.py`.
 
+## 0.1.1 — 2026-11-03
+
+Code-only additions (no change to the economics or to the E1–E5 results):
+- `attractors()`, `classify()` and `ridge()`: fast basin classification by proximity to the two steady states, and the basin boundary A*(K) by bisection. The ridge matches the E1 grid.
+- `visuals.py` (V1–V4 summary figures), `explorer_data.py`, and `explorer/index.html` (interactive explorer).
+
+Finding while building V2 (logged as D-017): with the wedge fixed near 0.50, the capability and learning loops alone give two steady states. WP04 corrected.
+
 ## 0.1.0 — 2026-11-03
 
 First version, built for WP04.

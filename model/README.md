@@ -1,6 +1,6 @@
 # trapmodel — a tunable model of the middle-income "segment trap"
 
-Code for **[WP04](../papers/WP04_trap_model/WP04_segment_trap_model.md)**. Current version: **0.1.0** (see [CHANGELOG](CHANGELOG.md)).
+Code for **[WP04](../papers/WP04_trap_model/WP04_segment_trap_model.md)**. Current version: **0.1.1** (see [CHANGELOG](CHANGELOG.md)).
 
 The model is deliberately small. It is meant to be tuned, extended and confronted with data. It is not meant to forecast.
 
@@ -11,7 +11,10 @@ The model is deliberately small. It is meant to be tuned, extended and confronte
 | `trapmodel.py` | The model: parameters (`DEFAULTS`), static equilibrium (`solve_static`), dynamics (`step`, `simulate`, `steady_state`) |
 | `scenarios/*.toml` | Scenarios. Each one lists only what differs from `baseline.toml` (via `inherit`) |
 | `run.py` | Runs one scenario and writes `output/<scenario>/paths.csv` and `paths.png` |
-| `experiments.py` | Regenerates every figure and table in WP04 (`papers/WP04_trap_model/`) |
+| `experiments.py` | Regenerates the WP04 experiment figures and tables (E1–E5) |
+| `visuals.py` | Regenerates the four summary figures (V1–V4: landscape, fiscal crossing curves, attribution, ratchet) |
+| `explorer_data.py` | Precomputes results on a grid of settings for the interactive explorer |
+| `explorer/index.html` | The interactive Segment Trap Explorer (reads `explorer/explorer_data.json`) |
 | `tests/test_trapmodel.py` | Accounting identities and the key qualitative results |
 | `calibration.md` | Every parameter: meaning, current value, target or evidence, status |
 
@@ -22,7 +25,10 @@ pip install numpy scipy matplotlib pytest      # Python ≥ 3.11 (uses tomllib)
 python model/run.py model/scenarios/lac_type.toml
 python model/run.py model/scenarios/lac_type.toml --set labor.b=0.08 --tag smaller_transfers
 python model/run.py model/scenarios/lac_type.toml --switch fiscal_loop=off --tag no_fiscal_loop
-python model/experiments.py                    # all WP04 figures/tables (a few minutes)
+python model/experiments.py                    # WP04 experiment figures/tables (a few minutes)
+python model/visuals.py                        # four summary figures (~10 minutes; --reuse skips the ridge)
+python model/explorer_data.py                  # explorer data (~25 minutes)
+cd model/explorer && python -m http.server     # then open http://localhost:8000
 python -m pytest model/tests -q                # must pass before any commit
 ```
 

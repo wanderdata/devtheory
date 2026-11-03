@@ -1,0 +1,434 @@
+<title>Segment Trap Explorer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a working instrument. Controls on the left, the basin map as the large central figure,
+   outcome and two time traces on the right; stacks to one column on phones. */
+:root {
+  --bg: #f6f7f8;
+  --panel: #ffffff;
+  --ink: #12161c;
+  --ink-2: #4b5360;
+  --muted: #8a919c;
+  --rule: #dfe3e8;
+  --trap: #d6e5f8;
+  --trap-ink: #1c4f8f;
+  --path: #2a78d6;
+  --path-2: #eb6834;
+  --arrow: #9aa3ae;
+  --ridge: #12161c;
+  --band: #eceef1;
+  --good-bg: #e3f3ea; --good-ink: #17643b;
+  --bad-bg: #fbe9e2;  --bad-ink: #9a3412;
+  --f-ui: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-num: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171b; --panel: #1b1f24; --ink: #eef1f4; --ink-2: #b6bdc7; --muted: #7d8692;
+    --rule: #2c323a; --trap: #1d3352; --trap-ink: #9ec5f4; --path: #3987e5; --path-2: #d95926;
+    --arrow: #5f6873; --ridge: #eef1f4; --band: #232830;
+    --good-bg: #163325; --good-ink: #8fd6ad; --bad-bg: #3a1f16; --bad-ink: #f3a98a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171b; --panel: #1b1f24; --ink: #eef1f4; --ink-2: #b6bdc7; --muted: #7d8692;
+  --rule: #2c323a; --trap: #1d3352; --trap-ink: #9ec5f4; --path: #3987e5; --path-2: #d95926;
+  --arrow: #5f6873; --ridge: #eef1f4; --band: #232830;
+  --good-bg: #163325; --good-ink: #8fd6ad; --bad-bg: #3a1f16; --bad-ink: #f3a98a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-ui); font-size: 14px; line-height: 1.45;
+  padding-block: 20px 28px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 18px; }
+header { display: grid; gap: 6px; }
+h1 { font-size: 1.55rem; line-height: 1.2; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+.lede { color: var(--ink-2); margin: 0; max-width: 72ch; }
+.layout { display: grid; grid-template-columns: 270px minmax(0, 1fr) 300px; gap: 18px; align-items: start; }
+@media (max-width: 1080px) { .layout { grid-template-columns: 260px minmax(0, 1fr); } .side { grid-column: 1 / -1; } }
+@media (max-width: 720px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 14px; min-width: 0; }
+.controls { display: grid; gap: 16px; }
+.ctl { display: grid; gap: 6px; }
+.ctl label, .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); font-weight: 600; }
+.ctl .val { font-family: var(--f-num); font-size: 0.82rem; color: var(--ink); }
+.ctl .hint { font-size: 0.78rem; color: var(--muted); }
+input[type=range] { width: 100%; accent-color: var(--path); }
+.seg { display: grid; gap: 6px; }
+.seg button {
+  font: inherit; font-size: 0.85rem; text-align: left; padding: 7px 10px; border-radius: 6px;
+  border: 1px solid var(--rule); background: var(--bg); color: var(--ink); cursor: pointer;
+}
+.seg button[aria-pressed="true"] { border-color: var(--path); background: var(--panel); box-shadow: inset 3px 0 0 var(--path); font-weight: 600; }
+.seg button:focus-visible, input:focus-visible, .reset:focus-visible { outline: 2px solid var(--path); outline-offset: 2px; }
+.reset { font: inherit; font-size: 0.82rem; background: none; border: none; color: var(--path); cursor: pointer; padding: 0; justify-self: start; text-decoration: underline; }
+.mapbox { display: grid; gap: 8px; }
+.maptitle { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: baseline; }
+.maptitle h2 { font-size: 1rem; margin: 0; }
+.status { font-size: 0.8rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; }
+.status.trap { background: var(--bad-bg); color: var(--bad-ink); }
+.status.notrap { background: var(--good-bg); color: var(--good-ink); }
+svg { display: block; width: 100%; height: auto; }
+svg text { font-family: var(--f-ui); fill: var(--ink-2); font-size: 11px; }
+svg .num { font-family: var(--f-num); }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.8rem; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 14px; height: 10px; border-radius: 2px; display: inline-block; }
+.side { display: grid; gap: 14px; }
+.outcome { display: grid; gap: 10px; }
+.verdict { font-size: 1.05rem; font-weight: 700; padding: 8px 10px; border-radius: 6px; }
+.verdict.trap { background: var(--bad-bg); color: var(--bad-ink); }
+.verdict.modern { background: var(--good-bg); color: var(--good-ink); }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: 0.86rem; }
+.kv dt { color: var(--ink-2); }
+.kv dd { margin: 0; font-family: var(--f-num); font-variant-numeric: tabular-nums; text-align: right; }
+.explain { font-size: 0.86rem; color: var(--ink-2); margin: 0; }
+.mini h3 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); margin: 0 0 4px; font-weight: 600; }
+.tip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+  padding: 5px 8px; font-size: 0.78rem; color: var(--ink); font-family: var(--f-num); box-shadow: 0 2px 8px rgba(0,0,0,.12); white-space: nowrap; }
+.rel { position: relative; }
+footer { font-size: 0.78rem; color: var(--muted); display: grid; gap: 4px; max-width: 90ch; }
+footer a { color: var(--ink-2); }
+.loading { color: var(--muted); font-size: 0.9rem; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Why middle-income economies get stuck, and what tips them out</h1>
+    <p class="lede">Each point on the map is an economy, described by how many people can run a modern firm (across) and how productive modern firms are (up). From the shaded region, economies drift into a trap with most workers informal; from the rest, they reach a modern state. Change the economy's structure, pick a starting point and a shock, and see where it ends up.</p>
+  </header>
+
+  <div class="layout">
+    <section class="panel controls" aria-label="Controls">
+      <div class="ctl">
+        <label for="s-b">Transfers to informal workers paid from payroll taxes</label>
+        <input id="s-b" type="range" min="0" max="4" step="1" value="3">
+        <div class="val" id="v-b"></div>
+        <div class="hint">Per informal worker, as a share of average income.</div>
+      </div>
+      <div class="ctl">
+        <label for="s-beta">How much workers value their contributions</label>
+        <input id="s-beta" type="range" min="0" max="2" step="1" value="1">
+        <div class="val" id="v-beta"></div>
+        <div class="hint">Higher when benefits are tied to what workers pay in.</div>
+      </div>
+      <div class="ctl">
+        <label for="s-th">Learning speed in exporting firms</label>
+        <input id="s-th" type="range" min="0" max="2" step="1" value="1">
+        <div class="val" id="v-th"></div>
+        <div class="hint">Stands in for competition, technology adoption and management.</div>
+      </div>
+      <div class="ctl">
+        <span class="label" id="l-start">Starting point</span>
+        <div class="seg" role="group" aria-labelledby="l-start" id="g-start"></div>
+      </div>
+      <div class="ctl">
+        <span class="label" id="l-shock">Shock or policy</span>
+        <div class="seg" role="group" aria-labelledby="l-shock" id="g-shock"></div>
+      </div>
+      <button class="reset" id="reset" type="button">Reset to the baseline economy</button>
+    </section>
+
+    <section class="panel mapbox" aria-label="Basin map">
+      <div class="maptitle">
+        <h2>The landscape</h2>
+        <span class="status" id="status"></span>
+      </div>
+      <div class="rel" id="mapwrap"><p class="loading">Loading model results…</p></div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--trap)"></i>Trap basin</span>
+        <span><svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="var(--ridge)" stroke-width="2.5"/></svg>The ridge</span>
+        <span><svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="var(--path)" stroke-width="2.5"/></svg>This economy's path</span>
+        <span><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="5" fill="var(--ink)"/></svg>Trap state</span>
+        <span><svg width="12" height="12" aria-hidden="true"><rect x="1" y="1" width="10" height="10" fill="var(--ink)"/></svg>Modern state</span>
+      </div>
+    </section>
+
+    <aside class="side">
+      <section class="panel outcome" aria-live="polite">
+        <span class="label">Where this economy ends up</span>
+        <div class="verdict" id="verdict"></div>
+        <dl class="kv" id="kv"></dl>
+        <p class="explain" id="explain"></p>
+      </section>
+      <section class="panel mini rel"><h3>Informal / traditional share of workers</h3><div id="ts-u"></div></section>
+      <section class="panel mini rel"><h3>National income per worker (year 0 = 100)</h3><div id="ts-g"></div></section>
+    </aside>
+  </div>
+
+  <footer>
+    <div>Results from <span class="num">trapmodel</span> (WP04 of the devtheory project), precomputed on a grid of settings. Parameters are illustrative, not estimates for any country. The map and arrows show the economy with no commodity rents and no temporary policy.</div>
+    <div>Model, code and paper: <a href="https://github.com/wanderdata/devtheory" target="_blank" rel="noopener">github.com/wanderdata/devtheory</a></div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  const START_LABELS = {
+    stuck: "Stuck: a LAC-type economy today",
+    near: "Close to the ridge, on the modern side",
+    modern: "Already modern"
+  };
+  const SHOCK_LABELS = {
+    none: "No shock",
+    push15: "Export push, 15% subsidy for 20 years",
+    push30: "Export push, 30% subsidy for 20 years",
+    boom_spent: "Commodity boom, rents spent at home",
+    boom_saved: "Commodity boom, 70% saved abroad"
+  };
+  const TH_LABELS = { 0.15: "Slow", 0.2: "Medium", 0.3: "Fast" };
+  const DEFAULT = { b: 3, beta: 1, th: 1, start: "stuck", shock: "none" };
+  const state = Object.assign({}, DEFAULT);
+  let D = null;
+
+  const $ = (id) => document.getElementById(id);
+  const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+
+  function buildButtons(groupId, labels, key) {
+    const g = $(groupId);
+    Object.entries(labels).forEach(([k, txt]) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.id = `${key}-${k}`; b.textContent = txt;
+      b.addEventListener("click", () => { state[key] = k; render(); });
+      g.appendChild(b);
+    });
+  }
+
+  function key() {
+    const b = D.grid.b[state.b], be = D.grid.beta[state.beta], th = D.grid.theta_X[state.th];
+    return `${b}|${be}|${th}`;
+  }
+
+  // ---------------- map
+  const MW = 640, MH = 460, ML = 54, MR = 14, MT = 12, MB = 46;
+  const KX = [0.02, 0.40], AY = [0.25, 0.90];
+  const sx = (k) => ML + (k - KX[0]) / (KX[1] - KX[0]) * (MW - ML - MR);
+  const sy = (a) => MT + (1 - (a - AY[0]) / (AY[1] - AY[0])) * (MH - MT - MB);
+
+  function drawMap(c, path) {
+    const wrap = $("mapwrap");
+    wrap.innerHTML = "";
+    const svg = el("svg", { viewBox: `0 0 ${MW} ${MH}`, role: "img",
+      "aria-label": "Map of capability and productivity showing the trap basin, the ridge and the economy's path" }, wrap);
+    // trap basin
+    const trapEverywhere = !c.multiple && c.ends.trap.u > 0.4;
+    if (c.multiple || trapEverywhere) {
+      let pts = [];
+      D.K.forEach((k, i) => {
+        const r = trapEverywhere ? AY[1] : (c.ridge[i] === null ? AY[1] : c.ridge[i]);
+        pts.push([sx(k), sy(Math.min(Math.max(r, AY[0]), AY[1]))]);
+      });
+      const poly = [[sx(D.K[0]), sy(AY[0])], ...pts, [sx(D.K[D.K.length - 1]), sy(AY[0])]];
+      el("polygon", { points: poly.map(p => p.join(",")).join(" "), fill: css("--trap") }, svg);
+      if (c.multiple) {
+        el("polyline", { points: pts.map(p => p.join(",")).join(" "), fill: "none", stroke: css("--ridge"), "stroke-width": 2.5 }, svg);
+      }
+    }
+    // grid + axes
+    const g = el("g", {}, svg);
+    [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40].forEach(k => {
+      el("line", { x1: sx(k), x2: sx(k), y1: MT, y2: MH - MB, stroke: css("--rule"), "stroke-width": 0.6, "stroke-opacity": 0.8 }, g);
+      const t = el("text", { x: sx(k), y: MH - MB + 16, "text-anchor": "middle", class: "num" }, g); t.textContent = k.toFixed(2);
+    });
+    [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9].forEach(a => {
+      el("line", { x1: ML, x2: MW - MR, y1: sy(a), y2: sy(a), stroke: css("--rule"), "stroke-width": 0.6, "stroke-opacity": 0.8 }, g);
+      const t = el("text", { x: ML - 8, y: sy(a) + 4, "text-anchor": "end", class: "num" }, g); t.textContent = a.toFixed(1);
+    });
+    let t = el("text", { x: (ML + MW - MR) / 2, y: MH - 8, "text-anchor": "middle" }, svg);
+    t.textContent = "Managerial capability: people able to run a modern firm";
+    t = el("text", { x: 14, y: (MT + MH - MB) / 2, "text-anchor": "middle", transform: `rotate(-90 14 ${(MT + MH - MB) / 2})` }, svg);
+    t.textContent = "Modern productivity (world frontier = 1)";
+    // flow arrows
+    const fa = el("g", { stroke: css("--arrow"), "stroke-width": 1.1, fill: "none", "stroke-linecap": "round" }, svg);
+    c.flow.forEach(([k, a, dk, da]) => {
+      const ux = dk / (KX[1] - KX[0]), uy = da / (AY[1] - AY[0]);
+      const n = Math.hypot(ux, uy); if (n < 1e-9) return;
+      const L = 13, x0 = sx(k), y0 = sy(a);
+      const vx = ux / n * L, vy = -uy / n * L;
+      const x1 = x0 + vx, y1 = y0 + vy;
+      el("line", { x1: x0 - vx / 2, y1: y0 - vy / 2, x2: x1 - vx / 2, y2: y1 - vy / 2 }, fa);
+      const ang = Math.atan2(vy, vx), h = 4;
+      const tx = x1 - vx / 2, ty = y1 - vy / 2;
+      el("polyline", { points: `${tx - h * Math.cos(ang - 0.5)},${ty - h * Math.sin(ang - 0.5)} ${tx},${ty} ${tx - h * Math.cos(ang + 0.5)},${ty - h * Math.sin(ang + 0.5)}` }, fa);
+    });
+    // basin labels
+    if (c.multiple) {
+      t = el("text", { x: sx(0.33), y: sy(0.30), "text-anchor": "middle", "font-weight": 700, "font-size": 13, fill: css("--trap-ink"), style: `fill:${css("--trap-ink")}` }, svg); t.textContent = "TRAP BASIN";
+      t = el("text", { x: sx(0.30), y: sy(0.86), "text-anchor": "middle", "font-weight": 700, "font-size": 13, style: `fill:${css("--ink")}` }, svg); t.textContent = "MODERN BASIN";
+    } else {
+      t = el("text", { x: sx(0.21), y: sy(0.86), "text-anchor": "middle", "font-weight": 700, "font-size": 13, style: `fill:${css("--ink")}` }, svg);
+      t.textContent = trapEverywhere ? "NO WAY OUT: EVERY START ENDS IN THE TRAP" : "NO TRAP: EVERY START REACHES THE MODERN STATE";
+    }
+    // end states
+    const clampK = (k) => Math.min(Math.max(k, KX[0]), KX[1]);
+    if (c.multiple || trapEverywhere) {
+      el("circle", { cx: sx(clampK(c.ends.trap.K)), cy: sy(c.ends.trap.A), r: 7, fill: css("--ink") }, svg);
+    }
+    if (c.multiple || !trapEverywhere) {
+      const m = c.ends.modern;
+      el("rect", { x: sx(clampK(m.K)) - 6.5, y: sy(m.A) - 6.5, width: 13, height: 13, fill: css("--ink") }, svg);
+    }
+    // path
+    const pts = path.K.map((k, i) => [sx(clampK(k)), sy(Math.min(Math.max(path.A[i], AY[0]), AY[1]))]);
+    const pl = el("polyline", { points: pts.map(p => p.join(",")).join(" "), fill: "none", stroke: css("--path"), "stroke-width": 3, "stroke-linejoin": "round" }, svg);
+    const len = pl.getTotalLength ? pl.getTotalLength() : 0;
+    if (len && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      pl.style.strokeDasharray = len; pl.style.strokeDashoffset = len;
+      pl.getBoundingClientRect();
+      pl.style.transition = "stroke-dashoffset 1.1s ease-out"; pl.style.strokeDashoffset = 0;
+    }
+    el("circle", { cx: pts[0][0], cy: pts[0][1], r: 5, fill: css("--panel"), stroke: css("--path"), "stroke-width": 2.5 }, svg);
+    t = el("text", { x: pts[0][0] + 8, y: pts[0][1] - 8, style: `fill:${css("--ink")}`, "font-weight": 600 }, svg); t.textContent = "start";
+    const last = pts[pts.length - 1];
+    el("circle", { cx: last[0], cy: last[1], r: 4, fill: css("--path") }, svg);
+    // hover: nearest year on the path
+    const tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; wrap.appendChild(tip);
+    const hit = el("rect", { x: ML, y: MT, width: MW - ML - MR, height: MH - MT - MB, fill: "transparent" }, svg);
+    const dot = el("circle", { r: 5, fill: css("--path"), stroke: css("--panel"), "stroke-width": 2, visibility: "hidden" }, svg);
+    hit.addEventListener("pointermove", (ev) => {
+      const r = svg.getBoundingClientRect(), scale = MW / r.width;
+      const mx = (ev.clientX - r.left) * scale, my = (ev.clientY - r.top) * scale;
+      let best = 0, bd = Infinity;
+      pts.forEach((p, i) => { const d = (p[0] - mx) ** 2 + (p[1] - my) ** 2; if (d < bd) { bd = d; best = i; } });
+      if (bd > 900) { tip.hidden = true; dot.setAttribute("visibility", "hidden"); return; }
+      dot.setAttribute("cx", pts[best][0]); dot.setAttribute("cy", pts[best][1]); dot.setAttribute("visibility", "visible");
+      tip.hidden = false;
+      tip.textContent = `year ${best} · capability ${path.K[best].toFixed(3)} · productivity ${path.A[best].toFixed(2)} · informal ${(100 * path.u[best]).toFixed(0)}%`;
+      const wr = wrap.getBoundingClientRect();
+      tip.style.left = Math.min(ev.clientX - wr.left + 12, wr.width - tip.offsetWidth - 4) + "px";
+      tip.style.top = (ev.clientY - wr.top - 34) + "px";
+    });
+    hit.addEventListener("pointerleave", () => { tip.hidden = true; dot.setAttribute("visibility", "hidden"); });
+  }
+
+  // ---------------- time series
+  function drawSeries(holder, ys, fmt, yMin, yMax, shade) {
+    const W = 300, H = 132, L = 38, R = 8, T = 8, B = 22, n = ys.length;
+    holder.innerHTML = "";
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "time series" }, holder);
+    const x = (i) => L + i / (n - 1) * (W - L - R);
+    const y = (v) => T + (1 - (v - yMin) / (yMax - yMin)) * (H - T - B);
+    if (shade) el("rect", { x: x(shade[0]), y: T, width: x(shade[1]) - x(shade[0]), height: H - T - B, fill: css("--band") }, svg);
+    const ticks = [yMin, (yMin + yMax) / 2, yMax];
+    ticks.forEach(v => {
+      el("line", { x1: L, x2: W - R, y1: y(v), y2: y(v), stroke: css("--rule"), "stroke-width": 0.6 }, svg);
+      const t = el("text", { x: L - 5, y: y(v) + 3.5, "text-anchor": "end", class: "num", "font-size": 10 }, svg); t.textContent = fmt(v);
+    });
+    [0, 20, 40, 60, 80].forEach(yr => {
+      if (yr > n - 1) return;
+      const t = el("text", { x: x(yr), y: H - 6, "text-anchor": "middle", class: "num", "font-size": 10 }, svg); t.textContent = yr;
+    });
+    el("polyline", { points: ys.map((v, i) => `${x(i)},${y(Math.min(Math.max(v, yMin), yMax))}`).join(" "), fill: "none", stroke: css("--path"), "stroke-width": 2 }, svg);
+    el("circle", { cx: x(n - 1), cy: y(Math.min(Math.max(ys[n - 1], yMin), yMax)), r: 3.2, fill: css("--path") }, svg);
+    // crosshair
+    const tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; holder.appendChild(tip);
+    const vline = el("line", { y1: T, y2: H - B, stroke: css("--muted"), "stroke-width": 1, visibility: "hidden" }, svg);
+    const dot = el("circle", { r: 3.5, fill: css("--path"), stroke: css("--panel"), "stroke-width": 1.5, visibility: "hidden" }, svg);
+    const hit = el("rect", { x: L, y: T, width: W - L - R, height: H - T - B, fill: "transparent" }, svg);
+    hit.addEventListener("pointermove", (ev) => {
+      const r = svg.getBoundingClientRect(), mx = (ev.clientX - r.left) * W / r.width;
+      const i = Math.max(0, Math.min(n - 1, Math.round((mx - L) / (W - L - R) * (n - 1))));
+      vline.setAttribute("x1", x(i)); vline.setAttribute("x2", x(i)); vline.setAttribute("visibility", "visible");
+      dot.setAttribute("cx", x(i)); dot.setAttribute("cy", y(Math.min(Math.max(ys[i], yMin), yMax))); dot.setAttribute("visibility", "visible");
+      tip.hidden = false; tip.textContent = `year ${i}: ${fmt(ys[i], true)}`;
+      const hr = holder.getBoundingClientRect();
+      tip.style.left = Math.min(ev.clientX - hr.left + 10, hr.width - tip.offsetWidth - 4) + "px";
+      tip.style.top = "28px";
+    });
+    hit.addEventListener("pointerleave", () => { tip.hidden = true; vline.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); });
+  }
+
+  // ---------------- render
+  function render() {
+    $("v-b").textContent = `${Math.round(100 * D.grid.b[state.b])}% of average income`;
+    $("v-beta").textContent = `${Math.round(100 * D.grid.beta[state.beta])}% of each peso paid in`;
+    $("v-th").textContent = TH_LABELS[D.grid.theta_X[state.th]];
+    document.querySelectorAll("#g-start button").forEach(b => b.setAttribute("aria-pressed", String(b.id === `start-${state.start}`)));
+    document.querySelectorAll("#g-shock button").forEach(b => b.setAttribute("aria-pressed", String(b.id === `shock-${state.shock}`)));
+    const c = D.data[key()];
+    const path = c.paths[`${state.start}|${state.shock}`];
+    const trapEverywhere = !c.multiple && c.ends.trap.u > 0.4;
+    const st = $("status");
+    if (c.multiple) { st.className = "status trap"; st.textContent = "A trap exists with these settings"; }
+    else if (trapEverywhere) { st.className = "status trap"; st.textContent = "Only the trap exists"; }
+    else { st.className = "status notrap"; st.textContent = "No trap with these settings"; }
+    drawMap(c, path);
+    const n = path.u.length, uEnd = path.u[n - 1];
+    const modern = uEnd < 0.3;
+    const v = $("verdict");
+    v.className = "verdict " + (modern ? "modern" : "trap");
+    v.textContent = modern ? "Modern state" : "Stuck in the trap";
+    const gIdx = path.GNI.map(g => 100 * g / path.GNI[0]);
+    const end = (arr) => arr[arr.length - 1];
+    $("kv").innerHTML = "";
+    const rows = [
+      ["Informal share, year 0", `${Math.round(100 * path.u[0])}%`],
+      [`Informal share, year ${n - 1}`, `${Math.round(100 * uEnd)}%`],
+      ["Productivity, year " + (n - 1), end(path.A).toFixed(2)],
+      ["National income, year " + (n - 1), `${Math.round(end(gIdx))}`],
+    ];
+    if (c.multiple) rows.push(["Income gap, modern vs. trap", `${(c.ends.modern.GNI / c.ends.trap.GNI).toFixed(1)}×`]);
+    rows.forEach(([a, b]) => { const dt = document.createElement("dt"); dt.textContent = a; const dd = document.createElement("dd"); dd.textContent = b; $("kv").append(dt, dd); });
+    $("explain").textContent = explain(c, modern);
+    const shade = state.shock.startsWith("boom") ? [3, 15] : state.shock.startsWith("push") ? [3, 23] : null;
+    drawSeries($("ts-u"), path.u, (v, l) => `${Math.round(100 * v)}%`, 0, 1, shade);
+    const gmax = Math.max(150, Math.ceil(Math.max(...gIdx) / 50) * 50);
+    drawSeries($("ts-g"), gIdx, (v) => `${Math.round(v)}`, Math.min(50, Math.floor(Math.min(...gIdx) / 25) * 25), gmax, shade);
+  }
+
+  function explain(c, modern) {
+    const s = state.shock, start = state.start;
+    if (!c.multiple) {
+      return (c.ends.trap.u > 0.4)
+        ? "With these settings there is no modern state to reach: the payroll wedge needed to fund transfers is too high for modern firms to grow."
+        : "With these settings the trap disappears. Formal jobs are cheap enough, or firms learn fast enough, that any economy modernizes.";
+    }
+    if (s === "push15" && !modern) return "The subsidy pulls the economy toward the ridge, but it ends before the economy crosses it, so it slides back. Temporary policies need to be big enough to cross.";
+    if (s === "push30" && modern) return "The subsidy is large enough to carry the economy over the ridge. Once across, it keeps modernizing after the subsidy ends.";
+    if (s === "boom_spent" && !modern && start !== "stuck") return "Spending the rents at home makes local services and labor dearer, so exporting firms shrink and stop learning. The economy is pushed back across the ridge and stays trapped after the boom ends.";
+    if (s === "boom_saved" && modern) return "Saving most of the rents abroad limits the rise in local costs. Exporters dip but keep learning, and the economy stays on the modern side.";
+    if (start === "stuck" && !modern) return "The economy sits in the trap: few firms grow, few workers become managers, and a small formal base must carry a high payroll wedge. Try lowering payroll-financed transfers, raising how much workers value contributions, or speeding up learning.";
+    if (modern) return "The economy is on the modern side of the ridge, or gets there: formal firms grow, train managers and catch up toward the frontier.";
+    return "The economy starts on the trap side of the ridge and drifts into the trap.";
+  }
+
+  function wire() {
+    buildButtons("g-start", START_LABELS, "start");
+    buildButtons("g-shock", SHOCK_LABELS, "shock");
+    [["s-b", "b"], ["s-beta", "beta"], ["s-th", "th"]].forEach(([id, k]) => {
+      $(id).value = state[k];
+      $(id).addEventListener("input", (e) => { state[k] = +e.target.value; render(); });
+    });
+    $("reset").addEventListener("click", () => {
+      Object.assign(state, DEFAULT);
+      $("s-b").value = state.b; $("s-beta").value = state.beta; $("s-th").value = state.th;
+      render();
+    });
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    if (mq.addEventListener) mq.addEventListener("change", render);
+    new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  }
+
+  fetch("explorer_data.json").then(r => {
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  }).then(d => { D = d; wire(); render(); })
+    .catch(() => { $("mapwrap").innerHTML = '<p class="loading">The model results could not be loaded. Reload the page to try again.</p>'; });
+})();
+</script>

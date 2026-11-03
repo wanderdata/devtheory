@@ -39,7 +39,7 @@ from pathlib import Path
 import numpy as np
 from scipy.optimize import brentq
 
-MODEL_VERSION = "0.1.0"
+MODEL_VERSION = "0.1.1"
 
 # ----------------------------------------------------------------------------
 # Parameters
@@ -360,3 +360,56 @@ def steady_state(p: dict, K0: float, A0: float, T: int = 400, R: float | None = 
             break
         K, A = K1, A1
     return K, A, solve_static(p, K, A, R, tau_guess=tau, P_guess=P)
+
+
+# ----------------------------------------------------------------------------
+# Basins (added 0.1.1): fast classification by proximity to known attractors
+# ----------------------------------------------------------------------------
+
+def attractors(p: dict, R: float | None = None):
+    """Trap and modern steady states found from a very low and a very high start."""
+    Kt, At, et = steady_state(p, 0.02, 0.25, T=500, R=R)
+    Km, Am, em = steady_state(p, 0.45, 0.85, T=500, R=R)
+    return {"trap": (Kt, At, et.u), "modern": (Km, Am, em.u),
+            "multiple": abs(et.u - em.u) > 0.1}
+
+
+def classify(p: dict, K0: float, A0: float, att: dict, T: int = 400, tol: float = 0.01,
+             R: float | None = None) -> str:
+    """Follow (K, A) until it is within tol of one attractor. Returns 'trap' or 'modern'."""
+    R = p["commodity"]["R_bar"] if R is None else R
+    if not att["multiple"]:
+        return "trap" if att["trap"][2] > 0.4 else "modern"
+    K, A, tau, P = K0, A0, 0.2, None
+    (Kt, At, _), (Km, Am, _) = att["trap"], att["modern"]
+    for _ in range(T):
+        e = solve_static(p, K, A, R, tau_guess=tau, P_guess=P)
+        tau, P = e.tau, e.P
+        K, A = step(p, K, A, e)
+        if abs(K - Kt) / Kt + abs(A - At) < tol:
+            return "trap"
+        if abs(K - Km) / Km + abs(A - Am) < tol:
+            return "modern"
+    return "trap" if e.u > 0.4 else "modern"
+
+
+def ridge(p: dict, Ks, att: dict | None = None, A_lo: float = 0.2, A_hi: float = 0.95,
+          n_bisect: int = 7):
+    """For each K, the productivity A above which the economy reaches the modern state.
+    Returns NaN where every A in [A_lo, A_hi] ends in the same basin."""
+    att = att or attractors(p)
+    out = []
+    for K in Ks:
+        lo_c, hi_c = classify(p, K, A_lo, att), classify(p, K, A_hi, att)
+        if lo_c == hi_c:
+            out.append(float("nan") if lo_c == "trap" else A_lo)
+            continue
+        lo, hi = A_lo, A_hi
+        for _ in range(n_bisect):
+            mid = 0.5 * (lo + hi)
+            if classify(p, K, mid, att) == "trap":
+                lo = mid
+            else:
+                hi = mid
+        out.append(0.5 * (lo + hi))
+    return out
