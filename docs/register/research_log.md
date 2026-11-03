@@ -4,6 +4,20 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-03 — Session 7: visualizing the model's conclusions
+
+**Prompt (user):** best way to visualize the main conclusions; then build the figures and an interactive version.
+
+**Done**
+- `model/visuals.py`: V1 landscape map (drift arrows, ridge, policy paths, before and after reform); V2 fiscal loop as a 45° fixed-point diagram (modern equilibrium τ ≈ 0.16, tipping point τ ≈ 0.51, trap at the ceiling where the budget would need 0.77); V3 attribution dot chart; V4 commodity ratchet with point of no return (year 8 of a 12-year boom).
+- trapmodel 0.1.1: `attractors`, `classify`, `ridge` (code only; ridge matches the E1 grid).
+- WP04 v0.2: summary section with the four figures; **correction D-017**: the trap does not strictly need the fiscal loop (at a fixed wedge near 0.50 the capability and learning loops alone give two steady states); the fiscal loop sustains it.
+- Interactive explorer: `model/explorer/index.html` plus `explorer_data.py` (45 settings × 3 starts × 5 shocks); published as an artifact (D-018).
+
+**Design notes:** the first V2 design (curves against the formal share) failed because, after the reform, every fixed wedge gives the same formal share; replaced by the 45° fixed-point diagram. V1 labels moved from a legend to direct labels.
+
+---
+
 ## 2026-11-03 — Session 6: WP04 and trapmodel 0.1.0
 
 **Prompt (user):** build a simple, illustrative model of LAC and other countries stuck in a middle-income trap; identify the main mechanisms; integrate into the project so it can be fine-tuned.
