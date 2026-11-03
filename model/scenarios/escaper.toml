@@ -1,0 +1,17 @@
+# "Escaper" (East Asia-type): same starting point as lac_type, but no commodity
+# rents, a smaller formality wedge (smaller non-contributory transfers, contributions
+# valued by workers) and a temporary export push (e.g. undervaluation / export
+# promotion) during the first two decades.
+inherit = "baseline.toml"
+[initial]
+K = 0.10
+A = 0.50
+[labor]
+beta = 0.70
+b = 0.10
+[[events]]
+start = 5
+end = 25
+section = "government"
+param = "sub_X"
+value = 0.15

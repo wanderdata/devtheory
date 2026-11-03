@@ -20,3 +20,20 @@ Each proposition states the claim, which idea it comes from, what would support 
 ## Priority for Phase 2
 
 P1–P2 (core reconciliation), P4–P5 (core of Idea 3), P7 (most distinctive LAC mechanism). P3 needs a measurement design first.
+
+## Propositions from WP02–WP04 (added 2026-11-02/03)
+
+| # | Proposition | Source | Candidate data |
+|---|---|---|---|
+| P13 | Informality falls mainly through new cohorts entering formal jobs, not incumbents formalizing | WP02 | household-survey panels |
+| P14 | Wider contributory/non-contributory benefit gaps raise informality mostly among small salaried employers | WP02 | program rollouts |
+| P15 | Firm-size bunching below enforcement and tax thresholds | WP02 | economic censuses |
+| P16 | Higher informal share predicts slower productivity growth of formal firms in the same market | WP02 | census panels |
+| P17 | Domestic suppliers to MNCs gain persistently in employment, productivity and sales to others | WP03 | firm-to-firm data |
+| P18 | Horizontal spillovers from foreign entry: zero/negative on productivity, positive on prices | WP03 | entry events |
+| P19 | FDI income from domestic-market sectors tightens external constraints | WP03 | BoP primary income |
+| P20 | Effective tax rates on foreign affiliates fall with intra-firm fees and royalties | WP03 | tax/firm data |
+| P21 | Payroll-financed transfers raise informality more where the formal base is already small (nonlinear) | WP04 E3 | country/state panels |
+| P22 | Formal take-offs follow large or permanent changes (wedge reform, large sustained export expansion), not small/temporary ones | WP04 E4 | growth-episode data |
+| P23 | Commodity booms cause lasting tradable declines only near the threshold; weaker where rents are saved or cut taxes on formal labor | WP04 E5 (refines P7) | subnational shocks × initial formality |
+| P24 | Managerial supply raises formal employment persistently only where tradable productivity is also rising | WP04 E1/E4 | regional panels |

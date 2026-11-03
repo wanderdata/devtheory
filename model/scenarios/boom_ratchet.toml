@@ -1,0 +1,16 @@
+# "Commodity ratchet": a country just inside the modern basin (A=0.66, K=0.08) receives one large
+# boom whose rents are spent at home. Compare with sigma_R = 0.3 (rents saved).
+inherit = "baseline.toml"
+[initial]
+K = 0.08
+A = 0.66
+[government]
+kappa_R = 0.0     # rents fund extra spending, not lower payroll wedges
+[ownership]
+sigma_R = 1.0
+[commodity]
+R_bar = 0.0
+boom = 0.12
+boom_start = 3
+boom_length = 12
+cycles = 1

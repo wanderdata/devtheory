@@ -2,7 +2,7 @@
 
 | ID | Opened | Question / task | Linked to | Status |
 |---|---|---|---|---|
-| OQ-01 | 2026-11-02 | Formalize Idea 4 as a multiple-equilibrium model (occupational choice + on-the-job learning + contributory social-insurance tax + commodity shocks). Candidate starting points: Lucas (1978) span-of-control; Levy (2018) tax/subsidy wedge; Restuccia–Rogerson. | Framework Idea 4 | Open |
+| OQ-01 | 2026-11-02 | [Partly closed 2026-11-03 by WP04/trapmodel 0.1.0] Formalize Idea 4 as a multiple-equilibrium model (occupational choice + on-the-job learning + contributory social-insurance tax + commodity shocks). Candidate starting points: Lucas (1978) span-of-control; Levy (2018) tax/subsidy wedge; Restuccia–Rogerson. | Framework Idea 4 | Open |
 | OQ-02 | 2026-11-02 | Write the absorption constraint (Idea 5) as a two-sector GE model with non-homothetic demand and segment choice; derive conditions under which services upgrading lowers aggregate productivity. | Idea 5, P10 | Open |
 | OQ-03 | 2026-11-02 | How much of the LAC TFP gap survives quality-adjusted (learning-adjusted) human capital? | Strand 1, F1 | Open |
 | OQ-04 | 2026-11-02 | Identification strategy to separate learning from selection in $M$ vs $T$ jobs. | Idea 3, P4–P5 | Open |
@@ -23,3 +23,8 @@
 | OQ-19 | 2026-11-02 | Update Coca-Cola FEMSA / Arca Continental ownership from current filings; check whether concentrate pricing terms still follow the 2003 structure. | WP03 §1 | Open |
 | OQ-20 | 2026-11-03 | Read Schneider (2013) and the published Doner & Schneider (2016) in full; map each institutional complementarity to a model parameter for WP04. | Strand 9 | Open |
 | OQ-21 | 2026-11-03 | Check Felipe, Abdon & Kumar (2012) 'Tracking the middle-income trap' for the list of trapped countries and how many are LAC; add to register. | Strand 9 §2 | Open |
+| OQ-22 | 2026-11-03 | Does a trap exist without the fiscal loop? Add an independent increasing-returns source to the capability loop (manager spillovers, minimum efficient scale) and test. | WP04 §5 | Open |
+| OQ-23 | 2026-11-03 | Add a services-demand block with low income elasticities to test Idea 5 (absorption constraint). | WP04 §4.5 | Open |
+| OQ-24 | 2026-11-03 | Add external finance with sudden stops so BoP/FX mechanisms (WP01, WP03) can bind. | WP04 §5 | Open |
+| OQ-25 | 2026-11-03 | Add markups and entry to make the incumbent–competition loop explicit (currently proxied by theta_X). | WP04 §5 | Open |
+| OQ-26 | 2026-11-03 | Calibrate beta, b, lam_X, theta_X, tau to Mexico, Brazil, Chile, Colombia (model/calibration.md). | WP04 §2.6 | Open |

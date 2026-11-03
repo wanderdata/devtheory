@@ -4,6 +4,22 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-03 — Session 6: WP04 and trapmodel 0.1.0
+
+**Prompt (user):** build a simple, illustrative model of LAC and other countries stuck in a middle-income trap; identify the main mechanisms; integrate into the project so it can be fine-tuned.
+
+**Done**
+- `model/`: trapmodel.py (three segments, managers, two goods, payroll-financed state, rents, ownership, K and A dynamics, six switches), five scenarios, run.py CLI, experiments.py (E1–E5), 20 tests (all pass), README, calibration register, CHANGELOG.
+- `papers/WP04_trap_model/`: paper, figures, tables, auto-generated results.md.
+- Framework §3b maps ideas to model objects; propositions P13–P24 tabulated; README updated.
+- Register L113–L114 (from memory); D-015, D-016; OQ-22–OQ-26; OQ-01 partly closed.
+
+**Development notes (what failed on the way):** with fixed spending levels the wedge was always at its ceiling; with spending as a GDP share the fiscal loop was inert because Cobb–Douglas demand ties informal income to formal income; indexing to total GDP exaggerated the commodity ratchet. Fixes in CHANGELOG.
+
+**Key results:** two steady states (u ≈ 0.72–0.77 vs 0.03; GNI 2.6× apart); fiscal loop creates the trap; faster learning in tradables also escapes; K and A are complements; commodity ratchet conditional on proximity to threshold; Idea 5 and the remittance hypothesis fail in v0.1.
+
+---
+
 ## 2026-11-03 — Session 5: relation to the middle-income trap literature
 
 User asked how the project relates to the MIT literature. Read/verified Eichengreen–Park–Shin (2013), Im & Rosenblatt (2013), Bulman–Eden–Nguyen, Pritchett & Summers (2014), Doner & Schneider (seminar version), Agénor & Canuto (2015); Schneider (2013) via summary. Wrote `docs/literature/09_middle_income_trap.md`. Register L104–L112; D-014; OQ-20, OQ-21.

@@ -1,0 +1,11 @@
+change from LAC-type,u,A,tau,GNI
+LAC-type (reference),0.771,0.508,0.6,0.163
+fiscal loop off (wedge fixed at 0.25),0.03,0.723,0.25,0.387
+rent absorption off (rents not spent),0.751,0.531,0.6,0.171
+remittances off (all profits national),0.809,0.462,0.6,0.158
+ratchet off (no extra idle-manager loss),0.752,0.515,0.6,0.175
+smaller payroll-financed transfers (b 0.16→0.08),0.03,0.724,0.159,0.402
+contributions valued (beta 0.4→0.8),0.03,0.723,0.163,0.387
+no commodity cycles,0.751,0.531,0.6,0.165
+faster learning in tradables (theta_X ×1.5),0.03,0.789,0.163,0.426
+more managers from outside (k0 ×5),0.759,0.512,0.6,0.171

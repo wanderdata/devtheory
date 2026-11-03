@@ -2,3 +2,5 @@
 *.pyc
 __pycache__/
 empirics/data/raw/
+model/output/
+.pytest_cache/

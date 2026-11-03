@@ -119,10 +119,26 @@ Sustained services-led upgrading therefore requires a **tradable engine** that r
 
 ---
 
+## 3b. The formal model (WP04, `model/`)
+
+Ideas 1, 3, 4 and 5 are implemented in a minimal dynamic model, [`trapmodel`](../../model/README.md), documented in [WP04](../../papers/WP04_trap_model/WP04_segment_trap_model.md). Mapping:
+
+| Framework element | Model object | v0.1 verdict |
+|---|---|---|
+| Idea 1 — segments, not sectors | three segments (x, n, u); the trap is a large u in every sector | Trap reproduces ~70% traditional share and A ≈ 0.5 |
+| Idea 3 — jobs as human-capital factories | λ_X > λ_N (managers from modern jobs); θ_X > θ_N (learning) | Capability and productivity are complements; neither escapes alone |
+| Idea 4, loop 1 — firm–capability | K dynamics; participation q | Shapes the basin; does not create multiplicity alone |
+| Idea 4, loop 2 — social contract | payroll wedge τ financing b and g | **Creates the trap** in v0.1 |
+| Idea 4, loop 3 — commodity ratchet | rents R, σ_R, κ_R, δ_idle | Real but conditional on proximity to the threshold |
+| Idea 4, loop 4 — incumbents/competition | only implicit via θ_X | Faster learning escapes; explicit block is a v0.2 task |
+| Idea 5 — absorption constraint | Cobb–Douglas demand for services | **Weak in v0.1**: wedge reform escapes without an export engine |
+
+The verdicts are model results under illustrative calibration, not empirical findings. They change the priority of the empirical propositions: P21–P24 (model-derived) and P7/P10 now carry the most weight.
+
 ## 4. Known weaknesses of v0.1
 
 - The segment boundary ($M$/$T$) is a simplification; formality and size are correlated but distinct. Needs a continuous version.
-- Idea 4 is a verbal model; a formal multiple-equilibrium model (e.g., occupational choice with learning and a contributory social-insurance tax) is the next theoretical step (OQ-01).
+- Idea 4 is now formalized in WP04 / `trapmodel` 0.1.0 (OQ-01 partly closed); its multiplicity currently rests on the fiscal loop (OQ-22).
 - Idea 3 must rule out selection: workers who get $M$ jobs may be the fast learners. Needs within-worker variation (OQ-04).
 - Resource-based development (Chile copper, Brazil agribusiness) may score better on C than assumed; must be scored, not presumed (OQ-05).
 - Caribbean and Central American economies (tourism, remittances, maquila) may not fit the LA5-based facts.

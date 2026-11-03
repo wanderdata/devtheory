@@ -1,0 +1,20 @@
+# "LAC-type": starts with moderate capability and productivity inside the trap's
+# basin; repeated commodity booms whose rents are spent at home; part of modern
+# profits and commodity rents foreign-owned; contributions valued below cost.
+inherit = "baseline.toml"
+[initial]
+K = 0.10
+A = 0.50
+[labor]
+beta = 0.40
+[ownership]
+rho_F = 0.30
+rho_R = 0.40
+sigma_R = 1.0
+[commodity]
+R_bar = 0.01
+boom = 0.05
+boom_start = 15
+boom_length = 10
+cycles = 3
+cycle_gap = 30

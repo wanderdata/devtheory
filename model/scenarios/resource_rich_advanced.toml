@@ -1,0 +1,19 @@
+# "Resource-rich advanced" (Norway/Australia-type): already in the modern basin;
+# large rents, mostly taxed and saved abroad (sovereign fund) rather than spent.
+inherit = "baseline.toml"
+[initial]
+K = 0.30
+A = 0.75
+[government]
+theta_R = 0.8
+kappa_R = 0.5
+[ownership]
+rho_R = 0.2
+sigma_R = 0.3
+[commodity]
+R_bar = 0.04
+boom = 0.08
+boom_start = 15
+boom_length = 10
+cycles = 3
+cycle_gap = 30

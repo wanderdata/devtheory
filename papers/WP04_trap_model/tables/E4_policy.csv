@@ -1,0 +1,9 @@
+package,u,A,GNI
+No change,0.767,0.515,0.166
+A. Wedge reform (permanent),0.03,0.724,0.403
+B. Export push (20 years),0.767,0.515,0.166
+"B'. Large export push (40%, 20 years)",0.03,0.724,0.387
+C. Manager/FDI injection (15 years),0.767,0.515,0.166
+A + B,0.03,0.724,0.403
+A + C,0.03,0.724,0.403
+B + C,0.767,0.515,0.166

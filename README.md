@@ -5,6 +5,7 @@ A research project on how countries grow and develop, what economic structure th
 The project builds on the established economic literature (growth theory, structural change, dual economy, misallocation, complexity, good jobs) and proposes some new ideas to refine how we think about growth and development, with LAC as the central case.
 
 **Phase 1 (current): theory.** Literature review, conceptual framework, and a set of testable propositions.
+**Phase 1b (current): modelling.** A minimal, tunable model of the trap (`model/`, WP04).
 **Phase 2 (later): empirics.** Testing the propositions with country, sector and firm data.
 
 ## Core research questions
@@ -23,7 +24,8 @@ See [`docs/research_questions.md`](docs/research_questions.md) for the full, dec
 | `docs/research_questions.md` | Questions, sub-questions, and what would count as an answer |
 | `docs/literature/` | Literature review, one note per strand |
 | `docs/theory/` | Conceptual framework, new ideas, and testable propositions |
-| `papers/` | Working papers, each in its own folder with the code that generates its numbers. **WP01:** [Which Firms Are Good for Growth?](papers/WP01_which_firms/WP01_which_firms_are_good_for_growth.md) · **WP02:** [Informality: Drag or Symptom?](papers/WP02_informality/WP02_informality_drag_or_symptom.md) · **WP03:** [Foreign Firms, Rents and Growth](papers/WP03_foreign_firms/WP03_foreign_firms_rents_and_growth.md) |
+| `papers/` | Working papers, each in its own folder with the code that generates its numbers. **WP01:** [Which Firms Are Good for Growth?](papers/WP01_which_firms/WP01_which_firms_are_good_for_growth.md) · **WP02:** [Informality: Drag or Symptom?](papers/WP02_informality/WP02_informality_drag_or_symptom.md) · **WP03:** [Foreign Firms, Rents and Growth](papers/WP03_foreign_firms/WP03_foreign_firms_rents_and_growth.md) · **WP04:** [A Segment Trap (model)](papers/WP04_trap_model/WP04_segment_trap_model.md) |
+| `model/` | **trapmodel**: tunable model of the middle-income segment trap (scenarios, switches, tests, calibration register). See [model/README.md](model/README.md) |
 | `docs/register/research_log.md` | Dated log of every work session: what was done, read, decided |
 | `docs/register/decision_log.md` | Numbered decisions with rationale (definitions, scope, framing choices) |
 | `docs/register/open_questions.md` | Unresolved issues and things to check |

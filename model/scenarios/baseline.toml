@@ -1,0 +1,5 @@
+# Baseline structure (v0.1). All other scenarios inherit from this file.
+# Values are ILLUSTRATIVE; see model/calibration.md for targets and status.
+# Parameters not listed here take the values in trapmodel.DEFAULTS.
+[simulation]
+T = 120
