@@ -24,7 +24,7 @@ years = sorted(d["year"].unique())
 # ---- I.7 relative productivity and employment share (variable-width bars)
 st.subheader("Relative productivity and share of employment, by sector")
 yr = st.select_slider("Year", years, value=years[-1], key="rel_year")
-x = d[d["year"] == yr].sort_values("rel", ascending=False)
+x = d[d["year"] == yr].sort_values("rel", ascending=True)  # ladder: low to high productivity
 x["w"] = 100 * x["share"]
 x["left"] = x["w"].cumsum() - x["w"]
 fig = go.Figure()
