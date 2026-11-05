@@ -28,3 +28,9 @@
 | OQ-24 | 2026-11-03 | Add external finance with sudden stops so BoP/FX mechanisms (WP01, WP03) can bind. | WP04 §5 | Open |
 | OQ-25 | 2026-11-03 | Add markups and entry to make the incumbent–competition loop explicit (currently proxied by theta_X). | WP04 §5 | Open |
 | OQ-26 | 2026-11-03 | Calibrate beta, b, lam_X, theta_X, tau to Mexico, Brazil, Chile, Colombia (model/calibration.md). | WP04 §2.6 | Open |
+| OQ-27 | 2026-11-05 | Load the four raw files (UN AMA files 2 and 6; ILO EMP_2EMP_SEX_ECO_NB_A and EMP_TEMP_SEX_ECO_NB_A), run carib_lp, and review the coverage report country by country. | D-019, D-021 | Open |
+| OQ-28 | 2026-11-05 | Do the ILO modelled estimates cover the smallest OECS states (Antigua and Barbuda, Dominica, Saint Kitts and Nevis)? If not, find their LFS/census employment by sector from national statistics offices or the OECS Commission. | D-019 | Open |
+| OQ-29 | 2026-11-05 | Size of the ISIC4-to-ISIC3 approximations (ISIC4 J, E) in the employment mapping: check in a country that reports both revisions in an overlap year. | D-020 | Open |
+| OQ-30 | 2026-11-05 | Enclave sectors: Trinidad and Tobago (oil and gas), Guyana (oil from 2019), Jamaica and Guyana (bauxite), Suriname (gold, oil). Run decompositions with and without mining; check the sign of derived mining+utilities value added. | McMillan–Rodrik, D-020 | Open |
+| OQ-31 | 2026-11-05 | Cuba: national accounts and employment comparability (exchange-rate regime, sector definitions). Decide whether to keep, flag or drop. | D-019 | Open |
+| OQ-32 | 2026-11-05 | Finer services detail (tourism, finance, business services) from CEPALSTAT or national accounts for the larger economies (DOM, JAM, TTO, BHS, BRB). | D-020 | Open |

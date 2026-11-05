@@ -4,6 +4,22 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-05 — Session 8: Phase 2 starts — Caribbean productivity data
+
+**Prompt (user):** is output and employment by sector available for Caribbean states, to build labour productivity and analyse it McMillan–Rodrik style? Start with the member states of ECLAC's Port of Spain office; record the work on GitHub.
+
+**Done**
+- Checked sources: the GGDC/UNU-WIDER ETD (L115) covers no Caribbean country, nor did the GGDC 10-sector database. Panel to be built from UN AMA value added (L116) and ILO employment (L117).
+- Country list from caribbean.eclac.org/about: 16 members, 13 associate members (D-019).
+- Found the UN AMA constant-price series is now at 2020 prices (latest upload January 2026), not 2015.
+- Built `empirics/code/carib_lp/` (config, sector concordance, download, extract, panel + coverage report); smoke-tested end to end on synthetic files shaped like the UN and ILO downloads. No real data yet.
+- Workspace cannot reach the UN/ILO sites; asked the user to attach the four files (D-022).
+- Decisions D-019 to D-022; open questions OQ-27 to OQ-32; register L115–L117.
+
+**Next:** load the files, review coverage, then the decomposition.
+
+---
+
 ## 2026-11-03 — Session 7: visualizing the model's conclusions
 
 **Prompt (user):** best way to visualize the main conclusions; then build the figures and an interactive version.

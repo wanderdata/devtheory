@@ -6,7 +6,7 @@ The project builds on the established economic literature (growth theory, struct
 
 **Phase 1 (current): theory.** Literature review, conceptual framework, and a set of testable propositions.
 **Phase 1b (current): modelling.** A minimal, tunable model of the trap (`model/`, WP04).
-**Phase 2 (later): empirics.** Testing the propositions with country, sector and firm data.
+**Phase 2 (started 2026-11-05): empirics.** Testing the propositions with country, sector and firm data. First project: a sectoral labour-productivity panel for the Caribbean ([`empirics/code/carib_lp/`](empirics/code/carib_lp/README.md)).
 
 ## Core research questions
 
@@ -31,7 +31,7 @@ See [`docs/research_questions.md`](docs/research_questions.md) for the full, dec
 | `docs/register/open_questions.md` | Unresolved issues and things to check |
 | `references/literature_register.csv` | Every source consulted: citation, strand, key claim, LAC relevance, status |
 | `references/references.bib` | BibTeX for cited works |
-| `empirics/` | Reserved for Phase 2 (data, code, output) |
+| `empirics/` | Phase 2: `code/` (one folder per project), `data/` (raw not committed; interim extracts and processed panels committed), `output/` (generated reports). **carib_lp:** Caribbean sectoral labour productivity |
 
 ## Conventions
 
