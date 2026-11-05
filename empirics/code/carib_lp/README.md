@@ -38,6 +38,8 @@ python empirics/code/carib_lp/03_build_panel.py    # extracts -> panel + coverag
 python empirics/code/carib_lp/03b_build_panel5.py  # grid B (5-sector) employment
 python empirics/code/carib_lp/04_validate.py       # modelled vs survey employment
 python empirics/code/carib_lp/05_decompose.py      # decompositions, both grids
+python empirics/code/carib_lp/06_extract_labour.py # ILO labour-market series for the dashboard
+streamlit run empirics/dashboard/app.py            # dashboard (see empirics/dashboard/README.md)
 ```
 
 `02_extract.py` recognises files by content, so downloads can keep their original names and be passed as arguments.

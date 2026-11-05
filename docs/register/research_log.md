@@ -4,6 +4,22 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-05 — Session 11: dashboard
+
+**Prompt (user):** add a dashboard, runnable on the user's Streamlit account, using an ECLAC chapter draft as the reference for chart types and analysis; improvements allowed but kept separate and flagged.
+
+**Done**
+- Read the reference (L119): 25 charts; regional productivity (I.3–I.10), employment (I.2, I.11–I.13), IDPE (I.14), country panels A–J.
+- User supplied five ILO modelled series; `06_extract_labour.py` extracts them (12 countries; capped at 2025).
+- Built `empirics/dashboard/` (Streamlit + Plotly): 4 reference pages and 4 extended pages. The palette is validated with the dataviz validator; there is one fixed colour per sector.
+- Tests:
+  - every page loads in headless Chromium with no exceptions;
+  - every page runs under all grid/series combinations and an empty aggregate (Streamlit AppTest), with one bug fixed (negative bar width for tiny sectors);
+  - dashboard decompositions match WP05 outputs exactly (DOM, JAM, GUY, LCA checks), and annual identity error is under 1e-11.
+- D-027; L119; OQ-40, OQ-41.
+
+---
+
 ## 2026-11-05 — Session 10: decomposition design, validation, WP05 methodology
 
 **Prompt (user):** keep the coverage information in a methodology section; (1) choose periods balancing rigour and coverage depending on how good the modelled estimates are; (2) run grid A and grid B separately; (3) handle constant-price non-additivity rigorously.

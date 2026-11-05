@@ -41,3 +41,5 @@
 | OQ-37 | 2026-11-05 | Choose between grid A and grid B for the headline results (D-025). | WP05 | Open |
 | OQ-38 | 2026-11-05 | Guyana: the structural term is dominated by the dynamic component (agriculture 2000–19; oil 2019–24) and is very sensitive to the price base (−3.06 initial vs −0.26 final prices, 2000–19). Decide how to present it (separate case, or excluded from regional summaries). | WP05 §2.9–2.10 | Open |
 | OQ-39 | 2026-11-05 | Outputs: figures (McMillan–Rodrik scatter of relative productivity vs share change; decomposition bars by period), regional summary, comparison with Latin American ETD countries. | WP05 §3 | Open |
+| OQ-40 | 2026-11-05 | IDPE: request ECLAC's regression weights (or re-estimate on Gallup life satisfaction + ILOSTAT) to reproduce chart I.14 / panel A for the Caribbean. | D-027, L119 | Open |
+| OQ-41 | 2026-11-05 | Add UN population (AMA file 30) to reproduce chart I.1 (GDP per capita by rolling decades) and the income-per-head identity. | D-027 | Open |

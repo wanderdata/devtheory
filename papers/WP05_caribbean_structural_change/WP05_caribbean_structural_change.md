@@ -204,6 +204,12 @@ Generated tables:
 
 Not yet interpreted; to be discussed together with the choice between grids.
 
+**Dashboard.** An interactive version is in [`empirics/dashboard/`](../../empirics/dashboard/README.md) (Streamlit; D-027). It has two sections:
+- **Reference analysis** reproduces the chart types of ECLAC's chapter on productivity and employment (L119) for the Caribbean.
+- **Extended analysis** presents this paper's method: anchored periods, additive prices, the static/dynamic split, robustness checks and data quality.
+
+It also adds ILO modelled labour-market series: employment, participation and unemployment rates (1991–2025), output per hour and hours worked (2005–2025).
+
 ## References
 
 See `references/literature_register.csv`: L018 (McMillan & Rodrik 2011), L019 (Diao, McMillan & Rodrik 2017), L115 (Kruse et al. 2022, ETD), L116 (UN AMA), L117 (ILOSTAT), L118 (de Vries, Timmer & de Vries 2015).

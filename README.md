@@ -31,7 +31,7 @@ See [`docs/research_questions.md`](docs/research_questions.md) for the full, dec
 | `docs/register/open_questions.md` | Unresolved issues and things to check |
 | `references/literature_register.csv` | Every source consulted: citation, strand, key claim, LAC relevance, status |
 | `references/references.bib` | BibTeX for cited works |
-| `empirics/` | Phase 2: `code/` (one folder per project), `data/` (raw not committed; interim extracts and processed panels committed), `output/` (generated reports). **carib_lp:** Caribbean sectoral labour productivity |
+| `empirics/` | Phase 2: `code/` (one folder per project), `data/` (raw not committed; interim extracts and processed panels committed), `output/` (generated reports). **carib_lp:** Caribbean sectoral labour productivity; Streamlit dashboard in `empirics/dashboard/` ([README](empirics/dashboard/README.md)) |
 
 ## Conventions
 
