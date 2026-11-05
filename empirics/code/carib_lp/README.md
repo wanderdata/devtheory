@@ -2,7 +2,7 @@
 
 Builds a country × sector × year panel of value added, employment and labour productivity for the 16 member countries of the ECLAC subregional headquarters for the Caribbean, for McMillan–Rodrik style decompositions (within-sector growth vs. structural change).
 
-**Status (2026-11-05):** pipeline written and smoke-tested on synthetic files; waiting for the raw downloads. No real numbers yet.
+**Status (2026-11-05):** real files loaded (downloaded 2026-11-05: UN AMA upload of January 2026; ILO files stamped 20261105). Coverage report: [`empirics/output/carib_lp/coverage.md`](../../output/carib_lp/coverage.md). No decomposition yet.
 
 ## Countries (D-019)
 
@@ -22,6 +22,12 @@ The two employment series are kept side by side (D-021): the modelled series is 
 ## Sectors (D-020)
 
 The UN AMA's seven groupings (ISIC Rev.3): AGR agriculture (A–B); MIU mining and utilities (C, E; derived as C–E minus D); MAN manufacturing (D); CON construction (F); TRH trade, restaurants and hotels (G–H); TSC transport, storage and communication (I); OTH other services (J–P). ILO employment in ISIC Rev.4 is mapped in `concordance.py`; the approximations (ISIC4 J and E) are documented there.
+
+## Data-quality rules (D-023)
+
+- Constant-price mining+utilities = current-price (C–E minus D) × C–E deflator, not the constant-price residual (which goes negative under chain-linking).
+- Survey country-years with more than 25% of workers unclassified are dropped.
+- Survey years missing any of the 7 sectors are not used; missing ISIC sections in used years are reported in the coverage file.
 
 ## Running it
 

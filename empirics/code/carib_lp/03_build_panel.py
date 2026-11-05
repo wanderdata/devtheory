@@ -16,19 +16,35 @@ from config import COUNTRIES, INTERIM, OUTPUT, PROCESSED, SECTOR_ORDER, SECTORS
 from concordance import SCHEME_RANK, map_ilo_code
 
 TOL = 0.02  # tolerance for adding-up checks (share of total)
+MAX_X_SHARE = 0.25  # survey country-years with more workers unclassified than this are unusable (D-023)
 
 
 # ------------------------------------------------------------ value added --
 
-def load_va(kind):
+def _wide(kind):
     f = INTERIM / f"{kind}.csv"
     if not f.exists():
         return None
     df = pd.read_csv(f)
-    w = df[df["target"].notna()].pivot_table(index=["iso3", "year"], columns="target",
-                                             values="value", aggfunc="first")
+    return df[df["target"].notna()].pivot_table(index=["iso3", "year"], columns="target",
+                                                values="value", aggfunc="first")
+
+
+def load_va(kind):
+    """Wide VA table. Constant-price series are chain-linked, so components do
+    not add up outside the 2020 base year; mining+utilities in constant prices
+    is therefore built as current-price (C-E minus D) deflated by the C-E
+    deflator (D-023), not as a constant-price residual, which can go negative."""
+    w = _wide(kind)
+    if w is None:
+        return None
     if {"_CDE", "MAN"} <= set(w.columns):
         w["MIU"] = w["_CDE"] - w["MAN"]
+        w["MIU_residual"] = w["MIU"]
+        cur = _wide("un_va_cur_usd") if kind != "un_va_cur_usd" else None
+        if cur is not None:
+            defl = w["_CDE"] / cur["_CDE"].reindex(w.index)
+            w["MIU"] = (cur["_CDE"] - cur["MAN"]).reindex(w.index) * defl
     have = [s for s in SECTOR_ORDER if s in w.columns]
     w["sum7"] = w[have].sum(axis=1, min_count=len(SECTOR_ORDER))
     if "TOTAL_VA" in w.columns:
@@ -78,6 +94,9 @@ def sectorize(df, label):
         classified = det.sum()
         gap = (classified + x) / total - 1 if total else np.nan
         missing = [s for s in SECTOR_ORDER if s not in det.index]
+        if total and x / total > MAX_X_SHARE:
+            notes.append((iso, src, yr, f"{label}: {x/total:.0%} of workers unclassified; country-year dropped"))
+            missing = ["UNCLASSIFIED>25%"]
         scale = total / classified if classified else np.nan
         for s in SECTOR_ORDER:
             rows.append({
@@ -93,6 +112,7 @@ def pick_survey_source(emp):
     """One survey source per country-year: labour force survey first, then others."""
     if emp.empty:
         return emp
+    emp = emp[emp["missing_sectors"] == ""]  # usable country-years only
     keys = emp[["iso3", "year", "source"]].drop_duplicates()
     keys["rank"] = keys["source"].map(source_rank)
     best = keys.sort_values(["iso3", "year", "rank", "source"]).groupby(["iso3", "year"]).head(1)
@@ -117,7 +137,7 @@ def main():
     va_k = load_va("un_va_k2020_usd")
     va_c = load_va("un_va_cur_usd")
 
-    emp_m = emp_s = pd.DataFrame()
+    emp_m = emp_s = emp_all = pd.DataFrame()
     if (INTERIM / "ilo_emp_model.csv").exists():
         emp_m, n = sectorize(pd.read_csv(INTERIM / "ilo_emp_model.csv", low_memory=False), "model")
         notes += n
@@ -163,13 +183,14 @@ def main():
                 r["va_max_addup_gap"] = full["gap_vs_total"].abs().max()
             if "MIU" in v:
                 r["va_neg_MIU_years"] = int((full["MIU"] < 0).sum())
-        for lab, e in [("model", emp_m), ("survey", emp_s)]:
+        for lab, e, eall in [("model", emp_m, emp_m), ("survey", emp_s, emp_all)]:
             if e.empty:
                 continue
             ei = e[e["iso3"] == iso]
             full = ei.groupby("year").filter(lambda g: g["missing_sectors"].iloc[0] == "")
             r[f"{lab}_years"], r[f"{lab}_n"], r[f"{lab}_gaps"] = span(full["year"])
-            r[f"{lab}_partial_years"] = int(ei["year"].nunique() - full["year"].nunique())
+            ea = eall[eall["iso3"] == iso]
+            r[f"{lab}_partial_years"] = int(ea["year"].nunique() - full["year"].nunique())
             r[f"{lab}_schemes"] = ",".join(sorted(ei["scheme"].unique()))
             r[f"{lab}_max_xshare"] = ei["x_share"].max() if len(ei) else np.nan
             r[f"{lab}_max_addup_gap"] = ei["addup_gap"].abs().max() if len(ei) else np.nan
@@ -178,9 +199,85 @@ def main():
                 r["survey_year_list"] = ", ".join(str(y) for y in sorted(full["year"].unique()))
         cov.append(r)
     cov = pd.DataFrame(cov)
+    cov = cov.merge(summary(va_k, emp_m, emp_s), on="iso3", how="left")
     cov.to_csv(OUTPUT / "coverage.csv", index=False)
     write_report(cov, panel, notes)
     print(cov.to_string())
+
+
+def six_group_years():
+    """Survey years that have ILO's six broad groups (AGR, MEL, MAN, CON, MKT, PUB)
+    but no usable seven-sector ISIC breakdown: a possible coarser extension."""
+    f = INTERIM / "ilo_emp_survey.csv"
+    if not f.exists():
+        return {}
+    s = pd.read_csv(f, low_memory=False)
+    s = s[(s["sex"] == "SEX_T") & s["classif1"].str.startswith("ECO_AGGREGATE") & s["obs_value"].notna()]
+    groups = s.groupby(["ref_area", "time"])["classif1"].agg(lambda x: {c.split("_")[-1] for c in x})
+    ok = groups[groups.map(lambda g: {"AGR", "MAN", "CON", "MEL", "MKT", "PUB"} <= g)]
+    out = {}
+    for (iso, yr) in ok.index:
+        out.setdefault(iso, set()).add(int(yr))
+    return out
+
+
+FULL_SECTIONS = {"ISIC4": set("ABCDEFGHIJKLMNOPQRS"), "ISIC3": set("ABCDEFGHIJKLMNO")}
+
+
+def missing_sections(emp_s):
+    """ISIC sections absent from the survey country-years used in the panel.
+    An absent section was merged by the national survey into another one; when
+    the merge crosses target sectors (e.g. business services into J), the
+    7-sector split is distorted even though all 7 sectors are present."""
+    f = INTERIM / "ilo_emp_survey.csv"
+    if emp_s.empty or not f.exists():
+        return {}
+    s = pd.read_csv(f, low_memory=False)
+    s = s[(s["sex"] == "SEX_T") & s["obs_value"].notna()]
+    sel = emp_s[["iso3", "year", "source", "scheme"]].drop_duplicates()
+    s["time"] = s["time"].astype(str).str[:4].astype(int)
+    s = s.merge(sel, left_on=["ref_area", "time", "source"], right_on=["iso3", "year", "source"])
+    s = s[[c.startswith(f"ECO_{sc}_") for c, sc in zip(s["classif1"], s["scheme"])]]
+    out = {}
+    for (iso, yr, sc), g in s.groupby(["iso3", "year", "scheme"]):
+        have = {c for code in g["classif1"] for c in code.split("_")[-1] if code.split("_")[-1] not in ("TOTAL", "X")}
+        miss = "".join(sorted(FULL_SECTIONS.get(sc, set()) - have))
+        if miss:
+            out.setdefault(iso, {}).setdefault(f"{sc} {miss}", []).append(int(yr))
+    return {iso: "; ".join(f"{k} ({span(v)[0]})" for k, v in d.items()) for iso, d in out.items()}
+
+
+def summary(va_k, emp_m, emp_s):
+    """Per country: what a decomposition can rest on."""
+    six = six_group_years()
+    miss = missing_sections(emp_s)
+    rows = []
+    for iso in COUNTRIES:
+        r = {"iso3": iso}
+        va_years = set(va_k.loc[iso].index[va_k.loc[iso]["sum7"].notna()]) if va_k is not None and iso in va_k.index.get_level_values(0) else set()
+        m_years = set(emp_m.loc[emp_m["iso3"] == iso, "year"]) if not emp_m.empty else set()
+        s_years = set(emp_s.loc[emp_s["iso3"] == iso, "year"]) if not emp_s.empty else set()
+        both_m = va_years & m_years
+        r["lp_model_span"] = span(both_m)[0]
+        r["lp_model_n"] = len(both_m)
+        anchored = s_years & both_m
+        r["model_years_with_survey"] = len(anchored)
+        r["model_survey_anchor_share"] = len(anchored) / len(both_m) if both_m else np.nan
+        r["lp_survey_n"] = len(va_years & s_years)
+        r["six_group_only_years"] = len(six.get(iso, set()) - s_years)
+        # modelled vs survey employment shares in common years (mean absolute difference, pp)
+        if anchored:
+            def shares(e):
+                x = e[(e["iso3"] == iso) & e["year"].isin(anchored)].pivot_table(index="year", columns="sector", values="emp")
+                return x.div(x.sum(axis=1), axis=0)
+            d = (shares(emp_m) - shares(emp_s)).abs()
+            r["model_vs_survey_share_mad_pp"] = 100 * d.mean().mean()
+            r["model_vs_survey_share_max_pp"] = 100 * d.max().max()
+            tot = lambda e: e[(e["iso3"] == iso) & e["year"].isin(anchored)].groupby("year")["emp"].sum()
+            r["model_over_survey_total"] = (tot(emp_m) / tot(emp_s)).median()
+        r["survey_missing_sections"] = miss.get(iso, "")
+        rows.append(r)
+    return pd.DataFrame(rows)
 
 
 def fmt(x, pct=False):
@@ -205,8 +302,26 @@ def write_report(cov, panel, notes):
          "HA/HB = other household surveys, DA = official estimates).",
          ""]
     has = lambda c: c in cov.columns
+    if has("lp_model_n"):
+        L += ["## Summary: what a decomposition can rest on", "",
+              "*LP years* = years with both value added (7 sectors) and employment (7 sectors). "
+              "*Survey-anchored* = share of modelled years that are also usable survey years; the rest are ILO interpolation or extrapolation. "
+              "*Model vs survey* = mean absolute gap between modelled and survey employment shares in common years, in percentage points (max in brackets). "
+              "*Model/survey total* = median ratio of modelled to survey total employment in common years. "
+              "*Six-group-only years* = survey years with ILO's six broad groups but no usable 7-sector detail.", "",
+              "| Country | LP years, modelled employment | Survey-anchored | LP years, survey employment | Model vs survey shares (pp) | Model/survey total | Six-group-only years |",
+              "|---|---|---|---|---|---|---|"]
+        for _, r in cov.iterrows():
+            mvs = "—" if pd.isna(r.get("model_vs_survey_share_mad_pp")) else f"{r['model_vs_survey_share_mad_pp']:.1f} ({r['model_vs_survey_share_max_pp']:.1f})"
+            L.append(f"| {r['country']} | {fmt(r.get('lp_model_span'))} ({fmt(r.get('lp_model_n'))}) | "
+                     f"{fmt(r.get('model_survey_anchor_share'), True) if r.get('lp_model_n') else '—'} | {fmt(r.get('lp_survey_n'))} | {mvs} | "
+                     f"{'—' if pd.isna(r.get('model_over_survey_total')) else format(r['model_over_survey_total'], '.2f')} | {fmt(r.get('six_group_only_years'))} |")
+        L.append("")
     if has("va_years"):
         L += ["## Value added (UN National Accounts Main Aggregates, constant 2020 US$)", "",
+              "Constant-price series are chain-linked, so the seven sectors add up to total value added only in the 2020 base year "
+              "(current-price series add up exactly). The add-up gap column shows the largest departure. Mining+utilities in constant "
+              "prices is built from current prices with the C–E deflator, so it cannot go negative (D-023).", "",
               "| Country | Years | n | Gaps | Max add-up gap vs total VA | Years with negative mining+utilities |",
               "|---|---|---|---|---|---|"]
         for _, r in cov.iterrows():
@@ -229,6 +344,15 @@ def write_report(cov, panel, notes):
             for _, r in cov.iterrows():
                 L.append(f"| {r['country']} | {fmt(r.get('survey_year_list'))} | {fmt(r.get('survey_n'))} | {fmt(r.get('survey_partial_years'))} | "
                          f"{fmt(r.get('survey_sources'))} | {fmt(r.get('survey_schemes'))} | {fmt(r.get('survey_max_xshare'), True)} |")
+        L.append("")
+    if has("survey_missing_sections"):
+        L += ["## ISIC sections missing from usable survey years", "",
+              "A missing section was merged by the national survey into another one. Harmless when both fall in the same target "
+              "sector (e.g. J into H); distorting when they do not (e.g. business services M–N into J moves workers from OTH to TSC).", "",
+              "| Country | Missing sections (years) |", "|---|---|"]
+        for _, r in cov.iterrows():
+            if r.get("survey_missing_sections"):
+                L.append(f"| {r['country']} | {r['survey_missing_sections']} |")
         L.append("")
     if notes:
         L += ["## Mapping notes", ""] + [f"- {i} {y} ({s}): {t}" for i, s, y, t in notes[:200]]

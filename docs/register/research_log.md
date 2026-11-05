@@ -4,6 +4,22 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-05 — Session 9: Caribbean data loaded, coverage report
+
+**Prompt (user):** four files attached (UN AMA constant 2020 and current US$; ILO EMP_2EMP and EMP_TEMP); produce a coverage report before discussing outputs.
+
+**Done**
+- Ran carib_lp on the real files; report in `empirics/output/carib_lp/coverage.md` (generated).
+- Value added: all 16 countries, 7 sectors, 1970–2024. Constant-price sectors add up only in 2020 (chain-linking); current prices add up exactly.
+- Modelled employment: 12 countries, 1991–2025; not ATG, DMA, GRD, KNA. Share of modelled years backed by a usable survey year ranges from 3% (Haiti) to 74% (Dominican Republic).
+- Survey employment: usable 7-sector years from 0 (Dominica, Saint Kitts and Nevis) to 25 (Dominican Republic).
+- Problems found and handled (D-023): negative derived mining in KNA (fixed via deflator); Jamaica 2023 broken (dropped); Barbados 2004–14 construction merged with mining (unused); missing ISIC sections reported, worst for Trinidad and Tobago, Cuba, Belize (OQ-33, OQ-34).
+- Sanity check of 2019 productivity levels: plausible ordering (Bahamas and Barbados highest, Haiti lowest; Guyana mining jumps to ~US$364k per worker in 2023 with oil).
+
+**Next:** discuss outputs with the user (decomposition design, periods, which employment series as baseline).
+
+---
+
 ## 2026-11-05 — Session 8: Phase 2 starts — Caribbean productivity data
 
 **Prompt (user):** is output and employment by sector available for Caribbean states, to build labour productivity and analyse it McMillan–Rodrik style? Start with the member states of ECLAC's Port of Spain office; record the work on GitHub.
