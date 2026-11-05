@@ -1,5 +1,7 @@
 # Caribbean labour productivity dashboard
 
+Paul Wander, Division of Production, Productivity and Management, UN-ECLAC.
+
 Streamlit app for the `carib_lp` project (WP05). It reads only files committed in this repository, so it runs on Streamlit Community Cloud with no setup.
 
 ## Deploy on Streamlit Community Cloud
@@ -14,26 +16,22 @@ Run locally: `pip install -r empirics/dashboard/requirements.txt && streamlit ru
 
 ## Structure
 
-| Section | Page | Reference (ECLAC chapter) |
+| Section | Page | Contents |
 |---|---|---|
-| Reference analysis | Regional productivity | Charts I.3, I.4, I.5, I.6 |
-| | Sectors and structural change | I.7, I.8, I.9, I.10 |
-| | Employment | I.2, I.11, I.12, I.13 |
-| | Country profile | Country panels B–J (I.15–I.25) |
-| Extended analysis (not in the reference) | Anchored period decompositions | WP05 main results: grades, static/dynamic, robustness |
-| | Annual decomposition, additive prices | I.6 at previous-year prices, survey-year markers, price-base comparison |
+| Baseline analysis (following McMillan & Rodrik) | Regional productivity | Level over time, ranking, annual change, within/structural-change components by year |
+| | Sectors and structural change | Productivity ladder (relative productivity × employment share), sector trends, sector contributions to the within and structural-change components |
+| | Employment | Productivity vs employment-rate quadrants, employment rate, Shapley split into participation and unemployment, unemployment and participation rates |
+| | Country profile | Panels A–I for one country |
+| Extended analysis | Anchored period decompositions | WP05 main results: grades, static/dynamic, robustness |
+| | Annual decomposition, additive prices | Annual decomposition at previous-year prices, survey-year markers, price-base comparison |
 | | Reallocation and productivity gaps | McMillan–Rodrik scatter with weighted slope; dispersion index; hours vs output per hour |
 | | Data quality and coverage | Survey timeline, validation, model vs survey shares, grades |
 
-### Where the reference section departs from the reference, and why
+### Data notes
 
-- **Sectors.** 7 sectors (grid A) or 5 (grid B), not ECLAC's 9: UN value added for the Caribbean exists only at 7.
+- **Sectors.** 7 sectors (grid A) or 5 (grid B): UN value added for the Caribbean exists only at 7.
 - **Latest year.** Sector data end in 2024, when UN value added ends. Labour-market series run to 2025 (ILO; later projections dropped).
-- **Productivity measure.** Per worker in constant 2020 US$ by default; sector data are per worker. Per hour (ILO, 2021 PPP$) is available for whole-economy charts, as in the reference.
-- **Panel B.** Productivity per hour and the employment rate are shown on one indexed axis (2005 = 100) instead of two axes.
-- **Not reproduced.**
-  - The productive development and employment index (IDPE: chart I.14 and country panel A), because its regression weights are not published.
-  - Chart I.1 (GDP per capita by rolling decades), which needs population data that are not in the repository.
+- **Productivity measure.** Per worker in constant 2020 US$ by default; sector data are per worker. Per hour (ILO, 2021 PPP$) is available for whole-economy charts.
 
 ## Files
 

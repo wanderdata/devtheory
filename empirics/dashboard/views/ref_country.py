@@ -1,4 +1,4 @@
-"""Reference analysis: country profile (ECLAC charts I.15–I.25, panels B–J)."""
+"""Baseline analysis: country profile."""
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -10,9 +10,7 @@ from lib import (COUNTRIES, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2, SECTOR_COLORS
 
 grid, series, _ = sidebar_common(key="cp")
 st.title("Country profile")
-st.caption("Reference format: ECLAC country panels B–J. Panel A (the productive development and employment "
-           "index, IDPE) is not reproduced: its regression weights, estimated on Gallup life-satisfaction data, "
-           "are not published in the reference.")
+st.caption("One-page profile: productivity and employment, sector contributions, sector trends and the labour market.")
 
 iso = st.selectbox("Country", list(COUNTRIES), format_func=name, index=list(COUNTRIES).index("DOM"))
 lab = load_labour()
@@ -43,12 +41,12 @@ if L is not None and len(L.dropna(subset=["lp_hour"])) > 1:
 def panel_title(letter, text):
     st.markdown(f"**{letter}. {text}**")
 
-# ---- B, C, D
+# ---- A, B, C
 if L is not None:
     LL = L.loc[L.index >= 2005]
     c1, c2, c3 = st.columns(3)
     with c1:
-        panel_title("B", "Productivity per hour and employment rate (index, 2005 = 100)")
+        panel_title("A", "Productivity per hour and employment rate (index, 2005 = 100)")
         fig = go.Figure()
         for col, lab_, color in [("lp_hour", "Productivity per hour", C_WITHIN), ("emp_rate", "Employment rate", C_STRUCT)]:
             s = LL[col].dropna()
@@ -56,30 +54,30 @@ if L is not None:
                                      line=dict(color=color, width=2),
                                      hovertemplate=lab_ + " %{x}: %{y:.1f}<extra></extra>"))
         base_layout(fig, ytitle="2005 = 100", height=320)
-        show(fig, caption="Shown on one indexed axis; the reference uses two axes.", key="B")
+        show(fig, caption="Both series indexed to 2005 = 100.", key="B")
     with c2:
-        panel_title("C", "Productivity per hour (constant 2021 PPP$)")
+        panel_title("B", "Productivity per hour (constant 2021 PPP$)")
         fig = go.Figure(go.Scatter(x=LL.index, y=LL["lp_hour"], mode="lines", line=dict(color=C_WITHIN, width=2),
                                    hovertemplate="%{x}: %{y:.1f}<extra></extra>"))
         base_layout(fig, height=320, legend=False)
         show(fig, key="C")
     with c3:
-        panel_title("D", "Employment rate (%)")
+        panel_title("C", "Employment rate (%)")
         fig = go.Figure(go.Scatter(x=LL.index, y=LL["emp_rate"], mode="lines", line=dict(color=C_STRUCT, width=2),
                                    hovertemplate="%{x}: %{y:.1f}%<extra></extra>"))
         base_layout(fig, height=320, legend=False)
         show(fig, key="D")
 else:
-    st.info("Panels B–D and I–J need the ILO labour-market series.")
+    st.info("Panels A–C and H–I need the ILO labour-market series.")
 
-# ---- E, F
+# ---- D, E
 if y2 is not None:
     c = det[det["year"] == y2].copy()
     c["label"] = c["sector"].map(SHORT)
     r = dec[(dec["iso3"] == iso) & (dec["year"] == y2)].iloc[0]
     c1, c2 = st.columns(2)
     with c1:
-        panel_title("E", f"Structural change, {y2-1}–{y2} (thousand 2020 US$ and pp)")
+        panel_title("D", f"Structural change, {y2-1}–{y2} (thousand 2020 US$ and pp)")
         fig = go.Figure()
         for _, x in c.iterrows():
             fig.add_trace(go.Scatter(x=[100 * (x["s1"] - x["s0"])], y=[x["p1"] / 1000], mode="markers+text",
@@ -94,7 +92,7 @@ if y2 is not None:
         show(fig, caption=f"Structural-change component: {r['struct']/1000:.2f}k of a total change of "
                           f"{(r['within']+r['struct'])/1000:.2f}k per worker. Bubble size = share of employment.", key="E")
     with c2:
-        panel_title("F", f"Within-sector change, {y2-1}–{y2} (% of the within component)")
+        panel_title("E", f"Within-sector change, {y2-1}–{y2} (% of the within component)")
         wsum = c["within"].sum()
         c["pct"] = 100 * c["within"] / abs(wsum) if wsum else 0
         c = c.sort_values("pct")
@@ -105,11 +103,11 @@ if y2 is not None:
         fig.update_yaxes(gridcolor="rgba(0,0,0,0)")
         show(fig, caption=f"Within component: {wsum/1000:.2f}k per worker.", key="F")
 
-# ---- G, H
+# ---- F, G
 c1, c2 = st.columns(2)
 with c1:
     b = 2005
-    panel_title("G", f"Productivity trend by sector (index, {b} = 100)")
+    panel_title("F", f"Productivity trend by sector (index, {b} = 100)")
     t = d.pivot_table(index="year", columns="sector", values="lp")
     t = t.loc[t.index >= b]
     fig = go.Figure()
@@ -121,7 +119,7 @@ with c1:
     show(fig, key="G")
 with c2:
     hy = y2 if y2 else int(d["year"].max())
-    panel_title("H", f"Productivity per worker and share of employment, by sector, {hy}")
+    panel_title("G", f"Productivity per worker and share of employment, by sector, {hy}")
     h = d[d["year"] == hy].sort_values("lp")
     fig = go.Figure(go.Bar(x=h["lp"] / 1000, y=h["sector"].map(SHORT), orientation="h",
                            marker=dict(color=[SECTOR_COLORS[s] for s in h["sector"]], cornerradius=4),
@@ -132,11 +130,11 @@ with c2:
     fig.update_yaxes(gridcolor="rgba(0,0,0,0)")
     show(fig, key="H")
 
-# ---- I, J
+# ---- H, I
 if L is not None:
     c1, c2 = st.columns(2)
     with c1:
-        panel_title("I", "Change in the employment rate: Shapley contributions (pp)")
+        panel_title("H", "Change in the employment rate: Shapley contributions (pp)")
         ys = [y for y in L.index if y - 1 in L.index][-3:]
         rows = []
         for y in ys:
@@ -155,7 +153,7 @@ if L is not None:
         fig.update_xaxes(type="category")
         show(fig, key="I")
     with c2:
-        panel_title("J", "Labour-market rates (%)")
+        panel_title("I", "Labour-market rates (%)")
         LL = L.loc[L.index >= 2005]
         fig = go.Figure()
         for col, lab_, color in [("part_rate", "Participation rate", C_WITHIN), ("unemp_rate", "Unemployment rate", C_STRUCT)]:

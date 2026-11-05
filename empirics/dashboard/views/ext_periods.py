@@ -9,7 +9,7 @@ from lib import (C_DYNAMIC, C_STATIC, C_WITHIN, GRADE_COLORS, GRADE_TEXT, INK2, 
 st.sidebar.header("Settings")
 grid = st.sidebar.radio("Sector grid", ["A · 7 sectors", "B · 5 sectors (services combined)"], key="gp")[0]
 st.title("Anchored period decompositions")
-st.markdown("**Not in the reference.** The reference decomposes year-to-year changes. Here, growth over the "
+st.markdown("**Extension of the baseline.** The baseline decomposes year-to-year changes. Here, growth over the "
             "multi-year periods of WP05 is decomposed into within-sector growth and structural change, and "
             "structural change is split into its **static** and **dynamic** parts. Each country-period is "
             "**graded** by whether its endpoints are close to real survey years. Sectors are valued at each "

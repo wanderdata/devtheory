@@ -8,7 +8,7 @@ from lib import (CARIB, COUNTRIES, C_DYNAMIC, C_STATIC, C_WITHIN, GRADE_COLORS, 
 
 grid, series, agg = sidebar_common(key="ea")
 st.title("Annual decomposition, additive prices")
-st.markdown("**Not in the reference.** This is the same year-to-year decomposition as the reference chart I.6, "
+st.markdown("**Extension of the baseline.** This is the same year-to-year decomposition as the baseline, "
             "with three changes:\n"
             "1. Each year is valued at the **previous year's prices**, so sectors add up exactly. In "
             "constant-2020-price series, chain-linking means sectors do not sum to the total.\n"
@@ -60,7 +60,7 @@ st.subheader("How much the price base matters")
 r = ref[ref["iso3"] == who][["year", "growth_pct"]].rename(columns={"growth_pct": "ref"})
 cmp_ = a[["year", "growth_pct"]].merge(r, on="year")
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=cmp_["year"], y=cmp_["ref"], mode="lines", name="Constant 2020 prices (reference method)",
+fig.add_trace(go.Scatter(x=cmp_["year"], y=cmp_["ref"], mode="lines", name="Constant 2020 prices (baseline)",
                          line=dict(color="#c3c2b7", width=2)))
 fig.add_trace(go.Scatter(x=cmp_["year"], y=cmp_["growth_pct"], mode="lines", name="Previous-year prices (additive)",
                          line=dict(color=C_WITHIN, width=2)))

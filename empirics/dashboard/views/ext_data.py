@@ -8,7 +8,7 @@ from lib import (COUNTRIES, C_WITHIN, INK2, OUT, SECTOR_COLORS, SHORT, base_layo
                  load_emp5, load_output, load_panel, name, show)
 
 st.title("Data quality and coverage")
-st.markdown("**Not in the reference.** Shows where the employment data come from, how far the ILO modelled "
+st.markdown("**Extension of the baseline.** Shows where the employment data come from, how far the ILO modelled "
             "series can be trusted, and which results rest on real survey data.")
 
 # ---- anchoring timeline

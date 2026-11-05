@@ -1,4 +1,4 @@
-"""Reference analysis: regional productivity (ECLAC charts I.3–I.6)."""
+"""Baseline analysis: regional productivity."""
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -9,8 +9,8 @@ from lib import (CARIB, COUNTRIES, C_CONTEXT, C_HIGHLIGHT, C_STRUCT, C_WITHIN, I
 
 grid, series, agg = sidebar_common(key="rr")
 st.title("Regional productivity")
-st.caption("Reference format: ECLAC charts I.3 (level over time), I.4 (ranking), I.5 (annual change) "
-           "and I.6 (within and between components).")
+st.caption("Labour productivity levels, ranking and annual change, and the McMillan–Rodrik split of each "
+           "year's change into within-sector and structural-change components.")
 
 df = sector_long(grid, series, tuple(agg) if agg else None)
 lp = aggregate_lp(df)
@@ -30,7 +30,7 @@ else:
     lv = lp[["iso3", "year", "lp"]]
     unit = "constant 2020 US$ per worker"
 
-# ---- I.3 level over time
+# ---- level over time
 st.subheader("Labour productivity over time")
 focus = st.selectbox("Highlight", [CARIB] + list(COUNTRIES), format_func=name,
                      index=0 if (not per_hour and agg) else 1)
@@ -52,7 +52,7 @@ base_layout(fig, ytitle=unit, legend=False)
 show(fig, lv.pivot_table(index="year", columns="iso3", values="lp").round(0).reset_index(),
      caption="Grey lines: other countries. " + ("Aggregate pools the countries chosen in the sidebar." if not per_hour else ""))
 
-# ---- I.4 ranking and I.5 annual change
+# ---- ranking and annual change
 c1, c2 = st.columns(2)
 years = sorted(lv["year"].unique())
 with c1:
@@ -84,7 +84,7 @@ with c2:
     fig.update_yaxes(gridcolor="rgba(0,0,0,0)")
     show(fig, ch.round(1).reset_index().assign(iso3=lambda d: d["iso3"].map(name)).rename(columns={"iso3": "country"}))
 
-# ---- I.6 components of annual difference
+# ---- components of the annual change
 st.subheader("Within-sector and structural-change components of the annual change")
 dec, _ = annual_decomp(grid, series, tuple(agg) if agg else None)
 who = st.selectbox("Economy", [CARIB] + list(COUNTRIES), format_func=name, key="dec_who",

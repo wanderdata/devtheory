@@ -40,7 +40,7 @@ GRID_MAP = {"A": {s: s for s in SECTORS_A},
             "B": {"AGR": "AGR", "MIU": "MIU", "MAN": "MAN", "CON": "CON",
                   "TRH": "SER", "TSC": "SER", "OTH": "SER"}}
 
-# Validated categorical palette (dataviz reference instance), fixed per sector.
+# Validated colour-blind-safe categorical palette, one fixed colour per sector.
 SECTOR_COLORS = {"AGR": "#2a78d6", "MIU": "#eb6834", "MAN": "#1baf7a", "CON": "#eda100",
                  "TRH": "#e87ba4", "TSC": "#008300", "OTH": "#6250d6", "SER": "#6250d6"}
 C_WITHIN, C_STRUCT = "#2a78d6", "#eb6834"          # component colours (slots 1, 2)
@@ -148,8 +148,8 @@ def sector_lp(df):
 def mr_step(d0, d1, prices="constant2020"):
     """McMillan–Rodrik decomposition between two years for one economy.
     d0, d1: sector-indexed frames with va_k2020usd, va_cur_usd, emp.
-    prices='constant2020' : reference style (fixed 2020 prices, as in ECLAC's
-                            constant-2018-dollar series); levels in US$ per worker.
+    prices='constant2020' : baseline (fixed constant 2020 prices); levels in US$
+                            per worker.
     prices='previous'     : sectors valued at year-0 prices (additive; WP05 method).
     Returns per-sector contributions (US$ per worker) and totals."""
     if prices == "constant2020":
@@ -246,8 +246,12 @@ def fmt_k(x):
     return f"{x/1000:,.1f}k"
 
 
+AUTHOR = ("Prepared by Paul Wander, Division of Production, Productivity and Management, UN-ECLAC.")
+
+
 def footer():
     st.divider()
+    st.caption(AUTHOR)
     st.caption("Sources: UN Statistics Division, National Accounts Main Aggregates (Jan 2026 upload); "
                "ILOSTAT, employment by economic activity (ILO modelled estimates and national sources), "
                "downloaded 2026-11-05. Method: devtheory WP05. Not covered (no sector employment data): "

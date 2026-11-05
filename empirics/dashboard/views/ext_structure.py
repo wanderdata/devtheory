@@ -10,11 +10,11 @@ from lib import (CARIB, COUNTRIES, C_CONTEXT, C_HIGHLIGHT, C_STRUCT, C_WITHIN, I
 
 grid, series, agg = sidebar_common(key="es")
 st.title("Reallocation and productivity gaps")
-st.markdown("**Not in the reference.** Three additions:\n"
+st.markdown("**Extension of the baseline.** Three additions:\n"
             "1. The original **McMillan–Rodrik scatter**, with an employment-weighted regression line. A "
             "positive slope means jobs moved toward higher-productivity sectors.\n"
-            "2. A **measure of productivity dispersion across sectors** over time. The reference describes "
-            "gaps narrowing but does not quantify them.\n"
+            "2. A **measure of productivity dispersion across sectors** over time, to show whether gaps between "
+            "sectors are narrowing.\n"
             "3. A **per-worker vs per-hour** comparison that isolates the effect of working hours.")
 
 df = sector_long(grid, series, tuple(agg) if agg else None)

@@ -1,4 +1,4 @@
-"""Reference analysis: sectors and structural change (ECLAC charts I.7–I.10)."""
+"""Baseline analysis: sectors and structural change."""
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -9,9 +9,8 @@ from lib import (CARIB, COUNTRIES, INK2, SECTOR_COLORS, SHORT, annual_decomp, ba
 
 grid, series, agg = sidebar_common(key="rs")
 st.title("Sectors and structural change")
-st.caption("Reference format: ECLAC charts I.7 (relative productivity and employment share), I.8 (sector "
-           "productivity trends), I.9 (sector contributions to the within component) and I.10 (sector "
-           "contributions to the between component).")
+st.caption("Where workers are relative to sector productivity, how sector productivity has moved, and which "
+           "sectors drive the within-sector and structural-change components.")
 
 df = sector_long(grid, series, tuple(agg) if agg else None)
 who = st.selectbox("Economy", [CARIB] + list(COUNTRIES), format_func=name, index=0 if agg else 1)
@@ -21,7 +20,7 @@ if d.empty:
     st.stop()
 years = sorted(d["year"].unique())
 
-# ---- I.7 relative productivity and employment share (variable-width bars)
+# ---- productivity ladder: relative productivity and employment share (variable-width bars)
 st.subheader("Relative productivity and share of employment, by sector")
 yr = st.select_slider("Year", years, value=years[-1], key="rel_year")
 x = d[d["year"] == yr].sort_values("rel", ascending=True)  # ladder: low to high productivity
@@ -44,7 +43,7 @@ show(fig, x.assign(sector=x["sector"].map(SHORT), employment_share=x["w"].round(
      caption="Bar width = share of employment; height = sector productivity relative to the economy (100). "
              "Wide, low bars show where most workers are in low-productivity activities.")
 
-# ---- I.8 sector productivity trend, index
+# ---- sector productivity trend, index
 st.subheader("Productivity trend by sector")
 b = st.select_slider("Base year (= 100)", years, value=2005 if 2005 in years else years[0], key="base")
 t = d.pivot_table(index="year", columns="sector", values="lp")
@@ -62,7 +61,7 @@ fig.add_trace(go.Scatter(x=idx.index, y=idx["TOTAL"], mode="lines", name="Total 
 base_layout(fig, ytitle=f"Index, {b} = 100")
 show(fig, idx.round(1).reset_index())
 
-# ---- I.9 and I.10 annual contributions by sector
+# ---- annual contributions by sector
 st.subheader("Sector contributions to the annual change in productivity")
 dec, det = annual_decomp(grid, series, tuple(agg) if agg else None)
 det = det[det["iso3"] == who]

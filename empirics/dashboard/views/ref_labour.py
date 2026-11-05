@@ -1,4 +1,4 @@
-"""Reference analysis: employment (ECLAC charts I.2, I.11–I.13)."""
+"""Baseline analysis: employment."""
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -8,9 +8,9 @@ from lib import (COUNTRIES, C_CONTEXT, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2, ba
                  footer, labour_or_note, name, show)
 
 st.title("Employment")
-st.caption("Reference format: ECLAC charts I.2 (change in productivity per hour vs change in the employment "
-           "rate), I.11 (employment rate), I.12 (Shapley split of the employment-rate change) and I.13 "
-           "(unemployment and participation). Source: ILO modelled estimates, population aged 15+.")
+st.caption("Productivity and employment together: the employment rate, its split into participation and "
+           "unemployment, and how productivity and employment moved jointly. Source: ILO modelled estimates, "
+           "population aged 15+.")
 
 lab = labour_or_note(["emp_rate", "part_rate", "unemp_rate", "lp_hour"])
 if lab is None:
@@ -19,7 +19,7 @@ w = lab.pivot_table(index=["iso3", "year"], columns="indicator", values="value")
 w = w[w["iso3"].isin(COUNTRIES)]
 years = sorted(w.dropna(subset=["lp_hour"])["year"].unique())
 
-# ---- I.2 quadrant
+# ---- quadrant
 st.subheader("Productivity and employment: annual change")
 yr = st.select_slider("Year", years[1:], value=years[-1])
 a = w[w["year"] == yr - 1].set_index("iso3")
@@ -41,7 +41,7 @@ show(fig, q.round(2).reset_index().assign(iso3=lambda d: d["iso3"].map(name)).re
      caption="Top right: both rose, so income per head rose (holding the working-age share constant). Bottom left: both fell. "
              "The other two quadrants depend on which change was larger.")
 
-# ---- I.11 employment rate
+# ---- employment rate
 st.subheader("Employment rate")
 focus = st.selectbox("Highlight", list(COUNTRIES), format_func=name, index=list(COUNTRIES).index("DOM"))
 def lines(col, ytitle, key):
@@ -59,7 +59,7 @@ def lines(col, ytitle, key):
     show(fig, w.pivot_table(index="year", columns="iso3", values=col).round(1).reset_index(), key=key)
 lines("emp_rate", "Employed as % of population 15+", "er")
 
-# ---- I.12 Shapley
+# ---- Shapley split
 st.subheader("Change in the employment rate: participation and unemployment")
 st.caption("e = p·(1 − u). Shapley split: participation contributes Δp·(average of 1−u); unemployment "
            "contributes −Δu·(average p). The two contributions add up exactly to Δe.")
@@ -90,7 +90,7 @@ fig.update_layout(barmode="relative")
 fig.update_xaxes(type="category")
 show(fig, s.round(2))
 
-# ---- I.13 unemployment and participation
+# ---- unemployment and participation
 st.subheader("Unemployment and participation rates")
 c1, c2 = st.columns(2)
 with c1:
