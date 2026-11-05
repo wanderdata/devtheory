@@ -4,6 +4,19 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-05 — Session 10: decomposition design, validation, WP05 methodology
+
+**Prompt (user):** keep the coverage information in a methodology section; (1) choose periods balancing rigour and coverage depending on how good the modelled estimates are; (2) run grid A and grid B separately; (3) handle constant-price non-additivity rigorously.
+
+**Done**
+- `03b_build_panel5.py` (grid B employment, incl. ILO six-group survey years); `decompose.py` (McMillan–Rodrik with static/dynamic split, initial- or final-year prices); `04_validate.py` (modelled vs survey employment between survey years); `05_decompose.py` (main + 3 robustness runs per grid, generated `results.md`).
+- Validation: structural term with modelled employment tracks survey-based term (grid A corr. 0.91, median gap 0.14 pp/yr; grid B 0.85, 0.11). Failures: Suriname, Haiti (survey-type switches), Belize grid A (ISIC merges), Cuba 1990s.
+- Decisions D-024 (initial-year prices), D-025 (two grids), D-026 (modelled employment, fixed periods, anchoring grades). Grade-A coverage: 23 country-periods / 9 countries (A), 28 / 11 (B). Survey-endpoint robustness for grade A: corr. 0.95.
+- Wrote `papers/WP05_caribbean_structural_change/` with the full methodology section. Results generated but not interpreted.
+- Register L118; OQ-36 closed; OQ-37–OQ-39 opened.
+
+---
+
 ## 2026-11-05 — Session 9: Caribbean data loaded, coverage report
 
 **Prompt (user):** four files attached (UN AMA constant 2020 and current US$; ILO EMP_2EMP and EMP_TEMP); produce a coverage report before discussing outputs.

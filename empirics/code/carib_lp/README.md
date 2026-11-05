@@ -2,7 +2,7 @@
 
 Builds a country × sector × year panel of value added, employment and labour productivity for the 16 member countries of the ECLAC subregional headquarters for the Caribbean, for McMillan–Rodrik style decompositions (within-sector growth vs. structural change).
 
-**Status (2026-11-05):** real files loaded (downloaded 2026-11-05: UN AMA upload of January 2026; ILO files stamped 20261105). Coverage report: [`empirics/output/carib_lp/coverage.md`](../../output/carib_lp/coverage.md). No decomposition yet.
+**Status (2026-11-05):** real files loaded (downloaded 2026-11-05: UN AMA upload of January 2026; ILO files stamped 20261105). Coverage report: [`empirics/output/carib_lp/coverage.md`](../../output/carib_lp/coverage.md). Decompositions for grids A and B run; method in [WP05 §2](../../../papers/WP05_caribbean_structural_change/WP05_caribbean_structural_change.md); results in [`results.md`](../../output/carib_lp/results.md).
 
 ## Countries (D-019)
 
@@ -35,6 +35,9 @@ The UN AMA's seven groupings (ISIC Rev.3): AGR agriculture (A–B); MIU mining a
 python empirics/code/carib_lp/01_download.py      # needs access to unstats.un.org and rplumber.ilo.org
 python empirics/code/carib_lp/02_extract.py [files...]   # raw world files -> 16-country extracts
 python empirics/code/carib_lp/03_build_panel.py    # extracts -> panel + coverage report
+python empirics/code/carib_lp/03b_build_panel5.py  # grid B (5-sector) employment
+python empirics/code/carib_lp/04_validate.py       # modelled vs survey employment
+python empirics/code/carib_lp/05_decompose.py      # decompositions, both grids
 ```
 
 `02_extract.py` recognises files by content, so downloads can keep their original names and be passed as arguments.
