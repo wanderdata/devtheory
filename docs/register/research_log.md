@@ -4,6 +4,24 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-09 — Session 13: WP06 (LAC write-up); price-base correction
+
+**Prompt (user):** finish the LAC productivity part: check the dashboard is ready, then write up the results; next, update Szirmai–Verspagen.
+
+**Done**
+- Dashboard readiness pass (see Session 12, last bullet), pushed.
+- `07_lac_summary.py`: pooled decompositions for LAC, Latin America and the Caribbean (plus Caribbean without Guyana, and without Guyana and the Dominican Republic) at three price bases; country distributions; price-base agreement; pooled sector shares and relative productivity; value-added weights; three figures. Output in `empirics/output/lac_lp/summary/`.
+- `papers/WP06_lac_structural_change/` (D-034): data and method changes from WP05, results, robustness, what the evidence does and does not show, links to P2, P3, P7.
+- Correction D-035: dashboard default back to initial-year prices, with a robustness verdict for each country-period.
+
+**What failed on the way:** writing the paper showed chained prices are not better-founded than fixed bases, as D-032 had claimed: chaining accumulates annual sampling noise in employment shares (37 of 109 grade A/B country-periods fall more than 0.1 pp outside the fixed-base bracket; Bolivia 2000–19 −0.24 chained vs +0.46/+0.38). Smoothing employment (3- or 5-year moving averages) moved as many cases out of the bracket as into it. Checking every number in the draft against generated output caught five errors (ranges quoted from one or two price bases instead of three, a sector attributed to telecoms alone, and an unsupported claim that the 2000–08 boom raised GDP growth); all fixed.
+
+**Key results:** pooled LAC productivity growth fell from 1.7–1.9%/yr (1991–2000) to 0.30–0.35% (2008–19), almost all within sectors; the pooled structural term is positive at all three price bases after 2000 (0.14–0.17 pp, 2000–19) and sign-ambiguous in the 1990s; static gains with eroding relative productivity in absorbing sectors (70% of countries static > 0, dynamic < 0); 20 of 109 country-period structural terms change sign with the price base; Mexico's productivity fell despite robustly positive reallocation; Caribbean excluding Guyana and the Dominican Republic lost 1.4–1.5%/yr of productivity in 2008–19.
+
+**Next:** the development-motors project (WP07): read Szirmai & Verspagen (2015) and the follow-up literature.
+
+---
+
 ## 2026-11-09 — Session 12: LAC extension of the productivity panel; data files on GitHub
 
 **Prompt (user):** (1) attach the repo and work in it as the author; (2) today's project is development motors (Szirmai–Verspagen and successors), but first: extend the Caribbean productivity analysis to the whole of LAC using ECLAC's country definitions, keeping a Caribbean section with the same content; (3) keep the source files on GitHub.

@@ -32,7 +32,7 @@ Run locally: `pip install -r empirics/dashboard/requirements.txt && streamlit ru
 ### Data notes
 
 - **Sectors.** 7 sectors (grid A) or 5 (grid B): UN value added exists for every country only at 7.
-- **Price base.** Period decompositions default to chained prices (one decomposition per year at previous-year prices, averaged). Initial-year prices (WP05's original method) and final-year prices are one click away; the note on the page explains when they disagree.
+- **Price base.** Period decompositions default to initial-year prices (WP05's method); chained and final-year prices are one click away. Each country-period carries a verdict on whether its structural term agrees across the three (D-035); the note on the page explains how each treatment can fail.
 - **Pooled aggregate.** Sums countries' value added and employment, so large economies dominate. In the LAC view Venezuela and Cuba are excluded by default (US$ levels not comparable); they can be added.
 - **Survey coverage.** Survey years whose total employment is below 80% of ILO's national estimate (urban-only or partial surveys, e.g. Argentina) are not used for anchoring or as survey employment (D-031).
 - **Latest year.** Sector data end in 2024, when UN value added ends. Labour-market series run to 2025 (ILO; later projections dropped).

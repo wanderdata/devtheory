@@ -34,7 +34,7 @@ The UN AMA's seven groupings (ISIC Rev.3): AGR agriculture (A–B); MIU mining a
 
 ## Price bases (D-024, D-032)
 
-`05_decompose.py` writes each period decomposition at initial-year prices (`main.csv`), final-year prices (`robust_final_prices.csv`) and chained prices (`robust_chained.csv`: one decomposition per year at previous-year prices, averaged over the period), plus excluding-mining variants for each. The dashboard lets the user switch between them; chained is its default.
+`05_decompose.py` writes each period decomposition at initial-year prices (`main.csv`), final-year prices (`robust_final_prices.csv`) and chained prices (`robust_chained.csv`: one decomposition per year at previous-year prices, averaged over the period), plus excluding-mining variants for each. The dashboard lets the user switch between them; initial-year is its default, and each country-period gets a verdict on agreement across the three (D-035). Chained results can suffer chain drift where annual employment shares are noisy. `07_lac_summary.py` (LAC scope only) writes the regional summary tables and figures for WP06 to `empirics/output/lac_lp/summary/`.
 
 ## Running it
 

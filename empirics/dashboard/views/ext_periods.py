@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from lib import (C_DYNAMIC, C_STATIC, C_WITHIN, GRADE_TEXT, INK2, PRICE_BASES, PRICE_NOTE,
-                 base_layout, footer, load_output, output_name, price_choice, scope_info, show)
+                 base_layout, footer, load_output, output_name, price_choice, scope_info, show, verdicts)
 
 st.sidebar.header("Settings")
 grid = st.sidebar.radio("Sector grid", ["A · 7 sectors", "B · 5 sectors (services combined)"], key="gp")[0]
@@ -39,6 +39,8 @@ per = c1.radio("Period", periods, horizontal=True, index=periods.index("2000–2
 grades = c2.multiselect("Grades shown", ["A", "B", "C"], default=["A", "B"],
                         help="\n".join(GRADE_TEXT.values()))
 
+if specs[spec] != "survey":
+    m = m.merge(verdicts(grid, no_mining=specs[spec] == "no_mining"), on=["iso3", "period"], how="left")
 x = m[(m["period"] == per) & (m["grade"].isin(grades))].sort_values("growth_pp")
 labels = [f"{r.country}  ·  {r.grade}" for r in x.itertuples()]
 fig = go.Figure()
@@ -52,7 +54,7 @@ fig.add_trace(go.Scatter(y=labels, x=x["growth_pp"], mode="markers", name="Total
 base_layout(fig, xtitle="percentage points per year", height=120 + 30 * max(len(x), 3))
 fig.update_layout(barmode="relative")
 fig.update_yaxes(gridcolor="rgba(0,0,0,0)")
-cols = ["country", "grade", "t0", "T", "growth_pp", "within_pp", "struct_pp", "static_pp", "dynamic_pp",
+cols = ["country", "grade", "verdict", "t0", "T", "growth_pp", "within_pp", "struct_pp", "static_pp", "dynamic_pp",
         "emp_growth_pct", "official_growth_pp"]
 show(fig, x[[c for c in cols if c in x.columns]].round(2),
      caption="The label after each country is its grade. " + " · ".join(GRADE_TEXT.values()) +
@@ -65,10 +67,10 @@ show(fig, x[[c for c in cols if c in x.columns]].round(2),
 st.subheader("Structural-change term across price bases and specifications")
 st.caption("Grade A and B country-periods for the selected period. A result that keeps its sign and rough "
            "size across all markers does not depend on the price base or the employment source; one that "
-           "flips should not be read as a finding.")
-variants = [("Chained", "robust_chained"), ("Initial-year prices", "main"),
+           "flips should not be read as a finding. The verdict for each country is in the table above.")
+variants = [("Initial-year prices", "main"), ("Chained", "robust_chained"),
             ("Final-year prices", "robust_final_prices"), ("Survey employment", "robust_survey"),
-            ("Excl. mining & utilities (chained)", "robust_no_mining_chained")]
+            ("Excl. mining & utilities", "robust_no_mining")]
 rows = []
 for short, key in variants:
     r = load_output(grid, key)
@@ -79,7 +81,7 @@ rb = pd.concat(rows)
 keep = load_output(grid, "main")
 keep = keep[(keep["period"] == per) & (keep["grade"].isin(["A", "B"]))]["country"]
 rb = rb[rb["country"].isin(keep)]
-order = (rb[rb["spec"] == "Chained"].sort_values("struct_pp")["country"].tolist()
+order = (rb[rb["spec"] == "Initial-year prices"].sort_values("struct_pp")["country"].tolist()
          or sorted(rb["country"].unique()))
 fig = go.Figure()
 sym = ["circle", "diamond", "square", "triangle-up", "x"]

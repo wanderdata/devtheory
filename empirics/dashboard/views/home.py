@@ -28,7 +28,7 @@ change, following McMillan and Rodrik (2011), with a labour-market complement:
 
 **Extended analysis.** Additions to the baseline, described on each page:
 - multi-year decompositions graded by how close their endpoints are to real survey years;
-- three price bases for those decompositions (chained, initial-year, final-year), with a note on how they differ;
+- three price bases for those decompositions (initial-year, chained, final-year), with a note on how each can fail and a verdict on whether each result holds across all three;
 - static and dynamic parts of structural change;
 - robustness checks;
 - the McMillan–Rodrik regression slope;

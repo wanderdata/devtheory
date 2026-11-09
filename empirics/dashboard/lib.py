@@ -407,34 +407,75 @@ def sidebar_common(grid_choice=True, series_choice=True, key=""):
 # ---------------------------------------------------------- price bases ----
 
 PRICE_BASES = {
-    "chained": "Chained (previous-year prices, averaged)",
     "initial": "Initial-year prices of each period",
+    "chained": "Chained (previous-year prices, averaged)",
     "final": "Final-year prices of each period",
 }
 
 PRICE_NOTE = """
 **Why the price base matters.** A decomposition has to add sectors' value added together, so it must
 value every sector at a common set of prices. The UN's constant-2020-price series cannot be used for that:
-they are chain-linked and do not add up across sectors outside 2020. Three treatments are offered.
+they are chain-linked and do not add up across sectors outside 2020. Three treatments are offered, and
+**each can fail in a known way**.
 
-- **Chained (default).** One decomposition per year, valuing year *t* and *t+1* at year-*t* prices, so
-  sectors add up exactly and relative prices are updated every year. The period result is the average of
-  the annual contributions. Its total is the mean annual growth rate of productivity.
-- **Initial-year prices.** The whole period is valued at the prices of its first year (WP05's original
-  method, D-024). It is a fixed-base (Laspeyres) index. Over long periods it gives too much weight to
-  sectors whose relative prices later fall a lot. Telecoms is the main case: Uruguay's productivity growth
-  over 2000–19 is 3.5% a year at 2000 prices, against 1.4% from the official chain-linked total and 1.8%
-  chained.
-- **Final-year prices.** The whole period is valued at the prices of its last year (Paasche). It has the
-  opposite bias and works as a bound.
+- **Initial-year prices (default).** The whole period is valued at the prices of its first year
+  (WP05's method, D-024). Only the two endpoints enter, so year-to-year noise in employment shares does not
+  accumulate. It fails where a sector's relative price later falls a lot. Uruguay is the main case: the volume of
+  transport, storage and communications (which includes telecoms) rose 7.5-fold over 2000–19 while its relative
+  price fell, so productivity growth is 3.5% a year at 2000 prices, against 1.4% from the official
+  chain-linked total.
+- **Chained.** One decomposition per year at previous-year prices, averaged over the period, so relative
+  prices are updated every year (D-032). This fixes the Uruguay problem (1.8% a year). It fails where annual
+  employment shares are noisy. Where ILO's estimates track annual surveys, sampling noise moves shares back and
+  forth every year, and chaining turns that noise into reallocation that never happened. Bolivia is the clearest
+  case: its agriculture share goes 36.6 → 41.8 → 39.7 → 32.7% in 2000–03, and its 2000–19 structural term is
+  −0.24 chained against +0.46 and +0.38 at the two fixed bases (D-035).
+- **Final-year prices.** The whole period is valued at the prices of its last year. It has the opposite
+  relative-price bias to initial-year prices and works as a bound.
 
 Fixed-base totals are linear averages, (P_T − P_0)/P_0 per year. The chained total is a mean of annual rates.
-The two are close for steady growth and differ for large swings, such as Venezuela or oil in Guyana.
-**Where the three treatments agree on the sign and rough size of the structural term, the result does not
-depend on prices. Where they disagree, it does, and should not be read as a finding.** Across LAC grade-A
-country-periods the structural term correlates 0.74 between chained and initial-year prices. In the
-Caribbean the correlation is 0.84.
+In chained form the dynamic term is close to zero by construction, so read the static/dynamic split at a
+fixed base.
+
+**Read a structural-change result only where the three treatments agree.** The *Verdict* column classifies
+each country-period: positive (or negative) at all three, near zero at all three (|term| < 0.1 pp), same sign
+but different size, or sign depends on the price base. In LAC about a fifth of well-anchored country-periods
+fall in the last group. Pooled regional results are much less sensitive, because noise and relative-price
+swings partly cancel across countries.
 """
+
+
+SMALL = 0.10
+
+
+def verdict(vals):
+    v = np.array(vals, dtype=float)
+    if np.isnan(v).any():
+        return "incomplete"
+    if (v >= SMALL).all():
+        return "positive at all three"
+    if (v <= -SMALL).all():
+        return "negative at all three"
+    if (np.abs(v) < SMALL).all():
+        return "near zero at all three"
+    if (v > 0).all() or (v < 0).all():
+        return "same sign, size differs"
+    return "sign depends on price base"
+
+
+def verdicts(grid, no_mining=False):
+    """Agreement of the structural term across the three price bases, by (iso3, period)."""
+    names = (["robust_no_mining", "robust_no_mining_chained", "robust_no_mining_final"] if no_mining
+             else ["main", "robust_chained", "robust_final_prices"])
+    parts = []
+    for n in names:
+        d = load_output(grid, n)
+        if d.empty:
+            return pd.DataFrame(columns=["iso3", "period", "verdict"])
+        parts.append(d.set_index(["iso3", "period"])["struct_pp"].rename(n))
+    w = pd.concat(parts, axis=1)
+    w["verdict"] = [verdict(r) for r in w[names].values]
+    return w.reset_index()[["iso3", "period", "verdict"]]
 
 
 def price_choice(key=""):
