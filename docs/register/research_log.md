@@ -4,6 +4,24 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-09 — Session 16: WP07 estimation, dashboard and draft
+
+**Prompt (user):** keep going as far as possible unless an essential piece is missing.
+
+**Done**
+- Hausman–Taylor implemented and validated (D-038); RE/FE/BE via `linearmodels`.
+- Five- and ten-year panel for 185 countries, 1950–2020 (D-038).
+- Replication of S&V in three samples; questions 1–4; specification curve (192 specifications, 4,032 estimates); 68 tests pass across the repository (including WP07 construction rules and reference results).
+- Dashboard `apps/motors/` (eight pages), checked page by page in a browser; every factual sentence checked against the outputs.
+- WP07 draft (`papers/WP07_development_motors/WP07_development_motors.md`).
+- D-038 to D-040; OQ-48 and OQ-49 closed; OQ-51 to OQ-53 opened.
+
+**Key results:** S&V's unconditional manufacturing effect does not replicate (main HT −0.047, p = 0.23, vs +0.045); their interactions replicate almost exactly without former planned economies (−0.240 vs −0.241; +0.038 vs +0.027) but reverse without commodity exporters, because the income-gap interaction rests on 13 Gulf observations. Since 1990 the manufacturing share predicts slower growth (robustly negative 1990–2005, leaning negative 2005–20). LAC is never robustly different from the rest. No sector share robustly predicts faster growth after 2005 except agriculture (room to reallocate); services, and finance/business/government/personal services, robustly negative. In the ETD, manufacturing's employment share (not output share) predicts growth; business and financial services are drags.
+
+**What failed on the way:** pyarrow string types in PWT and the latitude file; ratio splice producing shares above 100 and inconsistent UN rows (caught by a test); a module-name clash between the two apps' `lib.py` (caught by the test suite); the specification curve silently dropping all ten-year specifications (caught by the dashboard chart); seven errors in page and paper text found by checking every number against outputs (LAC significance with FE, Kaldor range, undervaluation sign, Gulf years, superseded coefficients, a p-value, and an inaccurate claim about the commodity super-cycle). All fixed.
+
+---
+
 ## 2026-11-09 — Session 15: WP07 data and literature; pre-analysis plan
 
 **Prompt (user):** update Szirmai & Verspagen ("Bart's paper"): find it, read it, check recent literature, replicate and improve, and present findings in a Streamlit dashboard on four questions (is manufacturing still a motor; was it ever in LAC; why only in some contexts; other candidate motors, especially services).

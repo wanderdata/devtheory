@@ -46,4 +46,5 @@ def test_speccurve_headlines():
     s = pd.read_csv(OUT / "speccurve" / "summary.csv").set_index("estimand")
     assert s.loc["Manufacturing, 1990–2005", "verdict"] == "robustly negative"
     assert s.loc["SER, 2005–20", "verdict"] == "robustly negative"
-    assert s.loc["n_specs" if False else "Manufacturing, 1970–90", "n_specs"] == 96
+    assert s.loc["Manufacturing, 1970–90", "n_specs"] == 192      # 3 x 4 x 2 x 2 x 2 x 2: every specification ran
+    assert (s.loc[s["family"] == "Q4", "n_specs"] == 96).all()

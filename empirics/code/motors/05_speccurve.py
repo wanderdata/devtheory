@@ -1,6 +1,6 @@
 """Specification curve for the headline estimates of WP07 (pre-analysis plan B7).
 
-Dimensions: estimator (HT, FE, RE) x sample (main, excl_cpe, core, developing) x period length
+192 specifications. Dimensions: estimator (HT, FE, RE) x sample (main, excl_cpe, core, developing) x period length
 (5, 10 years) x manufacturing share (current, constant 2020 prices) x growth source (PWT rgdpna,
 rgdpo) x schooling (PWT-based EDU_HC, Barro-Lee EDU). System GMM, listed in the plan, is not
 included: no validated implementation is available here (D-040).
@@ -40,15 +40,16 @@ def specs():
 
 def run():
     panels = {5: load_panel(5), 10: load_panel(10)}
-    rows = []
+    rows, skipped = [], []
     for s in specs():
         p = panels[s["length"]].copy()
         p["GR"] = p[s["growth"]]
         p["MAN_CUR"] = p["MAN"]
         if s["share"] == "MAN_K":
             p["MAN"] = p["MAN_K"]
-        d = sample(p, s["sample"], start=1970, end=2015, edu=s["edu"])
+        d = sample(p, s["sample"], start=1970, end=2015, edu=s["edu"], years=s["length"])
         if d["iso3"].nunique() < 20:
+            skipped.append(s)
             continue
         groups = {k: d["period"].isin(list(v)) for k, v in SUBS.items()}
         lac = d["lac"].astype(bool)
@@ -79,7 +80,7 @@ def run():
             for sec in SECTORS:
                 q = p.copy()
                 q["MAN"] = q["MAN_CUR"]
-                d2 = sample(q, s["sample"], start=1970, end=2015, edu=s["edu"], share=sec)
+                d2 = sample(q, s["sample"], start=1970, end=2015, edu=s["edu"], share=sec, years=s["length"])
                 if d2["iso3"].nunique() < 20:
                     continue
                 gg = {k: d2["period"].isin(list(v)) for k, v in SUBS.items()}
@@ -96,6 +97,8 @@ def run():
                                  "error": str(e)[:200]})
     t = pd.DataFrame(rows)
     t["p"] = 2 * stats.norm.sf(np.abs(t["coef"] / t["se"]))
+    if skipped:   # never silently: a skipped specification is reported
+        print(f"skipped {len(skipped)} specifications with fewer than 20 countries")
     return t
 
 
