@@ -63,7 +63,7 @@ with c1:
                            marker=dict(color=C_HIGHLIGHT, cornerradius=4),
                            text=[f"{v:,.0f}" for v in r["lp"]], textposition="outside",
                            hovertemplate="%{y}: %{x:,.0f}<extra></extra>"))
-    base_layout(fig, xtitle=unit, height=460, legend=False)
+    base_layout(fig, xtitle=unit, height=max(460, 110 + 22 * len(r)), legend=False)
     fig.update_yaxes(gridcolor="rgba(0,0,0,0)")
     show(fig, r.assign(country=[name(i) for i in r["iso3"]])[["country", "lp"]].round(0))
 with c2:
@@ -79,7 +79,7 @@ with c2:
         fig.add_trace(go.Bar(y=[name(i) for i in ch.index], x=ch[col], name=col, orientation="h",
                              marker=dict(color=color, cornerradius=4),
                              hovertemplate="%{y}: %{x:.1f}%<extra>" + col + "</extra>"))
-    base_layout(fig, xtitle="% change", height=460)
+    base_layout(fig, xtitle="% change", height=max(460, 110 + 30 * len(ch)))
     fig.update_layout(barmode="group")
     fig.update_yaxes(gridcolor="rgba(0,0,0,0)")
     show(fig, ch.round(1).reset_index().assign(iso3=lambda d: d["iso3"].map(name)).rename(columns={"iso3": "country"}))

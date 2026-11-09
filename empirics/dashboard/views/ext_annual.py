@@ -65,5 +65,5 @@ fig.add_trace(go.Scatter(x=cmp_["year"], y=cmp_["ref"], mode="lines", name="Cons
 fig.add_trace(go.Scatter(x=cmp_["year"], y=cmp_["growth_pct"], mode="lines", name="Previous-year prices (additive)",
                          line=dict(color=C_WITHIN, width=2)))
 base_layout(fig, ytitle="productivity growth, %", height=360)
-show(fig, cmp_.round(2), caption="The two lines diverge most where relative prices moved a lot (oil, gold, bauxite).")
+show(fig, cmp_.round(2), caption="The two lines diverge most where relative prices moved a lot (oil, minerals, telecoms).")
 footer()

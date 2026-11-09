@@ -28,13 +28,16 @@ q = pd.DataFrame({"d_lp": 100 * (b["lp_hour"] / a["lp_hour"] - 1),
                   "d_emp": 100 * (b["emp_rate"] / a["emp_rate"] - 1)}).dropna()
 q["income"] = q["d_lp"] + q["d_emp"]
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=q["d_emp"], y=q["d_lp"], mode="markers+text", text=[name(i) for i in q.index],
-                         textposition="top center", textfont=dict(size=11, color=INK2),
-                         marker=dict(size=10, color=C_HIGHLIGHT, line=dict(color="white", width=2)),
-                         hovertemplate="%{text}<br>Employment rate %{x:.1f}%<br>Productivity per hour %{y:.1f}%<extra></extra>"))
+many = len(q) > 16  # many countries: short ISO3 labels on the points, full names on hover
+fig.add_trace(go.Scatter(x=q["d_emp"], y=q["d_lp"], mode="markers+text",
+                         text=list(q.index) if many else [name(i) for i in q.index],
+                         customdata=[name(i) for i in q.index],
+                         textposition="top center", textfont=dict(size=10 if many else 11, color=INK2),
+                         marker=dict(size=9 if many else 10, color=C_HIGHLIGHT, line=dict(color="white", width=2)),
+                         hovertemplate="%{customdata}<br>Employment rate %{x:.1f}%<br>Productivity per hour %{y:.1f}%<extra></extra>"))
 fig.add_hline(y=0, line=dict(color="#c3c2b7")); fig.add_vline(x=0, line=dict(color="#c3c2b7"))
 base_layout(fig, xtitle="Change in the employment rate (%)", ytitle="Change in productivity per hour (%)",
-            legend=False, height=500)
+            legend=False, height=560 if many else 500)
 show(fig, q.round(2).reset_index().assign(iso3=lambda d: d["iso3"].map(name)).rename(
          columns={"iso3": "country", "d_lp": "productivity_per_hour_%", "d_emp": "employment_rate_%",
                   "income": "approx_contribution_to_income_per_capita_%"}),
@@ -56,6 +59,10 @@ def lines(col, ytitle, key):
         fig.add_annotation(x=g["year"].iloc[-1], y=g[col].iloc[-1], text=name(focus), showarrow=False,
                            xanchor="left", xshift=6, font=dict(color=INK2))
     base_layout(fig, ytitle=ytitle, legend=False, height=380)
+    yrs = w.dropna(subset=[col])["year"]
+    if len(yrs):  # fixed range with room for the end label (autorange otherwise runs to 2040)
+        lo, hi = int(yrs.min()), int(yrs.max())
+        fig.update_xaxes(range=[lo - 0.5, hi + max(3, 0.22 * (hi - lo))])
     show(fig, w.pivot_table(index="year", columns="iso3", values=col).round(1).reset_index(), key=key)
 lines("emp_rate", "Employed as % of population 15+", "er")
 
