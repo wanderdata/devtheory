@@ -1,0 +1,33 @@
+sector,subperiod,verdict,label
+AGR,1970–2020,motor in core sample only,Agriculture
+AGR,1970–90,no effect,Agriculture
+AGR,1990–2005,motor,Agriculture
+AGR,2005–20,motor,Agriculture
+CON,1970–2020,drag in main sample only,Construction
+CON,1970–90,motor in core sample only,Construction
+CON,1990–2005,drag in main sample only,Construction
+CON,2005–20,drag in main sample only,Construction
+MAN,1970–2020,no effect,Manufacturing
+MAN,1970–90,motor in core sample only,Manufacturing
+MAN,1990–2005,drag,Manufacturing
+MAN,2005–20,no effect,Manufacturing
+MIU,1970–2020,drag in core sample only,Mining & utilities
+MIU,1970–90,drag in core sample only,Mining & utilities
+MIU,1990–2005,no effect,Mining & utilities
+MIU,2005–20,no effect,Mining & utilities
+OTH,1970–2020,drag,"Other services (finance, business, government, personal)"
+OTH,1970–90,no effect,"Other services (finance, business, government, personal)"
+OTH,1990–2005,drag in core sample only,"Other services (finance, business, government, personal)"
+OTH,2005–20,drag,"Other services (finance, business, government, personal)"
+SER,1970–2020,no effect,All services
+SER,1970–90,motor,All services
+SER,1990–2005,drag in core sample only,All services
+SER,2005–20,drag,All services
+TRH,1970–2020,motor in main sample only,"Trade, restaurants & hotels"
+TRH,1970–90,motor,"Trade, restaurants & hotels"
+TRH,1990–2005,motor in main sample only,"Trade, restaurants & hotels"
+TRH,2005–20,no effect,"Trade, restaurants & hotels"
+TSC,1970–2020,motor in main sample only,"Transport, storage & communications"
+TSC,1970–90,motor in main sample only,"Transport, storage & communications"
+TSC,1990–2005,motor in main sample only,"Transport, storage & communications"
+TSC,2005–20,no effect,"Transport, storage & communications"

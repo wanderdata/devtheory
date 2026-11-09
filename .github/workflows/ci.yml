@@ -26,5 +26,7 @@ jobs:
         run: pytest
       - name: Rebuild labour-productivity outputs (both scopes)
         run: python empirics/code/lp/run_all.py
+      - name: Rebuild development-motors outputs (WP07)
+        run: python empirics/code/motors/run_all.py
       - name: Compare rebuilt outputs with committed outputs
         run: python scripts/check_outputs.py

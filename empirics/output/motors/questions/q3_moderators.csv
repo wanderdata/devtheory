@@ -1,0 +1,57 @@
+sample,estimator,mode,moderator,label,predicted_sign,coef,se,p,MAN_at_median,nobs,ncountries,verdict
+main,HT,one at a time,EDU_HC,Education (absorptive capacity),1,0.007068746906245451,0.006634482415032184,0.2866697760094834,-0.030927745227822052,1295,132,supported in core sample only
+main,HT,one at a time,RELUS,Income relative to the US (negative = catch-up bonus),-1,-0.10559241784946889,0.04809447271833694,0.02812625660188182,-0.0035560089494694243,1295,132,conflicting across samples
+main,HT,one at a time,OPEN,Openness (export markets),1,-9.878933863842518e-05,0.0002927399447855309,0.7357667702726886,-0.018906537071242298,1295,132,no evidence
+main,HT,one at a time,LNPOP,Population (home-market scale),1,0.047860001398238435,0.01530125443671548,0.0017609109222745717,-0.027970153133558266,1295,132,supported in main sample only
+main,HT,one at a time,MIU,Mining & utilities share (commodity dependence),-1,0.002608690037354367,0.0025241081939040484,0.3013654825957677,-0.019472819073150828,1295,132,no evidence
+main,HT,one at a time,UNDERVAL,Currency undervaluation (profitability of tradables),1,-0.07706849526436337,0.03700770469240943,0.0372969455707774,-0.027357518411819295,1295,132,conflicting across samples
+main,HT,one at a time,POST2000,Periods from 2000 (competition from China),-1,0.0076559299303790105,0.032780673850928074,0.8153342642819131,-0.023497180335123227,1295,132,supported in core sample only
+main,HT,joint,EDU_HC,Education (absorptive capacity),1,0.01703816562700312,0.00830525422906804,0.04021902256065811,-0.03382315230334405,1295,132,supported in core sample only
+main,HT,joint,RELUS,Income relative to the US (negative = catch-up bonus),-1,-0.1553985061828037,0.05165440380802873,0.0026260383069989872,-0.03382315230334405,1295,132,conflicting across samples
+main,HT,joint,OPEN,Openness (export markets),1,0.00030016026556081515,0.0003492303793240932,0.39006984498053354,-0.03382315230334405,1295,132,no evidence
+main,HT,joint,LNPOP,Population (home-market scale),1,0.04276138379674633,0.016768355562038952,0.010768465059352878,-0.03382315230334405,1295,132,supported in main sample only
+main,HT,joint,MIU,Mining & utilities share (commodity dependence),-1,0.003100221162755747,0.0025589483926570806,0.22569557465784373,-0.03382315230334405,1295,132,no evidence
+main,HT,joint,UNDERVAL,Currency undervaluation (profitability of tradables),1,-0.1030813243118457,0.03939186545758666,0.008875377059507274,-0.03382315230334405,1295,132,conflicting across samples
+main,HT,joint,POST2000,Periods from 2000 (competition from China),-1,-0.024084156290983982,0.03660965110930753,0.5106257924015423,-0.03382315230334405,1295,132,supported in core sample only
+main,FE,one at a time,EDU_HC,Education (absorptive capacity),1,0.00986952003492169,0.01006501143931391,0.32680131668352186,-0.03487472336135763,1295,132,supported in core sample only
+main,FE,one at a time,RELUS,Income relative to the US (negative = catch-up bonus),-1,-0.11599071934740951,0.07344807383164967,0.1142854411302901,-0.001818130235643893,1295,132,conflicting across samples
+main,FE,one at a time,OPEN,Openness (export markets),1,-0.00019578005483912196,0.00047401683355639373,0.6795894532536186,-0.015818018908585058,1295,132,no evidence
+main,FE,one at a time,LNPOP,Population (home-market scale),1,0.053273273886142974,0.023059501573774226,0.02087417246633384,-0.030829999908326095,1295,132,supported in main sample only
+main,FE,one at a time,MIU,Mining & utilities share (commodity dependence),-1,0.003486956153169279,0.004531005941242854,0.44155108923283903,-0.0238303594495965,1295,132,no evidence
+main,FE,one at a time,UNDERVAL,Currency undervaluation (profitability of tradables),1,-0.07771788139051382,0.07245630832246132,0.2834429115181434,-0.02843673246125308,1295,132,conflicting across samples
+main,FE,one at a time,POST2000,Periods from 2000 (competition from China),-1,0.008239120582204605,0.05515967152634795,0.8812628206476945,-0.024315657355215785,1295,132,supported in core sample only
+main,FE,joint,EDU_HC,Education (absorptive capacity),1,0.02243565814628416,0.011930706810944118,0.06004037736084855,-0.03962970002605531,1295,132,supported in core sample only
+main,FE,joint,RELUS,Income relative to the US (negative = catch-up bonus),-1,-0.1871822205574933,0.07944206512282842,0.01846245690399281,-0.03962970002605531,1295,132,conflicting across samples
+main,FE,joint,OPEN,Openness (export markets),1,0.0001585217476159447,0.0005591134461450451,0.7767756433800425,-0.03962970002605531,1295,132,no evidence
+main,FE,joint,LNPOP,Population (home-market scale),1,0.04461817037750609,0.025194509969571195,0.07656932726940019,-0.03962970002605531,1295,132,supported in main sample only
+main,FE,joint,MIU,Mining & utilities share (commodity dependence),-1,0.00357264099252793,0.004644137001777434,0.4417271995497095,-0.03962970002605531,1295,132,no evidence
+main,FE,joint,UNDERVAL,Currency undervaluation (profitability of tradables),1,-0.10527183959033318,0.08151334260507566,0.1965415887576003,-0.03962970002605531,1295,132,conflicting across samples
+main,FE,joint,POST2000,Periods from 2000 (competition from China),-1,-0.022397302874109244,0.058884430838626,0.7036779409694351,-0.03962970002605531,1295,132,supported in core sample only
+core,HT,one at a time,EDU_HC,Education (absorptive capacity),1,0.015377962225048154,0.0068473536953953555,0.024715180847829386,-0.022396734408082136,1024,99,supported in core sample only
+core,HT,one at a time,RELUS,Income relative to the US (negative = catch-up bonus),-1,0.2790119808120704,0.06670249106215581,2.877735542490652e-05,-0.055107491291506674,1024,99,conflicting across samples
+core,HT,one at a time,OPEN,Openness (export markets),1,-0.00012226364657204114,0.0003067160485923379,0.6901720326154857,0.005638127364133226,1024,99,no evidence
+core,HT,one at a time,LNPOP,Population (home-market scale),1,0.022503171358163064,0.015491639002015998,0.14633454939128301,-0.0011714381664578242,1024,99,supported in main sample only
+core,HT,one at a time,MIU,Mining & utilities share (commodity dependence),-1,0.0006357600399592295,0.003481147613882349,0.8550887828901834,-0.011158340085978139,1024,99,no evidence
+core,HT,one at a time,UNDERVAL,Currency undervaluation (profitability of tradables),1,0.1702506915566997,0.04278084387807014,6.903101144757448e-05,0.026074634767958807,1024,99,conflicting across samples
+core,HT,one at a time,POST2000,Periods from 2000 (competition from China),-1,-0.06882943100570985,0.03430231523959173,0.04479722582242445,0.024320175935964965,1024,99,supported in core sample only
+core,HT,joint,EDU_HC,Education (absorptive capacity),1,-0.0027278160059760995,0.01165807063295703,0.8149964673090361,-0.002241609002719194,1024,99,supported in core sample only
+core,HT,joint,RELUS,Income relative to the US (negative = catch-up bonus),-1,0.40653209677631885,0.10824708187656353,0.00017293080330303145,-0.002241609002719194,1024,99,conflicting across samples
+core,HT,joint,OPEN,Openness (export markets),1,-0.0007698515080275843,0.00038626079671010016,0.04625188286183508,-0.002241609002719194,1024,99,no evidence
+core,HT,joint,LNPOP,Population (home-market scale),1,0.02022716026059379,0.017295379462740106,0.2421972595268388,-0.002241609002719194,1024,99,supported in main sample only
+core,HT,joint,MIU,Mining & utilities share (commodity dependence),-1,0.0014132642404824634,0.0035192069739521494,0.6879887372194049,-0.002241609002719194,1024,99,no evidence
+core,HT,joint,UNDERVAL,Currency undervaluation (profitability of tradables),1,0.23787723410675135,0.04391236663637336,6.057691477945711e-08,-0.002241609002719194,1024,99,conflicting across samples
+core,HT,joint,POST2000,Periods from 2000 (competition from China),-1,-0.11953251313205694,0.041224008657318165,0.0037365713363413295,-0.002241609002719194,1024,99,supported in core sample only
+core,FE,one at a time,EDU_HC,Education (absorptive capacity),1,0.019227273354315354,0.009840339762882351,0.05071023797046332,-0.04018301155620693,1024,99,supported in core sample only
+core,FE,one at a time,RELUS,Income relative to the US (negative = catch-up bonus),-1,0.29745492122747946,0.10658999520831004,0.0052603004310316235,-0.06401177837993711,1024,99,conflicting across samples
+core,FE,one at a time,OPEN,Openness (export markets),1,-0.00023348690653195013,0.000531793658529845,0.660621355026408,-0.005238152356889374,1024,99,no evidence
+core,FE,one at a time,LNPOP,Population (home-market scale),1,0.03035118556267176,0.02419274784783336,0.20963955541359036,-0.016785819281077797,1024,99,supported in main sample only
+core,FE,one at a time,MIU,Mining & utilities share (commodity dependence),-1,0.0013346203038047011,0.005089078282483398,0.7931272646890084,-0.025024327403457662,1024,99,no evidence
+core,FE,one at a time,UNDERVAL,Currency undervaluation (profitability of tradables),1,0.18153217919385475,0.08106711708606316,0.02513753873371595,0.00934926389219232,1024,99,conflicting across samples
+core,FE,one at a time,POST2000,Periods from 2000 (competition from China),-1,-0.04981953561490155,0.05473785370947965,0.3627445834394665,0.006488295512500053,1024,99,supported in core sample only
+core,FE,joint,EDU_HC,Education (absorptive capacity),1,0.004797305772231913,0.01714059974978318,0.7795698085423799,-0.002130367598016647,1024,99,supported in core sample only
+core,FE,joint,RELUS,Income relative to the US (negative = catch-up bonus),-1,0.4286616717170223,0.21958977202689314,0.05092607499730862,-0.002130367598016647,1024,99,conflicting across samples
+core,FE,joint,OPEN,Openness (export markets),1,-0.0011268147651549377,0.0006484996363097796,0.08228626931539572,-0.002130367598016647,1024,99,no evidence
+core,FE,joint,LNPOP,Population (home-market scale),1,0.014489570731131374,0.025471245088180276,0.5694511992495244,-0.002130367598016647,1024,99,supported in main sample only
+core,FE,joint,MIU,Mining & utilities share (commodity dependence),-1,0.001423645444892162,0.004119234547052197,0.7296364148398884,-0.002130367598016647,1024,99,no evidence
+core,FE,joint,UNDERVAL,Currency undervaluation (profitability of tradables),1,0.24137811194933267,0.09262246754890129,0.009159502330113735,-0.002130367598016647,1024,99,conflicting across samples
+core,FE,joint,POST2000,Periods from 2000 (competition from China),-1,-0.12097187571031377,0.06093848491984789,0.047128072993073915,-0.002130367598016647,1024,99,supported in core sample only

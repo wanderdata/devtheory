@@ -1,0 +1,5 @@
+term,coef,se,p,model,estimator,nobs,ncountries,sample,n_caribbean_countries
+TRH[Caribbean],-0.2570362603186588,0.13932212709410116,0.06505118019334061,(1) Caribbean slope,HT,1219,123,"all, excl. former planned",7
+TRH[Rest],0.0018549006599452706,0.03737085939172297,0.9604132965242677,(1) Caribbean slope,HT,1219,123,"all, excl. former planned",7
+TRH[Caribbean],-0.27953784496593215,0.20879013933637866,0.18062080890444565,(1) Caribbean slope,FE,1219,123,"all, excl. former planned",7
+TRH[Rest],-0.00733059223781037,0.06919249752578212,0.9156260693833022,(1) Caribbean slope,FE,1219,123,"all, excl. former planned",7

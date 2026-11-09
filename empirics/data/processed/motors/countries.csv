@@ -1,0 +1,186 @@
+iso3,country,latitude,TEMPERATE,advanced,lac,caribbean,pop2000,small,commodity,region,subregion
+ABW,Aruba,12.52111,0.0,False,False,False,0.088761,True,False,Americas,Latin America and the Caribbean
+AGO,Angola,-11.202692,0.0,False,False,False,16.194869,False,True,Africa,Sub-Saharan Africa
+AIA,Anguilla,18.220554,0.0,False,False,False,0.011177,True,False,Americas,Latin America and the Caribbean
+ALB,Albania,41.153332,1.0,False,False,False,3.166148,False,False,Europe,Southern Europe
+ARE,United Arab Emirates,23.424076,0.0,False,False,False,3.493575,False,True,Asia,Western Asia
+ARG,Argentina,-38.416097,1.0,False,True,False,37.213984,False,False,Americas,Latin America and the Caribbean
+ARM,Armenia,40.069099,1.0,False,False,False,3.125628,False,False,Asia,Western Asia
+ATG,Antigua and Barbuda,17.060816,0.0,False,True,True,0.074912,True,False,Americas,Latin America and the Caribbean
+AUS,Australia,-25.274398,1.0,True,False,False,19.132471,False,False,Oceania,Australia and New Zealand
+AUT,Austria,47.516231,1.0,True,False,False,8.012928,False,False,Europe,Western Europe
+AZE,Azerbaijan,40.143105,1.0,False,False,False,8.174785,False,True,Asia,Western Asia
+BDI,Burundi,-3.373056,0.0,False,False,False,6.470194,False,False,Africa,Sub-Saharan Africa
+BEL,Belgium,50.503887,1.0,True,False,False,10.251717,False,False,Europe,Western Europe
+BEN,Benin,9.30769,0.0,False,False,False,7.221619,False,False,Africa,Sub-Saharan Africa
+BFA,Burkina Faso,12.238333,0.0,False,False,False,11.925546,False,False,Africa,Sub-Saharan Africa
+BGD,Bangladesh,23.684994,1.0,False,False,False,134.544304,False,False,Asia,Southern Asia
+BGR,Bulgaria,42.733883,1.0,False,False,False,8.00052,False,False,Europe,Eastern Europe
+BHR,Bahrain,25.930414,1.0,False,False,False,0.669581,True,True,Asia,Western Asia
+BHS,Bahamas,25.03428,1.0,False,True,True,0.323835,True,False,Americas,Latin America and the Caribbean
+BIH,Bosnia and Herzegovina,43.915886,1.0,False,False,False,4.159771,False,False,Europe,Southern Europe
+BLR,Belarus,53.709807,1.0,False,False,False,9.991313,False,False,Europe,Eastern Europe
+BLZ,Belize,17.189877,0.0,False,True,True,0.240799,True,False,Americas,Latin America and the Caribbean
+BMU,Bermuda,32.321384,1.0,False,False,False,0.06155,True,False,Americas,Northern America
+BOL,Bolivia (Plurinational State of),-16.290154,0.0,False,True,False,8.606326,False,False,Americas,Latin America and the Caribbean
+BRA,Brazil,-14.235004,0.0,False,True,False,174.018282,False,False,Americas,Latin America and the Caribbean
+BRB,Barbados,13.193887,0.0,False,True,True,0.262063,True,False,Americas,Latin America and the Caribbean
+BRN,Brunei Darussalam,4.535277,0.0,False,False,False,0.326424,True,True,Asia,South-eastern Asia
+BTN,Bhutan,27.514162,1.0,False,False,False,0.596863,True,False,Asia,Southern Asia
+BWA,Botswana,-22.328474,0.0,False,False,False,1.677382,False,True,Africa,Sub-Saharan Africa
+CAF,Central African Republic,6.611111,0.0,False,False,False,3.833416,False,False,Africa,Sub-Saharan Africa
+CAN,Canada,56.130366,1.0,True,False,False,30.891803,False,False,Americas,Northern America
+CHE,Switzerland,46.818188,1.0,True,False,False,7.184007,False,False,Europe,Western Europe
+CHL,Chile,-35.675147,1.0,False,True,False,15.503635,False,False,Americas,Latin America and the Caribbean
+CHN,China,35.86166,1.0,False,False,False,1269.581175,False,False,Asia,Eastern Asia
+CIV,Côte d'Ivoire,7.539989,0.0,False,False,False,17.699004,False,False,Africa,Sub-Saharan Africa
+CMR,Cameroon,7.369722,0.0,False,False,False,14.912631,False,False,Africa,Sub-Saharan Africa
+COD,D.R. of the Congo,-4.038333,0.0,False,False,False,50.507442,False,False,Africa,Sub-Saharan Africa
+COG,Congo,-0.228021,0.0,False,False,False,3.151345,False,True,Africa,Sub-Saharan Africa
+COL,Colombia,4.570868,0.0,False,True,False,39.089934,False,False,Americas,Latin America and the Caribbean
+COM,Comoros,-11.875001,0.0,False,False,False,0.53608,True,False,Africa,Sub-Saharan Africa
+CPV,Cabo Verde,16.002082,0.0,False,False,False,0.453317,True,False,Africa,Sub-Saharan Africa
+CRI,Costa Rica,9.748917,0.0,False,True,False,3.937739,False,False,Americas,Latin America and the Caribbean
+CUW,Curaçao,,,False,False,False,,False,False,Americas,Latin America and the Caribbean
+CYM,Cayman Islands,19.513469,0.0,False,False,False,0.039674,True,False,Americas,Latin America and the Caribbean
+CYP,Cyprus,35.126413,1.0,False,False,False,0.6936,True,False,Asia,Western Asia
+CZE,Czechia,49.817492,1.0,False,False,False,10.236804,False,False,Europe,Eastern Europe
+DEU,Germany,51.165691,1.0,True,False,False,81.797258,False,False,Europe,Western Europe
+DJI,Djibouti,11.825138,0.0,False,False,False,0.747318,True,False,Africa,Sub-Saharan Africa
+DMA,Dominica,15.414999,0.0,False,True,True,0.068511,True,False,Americas,Latin America and the Caribbean
+DNK,Denmark,56.26392,1.0,True,False,False,5.339658,False,False,Europe,Northern Europe
+DOM,Dominican Republic,18.735693,0.0,False,True,True,8.58419,False,False,Americas,Latin America and the Caribbean
+DZA,Algeria,28.033886,1.0,False,False,False,30.903893,False,True,Africa,Northern Africa
+ECU,Ecuador,-1.831239,0.0,False,True,False,12.689206,False,False,Americas,Latin America and the Caribbean
+EGY,Egypt,26.820553,1.0,False,False,False,73.083284,False,False,Africa,Northern Africa
+ESP,Spain,40.463667,1.0,True,False,False,41.019774,False,False,Europe,Southern Europe
+EST,Estonia,58.595272,1.0,False,False,False,1.396997,False,False,Europe,Northern Europe
+ETH,Ethiopia,9.145,0.0,False,False,False,67.411494,False,False,Africa,Sub-Saharan Africa
+FIN,Finland,61.92411,1.0,True,False,False,5.176202,False,False,Europe,Northern Europe
+FJI,Fiji,-16.578193,0.0,False,False,False,0.840909,True,False,Oceania,Melanesia
+FRA,France,46.227638,1.0,True,False,False,61.404918,False,False,Europe,Western Europe
+GAB,Gabon,-0.803689,0.0,False,False,False,1.275572,False,True,Africa,Sub-Saharan Africa
+GBR,United Kingdom,55.378051,1.0,True,False,False,59.057338,False,False,Europe,Northern Europe
+GEO,Georgia,42.315407,1.0,False,False,False,4.328358,False,False,Asia,Western Asia
+GHA,Ghana,7.946527,0.0,False,False,False,19.637087,False,False,Africa,Sub-Saharan Africa
+GIN,Guinea,9.945587,0.0,False,False,False,8.428832,False,False,Africa,Sub-Saharan Africa
+GMB,Gambia,13.443182,0.0,False,False,False,1.455084,False,False,Africa,Sub-Saharan Africa
+GNB,Guinea-Bissau,11.803749,0.0,False,False,False,1.234741,False,False,Africa,Sub-Saharan Africa
+GNQ,Equatorial Guinea,1.650801,0.0,False,False,False,0.703279,True,True,Africa,Sub-Saharan Africa
+GRC,Greece,39.074208,1.0,True,False,False,10.782635,False,False,Europe,Southern Europe
+GRD,Grenada,12.262776,0.0,False,True,True,0.107451,True,False,Americas,Latin America and the Caribbean
+GTM,Guatemala,15.783471,0.0,False,True,False,11.697592,False,False,Americas,Latin America and the Caribbean
+GUY,Guyana,4.860416,0.0,False,True,True,0.764832,True,False,Americas,Latin America and the Caribbean
+HKG,"China, Hong Kong SAR",22.396428,0.0,False,False,False,6.704664,False,False,Asia,Eastern Asia
+HND,Honduras,15.199999,0.0,False,True,False,6.577773,False,False,Americas,Latin America and the Caribbean
+HRV,Croatia,45.1,1.0,False,False,False,4.326105,False,False,Europe,Southern Europe
+HTI,Haiti,18.971187,0.0,False,True,True,8.303151,False,False,Americas,Latin America and the Caribbean
+HUN,Hungary,47.162494,1.0,False,False,False,10.1906,False,False,Europe,Eastern Europe
+IDN,Indonesia,-0.789275,0.0,False,False,False,216.07779,False,False,Asia,South-eastern Asia
+IND,India,20.593684,0.0,False,False,False,1057.922733,False,False,Asia,Southern Asia
+IRL,Ireland,53.41291,1.0,True,False,False,3.802585,False,False,Europe,Northern Europe
+IRN,Iran (Islamic Republic of),32.427908,1.0,False,False,False,66.418659,False,False,Asia,Southern Asia
+IRQ,Iraq,33.223191,1.0,False,False,False,24.424056,False,True,Asia,Western Asia
+ISL,Iceland,64.963051,1.0,False,False,False,0.28128,True,False,Europe,Northern Europe
+ISR,Israel,31.046051,1.0,False,False,False,6.11119,False,False,Asia,Western Asia
+ITA,Italy,41.87194,1.0,True,False,False,57.272196,False,False,Europe,Southern Europe
+JAM,Jamaica,18.109581,0.0,False,True,True,2.607826,False,False,Americas,Latin America and the Caribbean
+JOR,Jordan,30.585164,1.0,False,False,False,5.386945,False,False,Asia,Western Asia
+JPN,Japan,36.204824,1.0,True,False,False,127.027789,False,False,Asia,Eastern Asia
+KAZ,Kazakhstan,48.019573,1.0,False,False,False,15.501103,False,False,Asia,Central Asia
+KEN,Kenya,-0.023559,0.0,False,False,False,30.64289,False,False,Africa,Sub-Saharan Africa
+KGZ,Kyrgyzstan,41.20438,1.0,False,False,False,5.025145,False,False,Asia,Central Asia
+KHM,Cambodia,12.565679,0.0,False,False,False,12.462336,False,False,Asia,South-eastern Asia
+KNA,Saint Kitts and Nevis,17.357822,0.0,False,True,True,0.045248,True,False,Americas,Latin America and the Caribbean
+KOR,Republic of Korea,35.907757,1.0,False,False,False,46.766661,False,False,Asia,Eastern Asia
+KWT,Kuwait,29.31166,1.0,False,False,False,1.954709,False,True,Asia,Western Asia
+LAO,Lao People's DR,19.85627,0.0,False,False,False,5.431212,False,False,Asia,South-eastern Asia
+LBN,Lebanon,33.854721,1.0,False,False,False,4.32934,False,False,Asia,Western Asia
+LBR,Liberia,6.428055,0.0,False,False,False,2.928117,False,False,Africa,Sub-Saharan Africa
+LCA,Saint Lucia,13.909444,0.0,False,True,True,0.158616,True,False,Americas,Latin America and the Caribbean
+LKA,Sri Lanka,7.873054,0.0,False,False,False,19.293054,False,False,Asia,Southern Asia
+LSO,Lesotho,-29.609988,1.0,False,False,False,2.003913,False,False,Africa,Sub-Saharan Africa
+LTU,Lithuania,55.169438,1.0,False,False,False,3.500402,False,False,Europe,Northern Europe
+LUX,Luxembourg,49.815273,1.0,False,False,False,0.436132,True,False,Europe,Western Europe
+LVA,Latvia,56.879635,1.0,False,False,False,2.368313,False,False,Europe,Northern Europe
+MAC,"China, Macao SAR",22.198745,0.0,False,False,False,0.437309,True,False,Asia,Eastern Asia
+MAR,Morocco,31.791702,1.0,False,False,False,28.423435,False,False,Africa,Northern Africa
+MDA,Republic of Moldova,47.411631,1.0,False,False,False,4.234967,False,False,Europe,Eastern Europe
+MDG,Madagascar,-18.766947,0.0,False,False,False,16.516338,False,False,Africa,Sub-Saharan Africa
+MDV,Maldives,3.202778,0.0,False,False,False,0.282019,True,False,Asia,Southern Asia
+MEX,Mexico,23.634501,1.0,False,True,False,98.625552,False,False,Americas,Latin America and the Caribbean
+MKD,North Macedonia,41.608635,1.0,False,False,False,2.057253,False,False,Europe,Southern Europe
+MLI,Mali,17.570692,0.0,False,False,False,11.55929,False,False,Africa,Sub-Saharan Africa
+MLT,Malta,35.937496,1.0,False,False,False,0.399895,True,False,Europe,Southern Europe
+MMR,Myanmar,21.913965,0.0,False,False,False,45.290841,False,False,Asia,South-eastern Asia
+MNE,Montenegro,42.708678,1.0,False,False,False,0.634193,True,False,Europe,Southern Europe
+MNG,Mongolia,46.862496,1.0,False,False,False,2.455182,False,False,Asia,Eastern Asia
+MOZ,Mozambique,-18.665695,0.0,False,False,False,18.129653,False,False,Africa,Sub-Saharan Africa
+MRT,Mauritania,21.00789,0.0,False,False,False,2.613441,False,True,Africa,Sub-Saharan Africa
+MSR,Montserrat,16.742498,0.0,False,False,False,0.005029,True,False,Americas,Latin America and the Caribbean
+MUS,Mauritius,-20.348404,0.0,False,False,False,1.216629,False,False,Africa,Sub-Saharan Africa
+MWI,Malawi,-13.254308,0.0,False,False,False,11.315942,False,False,Africa,Sub-Saharan Africa
+MYS,Malaysia,4.210484,0.0,False,False,False,22.967816,False,False,Asia,South-eastern Asia
+NAM,Namibia,-22.95764,0.0,False,False,False,1.818647,False,False,Africa,Sub-Saharan Africa
+NER,Niger,17.607789,0.0,False,False,False,11.50963,False,False,Africa,Sub-Saharan Africa
+NGA,Nigeria,9.081999,0.0,False,False,False,126.382494,False,False,Africa,Sub-Saharan Africa
+NIC,Nicaragua,12.865416,0.0,False,True,False,5.022633,False,False,Americas,Latin America and the Caribbean
+NLD,Netherlands,52.132633,1.0,True,False,False,16.05876,False,False,Europe,Western Europe
+NOR,Norway,60.472024,1.0,True,False,False,4.490867,False,False,Europe,Northern Europe
+NPL,Nepal,28.394857,1.0,False,False,False,24.546509,False,False,Asia,Southern Asia
+NZL,New Zealand,-40.900557,1.0,True,False,False,3.857574,False,False,Oceania,Australia and New Zealand
+OMN,Oman,21.512583,0.0,False,False,False,2.282131,False,True,Asia,Western Asia
+PAK,Pakistan,30.375321,1.0,False,False,False,154.879127,False,False,Asia,Southern Asia
+PAN,Panama,8.537981,0.0,False,True,False,3.010369,False,False,Americas,Latin America and the Caribbean
+PER,Peru,-9.189967,0.0,False,True,False,26.598331,False,False,Americas,Latin America and the Caribbean
+PHL,Philippines,12.879721,0.0,False,False,False,79.625397,False,False,Asia,South-eastern Asia
+POL,Poland,51.919438,1.0,False,False,False,38.258071,False,False,Europe,Eastern Europe
+PRT,Portugal,39.399872,1.0,True,False,False,10.283204,False,False,Europe,Southern Europe
+PRY,Paraguay,-23.442503,1.0,False,True,False,5.100868,False,False,Americas,Latin America and the Caribbean
+PSE,State of Palestine,31.952162,1.0,False,False,False,3.151793,False,False,Asia,Western Asia
+QAT,Qatar,25.354826,1.0,False,False,False,0.644989,True,True,Asia,Western Asia
+ROU,Romania,45.943161,1.0,False,False,False,22.046262,False,False,Europe,Eastern Europe
+RUS,Russian Federation,61.52401,1.0,False,False,False,146.717783,False,False,Europe,Eastern Europe
+RWA,Rwanda,-1.940278,0.0,False,False,False,8.213931,False,False,Africa,Sub-Saharan Africa
+SAU,Saudi Arabia,23.885942,1.0,False,False,False,16.177722,False,True,Asia,Western Asia
+SDN,Sudan,12.862807,0.0,False,False,False,26.8165615448192,False,False,Africa,Northern Africa
+SEN,Senegal,14.497401,0.0,False,False,False,9.96826,False,False,Africa,Sub-Saharan Africa
+SGP,Singapore,1.352083,0.0,False,False,False,4.035245,False,False,Asia,South-eastern Asia
+SLE,Sierra Leone,8.460555,0.0,False,False,False,4.423611,False,False,Africa,Sub-Saharan Africa
+SLV,El Salvador,13.794185,0.0,False,True,False,5.943366,False,False,Americas,Latin America and the Caribbean
+SOM,Somalia,5.152149,0.0,False,False,False,8.838713,False,False,Africa,Sub-Saharan Africa
+SRB,Serbia,44.016521,1.0,False,False,False,7.694605,False,False,Europe,Southern Europe
+SSD,South Sudan,,,False,False,False,,False,True,Africa,Sub-Saharan Africa
+STP,Sao Tome and Principe,0.18636,0.0,False,False,False,0.144018,True,False,Africa,Sub-Saharan Africa
+SUR,Suriname,3.919305,0.0,False,True,True,0.476643,True,False,Americas,Latin America and the Caribbean
+SVK,Slovakia,48.669026,1.0,False,False,False,5.379999,False,False,Europe,Eastern Europe
+SVN,Slovenia,46.151241,1.0,False,False,False,1.986816,False,False,Europe,Southern Europe
+SWE,Sweden,60.128161,1.0,True,False,False,8.872101,False,False,Europe,Northern Europe
+SWZ,Eswatini,-26.522503,1.0,False,False,False,1.041414,False,False,Africa,Sub-Saharan Africa
+SXM,Sint Maarten (Dutch part),,,False,False,False,,False,False,Americas,Latin America and the Caribbean
+SYC,Seychelles,-4.679574,0.0,False,False,False,0.083318,True,False,Africa,Sub-Saharan Africa
+SYR,Syrian Arab Republic,34.802075,1.0,False,False,False,16.637888,False,False,Asia,Western Asia
+TCA,Turks and Caicos Islands,21.694025,0.0,False,False,False,0.01873,True,False,Americas,Latin America and the Caribbean
+TCD,Chad,15.454166,0.0,False,False,False,8.512093,False,False,Africa,Sub-Saharan Africa
+TGO,Togo,8.619543,0.0,False,False,False,5.140037,False,False,Africa,Sub-Saharan Africa
+THA,Thailand,15.870032,0.0,False,False,False,63.007815,False,False,Asia,South-eastern Asia
+TJK,Tajikistan,38.861034,1.0,False,False,False,6.284735,False,False,Asia,Central Asia
+TKM,Turkmenistan,38.969719,1.0,False,False,False,4.582677,False,False,Asia,Central Asia
+TTO,Trinidad and Tobago,10.691803,0.0,False,True,True,1.319774,False,True,Americas,Latin America and the Caribbean
+TUN,Tunisia,33.886917,1.0,False,False,False,9.764935,False,False,Africa,Northern Africa
+TUR,Türkiye,38.963745,1.0,False,False,False,65.425961,False,False,Asia,Western Asia
+TWN,Taiwan,23.69781,1.0,False,False,False,22.18453,False,False,,
+TZA,U.R. of Tanzania: Mainland,-6.369028,0.0,False,False,False,33.344139,False,False,Africa,Sub-Saharan Africa
+UGA,Uganda,1.373333,0.0,False,False,False,24.00015,False,False,Africa,Sub-Saharan Africa
+UKR,Ukraine,48.379433,1.0,False,False,False,49.55666,False,False,Europe,Eastern Europe
+URY,Uruguay,-32.522779,1.0,False,True,False,3.266206,False,False,Americas,Latin America and the Caribbean
+USA,United States,37.09024,1.0,True,False,False,281.484131,False,False,Americas,Northern America
+UZB,Uzbekistan,41.377491,1.0,False,False,False,24.787054,False,False,Asia,Central Asia
+VCT,St. Vincent and the Grenadines,12.984305,0.0,False,True,True,0.113545,True,False,Americas,Latin America and the Caribbean
+VEN,Venezuela (Bolivarian Republic of),6.42375,0.0,False,True,False,24.526708,False,True,Americas,Latin America and the Caribbean
+VGB,British Virgin Islands,18.420695,0.0,False,False,False,0.020241,True,False,Americas,Latin America and the Caribbean
+VNM,Viet Nam,14.058324,0.0,False,False,False,77.154011,False,False,Asia,South-eastern Asia
+YEM,Yemen,15.552727,0.0,False,False,False,19.624141,False,False,Asia,Western Asia
+ZAF,South Africa,-30.559482,1.0,False,False,False,47.159719,False,False,Africa,Sub-Saharan Africa
+ZMB,Zambia,-13.133897,0.0,False,False,False,10.017631,False,False,Africa,Sub-Saharan Africa
+ZWE,Zimbabwe,-19.015438,0.0,False,False,False,11.892055,False,False,Africa,Sub-Saharan Africa
