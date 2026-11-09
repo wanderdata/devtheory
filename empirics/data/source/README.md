@@ -8,9 +8,16 @@ World-level source files that are small enough to commit and are shared by sever
 | `un_ama/un_ama_gdp_breakdown_current_usd.xlsx` | UNSD AMA, "GDP/breakdown at current prices in US Dollars (all countries)" ([file 2](https://unstats.un.org/unsd/amaapi/api/file/2)) | Same | 2026-11-09 | `7cd48f2a282539d401bdf6c824e0f0271ff3b9c4648af43ec475da25e3828716` |
 | `ilostat/EMP_2EMP_SEX_ECO_NB_A-20261109T1254.csv.gz` | ILOSTAT bulk download, employment by sex and economic activity, ILO modelled estimates, thousands ([bulk facility](https://ilostat.ilo.org/data/bulk/)) | Stamped 2026-11-09 12:54 UTC; all countries, 1991–2025 | 2026-11-09 | `5f48aa7491314ddcf253f57450af0dd0f55c6c994d3afd742a604b2bac48334d` |
 | `ilostat/EMP_TEMP_SEX_ECO_NB_A-20261109T1254.csv.gz` | ILOSTAT bulk download, employment by sex and economic activity, national sources (surveys, censuses), thousands | Same stamp | 2026-11-09 | `2009f3868be6cbaffbcb57520718a5abb8c0b6d52b8cdbb169ac918e23f48383` |
+| `ilostat/EMP_2WAP_SEX_AGE_RT_A-20261109T1259.csv.gz` | ILOSTAT bulk download, employment-to-population ratio (%), ILO modelled estimates | Stamped 2026-11-09 12:59 UTC | 2026-11-09 | `24ee16170e456f5e56f5da3c52a661dc4b47068af005bb47db9993e2beef2971` |
+| `ilostat/EAP_2WAP_SEX_AGE_RT_A-20261109T1259.csv.gz` | ILOSTAT bulk download, labour force participation rate (%), ILO modelled estimates | Stamped 2026-11-09 12:59 UTC | 2026-11-09 | `e61ada2f71828cafe99f4e8add5ed3681e579fc8e2faca7dd0af7a66246950ee` |
+| `ilostat/UNE_2EAP_SEX_AGE_RT_A-20261109T1259.csv.gz` | ILOSTAT bulk download, unemployment rate (%), ILO modelled estimates | Stamped 2026-11-09 12:59 UTC | 2026-11-09 | `798a48432590eaedde9e4986a5723bf280cf8641e5f52621f3c713facfe7778b` |
+| `ilostat/GDP_2HRW_NOC_NB_A-20261109T1259.csv.gz` | ILOSTAT bulk download, output per hour worked (GDP, constant 2021 PPP $), ILO modelled estimates | Stamped 2026-11-09 12:59 UTC | 2026-11-09 | `e731f3f7fd4e856f09dee69ec7c865980dbc93b1dc0d00418dc74397d990de5d` |
+| `ilostat/HOW_2EMP_SEX_NB_A-20261109T1259.csv.gz` | ILOSTAT bulk download, mean weekly hours actually worked per employed person, ILO modelled estimates | Stamped 2026-11-09 12:59 UTC | 2026-11-09 | `ca4a80846730dd9de56e6184c1c65a235ffa52394c6650facfc8ed752362fd26` |
 
 Both UN files reproduce the committed Caribbean extracts (`interim/carib_lp/un_va_*.csv`) exactly (82 series checked, maximum relative difference 2e-16), so they are the vintage used for WP05.
 
 Used by: `carib_lp` (WP05), the LAC extension of it, and the development-motors project.
 
 The ILO files are a newer download (2026-11-09) than the one behind WP05 (2026-11-05). For the 16 Caribbean countries they are identical: every modelled value (34,020 rows) and every survey value (17,167 rows) is unchanged. The only difference is that ILO relabelled the source code of Haiti's 2012 survey from `BB:14099` to `BB:7725`, with the same values.
+
+The five ILO labour-market series (rates, output per hour, hours) reproduce the Caribbean extract used by the dashboard exactly.

@@ -21,7 +21,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from config import COUNTRIES, INTERIM, RAW
+from config import COUNTRIES, INTERIM, RAW, SOURCE
 
 MAX_YEAR = 2025
 WANT = {"EMP_2WAP": "emp_rate", "EAP_2WAP": "part_rate", "UNE_2EAP": "unemp_rate",
@@ -50,7 +50,8 @@ def read(path):
 
 
 def main(extra):
-    paths = [p for p in (list(RAW.glob("*.csv*")) if RAW.exists() else []) + [Path(x) for x in extra]]
+    paths = [p for p in (list(RAW.glob("*.csv*")) if RAW.exists() else [])
+             + sorted(SOURCE.glob("ilostat/*.csv.gz")) + [Path(x) for x in extra]]
     parts = []
     for p in paths:
         try:

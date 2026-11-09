@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from lib import (CARIB, COUNTRIES, INK2, SECTOR_COLORS, SHORT, annual_decomp, base_layout,
+from lib import (CARIB, countries, INK2, SECTOR_COLORS, SHORT, annual_decomp, base_layout,
                  footer, name, sector_long, sector_lp, show, sidebar_common)
 
 grid, series, agg = sidebar_common(key="rs")
@@ -13,7 +13,7 @@ st.caption("Where workers are relative to sector productivity, how sector produc
            "sectors drive the within-sector and structural-change components.")
 
 df = sector_long(grid, series, tuple(agg) if agg else None)
-who = st.selectbox("Economy", [CARIB] + list(COUNTRIES), format_func=name, index=0 if agg else 1)
+who = st.selectbox("Economy", [CARIB] + list(countries()), format_func=name, index=0 if agg else 1)
 d = sector_lp(df[df["iso3"] == who])
 if d.empty:
     st.warning("No data for this selection.")

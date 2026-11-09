@@ -4,6 +4,28 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-09 — Session 12: LAC extension of the productivity panel; data files on GitHub
+
+**Prompt (user):** (1) attach the repo and work in it as the author; (2) today's project is development motors (Szirmai–Verspagen and successors), but first: extend the Caribbean productivity analysis to the whole of LAC using ECLAC's country definitions, keeping a Caribbean section with the same content; (3) keep the source files on GitHub.
+
+**Done**
+- Repository attached; commits authored as Paul Wander. Added `CLAUDE.md` with authorship, voice and register conventions.
+- World source files committed unmodified in `empirics/data/source/` with checksums (D-029): UN AMA files 2 and 6, ILO employment by activity (modelled and national sources) and the five ILO labour-market series. Same vintage as the Caribbean work: 82 UN series and all Caribbean ILO values identical (only Haiti's 2012 survey source code relabelled).
+- Pipeline made scope-aware (`LP_SCOPE=lac|carib`, D-030). Rebuilding the Caribbean from the world files reproduces every published number.
+- LAC panel: 33 countries, 1970–2024 value added; sector employment for 29 (not Antigua and Barbuda, Dominica, Grenada, Saint Kitts and Nevis). Grade-A country-periods in grid A: 15 of 29 for 2000–19, 21 for 2019–24. Modelled vs survey structural term, grid A: corr. 0.90, median gap 0.13 pp/yr, 92% same sign (114 pairs, 26 countries).
+- New data rule (D-031): survey years covering under 80% of national employment are not used (urban-only surveys: Argentina, early Mexico, Uruguay before 2006, Bolivia 1991–92, Suriname).
+- Chained price base added beside initial- and final-year prices (D-032); dashboard toggle with an explanatory note; chained is the default.
+- Dashboard: region selector (LAC default, Caribbean), scope-aware loaders that are safe with several users, period-decomposition page with the price toggle and a robustness chart across price bases. Tested every page under both regions and all setting combinations (Streamlit AppTest), and in headless Chrome.
+- D-029 to D-033; OQ-42 to OQ-45.
+
+**What failed on the way:** the first LAC run gave Uruguay 3.5%/yr productivity growth for 2000–19 against 1.4% official: telecoms volume rose 7.5-fold, so valuing the period at 2000 prices over-weights it. This exposed a general weakness of fixed-base period decompositions (D-032). ILO's coverage notes did not flag Argentina's urban survey consistently, so coverage is tested from totals instead (D-031). Venezuela's 2020-price US$ levels are unusable as levels (D-033). Testing found two crashes, both fixed: a pre-existing one when an economy has fewer than two survey years on grid B (Haiti, in the original Caribbean dashboard too), and the country profile with survey employment for countries whose only survey is now excluded (Argentina). The dashboard's coverage map now shows excluded (non-national) surveys in their own colour.
+
+**Key results (first look, not yet interpreted):** the sign of the structural-change term depends on the price base for 11 of 74 grade-A LAC country-periods, so a finding about structural change in a given country should be read only where the three price bases agree. Bolivia 2000–19 is the starkest case: positive at initial-year prices (+0.46 pp/yr), negative chained (−0.24), with large static and dynamic terms of opposite sign.
+
+**Next:** the development-motors project (Szirmai–Verspagen replication) once PWT, ETD and the GGDC 10-sector files arrive.
+
+---
+
 ## 2026-11-05 — Session 11: dashboard
 
 **Prompt (user):** add a dashboard, runnable on the user's Streamlit account, using an ECLAC chapter draft as the reference for chart types and analysis; improvements allowed but kept separate and flagged.

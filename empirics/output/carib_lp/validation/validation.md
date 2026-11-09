@@ -8,8 +8,8 @@ Each row decomposes labour-productivity growth between two usable survey years (
 
 | Grid | Pairs | Countries | Corr. structural term | Corr. within term | Mean abs. diff. structural (pp/yr) | Median | Max | Share within 0.5 pp | Same sign | Mean bias (model − survey) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| A | 37 | 11 | 0.91 | 0.94 | 0.36 | 0.14 | 2.95 | 81% | 95% | +0.16 |
-| B | 51 | 12 | 0.85 | 0.94 | 0.34 | 0.11 | 3.49 | 82% | 86% | +0.13 |
+| A | 37 | 11 | 0.95 | 0.97 | 0.31 | 0.14 | 1.39 | 78% | 95% | +0.12 |
+| B | 49 | 11 | 0.95 | 0.96 | 0.23 | 0.10 | 1.50 | 84% | 90% | +0.02 |
 
 ## Grid A: pairs
 
@@ -49,8 +49,8 @@ Each row decomposes labour-productivity growth between two usable survey years (
 | Saint Lucia | 2016–2020 | -4.23 | 2.20 | -4.57 | 1.42 | 0.33 | 0.78 |
 | Saint Lucia | 2020–2024 | 1.59 | -2.68 | 2.07 | -3.06 | -0.48 | 0.38 |
 | Saint Vincent and the Grenadines | 1991–2001 | 4.85 | 3.63 | 4.32 | 3.03 | 0.52 | 0.61 |
-| Suriname | 2004–2013 | 8.40 | 2.67 | 11.80 | 3.12 | -3.40 | -0.45 |
-| Suriname | 2013–2022 | -5.65 | -2.33 | -5.63 | -2.45 | -0.02 | 0.12 |
+| Suriname | 2004–2016 | 2.66 | 1.35 | 3.39 | 1.58 | -0.74 | -0.23 |
+| Suriname | 2016–2022 | -5.72 | -2.55 | -4.74 | -2.51 | -0.97 | -0.04 |
 | Trinidad and Tobago | 2019–2023 | -1.07 | -1.60 | -1.29 | -1.42 | 0.23 | -0.18 |
 
 ## Grid B: pairs
@@ -85,7 +85,6 @@ Each row decomposes labour-productivity growth between two usable survey years (
 | Guyana | 1997–2002 | 4.48 | 5.41 | 6.44 | 7.14 | -1.96 | -1.73 |
 | Guyana | 2002–2018 | 7.08 | 6.56 | 8.05 | 8.11 | -0.97 | -1.55 |
 | Guyana | 2018–2024 | 45.84 | 68.51 | 38.60 | 61.99 | 7.24 | 6.52 |
-| Haiti | 2003–2012 | -4.67 | -0.57 | -2.03 | -0.81 | -2.65 | 0.24 |
 | Jamaica | 1992–1996 | -0.19 | 0.72 | -1.07 | -0.34 | 0.89 | 1.07 |
 | Jamaica | 1996–2000 | 0.20 | -0.98 | 0.68 | -0.76 | -0.48 | -0.22 |
 | Jamaica | 2000–2004 | -1.33 | 0.79 | -1.64 | 0.36 | 0.31 | 0.44 |
@@ -101,10 +100,9 @@ Each row decomposes labour-productivity growth between two usable survey years (
 | Saint Lucia | 2016–2020 | -4.23 | 2.20 | -4.34 | 1.71 | 0.11 | 0.49 |
 | Saint Lucia | 2020–2024 | 1.59 | -2.68 | 1.91 | -2.93 | -0.32 | 0.25 |
 | Saint Vincent and the Grenadines | 1991–2001 | 4.85 | 3.63 | 4.09 | 2.94 | 0.76 | 0.70 |
-| Suriname | 1992–1996 | -0.92 | -4.20 | -1.58 | -4.77 | 0.66 | 0.57 |
-| Suriname | 1996–2004 | -3.32 | -0.11 | -3.66 | -0.57 | 0.34 | 0.46 |
-| Suriname | 2004–2013 | 8.40 | 2.67 | 11.79 | 2.57 | -3.39 | 0.10 |
-| Suriname | 2013–2022 | -5.65 | -2.33 | -5.85 | -2.41 | 0.20 | 0.08 |
+| Suriname | 1992–2004 | -2.60 | -1.65 | -2.62 | -1.67 | 0.01 | 0.02 |
+| Suriname | 2004–2016 | 2.66 | 1.35 | 2.76 | 1.44 | -0.11 | -0.09 |
+| Suriname | 2016–2022 | -5.72 | -2.55 | -4.98 | -2.48 | -0.74 | -0.07 |
 | Trinidad and Tobago | 2011–2015 | 0.58 | 0.06 | 0.16 | -0.30 | 0.42 | 0.36 |
 | Trinidad and Tobago | 2015–2019 | -1.28 | -2.47 | -1.82 | -2.34 | 0.53 | -0.14 |
 | Trinidad and Tobago | 2019–2023 | -1.07 | -1.60 | -0.97 | -1.50 | -0.10 | -0.10 |

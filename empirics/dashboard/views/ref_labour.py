@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from lib import (COUNTRIES, C_CONTEXT, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2, base_layout,
+from lib import (countries, C_CONTEXT, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2, base_layout,
                  footer, labour_or_note, name, show)
 
 st.title("Employment")
@@ -16,7 +16,7 @@ lab = labour_or_note(["emp_rate", "part_rate", "unemp_rate", "lp_hour"])
 if lab is None:
     st.stop()
 w = lab.pivot_table(index=["iso3", "year"], columns="indicator", values="value").reset_index()
-w = w[w["iso3"].isin(COUNTRIES)]
+w = w[w["iso3"].isin(countries())]
 years = sorted(w.dropna(subset=["lp_hour"])["year"].unique())
 
 # ---- quadrant
@@ -43,7 +43,7 @@ show(fig, q.round(2).reset_index().assign(iso3=lambda d: d["iso3"].map(name)).re
 
 # ---- employment rate
 st.subheader("Employment rate")
-focus = st.selectbox("Highlight", list(COUNTRIES), format_func=name, index=list(COUNTRIES).index("DOM"))
+focus = st.selectbox("Highlight", list(countries()), format_func=name, index=list(countries()).index("DOM"))
 def lines(col, ytitle, key):
     fig = go.Figure()
     for iso, g in w.dropna(subset=[col]).groupby("iso3"):
@@ -76,7 +76,7 @@ for iso, g in w.groupby("iso3"):
                          "unemployment": -100 * (u1 - u0) * (p0 + p1) / 2,
                          "d_emp_rate": 100 * (p1 * (1 - u1) - p0 * (1 - u0))})
 sh = pd.DataFrame(rows)
-who = st.selectbox("Country", list(COUNTRIES), format_func=name, index=list(COUNTRIES).index("DOM"), key="sh")
+who = st.selectbox("Country", list(countries()), format_func=name, index=list(countries()).index("DOM"), key="sh")
 s = sh[sh["iso3"] == who]
 fig = go.Figure()
 fig.add_trace(go.Bar(x=s["year"].astype(str), y=s["participation"], name="Contribution of participation",

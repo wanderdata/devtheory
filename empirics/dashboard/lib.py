@@ -1,7 +1,14 @@
-"""Shared data loading, computations and chart helpers for the Caribbean
-labour-productivity dashboard. Everything is computed from files committed in
-the repository (empirics/data/... and empirics/output/...), so the app runs on
-Streamlit Community Cloud with no downloads.
+"""Shared data loading, computations and chart helpers for the sectoral
+labour-productivity dashboard (Latin America and the Caribbean, and the Caribbean).
+
+Everything is computed from files committed in the repository (empirics/data/...
+and empirics/output/...), so the app runs on Streamlit Community Cloud with no
+downloads.
+
+Scope. The region is chosen per session in the sidebar (app.py) and read here from
+st.session_state["scope"]; nothing scope-dependent is stored in module globals,
+because Streamlit serves all sessions from one process. Cached loaders take the
+scope as an argument so each scope has its own cache entries.
 """
 from pathlib import Path
 
@@ -11,19 +18,83 @@ import plotly.graph_objects as go
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[2]
-PROC = ROOT / "empirics" / "data" / "processed" / "carib_lp"
-INTERIM = ROOT / "empirics" / "data" / "interim" / "carib_lp"
-OUT = ROOT / "empirics" / "output" / "carib_lp"
 
-COUNTRIES = {
-    "BHS": "Bahamas", "BRB": "Barbados", "BLZ": "Belize", "CUB": "Cuba",
-    "DOM": "Dominican Republic", "GUY": "Guyana", "HTI": "Haiti", "JAM": "Jamaica",
-    "LCA": "Saint Lucia", "VCT": "Saint Vincent and the Grenadines", "SUR": "Suriname",
-    "TTO": "Trinidad and Tobago",
+# Display names (ECLAC short forms used in figures).
+NAMES = {
+    "ARG": "Argentina", "ATG": "Antigua and Barbuda", "BHS": "Bahamas", "BLZ": "Belize",
+    "BOL": "Bolivia (Plur. State of)", "BRA": "Brazil", "BRB": "Barbados", "CHL": "Chile",
+    "COL": "Colombia", "CRI": "Costa Rica", "CUB": "Cuba", "DMA": "Dominica",
+    "DOM": "Dominican Republic", "ECU": "Ecuador", "GRD": "Grenada", "GTM": "Guatemala",
+    "GUY": "Guyana", "HND": "Honduras", "HTI": "Haiti", "JAM": "Jamaica",
+    "KNA": "Saint Kitts and Nevis", "LCA": "Saint Lucia", "MEX": "Mexico", "NIC": "Nicaragua",
+    "PAN": "Panama", "PER": "Peru", "PRY": "Paraguay", "SLV": "El Salvador", "SUR": "Suriname",
+    "TTO": "Trinidad and Tobago", "URY": "Uruguay", "VCT": "Saint Vincent and the Grenadines",
+    "VEN": "Venezuela (Bol. Rep. of)",
 }
-NOT_COVERED = ["Antigua and Barbuda", "Dominica", "Grenada", "Saint Kitts and Nevis"]
-CARIB = "CAR"  # code for the pooled Caribbean aggregate
-CARIB_NAME = "Caribbean (selected countries, pooled)"
+CARIBBEAN16 = ["ATG", "BHS", "BRB", "BLZ", "CUB", "DMA", "DOM", "GRD", "GUY", "HTI", "JAM",
+               "KNA", "LCA", "VCT", "SUR", "TTO"]
+
+SCOPES = {
+    "lac": dict(label="Latin America and the Caribbean", tag="lac_lp",
+                members=sorted(NAMES, key=lambda c: NAMES[c]),
+                agg_name="Latin America and the Caribbean (pooled)", agg_short="LAC",
+                # US$ levels unusable for pooling: Venezuela (2020-price conversion after
+                # hyperinflation), Cuba (official exchange rate). D-033.
+                agg_exclude=["CUB", "VEN"],
+                blurb="the **33 Latin American and Caribbean member States of ECLAC**"),
+    "carib": dict(label="Caribbean", tag="carib_lp", members=CARIBBEAN16,
+                  agg_name="Caribbean (selected countries, pooled)", agg_short="Caribbean",
+                  agg_exclude=[],
+                  blurb="the **16 Caribbean member States of ECLAC served by its subregional "
+                        "headquarters in Port of Spain** (the broad definition of the Caribbean, "
+                        "including Cuba, the Dominican Republic and Haiti)"),
+}
+CARIB = "AGG"  # code for the pooled aggregate of the active scope
+
+
+def scope():
+    return st.session_state.get("scope", "lac")
+
+
+def scope_info(sc=None):
+    return SCOPES[sc or scope()]
+
+
+def proc_dir(sc=None):
+    return ROOT / "empirics" / "data" / "processed" / scope_info(sc)["tag"]
+
+
+def interim_dir(sc=None):
+    return ROOT / "empirics" / "data" / "interim" / scope_info(sc)["tag"]
+
+
+def out_dir(sc=None):
+    return ROOT / "empirics" / "output" / scope_info(sc)["tag"]
+
+
+@st.cache_data
+def _countries(sc):
+    """Members of the scope with sectoral employment (ILO modelled), in display order."""
+    p = pd.read_csv(proc_dir(sc) / "panel_7sector.csv", usecols=["iso3", "emp_model"])
+    have = set(p.dropna(subset=["emp_model"])["iso3"])
+    return {c: NAMES[c] for c in sorted(have, key=lambda c: NAMES[c])}
+
+
+def countries():
+    return _countries(scope())
+
+
+def not_covered():
+    return [NAMES[c] for c in scope_info()["members"] if c not in countries()]
+
+
+def agg_default():
+    return [c for c in countries() if c not in scope_info()["agg_exclude"]]
+
+
+def default_country():
+    c = countries()
+    return list(c).index("DOM") if "DOM" in c else 0
 
 SECTORS_A = ["AGR", "MIU", "MAN", "CON", "TRH", "TSC", "OTH"]
 SECTORS_B = ["AGR", "MIU", "MAN", "CON", "SER"]
@@ -56,30 +127,63 @@ GRADE_TEXT = {"A": "A · both endpoints near survey years",
 # ------------------------------------------------------------------ loading --
 
 @st.cache_data
+def _load_panel(sc):
+    p = pd.read_csv(proc_dir(sc) / "panel_7sector.csv")
+    return p[p["iso3"].isin(_countries(sc))]
+
+
 def load_panel():
-    p = pd.read_csv(PROC / "panel_7sector.csv")
-    p = p[p["iso3"].isin(COUNTRIES)]
-    return p
+    return _load_panel(scope())
 
 
 @st.cache_data
+def _load_emp5(sc):
+    return pd.read_csv(proc_dir(sc) / "emp_5sector.csv")
+
+
 def load_emp5():
-    return pd.read_csv(PROC / "emp_5sector.csv")
+    return _load_emp5(scope())
 
 
 @st.cache_data
-def load_output(grid, name):
-    f = OUT / f"grid_{grid}" / f"{name}.csv"
-    return pd.read_csv(f) if f.exists() else pd.DataFrame()
-
-
-@st.cache_data
-def load_labour():
-    """ILO modelled labour-market indicators (optional; from 06_extract_labour.py)."""
-    f = INTERIM / "ilo_labour.csv"
+def _load_excluded_surveys(sc):
+    f = proc_dir(sc) / "emp_all_sources.csv"
     if not f.exists():
-        return None
-    return pd.read_csv(f)
+        return {}
+    e = pd.read_csv(f, usecols=["iso3", "year", "missing_sectors", "cov_ratio"])
+    e = e[e["missing_sectors"] == "PARTIAL_COVERAGE"].drop_duplicates(["iso3", "year"])
+    return {iso: dict(zip(g["year"], g["cov_ratio"])) for iso, g in e.groupby("iso3")}
+
+
+def load_excluded_surveys():
+    """Survey years not used because they are not national (D-031): {iso3: {year: coverage ratio}}."""
+    return _load_excluded_surveys(scope())
+
+
+@st.cache_data
+def _load_output(sc, grid, name):
+    f = out_dir(sc) / f"grid_{grid}" / f"{name}.csv"
+    if not f.exists():
+        return pd.DataFrame()
+    d = pd.read_csv(f)
+    if {"iso3", "country"} <= set(d.columns):
+        d["country"] = d["iso3"].map(NAMES).fillna(d["country"])
+    return d
+
+
+def load_output(grid, name):
+    return _load_output(scope(), grid, name)
+
+
+@st.cache_data
+def _load_labour(sc):
+    f = interim_dir(sc) / "ilo_labour.csv"
+    return pd.read_csv(f) if f.exists() else None
+
+
+def load_labour():
+    """ILO modelled labour-market indicators (from 06_extract_labour.py)."""
+    return _load_labour(scope())
 
 
 def labour_or_note(indicators):
@@ -92,11 +196,15 @@ def labour_or_note(indicators):
     return lab
 
 
-@st.cache_data
 def sector_long(grid, emp_series="model", countries=None):
     """Long table iso3, year, sector, va_k (constant 2020 US$), va_cur, emp (thousands)
-    on the chosen grid, plus a pooled Caribbean aggregate over `countries`."""
-    p = load_panel()
+    on the chosen grid, plus a pooled aggregate (code CARIB) over `countries`."""
+    return _sector_long(scope(), grid, emp_series, tuple(countries) if countries else None)
+
+
+@st.cache_data
+def _sector_long(sc, grid, emp_series, countries):
+    p = _load_panel(sc)
     va = p[["iso3", "year", "sector", "va_k2020usd", "va_cur_usd"]].dropna()
     va = va.assign(sector=va["sector"].map(GRID_MAP[grid]))
     va = va.groupby(["iso3", "year", "sector"], as_index=False)[["va_k2020usd", "va_cur_usd"]].sum()
@@ -104,10 +212,10 @@ def sector_long(grid, emp_series="model", countries=None):
         col = f"emp_{emp_series}"
         e = p[["iso3", "year", "sector", col]].dropna().rename(columns={col: "emp"})
     else:
-        e5 = load_emp5()
+        e5 = _load_emp5(sc)
         e = e5[e5["series"] == emp_series][["iso3", "year", "sector", "emp"]]
     df = va.merge(e, on=["iso3", "year", "sector"], how="inner")
-    df = df[df["iso3"].isin(COUNTRIES)]
+    df = df[df["iso3"].isin(_countries(sc))]
     # keep only country-years with every sector of the grid
     n = len(SECTORS_A if grid == "A" else SECTORS_B)
     df = df.groupby(["iso3", "year"]).filter(lambda g: len(g) == n)
@@ -122,8 +230,12 @@ def sector_long(grid, emp_series="model", countries=None):
     return df
 
 
+AGG_LABEL = "Regional aggregate (pooled)"
+
+
 def name(iso):
-    return CARIB_NAME if iso == CARIB else COUNTRIES.get(iso, iso)
+    # Session-independent on purpose: widget labels must not depend on state read at format time.
+    return AGG_LABEL if iso == CARIB else NAMES.get(iso, iso)
 
 
 # ------------------------------------------------------------ computations --
@@ -169,9 +281,13 @@ def mr_step(d0, d1, prices="constant2020"):
     return out, P0, P1
 
 
-@st.cache_data
 def annual_decomp(grid, emp_series, countries, prices="constant2020"):
-    df = sector_long(grid, emp_series, tuple(countries) if countries else None)
+    return _annual_decomp(scope(), grid, emp_series, tuple(countries) if countries else None, prices)
+
+
+@st.cache_data
+def _annual_decomp(sc, grid, emp_series, countries, prices):
+    df = _sector_long(sc, grid, emp_series, countries)
     rows, det = [], []
     for iso, g in df.groupby("iso3"):
         g = g.set_index(["year", "sector"]).sort_index()
@@ -190,14 +306,18 @@ def annual_decomp(grid, emp_series, countries, prices="constant2020"):
     return r, pd.concat(det, ignore_index=True)
 
 
-@st.cache_data
 def survey_years(grid):
     """Usable survey years per country for the grid (for anchoring markers)."""
+    return _survey_years(scope(), grid)
+
+
+@st.cache_data
+def _survey_years(sc, grid):
     if grid == "A":
-        p = load_panel()
+        p = _load_panel(sc)
         s = p.dropna(subset=["emp_survey"])
     else:
-        e5 = load_emp5()
+        e5 = _load_emp5(sc)
         s = e5[e5["series"] == "survey"]
     return {iso: sorted(set(g["year"])) for iso, g in s.groupby("iso3")}
 
@@ -252,10 +372,11 @@ AUTHOR = ("Prepared by Paul Wander, Division of Production, Productivity and Man
 def footer():
     st.divider()
     st.caption(AUTHOR)
+    nc = not_covered()
     st.caption("Sources: UN Statistics Division, National Accounts Main Aggregates (Jan 2026 upload); "
                "ILOSTAT, employment by economic activity (ILO modelled estimates and national sources), "
-               "downloaded 2026-11-05. Method: devtheory WP05. Not covered (no sector employment data): "
-               + ", ".join(NOT_COVERED) + ".")
+               "downloaded 2026-11-09. Method: devtheory WP05."
+               + (" Not covered (no sector employment data): " + ", ".join(nc) + "." if nc else ""))
 
 
 def sidebar_common(grid_choice=True, series_choice=True, key=""):
@@ -270,9 +391,64 @@ def sidebar_common(grid_choice=True, series_choice=True, key=""):
         s = st.sidebar.radio("Employment series", ["ILO modelled estimates", "National surveys (gaps)"],
                              key=f"ser{key}")
         series = "model" if s.startswith("ILO") else "survey"
-    agg = st.sidebar.multiselect("Countries in the Caribbean aggregate", list(COUNTRIES),
-                                 default=list(COUNTRIES), format_func=lambda c: COUNTRIES[c],
-                                 key=f"agg{key}",
-                                 help="The aggregate pools value added (constant 2020 US$) and employment. "
-                                      "Cuba's US$ values depend on its official exchange rate; consider excluding it.")
+    info = scope_info()
+    excl = ", ".join(NAMES[c] for c in info["agg_exclude"])
+    agg = st.sidebar.multiselect(
+        f"Countries in the {info['agg_short']} aggregate", list(countries()),
+        default=agg_default(), format_func=lambda c: NAMES[c], key=f"agg{key}_{scope()}",
+        help="The aggregate pools value added (constant 2020 US$) and employment, so large economies "
+             "dominate it. " + (f"Excluded by default: {excl}. Their US$ levels are not comparable "
+             "(Venezuela: conversion at 2020 prices after hyperinflation; Cuba: official exchange rate), "
+             "although their growth rates can be read country by country." if excl else
+             "Cuba's US$ values depend on its official exchange rate; consider excluding it."))
     return grid, series, agg
+
+
+# ---------------------------------------------------------- price bases ----
+
+PRICE_BASES = {
+    "chained": "Chained (previous-year prices, averaged)",
+    "initial": "Initial-year prices of each period",
+    "final": "Final-year prices of each period",
+}
+
+PRICE_NOTE = """
+**Why the price base matters.** A decomposition has to add sectors' value added together, so it must
+value every sector at a common set of prices. The UN's constant-2020-price series cannot be used for that:
+they are chain-linked and do not add up across sectors outside 2020. Three treatments are offered.
+
+- **Chained (default).** One decomposition per year, valuing year *t* and *t+1* at year-*t* prices, so
+  sectors add up exactly and relative prices are updated every year. The period result is the average of
+  the annual contributions. Its total is the mean annual growth rate of productivity.
+- **Initial-year prices.** The whole period is valued at the prices of its first year (WP05's original
+  method, D-024). It is a fixed-base (Laspeyres) index. Over long periods it gives too much weight to
+  sectors whose relative prices later fall a lot. Telecoms is the main case: Uruguay's productivity growth
+  over 2000–19 is 3.5% a year at 2000 prices, against 1.4% from the official chain-linked total and 1.8%
+  chained.
+- **Final-year prices.** The whole period is valued at the prices of its last year (Paasche). It has the
+  opposite bias and works as a bound.
+
+Fixed-base totals are linear averages, (P_T − P_0)/P_0 per year. The chained total is a mean of annual rates.
+The two are close for steady growth and differ for large swings, such as Venezuela or oil in Guyana.
+**Where the three treatments agree on the sign and rough size of the structural term, the result does not
+depend on prices. Where they disagree, it does, and should not be read as a finding.** Across LAC grade-A
+country-periods the structural term correlates 0.74 between chained and initial-year prices. In the
+Caribbean the correlation is 0.84.
+"""
+
+
+def price_choice(key=""):
+    p = st.sidebar.radio("Price base", list(PRICE_BASES), format_func=PRICE_BASES.get,
+                         key=f"price{key}", help="See the note on price bases on this page.")
+    return p
+
+
+def output_name(spec, price):
+    """File stem in empirics/output/<scope>/grid_X/ for a specification and price base."""
+    if spec == "survey":
+        return "robust_survey"
+    base = {"chained": "robust_chained", "initial": "main", "final": "robust_final_prices"}[price]
+    if spec == "no_mining":
+        return {"chained": "robust_no_mining_chained", "initial": "robust_no_mining",
+                "final": "robust_no_mining_final"}[price]
+    return base

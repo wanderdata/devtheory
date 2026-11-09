@@ -81,3 +81,38 @@ def decompose(y, l0, lT, years):
                                   "within_contrib_pp": s0 * (pT - p0) * k,
                                   "struct_contrib_pp": pT * (sT - s0) * k})
     return res
+
+
+def decompose_chained(va, use, iso, t0, T, grid=GRID_A, drop=()):
+    """Chained decomposition (D-032): one decomposition per year t -> t+1 at year-t prices,
+    each term expressed as a contribution to that year's growth rate (100 * term / P_t),
+    then averaged over the period. Sectors add up exactly every year and relative prices
+    are updated annually, so sectors whose relative prices move a lot (telecoms, oil) are
+    not mis-weighted over long periods. growth_pp = mean annual growth rate of P (chained).
+    Returns the same dict as decompose(), or None if any year is missing."""
+    drop_g = {grid[d] for d in drop}
+    acc, detail = None, []
+    for t in range(t0, T):
+        try:
+            y = va_at_prices(va, iso, t, t + 1, "initial", grid, drop=drop)
+            l0, l1 = use.loc[(iso, t)], use.loc[(iso, t + 1)]
+        except KeyError:
+            return None
+        l0, l1 = l0[~l0.index.isin(drop_g)], l1[~l1.index.isin(drop_g)]
+        r = decompose(y, l0, l1, 1)
+        if r is None:
+            return None
+        terms = {k: r[k] for k in ("growth_pp", "within_pp", "struct_pp", "static_pp", "dynamic_pp")}
+        acc = terms if acc is None else {k: acc[k] + terms[k] for k in acc}
+        detail.append(r["detail"][["within_contrib_pp", "struct_contrib_pp"]])
+    n = T - t0
+    res = {k: v / n for k, v in acc.items()}
+    first = decompose(va_at_prices(va, iso, t0, T, "initial", grid, drop=drop),
+                      use.loc[(iso, t0)][lambda s: ~s.index.isin(drop_g)],
+                      use.loc[(iso, T)][lambda s: ~s.index.isin(drop_g)], n)
+    res.update({"P0": first["P0"], "PT": first["PT"], "emp_growth_pct": first["emp_growth_pct"],
+                "check": (res["within_pp"] + res["struct_pp"]) / res["growth_pp"] - 1 if res["growth_pp"] else 0.0})
+    det = first["detail"].copy()
+    det[["within_contrib_pp", "struct_contrib_pp"]] = sum(detail) / n
+    res["detail"] = det
+    return res

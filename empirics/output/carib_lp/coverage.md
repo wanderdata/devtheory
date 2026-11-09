@@ -26,7 +26,7 @@ A year counts as covered when all seven sectors are present. Survey years use on
 | Saint Kitts and Nevis | — (0) | — | 0 | — | — | 1 |
 | Saint Lucia | 1991–2024 (34) | 61.8% | 21 | 1.1 (8.0) | 0.93 | 0 |
 | Saint Vincent and the Grenadines | 1991–2024 (34) | 5.9% | 2 | 0.2 (1.1) | 1.11 | 1 |
-| Suriname | 1991–2024 (34) | 14.7% | 5 | 2.6 (7.7) | 1.15 | 9 |
+| Suriname | 1991–2024 (34) | 8.8% | 3 | 1.7 (7.7) | 1.01 | 11 |
 | Trinidad and Tobago | 1991–2024 (34) | 17.6% | 6 | 2.9 (11.4) | 1.20 | 6 |
 
 ## Value added (UN National Accounts Main Aggregates, constant 2020 US$)
@@ -91,7 +91,7 @@ Constant-price series are chain-linked, so the seven sectors add up to total val
 | Saint Kitts and Nevis | — | 0 | 0 | — | — | — |
 | Saint Lucia | 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2005, 2006, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 | 22 | 0 | BA; BB | ISIC3,ISIC4 | 14.8% |
 | Saint Vincent and the Grenadines | 1991, 2001 | 2 | 0 | AA | ISIC4 | 4.2% |
-| Suriname | 2004, 2013, 2015, 2016, 2022 | 5 | 0 | AA; BA; BB | ISIC3,ISIC4 | 13.9% |
+| Suriname | 2004, 2016, 2022 | 3 | 2 | AA; BB | ISIC3,ISIC4 | 13.9% |
 | Trinidad and Tobago | 2019, 2020, 2021, 2022, 2023, 2024 | 6 | 0 | BA | ISIC4 | 0.0% |
 
 ## ISIC sections missing from usable survey years
@@ -115,3 +115,5 @@ A missing section was merged by the national survey into another one. Harmless w
 ## Mapping notes
 
 - JAM 2023 (BA:65): survey: 54% of workers unclassified; country-year dropped
+- SUR 2013 (BA:6647): survey: total is 70% of ILO modelled national employment; treated as not national (urban or partial coverage); country-year not used
+- SUR 2015 (BA:6647): survey: total is 64% of ILO modelled national employment; treated as not national (urban or partial coverage); country-year not used

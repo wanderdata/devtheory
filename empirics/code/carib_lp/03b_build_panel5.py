@@ -39,7 +39,7 @@ def collapse7(emp7, series):
     return g
 
 
-def from_six_groups():
+def from_six_groups(totals):
     """Survey country-years from ILO's six broad groups (all six present)."""
     s = pd.read_csv(INTERIM / "ilo_emp_survey.csv", low_memory=False)
     s = s[(s["sex"] == "SEX_T") & s["classif1"].str.startswith("ECO_AGGREGATE_") & s["obs_value"].notna()]
@@ -53,6 +53,9 @@ def from_six_groups():
         x = v.get("X", 0.0)
         total = v.get("TOTAL", v[list(AGG6)].sum() + x)
         if total and x / total > bp.MAX_X_SHARE:
+            continue
+        mt = totals.get((iso, yr), np.nan)
+        if np.isfinite(mt) and total / mt < bp.MIN_COVERAGE:   # not national (D-031)
             continue
         classified = v[list(AGG6)].sum()
         scale = total / classified
@@ -71,7 +74,7 @@ def main():
 
     model5 = collapse7(model7, "model")
     surv_isic = collapse7(emp_all, "survey")
-    surv_six = from_six_groups()
+    surv_six = from_six_groups(bp.model_totals(model7).to_dict())
     # ISIC-derived years take precedence; six-group years fill the rest.
     have = set(zip(surv_isic["iso3"], surv_isic["year"]))
     surv_six = surv_six[[(i, y) not in have for i, y in zip(surv_six["iso3"], surv_six["year"])]]

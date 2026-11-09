@@ -17,7 +17,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from config import COUNTRIES, INTERIM, M49_TO_ISO3, RAW
+from config import COUNTRIES, INTERIM, M49_TO_ISO3, RAW, SOURCE
 from concordance import map_un_indicator
 
 NAME_TO_ISO3 = {name.lower(): iso for iso, (_, name) in COUNTRIES.items()}
@@ -142,6 +142,8 @@ def read_ilo(path: Path):
 
 def candidates(extra):
     paths = list(RAW.glob("*")) if RAW.exists() else []
+    # committed world source files (D-029)
+    paths += sorted(SOURCE.glob("un_ama/*.xlsx")) + sorted(SOURCE.glob("ilostat/EMP_*ECO_NB_A*.csv.gz"))
     paths += [Path(p) for p in extra]
     return [p for p in paths if p.is_file()]
 

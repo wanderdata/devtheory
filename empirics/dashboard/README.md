@@ -1,8 +1,10 @@
-# Caribbean labour productivity dashboard
+# Labour productivity and structural change dashboard: Latin America and the Caribbean
 
 Paul Wander, Division of Production, Productivity and Management, UN-ECLAC.
 
-Streamlit app for the `carib_lp` project (WP05). It reads only files committed in this repository, so it runs on Streamlit Community Cloud with no setup.
+Streamlit app for the sectoral labour-productivity project (WP05). It reads only files committed in this repository, so it runs on Streamlit Community Cloud with no setup.
+
+**Region.** A selector at the top of the sidebar switches every page between **Latin America and the Caribbean** (the 33 ECLAC member States in the region; default) and the **Caribbean** (the 16 member States served by ECLAC's Port of Spain office, the broad definition used since D-019). The Caribbean view shows the same pages and analysis as the earlier Caribbean-only dashboard (D-030, D-033). The choice is kept per session.
 
 ## Deploy on Streamlit Community Cloud
 
@@ -29,7 +31,10 @@ Run locally: `pip install -r empirics/dashboard/requirements.txt && streamlit ru
 
 ### Data notes
 
-- **Sectors.** 7 sectors (grid A) or 5 (grid B): UN value added for the Caribbean exists only at 7.
+- **Sectors.** 7 sectors (grid A) or 5 (grid B): UN value added exists for every country only at 7.
+- **Price base.** Period decompositions default to chained prices (one decomposition per year at previous-year prices, averaged). Initial-year prices (WP05's original method) and final-year prices are one click away; the note on the page explains when they disagree.
+- **Pooled aggregate.** Sums countries' value added and employment, so large economies dominate. In the LAC view Venezuela and Cuba are excluded by default (US$ levels not comparable); they can be added.
+- **Survey coverage.** Survey years whose total employment is below 80% of ILO's national estimate (urban-only or partial surveys, e.g. Argentina) are not used for anchoring or as survey employment (D-031).
 - **Latest year.** Sector data end in 2024, when UN value added ends. Labour-market series run to 2025 (ILO; later projections dropped).
 - **Productivity measure.** Per worker in constant 2020 US$ by default; sector data are per worker. Per hour (ILO, 2021 PPP$) is available for whole-economy charts.
 
@@ -38,4 +43,4 @@ Run locally: `pip install -r empirics/dashboard/requirements.txt && streamlit ru
 - `app.py`: navigation.
 - `lib.py`: data loading, decomposition, chart helpers, and the palette (validated, colour-blind safe, one fixed colour per sector).
 - `views/`: one file per page.
-- Data come from `empirics/data/processed/carib_lp/`, `empirics/data/interim/carib_lp/ilo_labour.csv` (from `06_extract_labour.py`) and `empirics/output/carib_lp/`.
+- Data come from `empirics/data/processed/<scope>/`, `empirics/data/interim/<scope>/ilo_labour.csv` (from `06_extract_labour.py`) and `empirics/output/<scope>/`, where `<scope>` is `lac_lp` or `carib_lp`. Both are built by the same pipeline in `empirics/code/carib_lp/` with `LP_SCOPE=lac` or `LP_SCOPE=carib`.

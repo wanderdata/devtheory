@@ -2,6 +2,8 @@
 
 *Draft v0.1, 2026-11-05. Data and method; results are a first pass, not yet interpreted.*
 
+> **Update 2026-11-09.** The tables in this draft use initial-year prices (D-024). The pipeline now also produces chained and final-year price bases (D-032); for long periods chained prices are preferable, and the dashboard defaults to them. A national-coverage rule for survey years (D-031) changes the anchoring grade of three Suriname periods in grid B and nothing in grid A. The same pipeline now covers all of LAC (D-030); whether this paper is extended or a companion paper is written is open (OQ-45).
+
 **Code:** [`empirics/code/carib_lp/`](../../empirics/code/carib_lp/README.md) · **Generated outputs:** [coverage](../../empirics/output/carib_lp/coverage.md), [validation](../../empirics/output/carib_lp/validation/validation.md), [results](../../empirics/output/carib_lp/results.md) · **Decisions:** D-019 to D-026
 
 ## 1. Purpose

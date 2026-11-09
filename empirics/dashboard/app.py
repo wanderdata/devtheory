@@ -1,11 +1,24 @@
-"""Caribbean labour productivity dashboard (Streamlit).
+"""Labour productivity and structural change in Latin America and the Caribbean
+(Streamlit dashboard).
 
 Run locally:   streamlit run empirics/dashboard/app.py
 Streamlit Community Cloud: main file path = empirics/dashboard/app.py
+
+The region (Latin America and the Caribbean, or the Caribbean) is chosen once in
+the sidebar and applies to every page; it is kept per session in
+st.session_state["scope"].
 """
 import streamlit as st
 
-st.set_page_config(page_title="Caribbean Labour Productivity", page_icon="📈", layout="wide")
+from lib import SCOPES
+
+st.set_page_config(page_title="LAC Labour Productivity", page_icon="📈", layout="wide")
+
+st.sidebar.selectbox(
+    "Region", list(SCOPES), format_func=lambda s: SCOPES[s]["label"], key="scope",
+    help="Latin America and the Caribbean: the 33 member States of ECLAC in the region. "
+         "Caribbean: the 16 member States served by ECLAC's Port of Spain office (includes Cuba, "
+         "the Dominican Republic and Haiti). Every page uses the region chosen here.")
 
 pages = {
     "Overview": [
@@ -18,7 +31,7 @@ pages = {
         st.Page("views/ref_country.py", title="Country profile", url_path="country"),
     ],
     "Extended analysis": [
-        st.Page("views/ext_periods.py", title="Anchored period decompositions", url_path="periods"),
+        st.Page("views/ext_periods.py", title="Period decompositions", url_path="periods"),
         st.Page("views/ext_annual.py", title="Annual decomposition, additive prices", url_path="annual"),
         st.Page("views/ext_structure.py", title="Reallocation and productivity gaps", url_path="reallocation"),
         st.Page("views/ext_data.py", title="Data quality and coverage", url_path="data-quality"),

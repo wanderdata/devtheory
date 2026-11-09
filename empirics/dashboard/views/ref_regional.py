@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from lib import (CARIB, COUNTRIES, C_CONTEXT, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2,
+from lib import (CARIB, scope_info, countries, C_CONTEXT, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2,
                  aggregate_lp, annual_decomp, base_layout, footer, load_labour, name,
                  sector_long, show, sidebar_common)
 
@@ -32,7 +32,7 @@ else:
 
 # ---- level over time
 st.subheader("Labour productivity over time")
-focus = st.selectbox("Highlight", [CARIB] + list(COUNTRIES), format_func=name,
+focus = st.selectbox("Highlight", [CARIB] + list(countries()), format_func=name,
                      index=0 if (not per_hour and agg) else 1)
 fig = go.Figure()
 for iso, g in lv.groupby("iso3"):
@@ -46,7 +46,7 @@ if len(g):
     fig.add_trace(go.Scatter(x=g["year"], y=g["lp"], mode="lines", line=dict(color=C_HIGHLIGHT, width=2.5),
                              name=name(focus), hovertemplate=f"{name(focus)}<br>%{{x}}: %{{y:,.0f}}<extra></extra>"))
     last = g.sort_values("year").iloc[-1]
-    fig.add_annotation(x=last["year"], y=last["lp"], text=name(focus) if focus != CARIB else "Caribbean",
+    fig.add_annotation(x=last["year"], y=last["lp"], text=name(focus) if focus != CARIB else scope_info()["agg_short"],
                        showarrow=False, xanchor="left", xshift=6, font=dict(color=INK2))
 base_layout(fig, ytitle=unit, legend=False)
 show(fig, lv.pivot_table(index="year", columns="iso3", values="lp").round(0).reset_index(),
@@ -87,7 +87,7 @@ with c2:
 # ---- components of the annual change
 st.subheader("Within-sector and structural-change components of the annual change")
 dec, _ = annual_decomp(grid, series, tuple(agg) if agg else None)
-who = st.selectbox("Economy", [CARIB] + list(COUNTRIES), format_func=name, key="dec_who",
+who = st.selectbox("Economy", [CARIB] + list(countries()), format_func=name, key="dec_who",
                    index=0 if agg else 1)
 d = dec[dec["iso3"] == who].sort_values("year")
 if series == "survey":

@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from lib import (COUNTRIES, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2, SECTOR_COLORS, SHORT,
+from lib import (countries, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2, SECTOR_COLORS, SHORT,
                  annual_decomp, base_layout, footer, load_labour, name, sector_long, sector_lp,
                  show, sidebar_common)
 
@@ -12,7 +12,7 @@ grid, series, _ = sidebar_common(key="cp")
 st.title("Country profile")
 st.caption("One-page profile: productivity and employment, sector contributions, sector trends and the labour market.")
 
-iso = st.selectbox("Country", list(COUNTRIES), format_func=name, index=list(COUNTRIES).index("DOM"))
+iso = st.selectbox("Country", list(countries()), format_func=name, index=list(countries()).index("DOM"))
 lab = load_labour()
 L = None
 if lab is not None:
@@ -20,6 +20,11 @@ if lab is not None:
 
 df = sector_long(grid, series)
 d = sector_lp(df[df["iso3"] == iso])
+if d.empty:
+    st.info(f"No usable {'survey' if series == 'survey' else 'modelled'} employment by sector for "
+            f"{name(iso)} on this grid. National surveys that do not cover the whole country (for example "
+            "Argentina's urban survey) are not used. Choose *ILO modelled estimates* in the sidebar.")
+    st.stop()
 dec, det = annual_decomp(grid, series, None)
 det = det[det["iso3"] == iso]
 yrs = sorted(det["year"].unique())
@@ -107,9 +112,12 @@ if y2 is not None:
 c1, c2 = st.columns(2)
 with c1:
     b = 2005
-    panel_title("F", f"Productivity trend by sector (index, {b} = 100)")
     t = d.pivot_table(index="year", columns="sector", values="lp")
-    t = t.loc[t.index >= b]
+    if (t.index >= b).any():
+        t = t.loc[t.index >= b]
+    else:  # e.g. survey employment with no usable survey year since 2005
+        b = int(t.index.min())
+    panel_title("F", f"Productivity trend by sector (index, {b} = 100)")
     fig = go.Figure()
     for s in t.columns:
         fig.add_trace(go.Scatter(x=t.index, y=100 * t[s] / t[s].iloc[0], mode="lines", name=SHORT[s],

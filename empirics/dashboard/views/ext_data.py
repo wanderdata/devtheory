@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from lib import (COUNTRIES, C_WITHIN, INK2, OUT, SECTOR_COLORS, SHORT, base_layout, footer,
+from lib import (countries, load_excluded_surveys, C_WITHIN, INK2, out_dir, SECTOR_COLORS, SHORT, base_layout, footer,
                  load_emp5, load_output, load_panel, name, show)
 
 st.title("Data quality and coverage")
@@ -14,31 +14,39 @@ st.markdown("**Extension of the baseline.** Shows where the employment data come
 # ---- anchoring timeline
 st.subheader("Where employment data come from, by year")
 p = load_panel(); e5 = load_emp5()
+excl = load_excluded_surveys()
 years = list(range(1991, 2025))
 z, txt = [], []
-for iso in COUNTRIES:
+for iso in countries():
     a = set(p[(p["iso3"] == iso) & p["emp_survey"].notna()]["year"])
     b = set(e5[(e5["iso3"] == iso) & (e5["series"] == "survey")]["year"])
+    c = excl.get(iso, {})
     row, trow = [], []
     for y in years:
         if y in a:
-            row.append(2); trow.append("Survey, 7 sectors (grids A and B)")
+            row.append(3); trow.append("Survey, 7 sectors (grids A and B)")
         elif y in b:
-            row.append(1); trow.append("Survey, six broad groups only (grid B)")
+            row.append(2); trow.append("Survey, six broad groups only (grid B)")
+        elif y in c:
+            row.append(1); trow.append(f"Survey not used: covers {c[y]:.0%} of national employment (urban or partial)")
         else:
             row.append(0); trow.append("ILO model only")
     z.append(row); txt.append(trow)
-fig = go.Figure(go.Heatmap(z=z, x=years, y=[name(i) for i in COUNTRIES], text=txt, hovertemplate="%{y} %{x}: %{text}<extra></extra>",
-                           colorscale=[[0, "#ecebe6"], [0.33, "#ecebe6"], [0.34, "#86b6ef"], [0.66, "#86b6ef"],
-                                       [0.67, "#1c5cab"], [1, "#1c5cab"]], showscale=False, xgap=2, ygap=2))
-base_layout(fig, height=440, legend=False)
+fig = go.Figure(go.Heatmap(z=z, x=years, y=[name(i) for i in countries()], text=txt, zmin=0, zmax=3,
+                           hovertemplate="%{y} %{x}: %{text}<extra></extra>",
+                           colorscale=[[0, "#ecebe6"], [0.24, "#ecebe6"], [0.25, "#f2c46d"], [0.49, "#f2c46d"],
+                                       [0.5, "#86b6ef"], [0.74, "#86b6ef"], [0.75, "#1c5cab"], [1, "#1c5cab"]],
+                           showscale=False, xgap=2, ygap=2))
+base_layout(fig, height=120 + 22 * len(countries()), legend=False)
 fig.update_yaxes(gridcolor="rgba(0,0,0,0)", autorange="reversed")
 show(fig, caption="Dark blue: usable survey with 7-sector detail. Light blue: survey with six broad groups only "
-                  "(usable in grid B). Grey: ILO model only (interpolated or extrapolated).")
+                  "(usable in grid B). Amber: a survey exists but covers less than 80% of national employment "
+                  "(urban-only or partial coverage, e.g. Argentina) and is not used. Grey: ILO model only "
+                  "(interpolated or extrapolated).")
 
 # ---- validation
 st.subheader("How well does the ILO model reproduce survey-based structural change?")
-v = OUT / "validation"
+v = out_dir() / "validation"
 g = st.radio("Grid", ["A", "B"], horizontal=True)
 pairs = pd.read_csv(v / f"pairs_{g}.csv")
 summ = pd.read_csv(v / "summary.csv").set_index("grid").loc[g]
@@ -60,7 +68,7 @@ show(fig, pairs.round(2),
 
 # ---- model vs survey shares
 st.subheader("Modelled vs survey employment shares, by sector")
-who = st.selectbox("Country", list(COUNTRIES), format_func=name, index=list(COUNTRIES).index("DOM"))
+who = st.selectbox("Country", list(countries()), format_func=name, index=list(countries()).index("DOM"))
 q = p[p["iso3"] == who]
 fig = go.Figure()
 for s, gg in q.groupby("sector"):

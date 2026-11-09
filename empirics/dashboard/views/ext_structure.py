@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from lib import (CARIB, COUNTRIES, C_CONTEXT, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2, SECTOR_COLORS,
+from lib import (CARIB, countries, C_CONTEXT, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2, SECTOR_COLORS,
                  SHORT, base_layout, dispersion, footer, load_labour, mr_step, name, sector_long, show,
                  sidebar_common)
 
@@ -22,11 +22,17 @@ df = sector_long(grid, series, tuple(agg) if agg else None)
 # ---- 1. MR scatter
 st.subheader("Did jobs move toward more productive sectors?")
 c1, c2, c3 = st.columns(3)
-who = c1.selectbox("Economy", [CARIB] + list(COUNTRIES), format_func=name, index=1)
+who = c1.selectbox("Economy", [CARIB] + list(countries()), format_func=name, index=1)
 g = df[df["iso3"] == who].set_index(["year", "sector"]).sort_index()
 yrs = sorted(g.index.get_level_values(0).unique())
-t0 = c2.selectbox("From", yrs, index=yrs.index(2000) if 2000 in yrs else 0)
-t1 = c3.selectbox("To", [y for y in yrs if y > t0], index=len([y for y in yrs if y > t0]) - 1)
+if len(yrs) < 2:
+    st.info(f"{name(who)} has fewer than two years with {'survey' if series == 'survey' else 'modelled'} "
+            "employment on this grid, so there is nothing to compare. Choose another economy, or ILO "
+            "modelled estimates in the sidebar.")
+    st.stop()
+t0 = c2.selectbox("From", yrs[:-1], index=yrs.index(2000) if 2000 in yrs[:-1] else 0)
+later = [y for y in yrs if y > t0]
+t1 = c3.selectbox("To", later, index=len(later) - 1)
 out, P0, P1 = mr_step(g.loc[t0], g.loc[t1], prices="previous")
 out["x"] = 100 * (out["s1"] - out["s0"])
 out["y"] = np.log(out["rel0"])
@@ -55,7 +61,7 @@ show(fig, out[["x", "y", "s0", "s1"]].round(3).reset_index(),
 # ---- 2. dispersion
 st.subheader("Productivity gaps between sectors over time")
 dp = dispersion(df)
-focus = st.selectbox("Highlight", [CARIB] + list(COUNTRIES), format_func=name, index=1, key="dfoc")
+focus = st.selectbox("Highlight", [CARIB] + list(countries()), format_func=name, index=1, key="dfoc")
 fig = go.Figure()
 for iso, g2 in dp.groupby("iso3"):
     if iso == focus:

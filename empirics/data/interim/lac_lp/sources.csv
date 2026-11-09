@@ -1,0 +1,5 @@
+output,raw_file,bytes
+ilo_emp_model.csv,EMP_2EMP_SEX_ECO_NB_A-20261109T1254.csv.gz,5655266.0
+ilo_emp_survey.csv,EMP_TEMP_SEX_ECO_NB_A-20261109T1254.csv.gz,3739927.0
+un_va_cur_usd.csv,un_ama_gdp_breakdown_current_usd.xlsx,3061289.0
+un_va_k2020_usd.csv,un_ama_gdp_breakdown_constant2020_usd.xlsx,3154994.0

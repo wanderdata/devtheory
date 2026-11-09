@@ -1,4 +1,6 @@
-# carib_lp: sectoral labour productivity for the Caribbean
+# carib_lp: sectoral labour productivity for the Caribbean and for Latin America and the Caribbean
+
+**Two scopes (D-030).** The same pipeline runs for the 16 Caribbean member States (`LP_SCOPE=carib`, the default; outputs in `.../carib_lp/`) and for the 33 Latin American and Caribbean member States of ECLAC (`LP_SCOPE=lac`; outputs in `.../lac_lp/`). The folder keeps its original name so that WP05's links stay valid. Raw inputs are the world files committed in `empirics/data/source/` (D-029).
 
 Builds a country × sector × year panel of value added, employment and labour productivity for the 16 member countries of the ECLAC subregional headquarters for the Caribbean, for McMillan–Rodrik style decompositions (within-sector growth vs. structural change).
 
@@ -28,8 +30,15 @@ The UN AMA's seven groupings (ISIC Rev.3): AGR agriculture (A–B); MIU mining a
 - Constant-price mining+utilities = current-price (C–E minus D) × C–E deflator, not the constant-price residual (which goes negative under chain-linking).
 - Survey country-years with more than 25% of workers unclassified are dropped.
 - Survey years missing any of the 7 sectors are not used; missing ISIC sections in used years are reported in the coverage file.
+- Survey years whose total employment is below 80% of the ILO modelled national total are treated as not national (urban-only or partial surveys) and not used (D-031).
+
+## Price bases (D-024, D-032)
+
+`05_decompose.py` writes each period decomposition at initial-year prices (`main.csv`), final-year prices (`robust_final_prices.csv`) and chained prices (`robust_chained.csv`: one decomposition per year at previous-year prices, averaged over the period), plus excluding-mining variants for each. The dashboard lets the user switch between them; chained is its default.
 
 ## Running it
+
+Prefix any step with `LP_SCOPE=lac` for the LAC scope.
 
 ```
 python empirics/code/carib_lp/01_download.py      # needs access to unstats.un.org and rplumber.ilo.org

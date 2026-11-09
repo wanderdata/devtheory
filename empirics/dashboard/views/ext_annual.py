@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from lib import (CARIB, COUNTRIES, C_DYNAMIC, C_STATIC, C_WITHIN, GRADE_COLORS, INK2,
+from lib import (CARIB, countries, C_DYNAMIC, C_STATIC, C_WITHIN, GRADE_COLORS, INK2,
                  annual_decomp, base_layout, footer, name, show, sidebar_common, survey_years)
 
 grid, series, agg = sidebar_common(key="ea")
@@ -20,7 +20,7 @@ st.markdown("**Extension of the baseline.** This is the same year-to-year decomp
 tuple_agg = tuple(agg) if agg else None
 add, _ = annual_decomp(grid, series, tuple_agg, prices="previous")
 ref, _ = annual_decomp(grid, series, tuple_agg, prices="constant2020")
-who = st.selectbox("Economy", [CARIB] + list(COUNTRIES), format_func=name, index=1)
+who = st.selectbox("Economy", [CARIB] + list(countries()), format_func=name, index=1)
 a = add[add["iso3"] == who].sort_values("year").copy()
 for c in ["within", "static", "dynamic", "struct"]:
     a[c + "_pp"] = 100 * a[c] / a["P0"]
