@@ -79,7 +79,10 @@ for i, k in enumerate(subs):
         hovertemplate="%{y} · " + k + "<br>median %{x:.3f}<br>%{customdata[0]} (%{customdata[1]} specifications)<extra></extra>"))
 fig.add_vline(x=0, line=dict(color=MUTED, width=1))
 base_layout(fig, xtitle="effect of a 1-point larger share on annual growth (pp)", height=480)
-fig.update_yaxes(gridcolor="rgba(0,0,0,0)", autorange="reversed")
+# Explicit categorical axis: the legend-only traces (empty values) would otherwise make Plotly
+# type the axis as numeric and the sector rows would not be drawn.
+fig.update_yaxes(type="category", categoryorder="array", categoryarray=list(dict.fromkeys(x["label"])),
+                 gridcolor="rgba(0,0,0,0)", autorange="reversed")
 show(fig, x[["label", "subperiod", "median", "q10", "q90", "verdict", "n_specs"]].round(3),
      caption="Median estimate across specifications, with the 10th–90th percentile range. Marker shape = subperiod; colour = robustness verdict (green robustly positive, orange robustly negative, "
              "pale = leaning, grey = fragile). Each sector is tested on its own in the Szirmai–Verspagen specification.")
