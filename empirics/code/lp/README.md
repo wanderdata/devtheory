@@ -1,6 +1,6 @@
-# carib_lp: sectoral labour productivity for the Caribbean and for Latin America and the Caribbean
+# lp: sectoral labour productivity for the Caribbean and for Latin America and the Caribbean
 
-**Two scopes (D-030).** The same pipeline runs for the 16 Caribbean member States (`LP_SCOPE=carib`, the default; outputs in `.../carib_lp/`) and for the 33 Latin American and Caribbean member States of ECLAC (`LP_SCOPE=lac`; outputs in `.../lac_lp/`). The folder keeps its original name so that WP05's links stay valid. Raw inputs are the world files committed in `empirics/data/source/` (D-029).
+**Two scopes (D-030).** The same pipeline runs for the 16 Caribbean member States (`LP_SCOPE=carib`, the default; outputs in `.../carib_lp/`) and for the 33 Latin American and Caribbean member States of ECLAC (`LP_SCOPE=lac`; outputs in `.../lac_lp/`). The folder was called `carib_lp` until 2026-11-09 (D-036); output and data folders keep their scope names `carib_lp` and `lac_lp`. Raw inputs are the world files committed in `empirics/data/source/` (D-029).
 
 Builds a country × sector × year panel of value added, employment and labour productivity for the 16 member countries of the ECLAC subregional headquarters for the Caribbean, for McMillan–Rodrik style decompositions (within-sector growth vs. structural change).
 
@@ -38,17 +38,19 @@ The UN AMA's seven groupings (ISIC Rev.3): AGR agriculture (A–B); MIU mining a
 
 ## Running it
 
+Everything, both scopes: `python empirics/code/lp/run_all.py` (about two minutes). Step by step:
+
 Prefix any step with `LP_SCOPE=lac` for the LAC scope.
 
 ```
-python empirics/code/carib_lp/01_download.py      # needs access to unstats.un.org and rplumber.ilo.org
-python empirics/code/carib_lp/02_extract.py [files...]   # raw world files -> 16-country extracts
-python empirics/code/carib_lp/03_build_panel.py    # extracts -> panel + coverage report
-python empirics/code/carib_lp/03b_build_panel5.py  # grid B (5-sector) employment
-python empirics/code/carib_lp/04_validate.py       # modelled vs survey employment
-python empirics/code/carib_lp/05_decompose.py      # decompositions, both grids
-python empirics/code/carib_lp/06_extract_labour.py # ILO labour-market series for the dashboard
-streamlit run empirics/dashboard/app.py            # dashboard (see empirics/dashboard/README.md)
+python empirics/code/lp/01_download.py      # needs access to unstats.un.org and rplumber.ilo.org
+python empirics/code/lp/02_extract.py [files...]   # raw world files -> 16-country extracts
+python empirics/code/lp/03_build_panel.py    # extracts -> panel + coverage report
+python empirics/code/lp/03b_build_panel5.py  # grid B (5-sector) employment
+python empirics/code/lp/04_validate.py       # modelled vs survey employment
+python empirics/code/lp/05_decompose.py      # decompositions, both grids
+python empirics/code/lp/06_extract_labour.py # ILO labour-market series for the dashboard
+streamlit run apps/productivity/app.py            # dashboard (see apps/productivity/README.md)
 ```
 
 `02_extract.py` recognises files by content, so downloads can keep their original names and be passed as arguments.

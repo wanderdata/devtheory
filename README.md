@@ -6,7 +6,7 @@ The project builds on the established economic literature (growth theory, struct
 
 **Phase 1 (current): theory.** Literature review, conceptual framework, and a set of testable propositions.
 **Phase 1b (current): modelling.** A minimal, tunable model of the trap (`model/`, WP04).
-**Phase 2 (started 2026-11-05): empirics.** Testing the propositions with country, sector and firm data. First project: a sectoral labour-productivity panel for the Caribbean, extended on 2026-11-09 to all 33 LAC member States of ECLAC ([`empirics/code/carib_lp/`](empirics/code/carib_lp/README.md)), with a Streamlit dashboard that switches between the two ([`empirics/dashboard/`](empirics/dashboard/README.md)).
+**Phase 2 (started 2026-11-05): empirics.** Testing the propositions with country, sector and firm data. First project: a sectoral labour-productivity panel for the Caribbean, extended on 2026-11-09 to all 33 LAC member States of ECLAC ([`empirics/code/lp/`](empirics/code/lp/README.md)), with a Streamlit dashboard that switches between the two ([`apps/productivity/`](apps/productivity/README.md)).
 
 ## Core research questions
 
@@ -31,7 +31,15 @@ See [`docs/research_questions.md`](docs/research_questions.md) for the full, dec
 | `docs/register/open_questions.md` | Unresolved issues and things to check |
 | `references/literature_register.csv` | Every source consulted: citation, strand, key claim, LAC relevance, status |
 | `references/references.bib` | BibTeX for cited works |
-| `empirics/` | Phase 2: `code/` (one folder per project), `data/` (raw not committed; interim extracts and processed panels committed), `output/` (generated reports). **carib_lp:** sectoral labour productivity, Caribbean and LAC scopes; Streamlit dashboard in `empirics/dashboard/` ([README](empirics/dashboard/README.md)). `data/source/`: world source files kept in the repo |
+| `empirics/` | Phase 2. `code/`: one folder per project, each with `config.py`, numbered steps, `run_all.py` and `tests/` (**lp:** sectoral labour productivity, Caribbean and LAC scopes; WP05, WP06). `common/`: shared country codes, names and ECLAC groupings. `data/source/`: downloaded files, unmodified, with checksums and licences; `interim/`, `processed/`: derived data, committed; `raw/`: not committed. `output/`: generated tables and figures |
+| `apps/` | Streamlit dashboards, one folder per project, displaying precomputed outputs only. **productivity:** labour productivity and structural change, LAC and Caribbean ([README](apps/productivity/README.md)). `common/`: shared theme and chart helpers |
+| `scripts/check_outputs.py`, `.github/workflows/` | Reproducibility check (rebuild everything, compare with committed outputs) and the GitHub Actions workflow that runs it with the tests on every push |
+
+## Working with the repository
+
+- **Branches.** Work happens on `dev`; `main` is what the apps deploy from and is updated by merging `dev` when a change is approved (D-036).
+- **Reproduce.** `pip install -r requirements.txt`, then `python empirics/code/lp/run_all.py` rebuilds every labour-productivity output; `python scripts/check_outputs.py` confirms they match the committed versions; `pytest` runs all tests.
+- **Cite.** See `CITATION.cff`, and the source licences in `empirics/data/source/README.md`.
 
 ## Conventions
 

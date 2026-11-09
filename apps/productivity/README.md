@@ -10,11 +10,11 @@ Streamlit app for the sectoral labour-productivity project (WP05). It reads only
 
 1. Go to share.streamlit.io and sign in with the GitHub account that can see `wanderdata/devtheory`.
 2. **Create app → Deploy a public app from GitHub**.
-3. Repository: `wanderdata/devtheory`, branch `main`, main file path: `empirics/dashboard/app.py`.
-4. Python version 3.11 or later. Dependencies are in `empirics/dashboard/requirements.txt`, which Streamlit picks up from the app's folder.
+3. Repository: `wanderdata/devtheory`, branch `main`, main file path: `apps/productivity/app.py`.
+4. Python version 3.11 or later. Dependencies are in `apps/productivity/requirements.txt`, which Streamlit picks up from the app's folder.
 5. Deploy. The app redeploys automatically on every push to `main`.
 
-Run locally: `pip install -r empirics/dashboard/requirements.txt && streamlit run empirics/dashboard/app.py`
+Run locally: `pip install -r apps/productivity/requirements.txt && streamlit run apps/productivity/app.py`
 
 ## Structure
 
@@ -43,4 +43,4 @@ Run locally: `pip install -r empirics/dashboard/requirements.txt && streamlit ru
 - `app.py`: navigation.
 - `lib.py`: data loading, decomposition, chart helpers, and the palette (validated, colour-blind safe, one fixed colour per sector).
 - `views/`: one file per page.
-- Data come from `empirics/data/processed/<scope>/`, `empirics/data/interim/<scope>/ilo_labour.csv` (from `06_extract_labour.py`) and `empirics/output/<scope>/`, where `<scope>` is `lac_lp` or `carib_lp`. Both are built by the same pipeline in `empirics/code/carib_lp/` with `LP_SCOPE=lac` or `LP_SCOPE=carib`.
+- Data come from `empirics/data/processed/<scope>/`, `empirics/data/interim/<scope>/ilo_labour.csv` (from `06_extract_labour.py`) and `empirics/output/<scope>/`, where `<scope>` is `lac_lp` or `carib_lp`. Both are built by the same pipeline in `empirics/code/lp/` with `LP_SCOPE=lac` or `LP_SCOPE=carib`.

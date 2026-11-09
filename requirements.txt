@@ -1,0 +1,9 @@
+# Pinned versions for the pipelines, tests and apps (Python 3.12 or later).
+# Apps deployed on Streamlit Community Cloud use the requirements.txt in their own folder.
+numpy==2.5.3
+pandas==3.0.5
+openpyxl==3.1.5
+matplotlib==3.11.2
+plotly==7.1.0
+streamlit==1.67.0
+pytest==9.1.1

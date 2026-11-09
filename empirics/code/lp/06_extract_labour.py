@@ -1,9 +1,9 @@
 """Extract ILO modelled labour-market indicators for the dashboard.
 
-    python empirics/code/carib_lp/06_extract_labour.py [files ...]
+    python empirics/code/lp/06_extract_labour.py [files ...]
 
 Recognises these ILOSTAT bulk files (modelled estimates) by their indicator
-column, in empirics/data/raw/carib_lp/ or given as arguments:
+column, in empirics/data/raw/<scope>_lp/ or given as arguments:
     EMP_2WAP_SEX_AGE_RT_A   employment-to-population ratio (%), 15+
     EAP_2WAP_SEX_AGE_RT_A   labour force participation rate (%), 15+
     UNE_2EAP_SEX_AGE_RT_A   unemployment rate (%), 15+
@@ -13,7 +13,7 @@ column, in empirics/data/raw/carib_lp/ or given as arguments:
 ILO files run to 2027 with projections; years after MAX_YEAR are dropped
 (2025, the reference document's last year).
 
-Writes empirics/data/interim/carib_lp/ilo_labour.csv
+Writes empirics/data/interim/<scope>_lp/ilo_labour.csv
     (iso3, year, indicator, value), indicator in {emp_rate, part_rate, unemp_rate, lp_hour, hours}
 """
 import sys

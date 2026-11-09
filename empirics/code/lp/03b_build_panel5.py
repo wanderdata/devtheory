@@ -1,6 +1,6 @@
 """Grid B: 5-sector employment panel (AGR, MIU, MAN, CON, SER) (D-025).
 
-    python empirics/code/carib_lp/03b_build_panel5.py      (run after 03_build_panel.py)
+    python empirics/code/lp/03b_build_panel5.py      (run after 03_build_panel.py)
 
 Services (trade, hotels, transport, communication, finance, business,
 government, personal) are one sector. This lets survey years that ILO only
@@ -11,7 +11,7 @@ Employment only: value added for grid B is built in the decomposition step by
 summing the 7-sector values after they are re-referenced to a common price
 year, so it stays additive.
 
-Output: empirics/data/processed/carib_lp/emp_5sector.csv
+Output: empirics/data/processed/<scope>_lp/emp_5sector.csv
         (iso3, year, series, source, origin, sector, emp, x_share)
 """
 import numpy as np

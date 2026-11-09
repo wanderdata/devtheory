@@ -10,6 +10,7 @@ st.session_state["scope"]; nothing scope-dependent is stored in module globals,
 because Streamlit serves all sessions from one process. Cached loaders take the
 scope as an argument so each scope has its own cache entries.
 """
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -18,31 +19,25 @@ import plotly.graph_objects as go
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from apps.common.theme import (AUTHOR, AXIS, C_CONTEXT, C_HIGHLIGHT, GRID, INK, INK2, MUTED,  # noqa: E402,F401
+                               base_layout, credit, fmt_k, show)
+from empirics.common import countries as cc  # noqa: E402
 
-# Display names (ECLAC short forms used in figures).
-NAMES = {
-    "ARG": "Argentina", "ATG": "Antigua and Barbuda", "BHS": "Bahamas", "BLZ": "Belize",
-    "BOL": "Bolivia (Plur. State of)", "BRA": "Brazil", "BRB": "Barbados", "CHL": "Chile",
-    "COL": "Colombia", "CRI": "Costa Rica", "CUB": "Cuba", "DMA": "Dominica",
-    "DOM": "Dominican Republic", "ECU": "Ecuador", "GRD": "Grenada", "GTM": "Guatemala",
-    "GUY": "Guyana", "HND": "Honduras", "HTI": "Haiti", "JAM": "Jamaica",
-    "KNA": "Saint Kitts and Nevis", "LCA": "Saint Lucia", "MEX": "Mexico", "NIC": "Nicaragua",
-    "PAN": "Panama", "PER": "Peru", "PRY": "Paraguay", "SLV": "El Salvador", "SUR": "Suriname",
-    "TTO": "Trinidad and Tobago", "URY": "Uruguay", "VCT": "Saint Vincent and the Grenadines",
-    "VEN": "Venezuela (Bol. Rep. of)",
-}
-CARIBBEAN16 = ["ATG", "BHS", "BRB", "BLZ", "CUB", "DMA", "DOM", "GRD", "GUY", "HTI", "JAM",
-               "KNA", "LCA", "VCT", "SUR", "TTO"]
+# Display names (ECLAC short forms used in figures), from the shared module.
+NAMES = dict(cc.SHORT)
+CARIBBEAN16 = list(cc.CARIBBEAN16)
 
 SCOPES = {
-    "lac": dict(label="Latin America and the Caribbean", tag="lac_lp",
+    "lac": dict(label=cc.SCOPES["lac"]["label"], tag=cc.SCOPES["lac"]["tag"],
                 members=sorted(NAMES, key=lambda c: NAMES[c]),
                 agg_name="Latin America and the Caribbean (pooled)", agg_short="LAC",
                 # US$ levels unusable for pooling: Venezuela (2020-price conversion after
                 # hyperinflation), Cuba (official exchange rate). D-033.
-                agg_exclude=["CUB", "VEN"],
+                agg_exclude=list(cc.POOL_EXCLUDE_LAC),
                 blurb="the **33 Latin American and Caribbean member States of ECLAC**"),
-    "carib": dict(label="Caribbean", tag="carib_lp", members=CARIBBEAN16,
+    "carib": dict(label=cc.SCOPES["carib"]["label"], tag=cc.SCOPES["carib"]["tag"], members=CARIBBEAN16,
                   agg_name="Caribbean (selected countries, pooled)", agg_short="Caribbean",
                   agg_exclude=[],
                   blurb="the **16 Caribbean member States of ECLAC served by its subregional "
@@ -116,8 +111,6 @@ SECTOR_COLORS = {"AGR": "#2a78d6", "MIU": "#eb6834", "MAN": "#1baf7a", "CON": "#
                  "TRH": "#e87ba4", "TSC": "#008300", "OTH": "#6250d6", "SER": "#6250d6"}
 C_WITHIN, C_STRUCT = "#2a78d6", "#eb6834"          # component colours (slots 1, 2)
 C_STATIC, C_DYNAMIC = "#eb6834", "#1baf7a"
-C_HIGHLIGHT, C_CONTEXT = "#2a78d6", "#c3c2b7"
-INK, INK2, MUTED, GRID = "#0b0b0b", "#52514e", "#898781", "#e1e0d9"
 GRADE_COLORS = {"A": "#0ca30c", "B": "#fab219", "C": "#d03b3b"}
 GRADE_TEXT = {"A": "A · both endpoints near survey years",
               "B": "B · one endpoint near a survey year",
@@ -334,49 +327,12 @@ def dispersion(df):
 
 # ----------------------------------------------------------------- charts ---
 
-def base_layout(fig, title=None, ytitle=None, xtitle=None, height=420, legend=True):
-    fig.update_layout(
-        title=dict(text=title, font=dict(size=15, color=INK), x=0, xanchor="left") if title else None,
-        height=height, margin=dict(l=10, r=10, t=50 if title else 20, b=10),
-        plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-        font=dict(family="system-ui, -apple-system, Segoe UI, sans-serif", size=12, color=INK2),
-        hoverlabel=dict(font_size=12), showlegend=legend,
-        legend=dict(orientation="h", yanchor="bottom", y=1.0, xanchor="left", x=0, title=None),
-        bargap=0.25,
-    )
-    fig.update_xaxes(title=xtitle, showgrid=False, linecolor="#c3c2b7", ticks="outside",
-                     tickcolor="#c3c2b7", zeroline=False)
-    fig.update_yaxes(title=ytitle, gridcolor=GRID, gridwidth=1, zeroline=True,
-                     zerolinecolor="#c3c2b7", zerolinewidth=1, linecolor="rgba(0,0,0,0)")
-    return fig
-
-
-def show(fig, table=None, caption=None, key=None):
-    fig.update_traces(cliponaxis=False, selector=dict(type="scatter"))
-    fig.update_traces(cliponaxis=False, selector=dict(type="bar"))
-    st.plotly_chart(fig, width="stretch", config={"displaylogo": False}, key=key)
-    if caption:
-        st.caption(caption)
-    if table is not None:
-        with st.expander("Data table"):
-            st.dataframe(table, width="stretch", hide_index=True)
-
-
-def fmt_k(x):
-    return f"{x/1000:,.1f}k"
-
-
-AUTHOR = ("Prepared by Paul Wander, Division of Production, Productivity and Management, UN-ECLAC.")
-
-
 def footer():
-    st.divider()
-    st.caption(AUTHOR)
     nc = not_covered()
-    st.caption("Sources: UN Statistics Division, National Accounts Main Aggregates (Jan 2026 upload); "
-               "ILOSTAT, employment by economic activity (ILO modelled estimates and national sources), "
-               "downloaded 2026-11-09. Method: devtheory WP05."
-               + (" Not covered (no sector employment data): " + ", ".join(nc) + "." if nc else ""))
+    credit("Sources: UN Statistics Division, National Accounts Main Aggregates (Jan 2026 upload); "
+           "ILOSTAT, employment by economic activity (ILO modelled estimates and national sources), "
+           "downloaded 2026-11-09. Method: devtheory WP05 and WP06."
+           + (" Not covered (no sector employment data): " + ", ".join(nc) + "." if nc else ""))
 
 
 def sidebar_common(grid_choice=True, series_choice=True, key=""):

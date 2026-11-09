@@ -1,12 +1,12 @@
 """Extract the 16 countries from the raw world files into small, committed CSVs.
 
-    python empirics/code/carib_lp/02_extract.py [extra raw files ...]
+    python empirics/code/lp/02_extract.py [extra raw files ...]
 
-Looks in empirics/data/raw/carib_lp/ and in any paths given on the command
+Looks in empirics/data/raw/<scope>_lp/ and in any paths given on the command
 line. Files are recognised by content, not name, so the names the UN and ILO
 sites give them (e.g. 'Download-GDPconstant-USD-countries.xlsx') work as-is.
 
-Writes to empirics/data/interim/carib_lp/:
+Writes to empirics/data/interim/<scope>_lp/:
     un_va_k2020_usd.csv, un_va_cur_usd.csv     (long: iso3, indicator, target, year, value)
     ilo_emp_model.csv, ilo_emp_survey.csv     (ILO columns, 16 countries only)
     sources.csv                                (which raw file fed which output)

@@ -2,7 +2,7 @@
 
 *Paul Wander. Draft v0.1, 2026-11-09. Companion to [WP05](../WP05_caribbean_structural_change/WP05_caribbean_structural_change.md) (Caribbean).*
 
-**Code:** [`empirics/code/carib_lp/`](../../empirics/code/carib_lp/README.md) (`LP_SCOPE=lac`) · **Generated outputs:** [coverage](../../empirics/output/lac_lp/coverage.md), [validation](../../empirics/output/lac_lp/validation/validation.md), [country results](../../empirics/output/lac_lp/results.md), [regional summary](../../empirics/output/lac_lp/summary/summary.md) · **Dashboard:** [`empirics/dashboard/`](../../empirics/dashboard/README.md) · **Decisions:** D-030 to D-035
+**Code:** [`empirics/code/lp/`](../../empirics/code/lp/README.md) (`LP_SCOPE=lac`) · **Generated outputs:** [coverage](../../empirics/output/lac_lp/coverage.md), [validation](../../empirics/output/lac_lp/validation/validation.md), [country results](../../empirics/output/lac_lp/results.md), [regional summary](../../empirics/output/lac_lp/summary/summary.md) · **Dashboard:** [`apps/productivity/`](../../apps/productivity/README.md) · **Decisions:** D-030 to D-035
 
 ## Summary
 
@@ -180,12 +180,12 @@ The Caribbean's growth since 2008 has therefore come from two economies: the Dom
 ## 5. Reproducing this paper
 
 ```
-LP_SCOPE=lac python empirics/code/carib_lp/02_extract.py      # world source files -> LAC extracts
-LP_SCOPE=lac python empirics/code/carib_lp/03_build_panel.py
-LP_SCOPE=lac python empirics/code/carib_lp/03b_build_panel5.py
-LP_SCOPE=lac python empirics/code/carib_lp/04_validate.py
-LP_SCOPE=lac python empirics/code/carib_lp/05_decompose.py
-LP_SCOPE=lac python empirics/code/carib_lp/07_lac_summary.py   # tables and figures in this paper
+LP_SCOPE=lac python empirics/code/lp/02_extract.py      # world source files -> LAC extracts
+LP_SCOPE=lac python empirics/code/lp/03_build_panel.py
+LP_SCOPE=lac python empirics/code/lp/03b_build_panel5.py
+LP_SCOPE=lac python empirics/code/lp/04_validate.py
+LP_SCOPE=lac python empirics/code/lp/05_decompose.py
+LP_SCOPE=lac python empirics/code/lp/07_lac_summary.py   # tables and figures in this paper
 ```
 
 Every number in the text is in the generated files linked at the top. The dashboard shows the country results interactively, with the price-base toggle and the verdict for each country-period.

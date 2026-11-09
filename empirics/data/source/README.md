@@ -21,3 +21,13 @@ Used by: `carib_lp` (WP05), the LAC extension of it, and the development-motors 
 The ILO files are a newer download (2026-11-09) than the one behind WP05 (2026-11-05). For the 16 Caribbean countries they are identical: every modelled value (34,020 rows) and every survey value (17,167 rows) is unchanged. The only difference is that ILO relabelled the source code of Haiti's 2012 survey from `BB:14099` to `BB:7725`, with the same values.
 
 The five ILO labour-market series (rates, output per hour, hours) reproduce the Caribbean extract used by the dashboard exactly.
+
+## Licences and attribution
+
+Each source permits redistribution with attribution; cite the source wherever its data are shown (the apps' footers and the papers' source notes do).
+
+| Source | Terms | Checked |
+|---|---|---|
+| UN Statistics Division (UNdata), National Accounts Main Aggregates | Free to use, copy, reproduce and redistribute; UNdata must be cited as the source ([conditions of use](https://data.un.org/Host.aspx?Content=UNdataUse)) | 2026-11-09 |
+| ILO, ILOSTAT | Datasets published from 3 May 2023 are licensed CC BY 4.0, with credit to the ILO ([rights and permissions](https://www.ilo.org/node/9321)) | 2026-11-09 |
+| Penn World Table 11.0 (when added) | CC BY 4.0; cite Feenstra, Inklaar and Timmer (2015), *American Economic Review* 105(10) ([PWT 11.0 page](https://www.rug.nl/ggdc/productivity/pwt/pwt-releases/pwt110)) | 2026-11-09 |

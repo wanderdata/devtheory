@@ -1,10 +1,10 @@
-"""Download the raw source files into empirics/data/raw/carib_lp/.
+"""Download the raw source files into empirics/data/raw/<scope>_lp/.
 
 Run this on a machine that can reach unstats.un.org and rplumber.ilo.org.
 (The project's cloud workspace cannot; there the files were attached by hand,
 see the research log for 2026-11-05.)
 
-    python empirics/code/carib_lp/01_download.py
+    python empirics/code/lp/01_download.py
 """
 import sys
 import urllib.request

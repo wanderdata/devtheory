@@ -4,6 +4,23 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-09 — Session 14: repository restructuring (on `dev`)
+
+**Prompt (user):** organise GitHub and the visualisation by best practice before the motors project; work on a `dev` branch, move the dashboard, restructure first.
+
+**Done (D-036)**
+- `dev` branch created; `main` untouched until the user approves the merge.
+- `empirics/code/carib_lp/` → `empirics/code/lp/`; `empirics/dashboard/` → `apps/productivity/`; links updated in READMEs, papers and the dev container (registers keep their historical wording).
+- Shared modules `empirics/common/countries.py` and `apps/common/theme.py`; the pipeline config and the app library import from them instead of keeping their own lists and helpers.
+- `run_all.py` (both scopes, about two minutes); pinned `requirements.txt` (root and app); `pytest.ini`; 54 tests (country definitions, decomposition identities in every output file, chained-vs-fixed equivalence on one-year periods, reference numbers, every app page in both regions); `scripts/check_outputs.py`; GitHub Actions workflow.
+- `CITATION.cff`; licences of UN, ILO and PWT data checked and recorded in the source README.
+
+**Verification:** after the moves, every output was rebuilt from the committed sources. All 77 data, table and figure files are byte-identical to the pre-restructuring versions; the 7 generated Markdown reports differ only in the line naming the code path.
+
+**Next:** user merges `dev` into `main` and changes the Streamlit app's main-file path to `apps/productivity/app.py`; then the motors project (WP07).
+
+---
+
 ## 2026-11-09 — Session 13: WP06 (LAC write-up); price-base correction
 
 **Prompt (user):** finish the LAC productivity part: check the dashboard is ready, then write up the results; next, update Szirmai–Verspagen.

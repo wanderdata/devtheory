@@ -15,9 +15,18 @@ Research project on productive development in Latin America and the Caribbean. A
 - Every source read or cited gets a row in `references/literature_register.csv`, marked *verified* (checked against the source here) or *from-memory*. Paraphrase; note page or section.
 - Propositions are numbered (P1, ...) and each says what evidence would support or reject it.
 
+## Branches and deployment (D-036)
+
+- Work on the `dev` branch. `main` is what the Streamlit apps deploy from; merge `dev` into `main` only when the user approves.
+- Before pushing: `pytest`, and after any pipeline change `python empirics/code/<project>/run_all.py` then `python scripts/check_outputs.py`. GitHub Actions runs the same checks on every push.
+- Changing a published number is a decision (log it), and the reference tests in `empirics/code/*/tests/` must be updated in the same commit.
+
 ## Code and data
 
-- Each empirical project has its own folder in `empirics/code/`; generated reports go in `empirics/output/` and are never edited by hand.
+- Each empirical project has its own folder in `empirics/code/` with `config.py`, numbered steps, `run_all.py` and `tests/`; generated reports go in `empirics/output/` and are never edited by hand.
+- Country codes, names and ECLAC groupings come from `empirics/common/countries.py`; never keep a private copy.
+- Apps live in `apps/<project>/` and only display precomputed outputs; shared theme and chart helpers are in `apps/common/theme.py`.
+- Dependencies are pinned in `requirements.txt` (root) and in each app's own `requirements.txt`.
 - Small shared world source files are committed unmodified in `empirics/data/source/` (D-029); large raw files go in the uncommitted `empirics/data/raw/`.
 - The workspace cannot reach UN, ILO, ECLAC, World Bank or GGDC sites (D-022); the user downloads and attaches files. GitHub raw content and package registries are reachable.
 - Corrections to earlier results are recorded as decisions, not silently edited (see D-017).

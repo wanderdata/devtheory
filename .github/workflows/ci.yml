@@ -1,0 +1,30 @@
+name: checks
+
+# Runs on every push to dev and main, and on pull requests into main.
+# 1. Unit and app tests (pytest).
+# 2. Reproducibility: rebuild every output from the committed sources and fail if any
+#    number differs from the committed version (scripts/check_outputs.py).
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-and-rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install pinned dependencies
+        run: pip install -r requirements.txt
+      - name: Tests
+        run: pytest
+      - name: Rebuild labour-productivity outputs (both scopes)
+        run: python empirics/code/lp/run_all.py
+      - name: Compare rebuilt outputs with committed outputs
+        run: python scripts/check_outputs.py

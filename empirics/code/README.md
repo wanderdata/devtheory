@@ -1,7 +1,9 @@
 # Phase 2 code
 
-| Folder | What |
-|---|---|
-| [`carib_lp/`](carib_lp/README.md) | Sectoral labour productivity panel for the 16 ECLAC Caribbean member states (UN national accounts + ILO employment), for McMillan–Rodrik decompositions |
+One folder per empirical project. Each has a `config.py`, numbered steps, a `run_all.py` that rebuilds every output, and a README. Shared country codes, names and ECLAC groupings live in [`../common/countries.py`](../common/countries.py); projects import them rather than keeping their own lists.
 
-Python dependencies: `pandas`, `openpyxl`; `pyreadr` only if ILO files come as `.rds`.
+| Folder | What | Paper |
+|---|---|---|
+| [`lp/`](lp/README.md) | Sectoral labour productivity (UN national accounts + ILO employment) and McMillan–Rodrik decompositions, for the Caribbean (`LP_SCOPE=carib`) and for Latin America and the Caribbean (`LP_SCOPE=lac`) | WP05, WP06 |
+
+Dependencies are pinned in [`requirements.txt`](../../requirements.txt) at the repository root. Tests: `pytest` from the repository root.

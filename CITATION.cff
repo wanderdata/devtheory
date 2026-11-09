@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this material, please cite it as below, and cite the underlying data sources listed in empirics/data/source/README.md."
+title: "devtheory: Productive Development in Latin America and the Caribbean"
+type: software
+authors:
+  - family-names: Wander
+    given-names: Paul
+    affiliation: "Division of Production, Productivity and Management, UN-ECLAC"
+repository-code: "https://github.com/wanderdata/devtheory"
+date-released: 2026-11-09
+keywords:
+  - structural change
+  - labour productivity
+  - Latin America and the Caribbean
+  - development economics

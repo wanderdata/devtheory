@@ -4,7 +4,7 @@
 
 > **Update 2026-11-09.** The tables in this draft use initial-year prices (D-024). The pipeline now also produces chained and final-year price bases (D-032). Neither dominates: fixed bases mis-weight sectors whose relative prices move a lot, and chaining accumulates annual sampling noise in employment shares (D-035). Single-country structural terms should be read only where all three agree; the dashboard shows that verdict. A national-coverage rule for survey years (D-031) changes the anchoring grade of three Suriname periods in grid B and nothing in grid A. The same pipeline now covers all of LAC (D-030); the LAC results are in the companion paper WP06 (D-034).
 
-**Code:** [`empirics/code/carib_lp/`](../../empirics/code/carib_lp/README.md) · **Generated outputs:** [coverage](../../empirics/output/carib_lp/coverage.md), [validation](../../empirics/output/carib_lp/validation/validation.md), [results](../../empirics/output/carib_lp/results.md) · **Decisions:** D-019 to D-026
+**Code:** [`empirics/code/lp/`](../../empirics/code/lp/README.md) · **Generated outputs:** [coverage](../../empirics/output/carib_lp/coverage.md), [validation](../../empirics/output/carib_lp/validation/validation.md), [results](../../empirics/output/carib_lp/results.md) · **Decisions:** D-019 to D-026
 
 ## 1. Purpose
 
@@ -206,7 +206,7 @@ Generated tables:
 
 Not yet interpreted; to be discussed together with the choice between grids.
 
-**Dashboard.** An interactive version is in [`empirics/dashboard/`](../../empirics/dashboard/README.md) (Streamlit; D-027). It has two sections:
+**Dashboard.** An interactive version is in [`apps/productivity/`](../../apps/productivity/README.md) (Streamlit; D-027). It has two sections:
 - **Reference analysis** reproduces the chart types of ECLAC's chapter on productivity and employment (L119) for the Caribbean.
 - **Extended analysis** presents this paper's method: anchored periods, additive prices, the static/dynamic split, robustness checks and data quality.
 
