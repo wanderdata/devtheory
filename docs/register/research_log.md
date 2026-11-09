@@ -4,6 +4,22 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-09 — Session 15: WP07 data and literature; pre-analysis plan
+
+**Prompt (user):** update Szirmai & Verspagen ("Bart's paper"): find it, read it, check recent literature, replicate and improve, and present findings in a Streamlit dashboard on four questions (is manufacturing still a motor; was it ever in LAC; why only in some contexts; other candidate motors, especially services).
+
+**Done**
+- Source files committed with checksums and licences: PWT 11.0, ETD (2021 release), GGDC 10-Sector (2015 release), Barro–Lee v2.2 (15+, fetched from the dataset's GitHub repository).
+- Read the published S&V paper in detail (specification, estimators, tables, thresholds, gaps); mapped the follow-up literature (manufacturing still special; services as motors; LAC); 15 register entries (L120–L134), most abstract-only and marked partly-verified.
+- Pre-analysis plan (D-037): data mapping, replication criteria, tests and readings for each of the four questions, pre-specified moderators with predicted signs, specification curve, limits.
+- Coverage checks: UN manufacturing shares for 185 countries in 1970 (220 later); GGDC 10-Sector before 1970 for 30 countries (14 back to the 1950s, six Latin American); PWT growth for 111 countries in 1960 and 158 in 1970.
+
+**What failed:** the S&V working-paper PDF host is not reachable from the workspace; the published version on Verspagen's site was. Barro–Lee's current release (v3) has no 15+ file on GitHub; v2.2 has, and is the vintage S&V used.
+
+**Open:** OQ-48 (temperate-climate instrument), OQ-49 (validate a Hausman–Taylor implementation), OQ-50 (tourism data).
+
+---
+
 ## 2026-11-09 — Session 14: repository restructuring (on `dev`)
 
 **Prompt (user):** organise GitHub and the visualisation by best practice before the motors project; work on a `dev` branch, move the dashboard, restructure first.

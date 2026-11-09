@@ -25,3 +25,7 @@ Register IDs: L003, L005, L020–L023, L056, L066, L067.
 ## Synthesis for the project
 
 Manufacturing's developmental value came from a **bundle** of properties that happened to coincide: (i) a large productivity premium over the traditional sector, (ii) fast, unconditional productivity growth, (iii) high absorption of low-skill labor, (iv) tradability (no demand ceiling), (v) on-the-job learning and organizational capability building. Today the bundle has come apart: modern manufacturing keeps (ii) and (iv) but loses (iii); tradable services have (i), (ii), (iv) but not (iii); labor-absorbing services have (iii) but not (ii) or (iv). This is the basis of Idea 2 ("unbundling of the escalator") in the framework.
+
+## Engine-of-growth regressions (added 2026-11-09, for WP07)
+
+Szirmai & Verspagen (2015, L120) is the reference panel test: initial manufacturing share predicts faster growth, more so with higher education and larger income gaps, and less after 1990. Later work tests Kaldor's laws (L123, L125), uses GMM (L124), looks at middle-income economies (L126) or at world shares (L122); services show convergence too (L127) and can drive transformation (L128). The full review and the pre-analysis plan for updating S&V are in [`papers/WP07_development_motors/00_literature_and_plan.md`](../../papers/WP07_development_motors/00_literature_and_plan.md).
