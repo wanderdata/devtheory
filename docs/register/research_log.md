@@ -17,6 +17,8 @@ One entry per work session, newest first.
 
 **Verification:** after the moves, every output was rebuilt from the committed sources. All 77 data, table and figure files are byte-identical to the pre-restructuring versions; the 7 generated Markdown reports differ only in the line naming the code path.
 
+**What failed on the way:** the first GitHub Actions run failed at test collection: plain `pytest` (used by CI) does not put the repository root on the import path, while `python -m pytest` (used for the local check) does, so the shared module could not be imported. Fixed with `pythonpath = .` in `pytest.ini`; the local check now reproduces CI exactly (fresh clone, clean virtual environment from `requirements.txt`, plain `pytest`). Second run passed. Runner image pinned to ubuntu-24.04; actions updated to checkout@v5 and setup-python@v6.
+
 **Next:** user merges `dev` into `main` and changes the Streamlit app's main-file path to `apps/productivity/app.py`; then the motors project (WP07).
 
 ---
