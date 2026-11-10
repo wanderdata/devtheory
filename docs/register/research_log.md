@@ -4,6 +4,18 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-10 — Session 17: beyond sector shares; three papers to read and replicate
+
+**Prompt (user):** after WP07, broad-sector tests look mistaken; how would one design tests of which jobs, firms, sectors and other levels let an economy grow? Then: choose three recent papers that best develop these ideas, to review, replicate and draw LAC implications from.
+
+**Done**
+- Diagnosis of WP07's limits: wrong unit (within-sector heterogeneity), shares are outcomes not causes, "motor" bundles distinct mechanisms. Proposed a six-study programme (external demand shocks; places; firms; jobs; production networks; segments); not yet written up as a plan.
+- Selected three papers with criteria fixed in advance (D-041): Lane (2025, QJE), Diao, Ellis, McMillan & Rodrik (2025, WBER), Donovan, Lu & Schoellman (2023, QJE). Citations and abstracts checked on RePEc; Lane's data and design checked in the arXiv version; Donovan et al.'s replication package located (Harvard Dataverse). Note `papers/reading_group/RG01_three_papers.md` with design, replication route, LAC proposition (P-RG1–3) and reading questions per paper. Literature register L135–L137; OQ-54 to OQ-56.
+
+**What failed / limits:** Harvard Dataverse is not reachable from the workspace, so neither replication package's contents could be inspected; whether Lane's package is public is unconfirmed. The papers have not yet been read in full: the note says so, and its magnitudes for Lane come from the arXiv introduction. The II PND sector list and three near-miss citations are from memory.
+
+---
+
 ## 2026-11-09 — Session 16: WP07 estimation, dashboard and draft
 
 **Prompt (user):** keep going as far as possible unless an essential piece is missing.
