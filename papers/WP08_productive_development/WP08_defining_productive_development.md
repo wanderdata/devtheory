@@ -150,6 +150,8 @@ The terms-of-trade term is small for the median country over 2000–19 (+0.03). 
 
 This income does not appear in output at constant prices, and under D-042 it is not productive development. Reporting it beside the volume measure shows how much of the improvement in living standards during the commodity boom came from prices.
 
+**Deflator.** The term deflates the trade balance by the import price deflator. With the average of the export and import deflators instead, the results are nearly the same: correlation 0.98–0.99 across country-periods, and a median absolute difference of 0.08 points a year for 2000–08 and 0.02–0.03 for the other periods. The sign changes in one country-period. The largest differences are for Venezuela (4.94 against 4.12 in 2000–08) and Ecuador (1.30 against 1.16) (OQ-62).
+
 ### 4.5 Relative prices and measured productivity (P27)
 
 | LAC, excl. Cuba and Venezuela, mining and utilities excluded | Slope | 90% interval |
@@ -180,7 +182,26 @@ This income does not appear in output at constant prices, and under D-042 it is 
 
 **Measurement error.** Errors in sector employment bias the slope toward zero. Errors in sector deflators bias it toward −1. The estimates therefore cannot be read as a precise elasticity (OQ-59).
 
+**Survey employment.** One check is possible on the employment side. Each grade-A country-period was recomputed between its two anchoring survey years, once with survey employment and once with ILO modelled employment. The relative-price term does not involve employment, so only the real term differs. For 2000–19 (15 countries) the slope is −0.30 with survey employment and −0.34 with modelled employment. For 2008–19 (17 countries) both are −0.38. The ILO's interpolation of employment does not drive the result. This sample's slope for 2000–19 is smaller in absolute value than the full sample's (−0.48), and the difference comes from the change of sample, not from the employment series. Errors in the sector deflators remain untested. The ETD's sector deflators for the nine Latin American countries it covers would allow a check.
+
 **For the decomposition.** These results matter for any decomposition carried out at current prices or at the prices of a single year. Part of what looks like within-sector productivity growth in low-productivity services at current prices is a relative-price effect. The decompositions in WP05, WP06 and this paper use volumes valued at the prices of a given year, so they are not affected in the same way. Their sensitivity to the price base (D-035) is the same phenomenon seen from the other side.
+
+### 4.6 Distance from the frontier
+
+The verdicts compare each country with itself. Comparing countries needs a common line. Each sector's output per worker at constant 2020 prices is converted to 2020 US dollars at purchasing-power parity, with one price-level factor per country (PWT 11.0, `pl_gdpo` relative to the United States in 2020). It is then expressed as a share of US output per worker in the same year, computed from UN value added and ILO employment. The summary is the average gap below a line at 50% of US output per worker, over the whole population aged 15+, with the non-employed at zero (OQ-60).
+
+| 27 countries with comparable levels | 2000 | 2019 |
+|---|---|---|
+| Median output per worker, % of US | 22.3 | 23.9 |
+| Median average gap below 50% of US | 0.760 | 0.735 |
+
+- **No general convergence.** The gap rose in 13 of the 27 countries, including Argentina, Brazil and Mexico. Mexico's output per worker fell from 42.3% to 32.8% of the US level. Output per worker relative to the US fell in 9 countries.
+- **Closest to the line in 2019:** Panama (gap 0.475), the Bahamas (0.487), Uruguay (0.558) and Trinidad and Tobago (0.579).
+- **Furthest from it:** Haiti (0.933), Nicaragua (0.882) and Honduras (0.869).
+
+**Shares above the line.** The share of the population working in sectors at or above 50% of US output per worker is reported in the outputs but is not a useful summary at sector level. It jumps when a large sector crosses the line: in Panama it goes from 5% in 2000 to 33% in 2019, and in Costa Rica from 1% in 2019 to 27% in 2024. The average gap moves continuously with the step heights.
+
+**Two caveats.** One price-level factor per country ignores differences in relative prices across sectors, which are large between tradables and services. Converting at 2020 price levels for all years also assumes that relative prices between each country and the US did not change. Venezuela and Cuba are excluded, as elsewhere (D-033).
 
 ## 5. What this does not show
 
@@ -195,8 +216,7 @@ This income does not appear in output at constant prices, and under D-042 it is 
 
 1. **Mexico with segment steps.** Use INEGI's informal-economy accounts for value added by sector and formal/informal status, the economic census for firm size, and ENOE for the employment split. Test P26. Check whether earnings ratios are a usable proxy for productivity ratios across segments (OQ-61).
 2. **A 65+ block in the zero block**, from survey microdata where available (OQ-58).
-3. **A frontier-based productivity line,** so that threshold indices can be compared across countries (OQ-60).
-4. **Sensitivity of the terms-of-trade term** to the deflator (OQ-62). For the Baumol slope, bounds using survey-anchored employment (OQ-59).
+3. **A check of the Baumol slope against independent sector deflators**, using the ETD for the countries it covers (OQ-59).
 
 ## References
 

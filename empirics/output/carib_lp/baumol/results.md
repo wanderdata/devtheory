@@ -31,4 +31,15 @@ Pooled across countries and sectors (mining and utilities excluded). Cost diseas
 | 2019–2024 | 66 | 11 | -0.28 | [-0.55, -0.18] | -0.57 |
 | 2000–2019 | 66 | 11 | -0.40 | [-0.62, -0.14] | -0.48 |
 
+## 3. Same slope between survey years, survey versus modelled employment (grade A only)
+
+Each grade-A country-period recomputed between its two anchoring survey years, with survey employment and with ILO modelled employment for the same years. The relative-price term is the same in both; only the real term changes.
+
+| Period | Employment | Observations | Countries | Slope | 90% interval | SD of real term |
+|---|---|---|---|---|---|---|
+| 2019–2024 | model | 48 | 8 | -0.25 | [-0.41, +0.04] | 11.21 |
+| 2019–2024 | survey | 48 | 8 | -0.25 | [-0.36, +0.07] | 11.36 |
+| 2000–2019 | model | 30 | 5 | -0.49 | [-0.78, -0.25] | 1.74 |
+| 2000–2019 | survey | 30 | 5 | -0.46 | [-0.74, -0.26] | 1.80 |
+
 Measurement error pulls the slope in both directions. An error in a sector's employment moves its real and nominal relative productivity together and leaves the relative-price term unchanged, so it biases the slope toward zero. An error in a sector's deflator moves the real and relative-price terms in opposite directions and biases the slope toward −1 (OQ-59).

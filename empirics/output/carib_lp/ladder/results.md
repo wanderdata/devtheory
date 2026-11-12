@@ -61,4 +61,22 @@ Working-age population: ages 15+. Value added at initial-year prices of each per
 | Suriname | C | improvement, weighting the lower percentiles | +2.78 | 0.95 | 0.93 → 0.73 |
 | Trinidad and Tobago | B | improvement, weighting the lower percentiles | +1.70 | 0.98 | 0.88 → 0.89 |
 
+## 5. Distance from the frontier (2020 US$ at PPP; United States = 100)
+
+Average gap below a line at 50% of US output per worker, over the whole 15+ population (non-employed at zero; 1 = everyone at zero). Share at or above the line in brackets; with one step per sector it jumps when a large sector crosses the line. Countries marked * have US$ levels that are not comparable (D-033).
+
+| Country | Output per worker, % of US, 2000 | 2019 | Gap below 50% line, 2000 | 2019 |
+|---|---|---|---|---|
+| Bahamas | 50.8 | 38.0 | 0.443 (0.33) | 0.487 (0.00) |
+| Barbados | 18.0 | 18.3 | 0.774 (0.00) | 0.782 (0.00) |
+| Belize | 28.6 | 15.6 | 0.706 (0.03) | 0.805 (0.01) |
+| Dominican Republic | 27.6 | 33.3 | 0.699 (0.04) | 0.606 (0.05) |
+| Guyana | 13.5 | 27.5 | 0.864 (0.00) | 0.751 (0.00) |
+| Haiti | 7.9 | 6.0 | 0.910 (0.00) | 0.933 (0.00) |
+| Jamaica | 16.7 | 12.7 | 0.802 (0.01) | 0.839 (0.01) |
+| Saint Lucia | 34.5 | 27.4 | 0.667 (0.17) | 0.688 (0.01) |
+| Saint Vincent and the Grenadines | 20.7 | 22.0 | 0.788 (0.00) | 0.761 (0.00) |
+| Suriname | 28.4 | 29.6 | 0.796 (0.05) | 0.699 (0.02) |
+| Trinidad and Tobago | 41.8 | 42.0 | 0.570 (0.06) | 0.579 (0.11) |
+
 z = output per employed worker at the start of the period, at the same prices. Sector ladders treat everyone in a sector as equally productive, so dominance here is a statement about sector averages, not about workers (OQ-57).

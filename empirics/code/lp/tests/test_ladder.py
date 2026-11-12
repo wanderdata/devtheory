@@ -126,3 +126,28 @@ def test_reference_lac():
     assert t.loc[("MEX", "2000–2019"), "ypw_pp"] == pytest.approx(-0.2151, abs=5e-4)
     s = pd.read_csv(OUT / "lac_lp" / "baumol" / "slope.csv").set_index("period")
     assert s.loc["2000–2019", "slope"] == pytest.approx(-0.4797, abs=5e-4)
+
+
+@pytest.mark.parametrize("scope", SCOPES)
+def test_frontier_bounds(scope):
+    f = pd.read_csv(OUT / scope / "ladder" / "frontier.csv")
+    assert len(f)
+    for k in (25, 50):
+        assert f[f"gap_{k}"].between(0, 1).all() and f[f"sev_{k}"].between(0, 1).all()
+        assert (f[f"sev_{k}"] <= f[f"gap_{k}"] + 1e-12).all()
+        assert (f[f"share_ge_{k}"] <= 1 - f["share_not_employed"] + 1e-12).all()
+        # the non-employed are below any positive line, so the gap is at least their share
+        assert (f[f"gap_{k}"] >= f["share_not_employed"] - 1e-12).all()
+    assert (f["share_ge_50"] <= f["share_ge_25"] + 1e-12).all()
+
+
+@pytest.mark.parametrize("scope", SCOPES)
+def test_terms_of_trade_variants_close(scope):
+    t = pd.read_csv(OUT / scope / "ladder" / "terms.csv").dropna(subset=["tot_pp", "tot_avg_pp"])
+    assert np.corrcoef(t["tot_pp"], t["tot_avg_pp"])[0, 1] > 0.95
+
+
+def test_anchored_slope_survey_close_to_model():
+    a = pd.read_csv(OUT / "lac_lp" / "baumol" / "slope_anchored.csv").set_index(["period", "employment"])
+    assert a.loc[("2000–2019", "survey"), "slope"] == pytest.approx(-0.30, abs=0.01)
+    assert a.loc[("2000–2019", "model"), "slope"] == pytest.approx(-0.34, abs=0.01)

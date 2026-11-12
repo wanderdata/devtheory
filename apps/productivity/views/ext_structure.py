@@ -149,6 +149,12 @@ else:
         r0 = sl.iloc[0]
         cap += (f" Slope {r0['slope']:.2f}, 90% interval [{r0['ci90_lo']:.2f}, {r0['ci90_hi']:.2f}] from a bootstrap "
                 f"over countries; {int(r0['n_obs'])} observations. ")
+    ba = load_extra("baumol", "slope_anchored")
+    ba = ba[ba["period"] == bper] if not ba.empty else ba
+    if len(ba) == 2:
+        m_, s_ = ba.set_index("employment").loc["model"], ba.set_index("employment").loc["survey"]
+        cap += (f"On the {int(s_['n_countries'])} grade-A countries, between their survey years, the slope is "
+                f"{s_['slope']:.2f} with survey employment and {m_['slope']:.2f} with modelled employment. ")
     cap += ("Errors in sector employment bias the slope toward zero; errors in sector deflators bias it toward −1. "
             "Axes cut at the 98th percentile of absolute values; all points are in the data table.")
     show(fig, b[["country", "sector", "emp_share0", "rel_nom0", "d_nom_pp", "d_real_pp", "d_price_pp"]]

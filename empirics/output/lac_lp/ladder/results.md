@@ -95,4 +95,39 @@ Working-age population: ages 15+. Value added at initial-year prices of each per
 | Saint Vincent and the Grenadines | B | improvement | +2.26 | 1.00 | 0.79 → 0.75 |
 | Venezuela (Bol. Rep. of) | B | deterioration, weighting the lower percentiles | -2.97 | 0.45 | 0.87 → 0.95 |
 
+## 5. Distance from the frontier (2020 US$ at PPP; United States = 100)
+
+Average gap below a line at 50% of US output per worker, over the whole 15+ population (non-employed at zero; 1 = everyone at zero). Share at or above the line in brackets; with one step per sector it jumps when a large sector crosses the line. Countries marked * have US$ levels that are not comparable (D-033).
+
+| Country | Output per worker, % of US, 2000 | 2019 | Gap below 50% line, 2000 | 2019 |
+|---|---|---|---|---|
+| Argentina | 42.8 | 38.4 | 0.590 (0.07) | 0.615 (0.07) |
+| Bahamas | 50.8 | 38.0 | 0.443 (0.33) | 0.487 (0.00) |
+| Belize | 28.6 | 15.6 | 0.706 (0.03) | 0.805 (0.01) |
+| Bolivia (Plur. State of) | 10.9 | 12.7 | 0.854 (0.01) | 0.827 (0.01) |
+| Brazil | 24.6 | 23.9 | 0.718 (0.01) | 0.735 (0.01) |
+| Barbados | 18.0 | 18.3 | 0.774 (0.00) | 0.782 (0.00) |
+| Chile | 33.2 | 35.9 | 0.698 (0.02) | 0.619 (0.02) |
+| Colombia | 22.3 | 24.5 | 0.770 (0.01) | 0.729 (0.02) |
+| Costa Rica | 30.2 | 35.1 | 0.669 (0.01) | 0.603 (0.01) |
+| Dominican Republic | 27.6 | 33.3 | 0.699 (0.04) | 0.606 (0.05) |
+| Ecuador | 17.7 | 19.7 | 0.795 (0.01) | 0.764 (0.01) |
+| Guatemala | 18.5 | 19.5 | 0.760 (0.01) | 0.778 (0.00) |
+| Guyana | 13.5 | 27.5 | 0.864 (0.00) | 0.751 (0.00) |
+| Honduras | 10.9 | 11.0 | 0.866 (0.00) | 0.869 (0.00) |
+| Haiti | 7.9 | 6.0 | 0.910 (0.00) | 0.933 (0.00) |
+| Jamaica | 16.7 | 12.7 | 0.802 (0.01) | 0.839 (0.01) |
+| Saint Lucia | 34.5 | 27.4 | 0.667 (0.17) | 0.688 (0.01) |
+| Mexico | 42.3 | 32.8 | 0.566 (0.14) | 0.634 (0.04) |
+| Nicaragua | 10.7 | 9.7 | 0.880 (0.00) | 0.882 (0.01) |
+| Panama | 34.2 | 52.4 | 0.608 (0.05) | 0.475 (0.33) |
+| Peru | 15.2 | 17.3 | 0.822 (0.01) | 0.764 (0.01) |
+| Paraguay | 19.5 | 21.3 | 0.754 (0.00) | 0.734 (0.00) |
+| El Salvador | 15.7 | 16.3 | 0.822 (0.00) | 0.816 (0.00) |
+| Suriname | 28.4 | 29.6 | 0.796 (0.05) | 0.699 (0.02) |
+| Trinidad and Tobago | 41.8 | 42.0 | 0.570 (0.06) | 0.579 (0.11) |
+| Uruguay | 37.1 | 39.0 | 0.624 (0.05) | 0.558 (0.05) |
+| Saint Vincent and the Grenadines | 20.7 | 22.0 | 0.788 (0.00) | 0.761 (0.00) |
+| Venezuela (Bol. Rep. of) * | 2.5 | 0.5 | 0.972 (0.00) | 0.995 (0.00) |
+
 z = output per employed worker at the start of the period, at the same prices. Sector ladders treat everyone in a sector as equally productive, so dominance here is a statement about sector averages, not about workers (OQ-57).

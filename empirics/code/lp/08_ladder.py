@@ -17,11 +17,14 @@ period, as in the main decomposition (D-024, D-035).
      tot_pp    the trading gain from the terms of trade: real gross domestic income over real
                GDP, with exports deflated by the import price deflator (SNA 2008 approach),
                prices relative to 2020. Positive when export prices rose relative to import
-               prices.
+               prices. tot_avg_pp deflates the trade balance by the average of the export
+               and import deflators instead (OQ-62).
 2. Horizon statistics (horizon.csv). For every window of h = 1, 5, 10, 20 years, the annual
    log growth of Y/L and of L/W (official total value added at constant 2020 prices),
    pooled across countries: how often the two move in opposite directions, how often the
    employment-rate term is larger, and its share of the variance of growth of Y/W.
+4. Frontier (frontier.csv): share of the 15+ population working in sectors at or above 25%
+   and 50% of US output per worker, at PPP (one 2020 price-level factor per country, PWT).
 3. Ladders (ladders.csv), verdicts (verdicts.csv) and incidence curves (incidence.csv) for
    each fixed period, at initial- and final-year prices. The zero block (persons aged 15+
    not employed) is split into unemployed and outside the labour force. A 65+ block needs
@@ -90,20 +93,23 @@ def working_age(emp, lab):
     return d
 
 
-def trading_gain_ratio(un):
-    """Real GDI / real GDP (both at 2020 prices), exports deflated by import prices."""
+def trading_gain_ratio(un, deflator="import"):
+    """Real GDI / real GDP (both at 2020 prices). The trade balance at current prices is deflated
+    by the import price deflator (default) or by the average of the export and import deflators
+    (OQ-62); real GDP deflates exports and imports by their own deflators."""
     k, c = un["k2020"], un["cur"]
     X, M, Y = "Exports of goods and services", "Imports of goods and services", "Gross Domestic Product (GDP)"
     if not {X, M, Y} <= set(k.columns):
         return pd.Series(dtype=float)
     px, pm = c[X] / k[X], c[M] / k[M]
-    gain = k[X] * (px / pm - 1)
+    p = pm if deflator == "import" else (px + pm) / 2
+    gain = (c[X] - c[M]) / p - (k[X] - k[M])
     return ((k[Y] + gain) / k[Y]).dropna()
 
 
 # ------------------------------------------------------------- 1. terms ---
 
-def terms(va, emp, wa, pop, tgr, grades, lab65):
+def terms(va, emp, wa, pop, tgr, tgr_avg, grades, lab65):
     rows = []
     for iso in COUNTRIES:
         for t0, T in PERIODS:
@@ -140,10 +146,11 @@ def terms(va, emp, wa, pop, tgr, grades, lab65):
                     row[k] = 100 * lab65.loc[(iso, yr)] / 100 * pop.loc[(iso, yr)] / w["W"]
                 except KeyError:
                     row[k] = np.nan
-            try:
-                row["tot_pp"] = 100 * np.log(tgr.loc[(iso, T)] / tgr.loc[(iso, t0)]) / n
-            except KeyError:
-                row["tot_pp"] = np.nan
+            for col, g in [("tot_pp", tgr), ("tot_avg_pp", tgr_avg)]:
+                try:
+                    row[col] = 100 * np.log(g.loc[(iso, T)] / g.loc[(iso, t0)]) / n
+                except KeyError:
+                    row[col] = np.nan
             rows.append(row)
     return pd.DataFrame(rows)
 
@@ -265,13 +272,80 @@ def ladders(va, emp, wa, grades):
     return pd.DataFrame(lrows), pd.DataFrame(vrows), pd.DataFrame(irows)
 
 
+# ----------------------------------------------------------- 4. frontier ---
+
+FRONTIER_YEARS = [1991, 2000, 2008, 2019, 2024]
+FRONTIER_LINES = [0.25, 0.50]
+
+
+def us_output_per_worker():
+    """US total value added (constant 2020 US$) per employed person, by year, from the committed
+    world files: UN AMA constant-price file and ILO modelled employment."""
+    raw = pd.read_excel(SOURCE / "un_ama" / "un_ama_gdp_breakdown_constant2020_usd.xlsx", header=None)
+    hdr = next(i for i in range(20) if "CountryID" in [str(v).strip() for v in raw.iloc[i]])
+    df = raw.iloc[hdr + 1:].copy()
+    df.columns = [str(c).strip().replace(".0", "") for c in raw.iloc[hdr]]
+    row = df[(pd.to_numeric(df["CountryID"], errors="coerce") == 840) & (df["IndicatorName"].astype(str).str.strip() == "Total Value Added")]
+    va = row[[c for c in df.columns if c.isdigit()]].iloc[0].astype(float)
+    va.index = va.index.astype(int)
+    e = pd.read_csv(next(SOURCE.glob("ilostat/EMP_2EMP_SEX_ECO_NB_A*.csv.gz")), dtype=str,
+                    usecols=["ref_area", "sex", "classif1", "time", "obs_value"])
+    e = e[(e["ref_area"] == "USA") & (e["sex"] == "SEX_T") & (e["classif1"] == "ECO_AGGREGATE_TOTAL")]
+    emp = pd.Series(e["obs_value"].astype(float).values, index=e["time"].str[:4].astype(int))
+    return (va / (emp * 1000)).dropna()
+
+
+def relative_price_2020():
+    """Price level of output relative to the United States in 2020 (PWT 11.0 pl_gdpo), used to
+    convert constant-2020-US$ values to 2020 US$ at PPP with one factor per country."""
+    p = pd.read_excel(SOURCE / "pwt" / "pwt110.xlsx", sheet_name="Data", usecols=["countrycode", "year", "pl_gdpo"])
+    p = p[p["year"] == 2020].set_index("countrycode")["pl_gdpo"]
+    return (p / p["USA"]).dropna()
+
+
+def frontier(va, emp, wa):
+    """Share of the 15+ population working in sectors whose output per worker (2020 US$ at PPP)
+    is at least 25% and 50% of US output per worker in the same year, and the average and squared
+    gap below those lines with the non-employed at zero (OQ-60). With one step per sector the
+    shares jump when a large sector crosses a line; the gaps change continuously. One step per
+    sector, valued at constant 2020 prices, so the sector values are not additive across sectors
+    and the steps' mean is close to, but not exactly, output per working-age person."""
+    us, rel = us_output_per_worker(), relative_price_2020()
+    rows = []
+    for iso in COUNTRIES:
+        if iso not in rel.index:
+            continue
+        for yr in FRONTIER_YEARS:
+            try:
+                l, w = emp.loc[(iso, yr)].reindex(SECTOR_ORDER), wa.loc[(iso, yr)]
+                v = va.loc[(iso, yr)].reindex(SECTOR_ORDER)["va_k2020usd"]
+            except KeyError:
+                continue
+            if l.isna().any() or v.isna().any() or yr not in us.index:
+                continue
+            lp = v / (l * 1000) / rel[iso] / us[yr]          # output per worker as a share of the US
+            share = l / w["W"]
+            rec = {"iso3": iso, "country": SHORT[iso], "year": yr, "comparable": iso not in POOL_EXCLUDE_LAC,
+                   "rel_price_2020": rel[iso], "us_output_per_worker": us[yr],
+                   "output_per_worker_pct_us": 100 * (v.sum() / (l.sum() * 1000)) / rel[iso] / us[yr],
+                   "share_not_employed": 1 - share.sum()}
+            d = lad.make(list(lp.values) + [0.0], list(share.values) + [1 - share.sum()])
+            for z in FRONTIER_LINES:
+                k = int(100 * z)
+                rec[f"share_ge_{k}"] = share[lp >= z].sum()
+                rec[f"gap_{k}"] = lad.fgt(d, z, 1)
+                rec[f"sev_{k}"] = lad.fgt(d, z, 2)
+            rows.append(rec)
+    return pd.DataFrame(rows)
+
+
 # ------------------------------------------------------------ report ---
 
 def f(x, nd=2):
     return "" if pd.isna(x) else f"{x:+.{nd}f}"
 
 
-def write_md(t, h, v, popsrc):
+def write_md(t, h, v, popsrc, fr=None):
     L = [f"# Output per working-age person and the productivity ladder — {SCOPE_NAME}", "",
          "*Generated by `empirics/code/lp/08_ladder.py`; do not edit by hand. Definitions in "
          "`docs/theory/03_defining_productive_development.md` (D-042, D-043).*", "",
@@ -301,6 +375,21 @@ def write_md(t, h, v, popsrc):
     for _, r in vi[vi.period == "2000–2019"].iterrows():
         L.append(f"| {r.country} | {r.grade} | {r.verdict} | {f(r.mean_growth_pp)} | {r.share_gained:.2f} | "
                  f"{r.H0:.2f} → {r.HT:.2f} |")
+    if fr is not None and len(fr):
+        f2 = fr[fr["year"].isin([2000, 2019])]
+        L += ["", "## 5. Distance from the frontier (2020 US$ at PPP; United States = 100)", "",
+              "Average gap below a line at 50% of US output per worker, over the whole 15+ population "
+              "(non-employed at zero; 1 = everyone at zero). Share at or above the line in brackets; with one "
+              "step per sector it jumps when a large sector crosses the line. Countries marked * have US$ "
+              "levels that are not comparable (D-033).", "",
+              "| Country | Output per worker, % of US, 2000 | 2019 | Gap below 50% line, 2000 | 2019 |", "|---|---|---|---|---|"]
+        for iso, g in f2.groupby("iso3", sort=False):
+            g = g.set_index("year")
+            if not {2000, 2019} <= set(g.index):
+                continue
+            a, b = g.loc[2000], g.loc[2019]
+            L.append(f"| {a.country}{'' if a.comparable else ' *'} | {a.output_per_worker_pct_us:.1f} | "
+                     f"{b.output_per_worker_pct_us:.1f} | {a.gap_50:.3f} ({a.share_ge_50:.2f}) | {b.gap_50:.3f} ({b.share_ge_50:.2f}) |")
     L += ["", "z = output per employed worker at the start of the period, at the same prices. Sector "
           "ladders treat everyone in a sector as equally productive, so dominance here is a statement "
           "about sector averages, not about workers (OQ-57)."]
@@ -312,19 +401,21 @@ def main():
     va, emp, lab, un = load()
     wa = working_age(emp, lab)
     pop, popsrc = population(lab)
-    tgr = trading_gain_ratio(un)
+    tgr, tgr_avg = trading_gain_ratio(un), trading_gain_ratio(un, "average")
     m = pd.read_csv(OUTPUT / "grid_A" / "main.csv")
     grades = {(r.iso3, r.period): r.grade for r in m.itertuples()}
     lab65 = lab["pop65_share"].dropna() if "pop65_share" in lab.columns else pd.Series(dtype=float)
-    t = terms(va, emp, wa, pop, tgr, grades, lab65)
+    t = terms(va, emp, wa, pop, tgr, tgr_avg, grades, lab65)
     h = horizon(un, wa)
     lrows, v, inc = ladders(va, emp, wa, grades)
+    fr = frontier(va, emp, wa)
+    fr.to_csv(OUT / "frontier.csv", index=False)
     t.to_csv(OUT / "terms.csv", index=False)
     h.to_csv(OUT / "horizon.csv", index=False)
     lrows.to_csv(OUT / "ladders.csv", index=False)
     v.to_csv(OUT / "verdicts.csv", index=False)
     inc.to_csv(OUT / "incidence.csv", index=False)
-    write_md(t, h, v, popsrc)
+    write_md(t, h, v, popsrc, fr)
     print(f"{SCOPE_NAME}: {len(t)} country-periods, {v['iso3'].nunique()} countries with ladders")
 
 

@@ -130,4 +130,42 @@ tab = vi.pivot_table(index="country", columns="period", values="verdict", aggfun
 tab = tab[[p for p in dict.fromkeys(v["period"]) if p in tab.columns]].reset_index()
 show(fig, tab, caption="Verdicts combine both price bases. The period 2019–2024 includes the pandemic; employment "
                        "in 2024 is largely modelled.")
-footer()
+
+# ---- 3. distance from the frontier
+st.subheader("Distance from the frontier")
+st.markdown(
+    "The verdicts above compare a country with itself. To compare countries, each sector's output per worker is "
+    "converted to 2020 US dollars at purchasing-power parity (one price-level factor per country, from the Penn "
+    "World Table) and expressed as a share of US output per worker in the same year. The chart shows the average "
+    "gap below a line at 50% of US output per worker, over the whole population aged 15+, with people not "
+    "employed at zero: 1 would mean everyone at zero, 0 everyone at or above the line.")
+fr = load_extra("ladder", "frontier")
+if fr.empty:
+    st.info("No results: run `empirics/code/lp/08_ladder.py`.")
+else:
+    yrs = sorted(fr["year"].unique())
+    c1, c2 = st.columns(2)
+    y0 = c1.selectbox("From", yrs[:-1], index=yrs.index(2000) if 2000 in yrs[:-1] else 0, key="fr0")
+    later = [y for y in yrs if y > y0]
+    y1 = c2.selectbox("To", later, index=later.index(2019) if 2019 in later else len(later) - 1, key="fr1")
+    w = fr[fr["comparable"]].pivot_table(index="country", columns="year", values="gap_50")
+    w = w[[y0, y1]].dropna().sort_values(y1, ascending=False)
+    fig = go.Figure()
+    for c, r in w.iterrows():
+        fig.add_trace(go.Scatter(x=[r[y0], r[y1]], y=[c, c], mode="lines", line=dict(color=C_CONTEXT, width=2),
+                                 showlegend=False, hoverinfo="skip"))
+    fig.add_trace(go.Scatter(x=w[y0], y=w.index, mode="markers", name=str(y0), marker=dict(color=C_CONTEXT, size=9),
+                             hovertemplate="%{y} " + str(y0) + ": %{x:.3f}<extra></extra>"))
+    fig.add_trace(go.Scatter(x=w[y1], y=w.index, mode="markers", name=str(y1), marker=dict(color=C_HIGHLIGHT, size=9),
+                             hovertemplate="%{y} " + str(y1) + ": %{x:.3f}<extra></extra>"))
+    base_layout(fig, xtitle="average gap below 50% of US output per worker (0 = none, 1 = everyone at zero)",
+                height=120 + 24 * max(len(w), 3))
+    fig.update_yaxes(type="category", categoryorder="array", categoryarray=list(w.index), gridcolor="rgba(0,0,0,0)")
+    tbl = fr[fr["year"].isin([y0, y1])][["country", "year", "comparable", "output_per_worker_pct_us", "share_not_employed",
+                                          "share_ge_25", "share_ge_50", "gap_25", "gap_50", "sev_50"]].round(3)
+    show(fig, tbl, caption="Lower is closer to the frontier. Countries whose US$ levels are not comparable (Venezuela, "
+                           "Cuba; D-033) are left out of the chart. One price-level factor per country ignores "
+                           "differences in relative prices across sectors, and sector averages hide dispersion within "
+                           "sectors. The shares at or above 25% and 50% of US output per worker (data table) jump "
+                           "when a large sector crosses a line, so the gap is the better summary at sector level.")
+footer("Penn World Table 11.0 (price levels).")
