@@ -5,7 +5,8 @@
 
 Steps (each a separate script, run in a fresh process with LP_SCOPE set):
 02 extract -> 03 panel -> 03b grid-B employment -> 04 validation -> 05 decompositions
--> 06 labour-market series -> 07 regional summary (lac only).
+-> 06 labour-market series -> 07 regional summary (lac only) -> 08 output per working-age
+person and productivity ladders -> 09 relative prices by sector.
 01_download.py is not run: the sources are committed in empirics/data/source/ (D-029).
 Stops at the first failing step.
 """
@@ -16,7 +17,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 STEPS = ["02_extract.py", "03_build_panel.py", "03b_build_panel5.py", "04_validate.py",
-         "05_decompose.py", "06_extract_labour.py", "07_lac_summary.py"]
+         "05_decompose.py", "06_extract_labour.py", "07_lac_summary.py", "08_ladder.py", "09_baumol.py"]
 
 
 def run(scope):

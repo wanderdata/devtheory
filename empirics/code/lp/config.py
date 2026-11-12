@@ -53,6 +53,9 @@ SECTORS = {
 }
 SECTOR_ORDER = list(SECTORS)
 
+# Fixed benchmark periods for period decompositions (D-026), shared by steps 05, 08 and 09.
+PERIODS = [(1991, 2000), (2000, 2008), (2008, 2019), (2019, 2024), (2000, 2019)]
+
 # Expected raw files (names as saved in RAW; the extract step also accepts
 # the names the sites give them, see 02_extract.py).
 SOURCES = {

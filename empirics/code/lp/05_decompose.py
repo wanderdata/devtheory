@@ -25,10 +25,9 @@ Outputs per grid in empirics/output/<scope>_lp/grid_{A,B}/:
 import numpy as np
 import pandas as pd
 
-from config import COUNTRIES, INTERIM, OUTPUT, PROCESSED, SCOPE_NAME, TAG
+from config import COUNTRIES, INTERIM, OUTPUT, PERIODS, PROCESSED, SCOPE_NAME, TAG
 from decompose import GRIDS, decompose, decompose_chained, va_at_prices
 
-PERIODS = [(1991, 2000), (2000, 2008), (2008, 2019), (2019, 2024), (2000, 2019)]
 ANCHOR_WINDOW = 2
 
 
