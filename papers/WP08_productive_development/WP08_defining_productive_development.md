@@ -2,7 +2,7 @@
 
 *Paul Wander. Draft v0.1, 2026-11-12.*
 
-**Concept note:** [`docs/theory/03_defining_productive_development.md`](../../docs/theory/03_defining_productive_development.md) · **Code:** [`empirics/code/lp/08_ladder.py`, `09_baumol.py`](../../empirics/code/lp/README.md) · **Generated outputs:** [LAC ladder results](../../empirics/output/lac_lp/ladder/results.md), [LAC relative prices](../../empirics/output/lac_lp/baumol/results.md), [Caribbean ladder results](../../empirics/output/carib_lp/ladder/results.md), [Caribbean relative prices](../../empirics/output/carib_lp/baumol/results.md) · **Dashboard:** [`apps/productivity/`](../../apps/productivity/README.md), pages *Output per working-age person* and *Ladder of the working-age population* · **Decisions:** D-042, D-043 · **Propositions:** P25–P27
+**Concept note:** [`docs/theory/03_defining_productive_development.md`](../../docs/theory/03_defining_productive_development.md) · **Code:** [`empirics/code/lp/08_ladder.py`, `09_baumol.py`](../../empirics/code/lp/README.md) · **Generated outputs:** [LAC ladder results](../../empirics/output/lac_lp/ladder/results.md), [LAC relative prices](../../empirics/output/lac_lp/baumol/results.md), [Caribbean ladder results](../../empirics/output/carib_lp/ladder/results.md), [Caribbean relative prices](../../empirics/output/carib_lp/baumol/results.md) · **Dashboard:** [`apps/productivity/`](../../apps/productivity/README.md), pages *Output per working-age person* and *Ladder of the working-age population* · **Decisions:** D-042 to D-044 · **Propositions:** P25–P27
 
 ## Summary
 
@@ -48,7 +48,7 @@ The full statement is in the concept note. Briefly:
 - UN National Accounts Main Aggregates (value added by seven sectors, current and constant 2020 US dollars; exports, imports and GDP for the terms-of-trade term);
 - ILO modelled estimates of employment by sector and of the employment-to-population ratio for ages 15+, with the labour-force participation and unemployment rates to split the zero block.
 
-The working-age population is ILO employment divided by the employment ratio, so that both refer to the same population (D-043). Total population for the demographic term is from PWT 11.0 and ends in 2023; it is not available for Cuba. The 29 countries with sector employment are covered. Grades A, B and C indicate whether the endpoints of a period are close to survey years (D-026).
+The working-age population is ILO employment divided by the employment ratio, so that both refer to the same population (D-043). Total population for the demographic term is the ILO's series of UN estimates (D-044). The share of the 15+ population aged 65 and over, from the World Bank's WDI, is reported as context. The 29 countries with sector employment are covered. Grades A, B and C indicate whether the endpoints of a period are close to survey years (D-026).
 
 **Periods and prices.** The fixed periods of WP06 are used: 1991–2000, 2000–08, 2008–19, 2019–24 and 2000–19. Each period is valued at its initial-year prices and, for the verdicts, also at its final-year prices (D-024, D-035).
 
@@ -186,7 +186,7 @@ This income does not appear in output at constant prices, and under D-042 it is 
 
 - **Sector steps.** Everyone in a sector is placed at the sector average, so the ladders understate dispersion. A verdict of improvement at sector level is consistent with a deterioration for workers within a sector, and the reverse. This is the most important limitation (OQ-57).
 - **Employment data.** ILO modelled employment fills the years between surveys. Grades indicate where the endpoints are anchored; the verdict counts above use grades A and B only.
-- **Working-age population.** Ages 15+ includes people over 65. The demographic and employment-rate terms are therefore affected by ageing, which matters more for the Caribbean and the Southern Cone. The ILO population and employment-by-age files will allow a separate block for people aged 65+ (OQ-58).
+- **Working-age population.** Ages 15+ includes people over 65. In the median well-anchored country their share of the 15+ population rose from 7.4% in 2000 to 10.5% in 2019, and in Uruguay, Barbados and Chile it was 15–19% by 2019. Ageing lowers the employment rate and therefore the employment-rate term. The zero block cannot yet separate people aged 65+: the ILO's employment estimates by age stop at a 25-and-over band (D-044, OQ-58).
 - **Market output only.** Unpaid work is counted at zero.
 - **Capabilities.** The definition refers to new and more complex activities, which sector ladders capture only indirectly.
 - **No causal content.** Nothing here identifies what caused the changes. The verdicts describe outcomes, as the decompositions in WP05 and WP06 do. Which policies improve which parts of the distribution is a separate question that needs variation in policy (RG01, OQ-51).
@@ -194,7 +194,7 @@ This income does not appear in output at constant prices, and under D-042 it is 
 ## 6. Next steps
 
 1. **Mexico with segment steps.** Use INEGI's informal-economy accounts for value added by sector and formal/informal status, the economic census for firm size, and ENOE for the employment split. Test P26. Check whether earnings ratios are a usable proxy for productivity ratios across segments (OQ-61).
-2. **ILO population and employment by age.** Add them for the 65+ block and a consistent demographic term (OQ-58).
+2. **A 65+ block in the zero block**, from survey microdata where available (OQ-58).
 3. **A frontier-based productivity line,** so that threshold indices can be compared across countries (OQ-60).
 4. **Sensitivity of the terms-of-trade term** to the deflator (OQ-62). For the Baumol slope, bounds using survey-anchored employment (OQ-59).
 

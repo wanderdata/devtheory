@@ -12,8 +12,8 @@ period, as in the main decomposition (D-024, D-035).
    with ln(Y/L) divided between the within-sector and structural-change terms of
    05_decompose.py in proportion to their linear values (so the parts add up exactly).
    Two further terms are reported beside, not inside, the volume measure:
-     demog_pp  ln(W/N), the working-age share of the population, from ILO population
-               estimates when present, otherwise PWT 11.0 population (to 2023);
+     demog_pp  ln(W/N), the working-age share of the population; N from ILOSTAT
+               POP_2POP_SEX_NB_A (UN estimates) when present, otherwise PWT 11.0 (to 2023);
      tot_pp    the trading gain from the terms of trade: real gross domestic income over real
                GDP, with exports deflated by the import price deflator (SNA 2008 approach),
                prices relative to 2020. Positive when export prices rose relative to import
@@ -24,8 +24,9 @@ period, as in the main decomposition (D-024, D-035).
    employment-rate term is larger, and its share of the variance of growth of Y/W.
 3. Ladders (ladders.csv), verdicts (verdicts.csv) and incidence curves (incidence.csv) for
    each fixed period, at initial- and final-year prices. The zero block (persons aged 15+
-   not employed) is split into unemployed and outside the labour force, and, when ILO
-   employment by age is present, persons aged 65+ not employed.
+   not employed) is split into unemployed and outside the labour force. A 65+ block needs
+   employment aged 65+, which the ILO bulk files do not provide (D-044); terms.csv reports
+   the share of the 15+ population aged 65+ (WDI SP.POP.65UP.TO.ZS) as context.
 
 Verdict (per period): 'improvement' if the later ladder first-order dominates at both price
 bases; 'improvement, weighting the lower percentiles' if it second-order dominates at both;
@@ -65,7 +66,7 @@ def load():
 def population(lab):
     """Total population (thousands): ILO/UN estimates if extracted, else PWT 11.0."""
     if "pop_total" in lab.columns:
-        return lab["pop_total"].dropna(), "ILO (UN estimates)"
+        return lab["pop_total"].dropna(), "ILOSTAT POP_2POP_SEX_NB_A (UN estimates)"
     pwt = pd.read_excel(SOURCE / "pwt" / "pwt110.xlsx", sheet_name="Data", usecols=["countrycode", "year", "pop"])
     pwt = pwt[pwt["countrycode"].isin(COUNTRIES)].dropna()
     return pwt.set_index(["countrycode", "year"])["pop"].rename_axis(["iso3", "year"]) * 1000, "PWT 11.0"
@@ -102,7 +103,7 @@ def trading_gain_ratio(un):
 
 # ------------------------------------------------------------- 1. terms ---
 
-def terms(va, emp, wa, pop, tgr, grades):
+def terms(va, emp, wa, pop, tgr, grades, lab65):
     rows = []
     for iso in COUNTRIES:
         for t0, T in PERIODS:
@@ -133,6 +134,12 @@ def terms(va, emp, wa, pop, tgr, grades):
             except KeyError:
                 row["demog_pp"] = np.nan
             row["ypc_pp"] = row["ypw_pp"] + row["demog_pp"]
+            # context for ageing: share of the 15+ population aged 65+ (WDI share x ILO total population)
+            for k, yr, w in [("old_share0", t0, w0), ("old_shareT", T, wT)]:
+                try:
+                    row[k] = 100 * lab65.loc[(iso, yr)] / 100 * pop.loc[(iso, yr)] / w["W"]
+                except KeyError:
+                    row[k] = np.nan
             try:
                 row["tot_pp"] = 100 * np.log(tgr.loc[(iso, T)] / tgr.loc[(iso, t0)]) / n
             except KeyError:
@@ -308,7 +315,8 @@ def main():
     tgr = trading_gain_ratio(un)
     m = pd.read_csv(OUTPUT / "grid_A" / "main.csv")
     grades = {(r.iso3, r.period): r.grade for r in m.itertuples()}
-    t = terms(va, emp, wa, pop, tgr, grades)
+    lab65 = lab["pop65_share"].dropna() if "pop65_share" in lab.columns else pd.Series(dtype=float)
+    t = terms(va, emp, wa, pop, tgr, grades, lab65)
     h = horizon(un, wa)
     lrows, v, inc = ladders(va, emp, wa, grades)
     t.to_csv(OUT / "terms.csv", index=False)

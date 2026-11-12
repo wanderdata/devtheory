@@ -17,6 +17,8 @@ One entry per work session, newest first.
 
 **Key results:** employment-rate term's share of the variance of growth of output per working-age person falls from 27% (1-year windows) to 8% (20-year); opposite signs in 41–50% of windows at every horizon. 2000–19, grades A/B: 7 of 23 countries show an unambiguous improvement, 9 are ambiguous (including Brazil, whose mean rose); none in 2008–19. Baumol slope −0.48 (2000–19), interval [−0.62, −0.29].
 
+**Later in the session:** the user supplied ILOSTAT total population, ILO employment by age and the WDI 65+ share. Employment by age has no 65+ band and population by age is no longer in the ILOSTAT bulk list, so the 65+ block is not possible from these sources (D-044). Total population now comes from the ILO (adds Cuba and 2024); WP08 numbers unchanged otherwise.
+
 **What failed / corrections:** figures given in conversation before the pipeline existed used the sum of sector value added for the horizon statistics (25% and 7% of variance) and a 15+ population; the pipeline uses official total value added (27% and 8%). In conversation I said productive development should be measured "net of terms of trade"; volume measures already exclude price windfalls, so the terms-of-trade gain is reported beside the measure instead (concept note §3). The proposed 15–64 working-age definition was dropped (D-043). A "smallest gain across percentiles" statistic was replaced by the share of percentiles that gained, because the narrow top step dominated it. The first draft of the Baumol note stated the direction of measurement-error bias wrongly; corrected before commit. The new ladder page was renamed because the *Sectors* page already has a "productivity ladder" of employed workers.
 
 ---

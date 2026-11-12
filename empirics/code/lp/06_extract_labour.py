@@ -9,16 +9,21 @@ column, in empirics/data/raw/<scope>_lp/ or given as arguments:
     UNE_2EAP_SEX_AGE_RT_A   unemployment rate (%), 15+
     GDP_2HRW_NOC_NB_A       output per hour worked (GDP, constant 2021 PPP $)
     HOW_2EMP_SEX_NB_A       mean weekly hours actually worked per employed person
-    POP_2POP_SEX_AGE_NB_A   population by age, UN estimates (thousands): total, 15+, 65+
-    EMP_2EMP_SEX_AGE_NB_A   employment by age, ILO modelled estimates (thousands): 15+, 65+
-The last two are optional (steps 08 and 09 use them when present, D-043).
+    POP_2POP_SEX_NB_A       total population, UN estimates (thousands)
+    POP_2POP_SEX_AGE_NB_A   population by age (thousands): total, 15+, 65+ (not in the
+                            ILOSTAT bulk list as of 2026-11-12; read if supplied)
+    EMP_2EMP_SEX_AGE_NB_A   employment by age (thousands); the 2026-11-12 file has only
+                            15-24, 25+ and 15+, so no 65+ band can be taken from it
+and, from empirics/data/source/wdi/, the World Bank WDI file for SP.POP.65UP.TO.ZS
+(population aged 65+, % of total). Step 08 uses these when present (D-043, D-044).
 
 ILO files run to 2027 with projections; years after MAX_YEAR are dropped
 (2025, the reference document's last year).
 
 Writes empirics/data/interim/<scope>_lp/ilo_labour.csv
     (iso3, year, indicator, value), indicator in {emp_rate, part_rate, unemp_rate, lp_hour, hours,
-    and, when the optional files are present, pop_total, pop_15plus, pop_65plus, emp_15plus, emp_65plus}
+    and, when the optional files are present, pop_total, pop65_share, pop_15plus, pop_65plus,
+    emp_15plus, emp_65plus}
 """
 import sys
 from pathlib import Path
@@ -29,7 +34,7 @@ from config import COUNTRIES, INTERIM, RAW, SOURCE
 
 MAX_YEAR = 2025
 WANT = {"EMP_2WAP": "emp_rate", "EAP_2WAP": "part_rate", "UNE_2EAP": "unemp_rate",
-        "GDP_2HRW": "lp_hour", "HOW_2EMP": "hours"}
+        "GDP_2HRW": "lp_hour", "HOW_2EMP": "hours", "POP_2POP_SEX_NB": "pop_total"}
 
 
 AGE_FILES = {"POP_2POP_SEX_AGE": "pop", "EMP_2EMP_SEX_AGE": "emp"}
@@ -92,13 +97,31 @@ def read(path):
     return out.dropna().drop_duplicates(["iso3", "year", "indicator"])
 
 
+def read_wdi(path):
+    """World Bank WDI bulk CSV (zipped): SP.POP.65UP.TO.ZS -> pop65_share (% of total population)."""
+    import zipfile
+    with zipfile.ZipFile(path) as z:
+        name = next(n for n in z.namelist() if n.startswith("API_"))
+        with z.open(name) as f:
+            df = pd.read_csv(f, skiprows=4)
+    if df["Indicator Code"].iloc[0] != "SP.POP.65UP.TO.ZS":
+        return None
+    df = df[df["Country Code"].isin(COUNTRIES)]
+    years = [c for c in df.columns if str(c).isdigit()]
+    long = df.melt(id_vars=["Country Code"], value_vars=years, var_name="year", value_name="value").dropna()
+    out = pd.DataFrame({"iso3": long["Country Code"], "year": long["year"].astype(int),
+                        "indicator": "pop65_share", "value": long["value"].astype(float)})
+    return out[out["year"] <= MAX_YEAR]
+
+
 def main(extra):
     paths = [p for p in (list(RAW.glob("*.csv*")) if RAW.exists() else [])
              + sorted(SOURCE.glob("ilostat/*.csv.gz")) + [Path(x) for x in extra]]
+    paths += sorted(SOURCE.glob("wdi/*.zip"))
     parts = []
     for p in paths:
         try:
-            r = read(p)
+            r = read_wdi(p) if p.suffix == ".zip" else read(p)
         except Exception as e:
             print(f"[fail] {p.name}: {e}")
             continue

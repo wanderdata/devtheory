@@ -45,11 +45,13 @@ cols = {"country": "Country", "grade": "Grade", "ypw0": "Output per working-age 
         "ypwT": "Output per working-age person, end (US$, start-year prices)", "emp_rate0": "Employment rate, start (%)",
         "emp_rateT": "Employment rate, end (%)", "ypw_pp": "Total", "within_pp": "Within", "struct_pp": "Structural",
         "emprate_pp": "Employment rate", "demog_pp": "Demographic", "ypc_pp": "Output per person",
-        "tot_pp": "Terms of trade"}
-show(fig, x[list(cols)].rename(columns=cols).round(2),
+        "tot_pp": "Terms of trade", "old_share0": "Aged 65+, % of 15+ population, start",
+        "old_shareT": "Aged 65+, % of 15+ population, end"}
+show(fig, x[[c for c in cols if c in x.columns]].rename(columns=cols).round(2),
      caption="The label after each country is its survey-anchoring grade. Employment: ILO modelled estimates. "
-             "Demographic term: working-age share of the total population (PWT 11.0 population, to 2023, until ILO "
-             "population estimates are added). Terms of trade: real gross domestic income over real GDP, with "
+             "Demographic term: working-age share of the total population (ILOSTAT population, UN estimates). "
+             "The data table also shows the share of the 15+ population aged 65 and over (World Bank WDI), since "
+             "people over 65 are part of the working-age population here. Terms of trade: real gross domestic income over real GDP, with "
              "exports deflated by import prices.")
 
 st.subheader("How much does the employment rate matter, and over what horizon?")
@@ -80,7 +82,8 @@ with st.expander("Definitions and limits"):
     st.markdown(
         "- **Working-age population**: ages 15 and over, obtained as ILO modelled employment divided by the ILO "
         "employment-to-population ratio, so both refer to the same population. People aged 65 and over are "
-        "included; the demographic term is therefore affected by ageing.\n"
+        "included, so the demographic and employment-rate terms are affected by ageing. They cannot yet be shown "
+        "separately in the zero block: ILO employment estimates by age stop at a '25 and over' band.\n"
         "- **Log points**: 100 × the change in the natural log divided by the number of years. The within and "
         "structural terms are the linear terms of the period decomposition, rescaled in proportion so that they add "
         "up to the log growth of output per worker.\n"
@@ -89,4 +92,4 @@ with st.expander("Definitions and limits"):
         "Positive when export prices rose relative to import prices.\n"
         "- The employment rate for recent years, and for countries with few surveys, is modelled by the ILO, so "
         "the employment-rate term for those cases is partly a model result (see the grades).")
-footer("Penn World Table 11.0 (population).")
+footer("ILOSTAT population by sex (UN estimates), downloaded 2026-11-12; World Bank WDI, population aged 65+ (% of total).")
