@@ -24,10 +24,19 @@ WINDOWS = {
 AGE_MIN, AGE_MAX = 16, 65            # Donovan, Lu & Schoellman benchmark; 15+ as a variant
 MIN_CELL = 200                       # unweighted origin observations before merging a cell
 
-# Person key across visits (with N_ENT rising by one between consecutive quarters).
+# Person key across visits (with N_ENT rising by one between consecutive quarters). ENOEN's
+# record key within a quarter also includes TIPO, MES_CAL and CA; MES_CAL (calendar month) and
+# TIPO (face-to-face or telephone) can change between visits, so they are not used for linking.
+# Uniqueness of this key within each quarter is checked and reported by 01_link.py (OQ-63).
 KEY = ["cd_a", "ent", "con", "v_sel", "n_hog", "h_mud", "n_ren"]
 
-# Firm size: INEGI's ambito2 (codes to be verified against the file description, OQ-63).
-SIZE = {1: "micro, no premises", 2: "micro, no premises", 3: "micro, with premises", 4: "small",
+# Firm size: INEGI's ambito2 (ENOEN file description, SDEMT field 66): 1 is the calculated
+# subtotal of micro units (2 + 3); 2 without premises, 3 with premises, 4 small, 5 medium,
+# 6 large establishments, 7 government, 8 other.
+SIZE = {1: "micro, premises not specified", 2: "micro, no premises", 3: "micro, with premises", 4: "small",
         5: "medium", 6: "large", 7: "government", 8: "other or not specified"}
+
+# Self-represented cities (urban sample): CD_A below 53; 53 and above is the urban complement and
+# the rest of the country (ENOEN file description, VIVT field D_SEM).
+URBAN_MAX_CD_A = 52
 FORMAL = {1: "informal", 2: "formal"}

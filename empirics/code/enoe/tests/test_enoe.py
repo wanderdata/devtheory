@@ -96,7 +96,7 @@ def test_chain_does_not_join_different_people_with_the_same_key():
 # ----------------------------------------------------------------- flows ---
 
 def test_state_and_rates():
-    df = pd.DataFrame({"clase2": [1, 1, 2, 1], "rama_est2": [3, 3, 3, 5], "ambito2": [6, 1, 6, 4],
+    df = pd.DataFrame({"clase2": [1, 1, 2, 1], "rama_est2": [3, 3, 3, 5], "ambito2": [6, 2, 6, 4],
                        "emp_ppal": [2, 1, 2, 1]})
     s = flows.state(df)
     assert s.iloc[0] == "3|large|formal" and s.iloc[1] == "3|micro, no premises|informal" and s.iloc[2] == "N"
@@ -133,7 +133,7 @@ def synthetic_panel(n=3000, seed=1):
     rows = []
     for i in range(n):
         v1 = rng.integers(1, 6)                       # visit at the first quarter
-        formal, size, sector = rng.integers(1, 3), rng.choice([1, 4, 6]), rng.integers(1, 6)
+        formal, size, sector = rng.integers(1, 3), rng.choice([2, 4, 6]), rng.integers(1, 6)
         emp = True
         for t in range(5):
             if v1 + t > 5:
@@ -144,7 +144,8 @@ def synthetic_panel(n=3000, seed=1):
             rows.append(dict(cd_a=1 + i % 3, ent=1 + i % 4, con=i, v_sel=1, n_hog=1, h_mud=0, n_ren=1,
                              n_ent=v1 + t, pos=t, eda=30, sex=1, clase2=1 if emp else 2, rama_est2=sector,
                              ambito2=size, emp_ppal=formal, fac_tri=100.0, upm=i // 10, n_inf=1,
-                             ing_x_hrs=20.0 * formal * size, pos_ocu=1, p3r_anio=2010, p3r_mes=1))
+                             ing_x_hrs=20.0 * formal * size, pos_ocu=1, p3r_anio=2010, p3r_mes=1,
+                             year=[2023, 2023, 2023, 2023, 2024][t], q=[1, 2, 3, 4, 1][t], mes_cal=[2, 5, 8, 11, 2][t]))
     df = pd.DataFrame(rows)
     return [df[df["pos"] == t].drop(columns="pos") for t in range(5)]
 
@@ -157,6 +158,8 @@ def test_pipeline_on_synthetic_panel():
     p = f2.prepare(panel)
     q = f2.quarterly_rates(p, "test")
     assert q["exit_rate"].between(0, 1).all()
+    assert q.loc[q["pair"] == 3, "job_to_job_rate"].eq(0).all()          # nobody changes employer
+    assert q.loc[q["pair"] < 3, "job_to_job_rate"].isna().all()          # no start date outside Q1
     w = f2.annual(p)
     assert len(w) and w["exit_y"].isin([0, 1]).all()
     cells = f2.by_cell(w, "sizeform")
@@ -165,4 +168,5 @@ def test_pipeline_on_synthetic_panel():
     r = f2.boot_decomp(w, "exit_y", nboot=20)
     assert r["shapley_sizeform"] > r["shapley_sector"] and r["diff_lo90"] > 0
     m = f2.misreport(p)
-    assert (m["size_changes"] == 0).all() and (m["formality_changes"] == 0).all()
+    assert len(m) == 1 and m.iloc[0]["from_pos"] == 0 and m.iloc[0]["to_pos"] == 4
+    assert m.iloc[0]["size_changes"] == 0 and m.iloc[0]["formality_changes"] == 0

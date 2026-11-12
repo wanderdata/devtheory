@@ -109,3 +109,14 @@ The test of P-RG3 is repeated under (a) and (b). If the conclusion changes, the 
 ## 7. Outputs
 
 Only aggregate tables leave the raw-data folder. Code is in `empirics/code/enoe/`; tables go to `empirics/output/enoe/`; microdata stay in the uncommitted `empirics/data/raw/enoe/`.
+
+## Amendments (before any data were opened)
+
+**2026-11-12, from INEGI's ENOE^N file description** (`enoe_n_fd_c_bas_amp.pdf`, 2022; received as documentation in `wanderdata/enoe_data`):
+- **Firm size.** `ambito2` codes are: 1 a calculated subtotal of micro units (2 + 3); 2 micro without premises; 3 micro with premises; 4 small, 5 medium and 6 large establishments; 7 government; 8 other. The size classes in §3 follow these codes.
+- **Urban benchmark.** The self-represented cities are `CD_A` < 53.
+- **Sampling units.** A primary sampling unit is identified by CA + UPM, which the bootstrap uses.
+- **Person key.** ENOE^N's key within a quarter adds TIPO, MES_CAL and CA. MES_CAL and TIPO can change between visits, so they are not used for linking across quarters. The uniqueness of the linking key is reported for each quarter.
+- **Start date with the employer** (P3R_ANIO, P3R_MES). These questions are only in the extended questionnaire, which is applied in first quarters. So:
+  - outcome 4 (job change) is computed only for Q4→Q1 pairs (2018Q4→2019Q1 and 2023Q4→2024Q1);
+  - check (c) in §5.4 uses people with the same start date at two first-quarter visits, which is possible only in the post-redesign window (2023Q1 and 2024Q1, one year apart). Over a year, a change of size class with the same employer can also be genuine growth, so this bounds misreporting from above.

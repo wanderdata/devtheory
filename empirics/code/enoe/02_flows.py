@@ -21,11 +21,12 @@ import pandas as pd
 
 import enoe_flows as fl
 import enoe_link
-from enoe_config import AGE_MAX, AGE_MIN, INTERIM, MIN_CELL, OUTPUT, WINDOWS
+from enoe_config import AGE_MAX, AGE_MIN, INTERIM, MIN_CELL, OUTPUT, URBAN_MAX_CD_A, WINDOWS
 
 NBOOT = 499
 SEED = 20261112
-COLS = ["state", "fac_tri", "eda", "upm", "ent", "ing_x_hrs", "pos_ocu", "p3r_anio", "p3r_mes", "proxy", "cd_a"]
+COLS = ["state", "fac_tri", "eda", "psu", "ent", "ing_x_hrs", "pos_ocu", "p3r_anio", "p3r_mes", "proxy", "cd_a",
+        "year", "q", "mes_cal"]
 
 
 def wavg(x, w):
@@ -47,7 +48,9 @@ def prepare(panel):
         if c in p.columns:
             p[c] = pd.to_numeric(p[c], errors="coerce")
     p["proxy"] = (p["n_inf"] != p["n_ren"]) if "n_inf" in p.columns else np.nan
-    for c in ["fac_tri", "ing_x_hrs", "eda", "pos_ocu", "p3r_anio", "p3r_mes", "cd_a"]:
+    # primary sampling unit: CA + UPM in ENOEN (file description, "Consideraciones importantes")
+    p["psu"] = (p["ca"].astype(str) + "-" if "ca" in p.columns else "") + p["upm"].astype(str)
+    for c in ["fac_tri", "ing_x_hrs", "eda", "pos_ocu", "p3r_anio", "p3r_mes", "cd_a", "mes_cal", "year", "q"]:
         if c in p.columns:
             p[c] = pd.to_numeric(p[c], errors="coerce")
     for c in COLS:
@@ -80,14 +83,30 @@ def quarterly_rates(p, window):
     rows = []
     for i in range(4):
         w = pairs(p, i, i + 1)
-        for area, ww in [("all", w), ("self-represented cities", w[w[f"cd_a_{i}"] < 81])]:
+        for area, ww in [("all", w), ("self-represented cities", w[w[f"cd_a_{i}"] <= URBAN_MAX_CD_A])]:
             o, d, wt = ww[f"state_{i}"], ww[f"state_{i + 1}"], ww[f"fac_tri_{i}"]
             e, n = o != "N", o == "N"
             rows.append({"window": window, "pair": i, "area": area,
                          "exit_rate": wavg(d[e] == "N", wt[e]),
                          "job_finding_rate": wavg(d[n] != "N", wt[n]),
-                         "n_employed": int(e.sum()), "n_not_employed": int(n.sum())})
+                         "n_employed": int(e.sum()), "n_not_employed": int(n.sum()),
+                         "job_to_job_rate": job_to_job(ww, i)})
     return pd.DataFrame(rows)
+
+
+def job_to_job(w, i):
+    """Employees at i and i+1 whose start date with the current employer, reported at i+1, is less
+    than three months before the interview (Donovan et al., footnote 6). The start date is asked
+    only in the extended questionnaire (first quarters), so this is defined only when i+1 is a
+    first quarter."""
+    if not (w[f"q_{i + 1}"] == 1).all():
+        return np.nan
+    e = (w[f"pos_ocu_{i}"] == 1) & (w[f"pos_ocu_{i + 1}"] == 1) & (w[f"state_{i}"] != "N") & (w[f"state_{i + 1}"] != "N")
+    x = w[e & w[f"p3r_anio_{i + 1}"].between(1900, 2100) & w[f"p3r_mes_{i + 1}"].between(1, 12)]
+    if not len(x):
+        return np.nan
+    months = (x[f"year_{i + 1}"] * 12 + x[f"mes_cal_{i + 1}"]) - (x[f"p3r_anio_{i + 1}"] * 12 + x[f"p3r_mes_{i + 1}"])
+    return wavg(months < 3, x[f"fac_tri_{i}"])
 
 
 def annual(p):
@@ -120,7 +139,7 @@ def boot_decomp(w, y, nboot=NBOOT, seed=SEED):
     est = fl.decompose(d[y].to_numpy(float), d["sector"], d["sizeform"], d["fac_tri_0"].to_numpy(float))
     rng = np.random.default_rng(seed)
     d = d.reset_index(drop=True)
-    idx = d.groupby(["ent_0", "upm_0"]).indices
+    idx = d.groupby(["ent_0", "psu_0"]).indices
     strata = {}
     for (e, _), ix in idx.items():
         strata.setdefault(e, []).append(ix)
@@ -138,24 +157,31 @@ def boot_decomp(w, y, nboot=NBOOT, seed=SEED):
 
 
 def misreport(p):
-    """Employees with the same reported employer start date in consecutive quarters: share whose
-    size class or formality changes (both cannot change if the employer is the same)."""
+    """Employees with the same reported employer start date at two first-quarter visits (the only
+    quarters with the start-date question): share whose size class or formality differs. With
+    the same employer, a change of class is either genuine growth across a size boundary or
+    misreporting, so this bounds misreporting from above (§5.4 c)."""
     rows = []
-    for i in range(4):
-        w = pairs(p, i, i + 1)
-        same = ((w[f"pos_ocu_{i}"] == 1) & (w[f"pos_ocu_{i + 1}"] == 1)
-                & (w[f"p3r_anio_{i}"] == w[f"p3r_anio_{i + 1}"]) & (w[f"p3r_mes_{i}"] == w[f"p3r_mes_{i + 1}"])
-                & (w[f"state_{i}"] != "N") & (w[f"state_{i + 1}"] != "N"))
-        x = w[same]
-        if not len(x):
-            continue
-        _, sf0 = fl.parts(x[f"state_{i}"])
-        _, sf1 = fl.parts(x[f"state_{i + 1}"])
-        s0, s1 = sf0.str.split("|").str[0], sf1.str.split("|").str[0]
-        f0, f1 = sf0.str.split("|").str[1], sf1.str.split("|").str[1]
-        rows.append({"pair": i, "n": len(x),
-                     "size_changes": wavg(s0 != s1, x[f"fac_tri_{i}"]),
-                     "formality_changes": wavg(f0 != f1, x[f"fac_tri_{i}"])})
+    pos = sorted(p.loc[p["q"] == 1, "pos"].unique())
+    for i in pos:
+        for j in pos:
+            if j <= i:
+                continue
+            w = pairs(p, i, j)
+            same = ((w[f"pos_ocu_{i}"] == 1) & (w[f"pos_ocu_{j}"] == 1)
+                    & (w[f"p3r_anio_{i}"] == w[f"p3r_anio_{j}"]) & (w[f"p3r_mes_{i}"] == w[f"p3r_mes_{j}"])
+                    & w[f"p3r_anio_{i}"].between(1900, 2100)
+                    & (w[f"state_{i}"] != "N") & (w[f"state_{j}"] != "N"))
+            x = w[same]
+            if not len(x):
+                continue
+            _, sf0 = fl.parts(x[f"state_{i}"])
+            _, sf1 = fl.parts(x[f"state_{j}"])
+            s0, s1 = sf0.str.split("|").str[0], sf1.str.split("|").str[0]
+            f0, f1 = sf0.str.split("|").str[1], sf1.str.split("|").str[1]
+            rows.append({"from_pos": i, "to_pos": j, "n": len(x),
+                         "size_changes": wavg(s0 != s1, x[f"fac_tri_{i}"]),
+                         "formality_changes": wavg(f0 != f1, x[f"fac_tri_{i}"])})
     return pd.DataFrame(rows)
 
 
