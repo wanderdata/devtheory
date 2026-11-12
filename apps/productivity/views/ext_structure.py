@@ -1,21 +1,23 @@
-"""Extended: McMillan–Rodrik scatter with fitted slope, productivity dispersion, hours."""
+"""Extended: McMillan–Rodrik scatter with fitted slope, productivity dispersion, hours, relative prices."""
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from lib import (CARIB, countries, C_CONTEXT, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2, SECTOR_COLORS,
-                 SHORT, base_layout, dispersion, footer, load_labour, mr_step, name, sector_long, show,
-                 sidebar_common)
+from lib import (CARIB, countries, C_CONTEXT, C_HIGHLIGHT, C_STRUCT, C_WITHIN, INK2, MUTED, SECTOR_COLORS,
+                 SECTOR_NAMES, SHORT, base_layout, dispersion, footer, load_extra, load_labour, mr_step, name,
+                 scope_info, sector_long, show, sidebar_common)
 
 grid, series, agg = sidebar_common(key="es")
 st.title("Reallocation and productivity gaps")
-st.markdown("**Extension of the baseline.** Three additions:\n"
+st.markdown("**Extension of the baseline.** Four additions:\n"
             "1. The original **McMillan–Rodrik scatter**, with an employment-weighted regression line. A "
             "positive slope means jobs moved toward higher-productivity sectors.\n"
             "2. A **measure of productivity dispersion across sectors** over time, to show whether gaps between "
             "sectors are narrowing.\n"
-            "3. A **per-worker vs per-hour** comparison that isolates the effect of working hours.")
+            "3. A **per-worker vs per-hour** comparison that isolates the effect of working hours.\n"
+            "4. **Relative prices**: how much of a sector's change in relative productivity at current prices is a "
+            "change in its relative price rather than in real output per worker.")
 
 df = sector_long(grid, series, tuple(agg) if agg else None)
 
@@ -102,4 +104,53 @@ else:
     show(fig, r.round(2).reset_index().assign(iso3=lambda d: d["iso3"].map(name)).rename(columns={"iso3": "country"}),
          caption="ILO modelled estimates (2021 PPP$). Growth in output per worker ≈ growth per hour + growth in hours. "
                  "Where hours fall, per-worker figures understate productivity gains per hour.")
+
+# ---- 4. relative prices
+st.subheader("Relative prices and measured productivity")
+st.markdown(
+    "A sector's output per worker relative to the economy-wide average, at current prices, can change because "
+    "its real output per worker changed relative to the average or because its price changed relative to the "
+    "average price. In logs the two parts add up exactly. Under Baumol's cost disease, sectors with slow real "
+    "productivity growth see their relative prices rise, so across sectors the price term falls with the real "
+    "term, with a slope near −1. A slope between 0 and −1 means relative prices offset only part of the "
+    "difference in real productivity growth.")
+bs, bsl = load_extra("baumol", "sectors"), load_extra("baumol", "slope")
+if bs.empty:
+    st.info("No results: run `empirics/code/lp/09_baumol.py`.")
+else:
+    bper = st.radio("Period", list(dict.fromkeys(bs["period"])), horizontal=True, index=4, key="bper")
+    excl = scope_info()["agg_exclude"]
+    b = bs[(bs["period"] == bper) & ~bs["iso3"].isin(excl)]
+    fig = go.Figure()
+    for sec in [c for c in SECTOR_COLORS if c in set(b["sector"])]:
+        g = b[b["sector"] == sec]
+        fig.add_trace(go.Scatter(x=g["d_real_pp"], y=g["d_price_pp"], mode="markers", name=SHORT[sec],
+                                 marker=dict(color=SECTOR_COLORS[sec], size=8, opacity=0.8,
+                                             symbol="x" if sec == "MIU" else "circle"),
+                                 customdata=g[["country"]],
+                                 hovertemplate="%{customdata[0]} · " + SHORT[sec] +
+                                               "<br>real %{x:.2f}<br>relative price %{y:.2f}<extra></extra>"))
+    sl = bsl[bsl["period"] == bper]
+    lim = np.nanpercentile(np.abs(b[["d_real_pp", "d_price_pp"]].to_numpy()), 98)
+    xs = np.array([-lim, lim])
+    fig.add_trace(go.Scatter(x=xs, y=-xs, mode="lines", line=dict(color=MUTED, dash="dot", width=1),
+                             name="Slope −1 (full offset)", hoverinfo="skip"))
+    if len(sl):
+        bb = sl.iloc[0]["slope"]
+        xm, ym = b[b["sector"] != "MIU"][["d_real_pp", "d_price_pp"]].mean()
+        fig.add_trace(go.Scatter(x=xs, y=ym + bb * (xs - xm), mode="lines", line=dict(color=INK2, width=1.5),
+                                 name=f"Fitted slope {bb:.2f}", hoverinfo="skip"))
+    base_layout(fig, xtitle="real relative productivity, log points per year",
+                ytitle="relative price, log points per year", height=480)
+    fig.update_xaxes(range=[-lim, lim]); fig.update_yaxes(range=[-lim, lim])
+    cap = ("Each point is a sector in a country; mining and utilities (crosses) are excluded from the fitted slope "
+           "because their prices follow world commodity prices.")
+    if len(sl):
+        r0 = sl.iloc[0]
+        cap += (f" Slope {r0['slope']:.2f}, 90% interval [{r0['ci90_lo']:.2f}, {r0['ci90_hi']:.2f}] from a bootstrap "
+                f"over countries; {int(r0['n_obs'])} observations. ")
+    cap += ("Errors in sector employment bias the slope toward zero; errors in sector deflators bias it toward −1. "
+            "Axes cut at the 98th percentile of absolute values; all points are in the data table.")
+    show(fig, b[["country", "sector", "emp_share0", "rel_nom0", "d_nom_pp", "d_real_pp", "d_price_pp"]]
+         .assign(sector=lambda d: d["sector"].map(SECTOR_NAMES)).round(3), caption=cap)
 footer()

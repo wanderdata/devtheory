@@ -169,6 +169,35 @@ def load_output(grid, name):
 
 
 @st.cache_data
+def _load_extra(sc, folder, name):
+    f = out_dir(sc) / folder / f"{name}.csv"
+    if not f.exists():
+        return pd.DataFrame()
+    d = pd.read_csv(f)
+    if "iso3" in d.columns:
+        d["country"] = d["iso3"].map(NAMES).fillna(d["iso3"])
+    return d
+
+
+def load_extra(folder, name):
+    """Outputs of steps 08 (folder 'ladder') and 09 (folder 'baumol')."""
+    return _load_extra(scope(), folder, name)
+
+
+# Ladder verdicts (08_ladder.py), best to worst, with fixed colours.
+LADDER_VERDICTS = {
+    "improvement": "#1baf7a",
+    "improvement, weighting the lower percentiles": "#9fd9c2",
+    "ambiguous": "#c3c2b7",
+    "depends on prices": "#eda100",
+    "deterioration, weighting the lower percentiles": "#f5b99f",
+    "deterioration": "#eb6834",
+}
+STEP_NAMES = {"Z_UNEMP": "Unemployed", "Z_OLF": "Outside the labour force", "Z_65PLUS": "Aged 65+, not employed",
+              "Z_NOTEMP": "Not employed"}
+
+
+@st.cache_data
 def _load_labour(sc):
     f = interim_dir(sc) / "ilo_labour.csv"
     return pd.read_csv(f) if f.exists() else None
@@ -327,11 +356,11 @@ def dispersion(df):
 
 # ----------------------------------------------------------------- charts ---
 
-def footer():
+def footer(extra=""):
     nc = not_covered()
     credit("Sources: UN Statistics Division, National Accounts Main Aggregates (Jan 2026 upload); "
            "ILOSTAT, employment by economic activity (ILO modelled estimates and national sources), "
-           "downloaded 2026-11-09. Method: devtheory WP05 and WP06."
+           "downloaded 2026-11-09. " + (extra + " " if extra else "") + "Method: devtheory WP05, WP06 and WP08."
            + (" Not covered (no sector employment data): " + ", ".join(nc) + "." if nc else ""))
 
 

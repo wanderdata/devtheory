@@ -34,6 +34,8 @@ pages = {
         st.Page("views/ext_periods.py", title="Period decompositions", url_path="periods"),
         st.Page("views/ext_annual.py", title="Annual decomposition, additive prices", url_path="annual"),
         st.Page("views/ext_structure.py", title="Reallocation and productivity gaps", url_path="reallocation"),
+        st.Page("views/ext_working_age.py", title="Output per working-age person", url_path="working-age"),
+        st.Page("views/ext_ladder.py", title="Ladder of the working-age population", url_path="ladder"),
         st.Page("views/ext_data.py", title="Data quality and coverage", url_path="data-quality"),
     ],
 }

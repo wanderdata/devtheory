@@ -26,7 +26,9 @@ Run locally: `pip install -r apps/productivity/requirements.txt && streamlit run
 | | Country profile | Panels A–I for one country |
 | Extended analysis | Anchored period decompositions | WP05 main results: grades, static/dynamic, robustness |
 | | Annual decomposition, additive prices | Annual decomposition at previous-year prices, survey-year markers, price-base comparison |
-| | Reallocation and productivity gaps | McMillan–Rodrik scatter with weighted slope; dispersion index; hours vs output per hour |
+| | Reallocation and productivity gaps | McMillan–Rodrik scatter with weighted slope; dispersion index; hours vs output per hour; relative prices and measured productivity by sector (Baumol slope) |
+| | Output per working-age person | Growth of output per person aged 15+ split into within-sector, structural-change and employment-rate terms; demographic and terms-of-trade terms; how the employment-rate term's weight changes with the horizon (WP08) |
+| | Ladder of the working-age population | Everyone aged 15+ placed at their sector's output per worker, the non-employed at zero; dominance verdicts at two price bases, incidence curve, threshold indices (WP08) |
 | | Data quality and coverage | Survey timeline, validation, model vs survey shares, grades |
 
 ### Data notes
