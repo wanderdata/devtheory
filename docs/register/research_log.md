@@ -4,6 +4,23 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-12 — Session 18: defining productive development; ladder of the working-age population
+
+**Prompt (user):** summarise and assess an internal email exchange on whether productive development should be defined by productivity alone or by output per working-age person; propose a definition; then integrate the discussion into the repository. Style instruction: papers and app text should be plain and technical, without dramatic phrasing.
+
+**Done**
+- Definition (D-042): productive development as a sustained improvement in the distribution of the working-age population over the productivity of their work, non-employed at zero. Concept note `docs/theory/03_defining_productive_development.md`; propositions P25–P27.
+- Pipeline steps `08_ladder.py` (log decomposition of output per working-age person; horizon statistics; ladders; first- and second-order dominance at two price bases; incidence curves; threshold indices) and `09_baumol.py` (relative-price split by sector; cross-sector slope), both scopes, with `ladder.py` and tests on constructed cases plus reference results. Measurement choices in D-043. Existing outputs unchanged.
+- Productivity app: pages *Output per working-age person* and *Ladder of the working-age population*; relative-price section on the reallocation page. Checked in a browser.
+- WP08 draft. OQ-57 to OQ-62; literature L138–L144. CLAUDE.md: style rule for papers and app text.
+- Requested from the user: ILOSTAT `POP_2POP_SEX_AGE_NB_A` and `EMP_2EMP_SEX_AGE_NB_A`.
+
+**Key results:** employment-rate term's share of the variance of growth of output per working-age person falls from 27% (1-year windows) to 8% (20-year); opposite signs in 41–50% of windows at every horizon. 2000–19, grades A/B: 7 of 23 countries show an unambiguous improvement, 9 are ambiguous (including Brazil, whose mean rose); none in 2008–19. Baumol slope −0.48 (2000–19), interval [−0.62, −0.29].
+
+**What failed / corrections:** figures given in conversation before the pipeline existed used the sum of sector value added for the horizon statistics (25% and 7% of variance) and a 15+ population; the pipeline uses official total value added (27% and 8%). In conversation I said productive development should be measured "net of terms of trade"; volume measures already exclude price windfalls, so the terms-of-trade gain is reported beside the measure instead (concept note §3). The proposed 15–64 working-age definition was dropped (D-043). A "smallest gain across percentiles" statistic was replaced by the share of percentiles that gained, because the narrow top step dominated it. The first draft of the Baumol note stated the direction of measurement-error bias wrongly; corrected before commit. The new ladder page was renamed because the *Sectors* page already has a "productivity ladder" of employed workers.
+
+---
+
 ## 2026-11-10 — Session 17: beyond sector shares; three papers to read and replicate
 
 **Prompt (user):** after WP07, broad-sector tests look mistaken; how would one design tests of which jobs, firms, sectors and other levels let an economy grow? Then: choose three recent papers that best develop these ideas, to review, replicate and draw LAC implications from.

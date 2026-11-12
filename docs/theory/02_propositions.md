@@ -37,3 +37,13 @@ P1–P2 (core reconciliation), P4–P5 (core of Idea 3), P7 (most distinctive LA
 | P22 | Formal take-offs follow large or permanent changes (wedge reform, large sustained export expansion), not small/temporary ones | WP04 E4 | growth-episode data |
 | P23 | Commodity booms cause lasting tradable declines only near the threshold; weaker where rents are saved or cut taxes on formal labor | WP04 E5 (refines P7) | subnational shocks × initial formality |
 | P24 | Managerial supply raises formal employment persistently only where tradable productivity is also rising | WP04 E1/E4 | regional panels |
+
+## Propositions on defining and measuring productive development (added 2026-11-12)
+
+See `03_defining_productive_development.md` and WP08. Numbering continues from P24.
+
+| # | Proposition | Source | Support if… | Reject if… | Data |
+|---|---|---|---|---|---|
+| P25 | The employment-rate term's weight in the growth of output per working-age person falls with the horizon; over 20 years productivity accounts for nearly all of it. | 03, WP08 | employment-rate share of variance falls from short to long windows (first pass, LAC: 27% at 1 year, 8% at 20) | the share is similar at all horizons | UN AMA, ILO modelled estimates (in hand) |
+| P26 | Sector-level ladder verdicts change once sectors are split by formality and firm size: more country-periods become ambiguous or deteriorations, because low-productivity segments grew within sectors that look stable at sector level. | 03, WP08; P1–P2 | in Mexico, the verdict for 2005–2019 or 2005–2023 with sector × formality × size steps differs from the sector-only verdict | verdicts unchanged | INEGI informal-economy accounts; economic censuses; ENOE |
+| P27 | Part of the rise in low-productivity services' relative productivity at current prices is a rise in their relative prices (Baumol), and relative prices offset part, not all, of differences in real productivity growth across sectors. | 03, WP08 | slope of relative-price change on real relative-productivity change between −1 and 0 and significantly below 0 | slope near 0, or near −1 | UN AMA current and constant prices, ILO (in hand) |

@@ -36,6 +36,10 @@ The UN AMA's seven groupings (ISIC Rev.3): AGR agriculture (A–B); MIU mining a
 
 `05_decompose.py` writes each period decomposition at initial-year prices (`main.csv`), final-year prices (`robust_final_prices.csv`) and chained prices (`robust_chained.csv`: one decomposition per year at previous-year prices, averaged over the period), plus excluding-mining variants for each. The dashboard lets the user switch between them; initial-year is its default, and each country-period gets a verdict on agreement across the three (D-035). Chained results can suffer chain drift where annual employment shares are noisy. `07_lac_summary.py` (LAC scope only) writes the regional summary tables and figures for WP06 to `empirics/output/lac_lp/summary/`.
 
+## Output per working-age person, ladders and relative prices (D-042, D-043; WP08)
+
+`08_ladder.py` writes to `empirics/output/<scope>/ladder/`: the growth of output per working-age person (15+) split into within-sector, structural-change and employment-rate terms, with demographic and terms-of-trade terms beside it (`terms.csv`); horizon statistics for the employment-rate term (`horizon.csv`); ladders with the non-employed at zero (`ladders.csv`); dominance verdicts at initial- and final-year prices and threshold indices (`verdicts.csv`); incidence curves (`incidence.csv`). The distribution functions are in `ladder.py`. `09_baumol.py` writes to `.../baumol/` the split of each sector's relative productivity at current prices into real and relative-price parts, and the cross-sector slope. Both use ILOSTAT population and employment by age (`POP_2POP_SEX_AGE_NB_A`, `EMP_2EMP_SEX_AGE_NB_A`) when `06_extract_labour.py` finds them; until then total population comes from PWT 11.0.
+
 ## Running it
 
 Everything, both scopes: `python empirics/code/lp/run_all.py` (about two minutes). Step by step:
