@@ -1,16 +1,36 @@
-# ENOE job ladders in Mexico (WP09)
+# ENOE studies (WP09, Jobs in Mexico)
 
-Design and tests are fixed in [`papers/WP09_job_ladders_mexico/00_pre_analysis_plan.md`](../../../papers/WP09_job_ladders_mexico/00_pre_analysis_plan.md) (D-046). Origin: RG01, paper 3 (Donovan, Lu & Schoellman 2023).
+Programme overview: [`papers/WP09_jobs_mexico/README.md`](../../../papers/WP09_jobs_mexico/README.md). Decisions D-046 onward. Microdata never enter this repository: the quarterly zips are release assets of `wanderdata/enoe_data` and are downloaded into the uncommitted `empirics/data/raw/enoe/`. Only aggregate tables are committed, in `empirics/output/enoe/<study>/`. These pipelines are not run in CI; their code is tested on synthetic data in `tests/`.
+
+## Shared
 
 | File | Role |
 |---|---|
-| `enoe_config.py` | Paths, windows (2018Q4–2019Q4, 2023Q1–2024Q1), age range, person key, size and formality labels |
-| `enoe_io.py` | Finds and reads INEGI's quarterly tables (CSV, zipped or not) whatever the file-naming convention of the release |
+| `enoe_config.py` | Paths, panel windows (2018Q4–2019Q4, 2023Q1–2024Q1), annual cross-sections (first quarters 2005–2025), person key, size and formality labels |
+| `enoe_io.py` | Finds and reads INEGI's quarterly tables (CSV, zipped or not) whatever the release's file naming |
 | `enoe_link.py` | Links respondents across consecutive quarters (unique key, visit number +1, same sex, age change −1 to +2) and assigns person ids |
-| `enoe_flows.py` | Labour-market states and job cells, rates, upward transitions, R² and Shapley decomposition |
-| `00_fetch.py` | Downloads the quarterly zips from the release assets of `wanderdata/enoe_data` into `empirics/data/raw/enoe/` and writes a SHA-256 manifest |
-| `01_link.py` | Applies the sample rules and links each window; linked microdata go to the uncommitted `empirics/data/raw/enoe_interim/` |
-| `02_flows.py` | Writes aggregate tables only to `empirics/output/enoe/` |
-| `tests/test_enoe.py` | File-name matching, linking rules, rates and decomposition on synthetic panels with ENOE's variable names |
+| `00_fetch.py` | Downloads the CSV zips the studies need through the GitHub REST API and writes a SHA-256 manifest |
+| `run_all.py` | Fetch, then each study's `run_all.py` |
 
-Microdata never enter this repository. INEGI's codes for `ambito2` and the urban definition from `cd_a` are to be checked against the file description before results are used (OQ-63).
+## Study 9.1 — Which jobs are rungs? (`ladders/`)
+
+Plan and paper in `papers/WP09_jobs_mexico/9.1_job_ladders/`.
+
+| Step | Output |
+|---|---|
+| `01_link.py` | Linked panels (uncommitted) and `link_diagnostics.csv` |
+| `02_flows.py` | Flows, rates by job cell, Shapley decompositions with robustness variants, manufacturing vs services, transitions, earnings growth |
+| `03_report.py` | `results.md` |
+
+## Study 9.2 — Which jobs build skills? (`profiles/`)
+
+Plan and paper in `papers/WP09_jobs_mexico/9.2_experience_profiles/`.
+
+| Step | Output |
+|---|---|
+| `01_extract.py` | Annual cross-sections (uncommitted) |
+| `02_profiles.py` | Cross-sectional and HLT profiles with bootstrap intervals, composition decomposition, earnings reporting |
+| `03_panel.py` | Within-person synthetic profiles from the 9.1 panels |
+| `04_diagnostics.py` | Exploratory: profiles by period, HLT on 2005–2018, reporting by experience |
+| `05_report.py` | `results.md` |
+| `profiles_lib.py` | Experience, sample rules, sparse weighted regressions, HLT restriction, composition decomposition |

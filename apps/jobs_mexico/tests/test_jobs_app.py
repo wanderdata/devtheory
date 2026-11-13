@@ -1,11 +1,13 @@
 """Smoke tests for the Jobs in Mexico app: every page runs without exceptions and draws charts
 with data (AppTest, no browser)."""
+import sys
 from pathlib import Path
 
 import pytest
 from streamlit.testing.v1 import AppTest
 
 APP = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(APP))          # pages import jobs_lib, as when run from app.py
 PAGES = sorted(str(p.relative_to(APP)) for p in (APP / "views").glob("*.py"))
 
 

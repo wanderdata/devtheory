@@ -4,6 +4,20 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-13 — Session 20: WP09 as a programme; study 9.2 (experience–earnings profiles)
+
+**Prompt (user):** take the ENOE ideas one at a time, organised hierarchically, with an app where warranted; start with the first (which jobs build skills).
+
+**Done**
+- Reorganised WP09 as a programme (D-050): papers per study, shared ENOE code with study subfolders, outputs per study, new app `apps/jobs_mexico/` (overview, 9.1, 9.2); the job-ladder page moved out of the productivity app.
+- Study 9.2: pre-analysis plan (P28, P29) before estimation; 21 first-quarter cross-sections 2005–2025 (859,695 baseline observations); cross-sectional profiles with UPM bootstrap; HLT restriction; within-person synthetic profiles from the 9.1 panels; composition decomposition; exploratory diagnostics; paper and app page. Literature L148–L149; OQ-66, OQ-67.
+
+**Key results:** height at 20–24 years 26% (formal 25%, informal 16%; rich countries ≈ 89% in Lagakos et al.); within manufacturing and commerce formal ≈ informal; sector range 15–36%; P28 and P29 rejected. Formal profiles flattened from 36% (2005–09) to 19% (2020–25); informal stable at about 15%.
+
+**What failed / corrections:** five-year cohorts did not identify the HLT model (synthetic test), changed to single years before estimation; the dummy builder compared strings with integers, dropping year and cohort effects (caught by tests; first run discarded); the first full run ran out of memory (sparse normal equations instead); HLT gives negative profiles even on 2005–2018, so the minimum-wage explanation was wrong and the estimates are not used; within-person profiles too imprecise; `to_markdown` needed an unpinned package and was replaced.
+
+---
+
 ## 2026-11-13 — Session 19: WP09 first results (ENOE job ladders)
 
 **Prompt (user):** continue the ENOE work; data uploaded as release assets of `wanderdata/enoe_data` (all quarters 2005–2026Q2, four formats, one release).

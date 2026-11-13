@@ -31,5 +31,9 @@ SECTORS = {"0": "Not specified", "1": "Agriculture, forestry, fishing", "2": "Mi
 SOURCE = "Source: INEGI, Encuesta Nacional de Ocupación y Empleo (ENOE), quarterly microdata."
 
 
+# Fixed colours for job types, used on every page.
+TYPE_COLORS = {"all (baseline)": INK2, "formal": C_HIGHLIGHT, "informal": "#eb6834"}
+
+
 def footer(extra=""):
-    credit(SOURCE + (" " + extra if extra else "") + " " + AUTHOR)
+    credit(SOURCE + (" " + extra if extra else ""))

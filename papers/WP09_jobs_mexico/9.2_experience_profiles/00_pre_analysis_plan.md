@@ -81,3 +81,9 @@ The decomposition uses the predicted mean log earnings by bin from §4.1 and the
 ## 6. Outputs
 
 Code is in `empirics/code/enoe/profiles/`; aggregate tables go to `empirics/output/enoe/profiles/`; the app page is "9.2 Which jobs build skills?" in `apps/jobs_mexico/`.
+
+## Amendment (before any profile was estimated)
+
+**2026-11-13.** Section 4.3 deflated within-person earnings growth by the national CPI. Instead, economy-wide growth (the time effect) is removed by subtracting the average within-person growth of workers in the flat spot (30–39 years of experience) observed in the same panel and type of job. This is the panel counterpart of the Heckman–Lochner–Taber restriction of §4.2. It needs no external price data and also removes real economy-wide wage growth, which a CPI deflator would leave in. The CPI-deflated version is not computed.
+
+**2026-11-13, before any estimate was examined.** In §4.2, cohorts are single birth years instead of five-year groups. On synthetic data with known experience, time and cohort effects, the five-year version did not recover the experience profile: a cohort trend within each group loads onto the time effects estimated in the flat spot. The single-year version does recover it (`tests/test_enoe_profiles.py`). A coding error that dropped the year dummies was found by the same tests. The first run of the estimates was discarded without inspection.

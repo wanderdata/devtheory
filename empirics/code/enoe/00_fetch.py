@@ -1,7 +1,7 @@
 """Download the ENOE quarterly zips from the release assets of wanderdata/enoe_data into the
 uncommitted empirics/data/raw/enoe/ and record their SHA-256 in a manifest (D-046).
 
-    python empirics/code/enoe/00_fetch.py            # CSV zips for the quarters in WINDOWS
+    python empirics/code/enoe/00_fetch.py            # CSV zips for the quarters in WINDOWS and CROSS_SECTIONS
     python empirics/code/enoe/00_fetch.py --all      # every asset of every release
 
 The release holds INEGI's files for 2005 onward in four formats (csv, dbf, dta, sav); by default
@@ -15,7 +15,7 @@ import json
 import subprocess
 import sys
 
-from enoe_config import RAW, WINDOWS
+from enoe_config import CROSS_SECTIONS, RAW, WINDOWS
 
 REPO = "wanderdata/enoe_data"
 
@@ -32,7 +32,8 @@ def wanted(name, everything=False):
     n = name.lower()
     if not n.endswith("_csv.zip"):
         return False
-    return any(f"{y}trim{q}_csv" in n or f"{y}_trim{q}_csv" in n for qs in WINDOWS.values() for y, q in qs)
+    quarters = {yq for qs in WINDOWS.values() for yq in qs} | set(CROSS_SECTIONS)
+    return any(f"{y}trim{q}_csv" in n or f"{y}_trim{q}_csv" in n for y, q in quarters)
 
 
 def assets(release_id):
