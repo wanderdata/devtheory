@@ -4,6 +4,22 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-13 — Session 21: study 9.3 (a productivity ladder for Mexico with formal and informal steps)
+
+**Prompt (user):** continue to the next study.
+
+**Done**
+- Pre-analysis plan (P26 for Mexico, P30) committed before estimation.
+- ENOE aggregate cells for all quarters of 2005, 2008, 2019 and 2024 (year × quarter × sector × formality × size); value added split within sectors by labour income (θ 0.5–2, medians, size split); WP08 ladders, dominance verdicts and McMillan–Rodrik decompositions on segments (D-052).
+- Paper `papers/WP09_jobs_mexico/9.3_productivity_ladder/01_paper.md`; app page "9.3 A productivity ladder for Mexico"; tests.
+- Study 9.2 size labels corrected (D-053) and outputs regenerated.
+
+**Key results:** no verdict changes in any period or specification (P26 rejected for Mexico). Between-segment reallocation within sectors, 2005–2019: +0.071 pp a year against a sector-level within term of −0.268 (26%), so P30 is supported narrowly at θ = 1 but not robustly (13% at θ = 0.5, 10% with the size split). In 2005–2008 the sector-level within gain (+0.23) was all formalisation. Safeguard rules not triggered (income ratios 0.34–0.70; reporting gaps < 20 pp).
+
+**What failed / corrections:** the 9.2 size groups had been mislabelled as cut at 10 workers (D-053). The first draft of the paper's explanation of the unchanged verdicts was written before checking sector productivity changes; corrected against the data.
+
+---
+
 ## 2026-11-13 — Session 20: WP09 as a programme; study 9.2 (experience–earnings profiles)
 
 **Prompt (user):** take the ENOE ideas one at a time, organised hierarchically, with an app where warranted; start with the first (which jobs build skills).

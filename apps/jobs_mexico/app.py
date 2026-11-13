@@ -12,6 +12,7 @@ pages = {
     "Studies": [
         st.Page("views/s1_ladders.py", title="9.1 Which jobs are rungs?", url_path="rungs"),
         st.Page("views/s2_profiles.py", title="9.2 Which jobs build skills?", url_path="skills"),
+        st.Page("views/s3_ladder.py", title="9.3 A productivity ladder for Mexico", url_path="ladder"),
     ],
 }
 st.navigation(pages).run()

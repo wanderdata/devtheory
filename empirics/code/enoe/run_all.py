@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-STUDIES = ["ladders", "profiles"]
+STUDIES = ["ladders", "profiles", "productivity_ladder"]
 
 if __name__ == "__main__":
     if "--no-fetch" not in sys.argv:

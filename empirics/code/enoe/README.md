@@ -34,3 +34,13 @@ Plan and paper in `papers/WP09_jobs_mexico/9.2_experience_profiles/`.
 | `04_diagnostics.py` | Exploratory: profiles by period, HLT on 2005–2018, reporting by experience |
 | `05_report.py` | `results.md` |
 | `profiles_lib.py` | Experience, sample rules, sparse weighted regressions, HLT restriction, composition decomposition |
+
+## Study 9.3 — A productivity ladder for Mexico (`productivity_ladder/`)
+
+Plan and paper in `papers/WP09_jobs_mexico/9.3_productivity_ladder/`. Uses WP08's `empirics/code/lp/ladder.py` and `decompose.py` and the UN sector panel `empirics/data/processed/lac_lp/panel_7sector.csv`.
+
+| Step | Output |
+|---|---|
+| `01_extract.py` | `cells.csv`: weighted employment, labour income and population 15+ by year × quarter × sector × formality × size (aggregates only, committed) |
+| `02_ladder.py` | `segments.csv`, `verdicts.csv`, `decomposition.csv`, `ladders.csv`, `incidence.csv` |
+| `03_report.py` | `results.md` |

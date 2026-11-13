@@ -15,7 +15,7 @@ import json
 import subprocess
 import sys
 
-from enoe_config import CROSS_SECTIONS, RAW, WINDOWS
+from enoe_config import CROSS_SECTIONS, LADDER_YEARS, RAW, WINDOWS
 
 REPO = "wanderdata/enoe_data"
 
@@ -32,7 +32,8 @@ def wanted(name, everything=False):
     n = name.lower()
     if not n.endswith("_csv.zip"):
         return False
-    quarters = {yq for qs in WINDOWS.values() for yq in qs} | set(CROSS_SECTIONS)
+    quarters = ({yq for qs in WINDOWS.values() for yq in qs} | set(CROSS_SECTIONS)
+                | {(y, q) for y in LADDER_YEARS for q in (1, 2, 3, 4)})
     return any(f"{y}trim{q}_csv" in n or f"{y}_trim{q}_csv" in n for y, q in quarters)
 
 
