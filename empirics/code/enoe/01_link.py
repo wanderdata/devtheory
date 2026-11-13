@@ -33,7 +33,10 @@ def quarter(year, q):
         c = c.drop(columns=[x for x in ["year", "q"] if x in c.columns])
         on = KEY + ["n_ent"] + [k for k in KEY_OPTIONAL if k in s.columns and k in c.columns]
         for k in on:
-            s[k], c[k] = s[k].astype(str).str.strip(), c[k].astype(str).str.strip()
+            if k == "n_ent":
+                c[k] = pd.to_numeric(c[k], errors="coerce")
+            else:
+                s[k], c[k] = s[k].astype(str).str.strip(), c[k].astype(str).str.strip()
         s = s.merge(c, on=on, how="left")
     except FileNotFoundError:
         pass
