@@ -1,8 +1,11 @@
 """Download the ENOE quarterly zips from the release assets of wanderdata/enoe_data into the
 uncommitted empirics/data/raw/enoe/ and record their SHA-256 in a manifest (D-046).
 
-    python empirics/code/enoe/00_fetch.py            # all releases
-    python empirics/code/enoe/00_fetch.py TAG ...    # selected releases
+    python empirics/code/enoe/00_fetch.py            # CSV zips for the quarters in WINDOWS
+    python empirics/code/enoe/00_fetch.py --all      # every asset of every release
+
+The release holds INEGI's files for 2005 onward in four formats (csv, dbf, dta, sav); by default
+only the CSV version of the quarters the study uses is downloaded.
 
 Uses the GitHub REST API through the GitHub CLI (`gh api`), which must have access to the
 repository. Files already present with the same size are not downloaded again.
@@ -12,7 +15,7 @@ import json
 import subprocess
 import sys
 
-from enoe_config import RAW
+from enoe_config import RAW, WINDOWS
 
 REPO = "wanderdata/enoe_data"
 
@@ -23,17 +26,37 @@ def api(path, binary=False):
     return r.stdout if binary else json.loads(r.stdout)
 
 
-def main(tags):
+def wanted(name, everything=False):
+    if everything:
+        return True
+    n = name.lower()
+    if not n.endswith("_csv.zip"):
+        return False
+    return any(f"{y}trim{q}_csv" in n or f"{y}_trim{q}_csv" in n for qs in WINDOWS.values() for y, q in qs)
+
+
+def assets(release_id):
+    out, page = [], 1
+    while True:
+        a = api(f"repos/{REPO}/releases/{release_id}/assets?per_page=100&page={page}")
+        out += a
+        if len(a) < 100:
+            return out
+        page += 1
+
+
+def main(args):
     RAW.mkdir(parents=True, exist_ok=True)
+    everything = "--all" in args
     releases = api(f"repos/{REPO}/releases?per_page=100")
-    if tags:
-        releases = [r for r in releases if r["tag_name"] in tags]
     if not releases:
         print(f"No releases found in {REPO}. Nothing done.")
         return 0
     manifest = []
     for r in releases:
-        for a in r["assets"]:
+        for a in assets(r["id"]):
+            if not wanted(a["name"], everything):
+                continue
             dest = RAW / a["name"]
             if not (dest.exists() and dest.stat().st_size == a["size"]):
                 dest.write_bytes(api(f"repos/{REPO}/releases/assets/{a['id']}", binary=True))
