@@ -4,6 +4,20 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-13 — Session 19: WP09 first results (ENOE job ladders)
+
+**Prompt (user):** continue the ENOE work; data uploaded as release assets of `wanderdata/enoe_data` (all quarters 2005–2026Q2, four formats, one release).
+
+**Done**
+- Fetch step limited to the CSV zips of the ten study quarters; linking of both windows (match rates 0.88–0.93); flows, rates by cell, Shapley decomposition with UPM bootstrap, measurement-error variants, manufacturing-vs-services test, generated report (`empirics/output/enoe/results.md`); results note `papers/WP09_job_ladders_mexico/01_first_results.md`.
+- Decisions D-047 (TIPO in the person key), D-048 (choices after seeing data); OQ-63 resolved, OQ-64 and OQ-65 opened.
+
+**Key results:** P-RG3 inconclusive under the plan's rules: size × formality explains more than sector for upward transitions (all variants, including the employer-change version), but not for exits once transitions must be confirmed. Within size × formality cells, manufacturing jobs show more upward movement than service jobs but not lower exits. Same-employer size reports differ 34% of the time over a year; formality 8.7%. Cells explain 1–7% of individual variation.
+
+**What failed / corrections:** in 2023–24 files 10–13% of person keys were duplicated until TIPO was added; the visit number became text in a merge; 2018–19 files lack MES_CAL (month derived from D_SEM); the job-to-job rate was first computed among recent starters only (26–31%; corrected to 5.6–6.1%); the misreporting check first required the same start month, which is asked only of recent starters (n = 74; corrected to 2,300).
+
+---
+
 ## 2026-11-12 — Session 18: defining productive development; ladder of the working-age population
 
 **Prompt (user):** summarise and assess an internal email exchange on whether productive development should be defined by productivity alone or by output per working-age person; propose a definition; then integrate the discussion into the repository. Style instruction: papers and app text should be plain and technical, without dramatic phrasing.

@@ -58,16 +58,24 @@ def _r2(y, X, w):
     return 1 - np.sum(w * e ** 2) / np.sum(w * (y - ybar) ** 2)
 
 
-def decompose(y, sector, sizeform, w):
+def decompose(y, sector, sizeform, w, controls=None):
     """R2 of y on sector dummies, on size x formality dummies, on both, and the Shapley shares of
-    the joint R2 (two-group Shapley: average of the marginal contributions in both orders)."""
-    ok = ~np.isnan(y)
-    y, w = np.asarray(y)[ok], np.asarray(w)[ok]
+    the joint R2 (two-group Shapley: average of the marginal contributions in both orders).
+    With `controls` (a categorical Series), every model also includes the control dummies and the
+    R2 figures are increments over the controls-only model."""
+    ok = ~np.isnan(np.asarray(y, float))
+    y, w = np.asarray(y, float)[ok], np.asarray(w, float)[ok]
     S = pd.get_dummies(pd.Series(sector)[ok].astype(str), drop_first=True).to_numpy(float)
     K = pd.get_dummies(pd.Series(sizeform)[ok].astype(str), drop_first=True).to_numpy(float)
-    r_s, r_k = _r2(y, S, w), _r2(y, K, w)
-    r_b = _r2(y, np.column_stack([S, K]), w)
+    if controls is not None:
+        C = pd.get_dummies(pd.Series(controls)[ok].astype(str), drop_first=True).to_numpy(float)
+    else:
+        C = np.empty((len(y), 0))
+    r_c = _r2(y, C, w) if C.shape[1] else 0.0
+    r_s = _r2(y, np.column_stack([C, S]), w) - r_c
+    r_k = _r2(y, np.column_stack([C, K]), w) - r_c
+    r_b = _r2(y, np.column_stack([C, S, K]), w) - r_c
     sh_s = 0.5 * (r_s + (r_b - r_k))
     sh_k = 0.5 * (r_k + (r_b - r_s))
     return {"r2_sector": r_s, "r2_sizeform": r_k, "r2_both": r_b,
-            "shapley_sector": sh_s, "shapley_sizeform": sh_k}
+            "shapley_sector": sh_s, "shapley_sizeform": sh_k, "r2_controls": r_c}

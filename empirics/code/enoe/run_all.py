@@ -1,4 +1,4 @@
-"""Run the ENOE job-ladder pipeline (WP09): 00 fetch -> 01 link -> 02 flows.
+"""Run the ENOE job-ladder pipeline (WP09): 00 fetch -> 01 link -> 02 flows -> 03 report.
 
     python empirics/code/enoe/run_all.py [--no-fetch]
 
@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-STEPS = ["00_fetch.py", "01_link.py", "02_flows.py"]
+STEPS = ["00_fetch.py", "01_link.py", "02_flows.py", "03_report.py"]
 
 if __name__ == "__main__":
     steps = STEPS[1:] if "--no-fetch" in sys.argv else STEPS

@@ -1,0 +1,9 @@
+origin,eligible,dup_origin,dup_dest,candidates,bad_sex,bad_age,accepted,match_rate,from,window,key,quarter_from
+288860,231481,0,0,211706,0,0,211706,0.9145718223093904,0,pre,cd_a+ent+con+v_sel+n_hog+h_mud+n_ren,2018Q4
+300514,241534,0,0,224874,0,0,224874,0.9310242036317868,1,pre,cd_a+ent+con+v_sel+n_hog+h_mud+n_ren,2019Q1
+302509,243031,0,0,225151,0,0,225151,0.9264291386695525,2,pre,cd_a+ent+con+v_sel+n_hog+h_mud+n_ren,2019Q2
+301344,241251,0,0,224413,0,0,224413,0.9302054706508989,3,pre,cd_a+ent+con+v_sel+n_hog+h_mud+n_ren,2019Q3
+344205,275951,0,0,243134,0,0,243134,0.8810767128946806,0,post,cd_a+ent+con+v_sel+n_hog+h_mud+n_ren+tipo,2023Q1
+329632,264194,0,0,238165,0,0,238165,0.9014777019917182,1,post,cd_a+ent+con+v_sel+n_hog+h_mud+n_ren+tipo,2023Q2
+329397,265096,0,0,234900,0,0,234900,0.8860940942149259,2,post,cd_a+ent+con+v_sel+n_hog+h_mud+n_ren+tipo,2023Q3
+323118,259301,0,0,233896,1,0,233895,0.9020212031577202,3,post,cd_a+ent+con+v_sel+n_hog+h_mud+n_ren+tipo,2023Q4
