@@ -25,6 +25,9 @@ WINDOWS = {
 # Study 9.2: one cross-section a year (first quarters), 2005-2025.
 CROSS_SECTIONS = [(y, 1) for y in range(2005, 2026)]
 
+# Study 9.3: years whose four quarters are averaged for the productivity ladder.
+LADDER_YEARS = [2005, 2008, 2019, 2024]
+
 AGE_MIN, AGE_MAX = 16, 65            # Donovan, Lu & Schoellman benchmark; 15+ as a variant
 MIN_CELL = 200                       # unweighted origin observations before merging a cell
 

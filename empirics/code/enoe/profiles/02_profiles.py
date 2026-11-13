@@ -37,8 +37,8 @@ def groups(d):
     for f in ["formal", "informal"]:
         for s in ["manufacturing", "commerce"]:
             g.append((f"{f}, {s}", base[(base["formality"] == f) & (base["sector6"] == s)]))
-    for z in ["up to 10 workers", "more than 10 workers"]:
-        g.append((f"firm size: {z}", base[base["size2"] == z]))
+    for z in ["micro and small", "medium and large"]:
+        g.append((f"establishments: {z}", base[base["size2"] == z]))
     g += [("women (baseline otherwise)", pl.baseline(d, sex=2)),
           ("men, all hours", pl.baseline(d, fulltime=False)),
           ("own-account men, all hours", pl.baseline(d, fulltime=False, pos=3)),

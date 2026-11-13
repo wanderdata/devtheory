@@ -32,8 +32,11 @@ def prepare(d):
     d["fulltime"] = d["hrsocup"] >= 35
     d["formality"] = d["emp_ppal"].map({1: "informal", 2: "formal"})
     d["sector6"] = d["rama_est2"].map(SECTOR6)
-    d["size2"] = d["ambito2"].map({2: "up to 10 workers", 3: "up to 10 workers", 4: "up to 10 workers",
-                                   5: "more than 10 workers", 6: "more than 10 workers"})
+    # INEGI's classes by sector-specific thresholds (micro: up to 15 workers in industry, up to 5 in
+    # commerce and services; small: up to 50, 15 and 50; medium and large above), so the two groups
+    # are "micro and small" and "medium and large" establishments, not a single head-count cut-off.
+    d["size2"] = d["ambito2"].map({2: "micro and small", 3: "micro and small", 4: "micro and small",
+                                   5: "medium and large", 6: "medium and large"})
     d["earn_ok"] = d["ing_x_hrs"] > 0
     d["lw"] = np.log(d["ing_x_hrs"].where(d["earn_ok"]))
     d["heaped"] = d["eda"] % 5 == 0

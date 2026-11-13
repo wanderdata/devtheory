@@ -1,0 +1,57 @@
+period,spec,base,fsd,ssd,verdict,mean_growth_pp,share_gained
+2005–2008,sector only,initial,0,1,"improvement, weighting the lower percentiles",0.8547445770265746,0.7912258116542833
+2005–2008,sector only,final,0,1,"improvement, weighting the lower percentiles",0.8412864312151713,0.6951724764809055
+2005–2008,"sector x formality, theta 0.5",initial,0,1,"improvement, weighting the lower percentiles",0.8547445770265671,0.7161534159573706
+2005–2008,"sector x formality, theta 0.5",final,0,1,"improvement, weighting the lower percentiles",0.8412864312151788,0.7124012278177714
+2005–2008,"sector x formality, theta 1",initial,0,1,"improvement, weighting the lower percentiles",0.8547445770265746,0.7132110226677671
+2005–2008,"sector x formality, theta 1",final,0,1,"improvement, weighting the lower percentiles",0.8412864312151713,0.711122172682467
+2005–2008,"sector x formality, theta 1.5",initial,0,1,"improvement, weighting the lower percentiles",0.8547445770265671,0.7002765647590101
+2005–2008,"sector x formality, theta 1.5",final,0,1,"improvement, weighting the lower percentiles",0.8412864312151713,0.7016015407537705
+2005–2008,"sector x formality, theta 2",initial,0,1,"improvement, weighting the lower percentiles",0.8547445770265746,0.7073139213649009
+2005–2008,"sector x formality, theta 2",final,0,1,"improvement, weighting the lower percentiles",0.8412864312151788,0.7047684173954134
+2005–2008,"sector x formality, medians",initial,0,1,"improvement, weighting the lower percentiles",0.8547445770265597,0.7127601308242444
+2005–2008,"sector x formality, medians",final,0,1,"improvement, weighting the lower percentiles",0.8412864312151639,0.7127601308242444
+2005–2008,sector x formality x establishment size,initial,0,1,"improvement, weighting the lower percentiles",0.8547445770265746,0.758743734249099
+2005–2008,sector x formality x establishment size,final,0,1,"improvement, weighting the lower percentiles",0.8412864312151713,0.7533317970406204
+2008–2019,sector only,initial,0,0,ambiguous,-0.3832308016109645,0.6184899937959542
+2008–2019,sector only,final,0,0,ambiguous,-0.43682145950932894,0.7096174033231296
+2008–2019,"sector x formality, theta 0.5",initial,0,0,ambiguous,-0.38323080161096656,0.6058037201319223
+2008–2019,"sector x formality, theta 0.5",final,0,0,ambiguous,-0.4368214595093279,0.719842104822059
+2008–2019,"sector x formality, theta 1",initial,0,0,ambiguous,-0.3832308016109645,0.6674636797183414
+2008–2019,"sector x formality, theta 1",final,0,0,ambiguous,-0.43682145950933,0.7313823116431681
+2008–2019,"sector x formality, theta 1.5",initial,0,0,ambiguous,-0.38323080161096656,0.7309684395731593
+2008–2019,"sector x formality, theta 1.5",final,0,0,ambiguous,-0.43682145950932694,0.7096191633263306
+2008–2019,"sector x formality, theta 2",initial,0,0,ambiguous,-0.38323080161096656,0.7570672555285061
+2008–2019,"sector x formality, theta 2",final,0,0,ambiguous,-0.4368214595093279,0.8080443473871104
+2008–2019,"sector x formality, medians",initial,0,0,ambiguous,-0.3832308016109645,0.7038916782868001
+2008–2019,"sector x formality, medians",final,0,0,ambiguous,-0.43682145950932894,0.7211576101442393
+2008–2019,sector x formality x establishment size,initial,0,0,ambiguous,-0.3832308016109645,0.669667256875622
+2008–2019,sector x formality x establishment size,final,0,0,ambiguous,-0.4368214595093279,0.6931184992647514
+2019–2024,sector only,initial,0,0,ambiguous,-0.5389188784747745,0.6083529421624607
+2019–2024,sector only,final,0,0,ambiguous,-0.5062395916004925,0.6000194909890608
+2019–2024,"sector x formality, theta 0.5",initial,0,0,ambiguous,-0.5389188784747767,0.6686197547725119
+2019–2024,"sector x formality, theta 0.5",final,0,0,ambiguous,-0.5062395916004925,0.5906807887138307
+2019–2024,"sector x formality, theta 1",initial,0,0,ambiguous,-0.5389188784747745,0.6464646334714662
+2019–2024,"sector x formality, theta 1",final,0,0,ambiguous,-0.5062395916004925,0.5905967115708607
+2019–2024,"sector x formality, theta 1.5",initial,0,0,ambiguous,-0.53891887847477,0.6588291363853005
+2019–2024,"sector x formality, theta 1.5",final,0,0,ambiguous,-0.5062395916004925,0.6745206003529446
+2019–2024,"sector x formality, theta 2",initial,0,0,ambiguous,-0.53891887847477,0.6634696409876178
+2019–2024,"sector x formality, theta 2",final,0,0,ambiguous,-0.506239591600488,0.6869465859795015
+2019–2024,"sector x formality, medians",initial,0,0,ambiguous,-0.5389188784747745,0.6464646334714662
+2019–2024,"sector x formality, medians",final,0,0,ambiguous,-0.506239591600488,0.5909475517595668
+2019–2024,sector x formality x establishment size,initial,0,0,ambiguous,-0.5389188784747767,0.6636221823019962
+2019–2024,sector x formality x establishment size,final,0,0,ambiguous,-0.5062395916004903,0.6114907764740485
+2005–2019,sector only,initial,0,0,ambiguous,-0.09544475535772645,0.7277925466629936
+2005–2019,sector only,final,0,0,ambiguous,-0.18290562319349588,0.7183664732378282
+2005–2019,"sector x formality, theta 0.5",initial,0,0,ambiguous,-0.09544475535772645,0.6716886909639631
+2005–2019,"sector x formality, theta 0.5",final,0,0,ambiguous,-0.1829056231934927,0.7548766219666253
+2005–2019,"sector x formality, theta 1",initial,0,0,ambiguous,-0.09544475535772645,0.7536948955855423
+2005–2019,"sector x formality, theta 1",final,0,0,ambiguous,-0.1829056231934927,0.753230141039556
+2005–2019,"sector x formality, theta 1.5",initial,0,0,ambiguous,-0.09544475535772724,0.7977618025552186
+2005–2019,"sector x formality, theta 1.5",final,0,0,ambiguous,-0.1829056231934951,0.7456042563773125
+2005–2019,"sector x formality, theta 2",initial,0,0,ambiguous,-0.09544475535772487,0.78302897231327
+2005–2019,"sector x formality, theta 2",final,0,0,ambiguous,-0.1829056231934927,0.7675295378716932
+2005–2019,"sector x formality, medians",initial,0,0,ambiguous,-0.09544475535772645,0.7384971181802452
+2005–2019,"sector x formality, medians",final,0,0,ambiguous,-0.1829056231934943,0.7432063591343896
+2005–2019,sector x formality x establishment size,initial,0,0,ambiguous,-0.09544475535772487,0.7065342742258846
+2005–2019,sector x formality x establishment size,final,0,0,ambiguous,-0.1829056231934943,0.7209789835103224
