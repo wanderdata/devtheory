@@ -75,7 +75,9 @@ fig.update_xaxes(tickformat=".0%")
 fig.update_yaxes(type="category", categoryorder="array", categoryarray=list(x.index), gridcolor="rgba(0,0,0,0)")
 show(fig, x[["height", "lo90", "hi90", "n"]].round(3).reset_index(),
      caption="Sector groups combine ENOE's 11 sector groups into six. Formal and informal profiles are shown within "
-             "manufacturing and commerce, the two sectors with enough informal wage workers. Own-account men "
+             "manufacturing and commerce, the two sectors with enough informal wage workers. Establishment size "
+             "classes use INEGI's sector-specific thresholds (micro: up to 15 workers in industry, up to 5 in "
+             "commerce and services); size is reported with substantial error (study 9.1). Own-account men "
              "(all hours) earn less with experience. Women's profiles are flatter than men's, as in Lagakos et al.")
 
 # ---- 3. over time

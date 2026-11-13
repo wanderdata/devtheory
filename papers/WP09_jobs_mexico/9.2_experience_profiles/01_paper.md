@@ -36,7 +36,7 @@ Both are rejected.
 
 **Sectors.** Six groups formed from INEGI's eleven.
 
-**Firm size.** Two classes, at most and more than ten workers. Study 9.1 found firm size to be reported with substantial error.
+**Firm size.** Two classes: micro and small establishments, against medium and large ones. INEGI's thresholds depend on the sector: micro means up to 15 workers in industry and up to 5 in commerce and services, and small up to 50, 15 and 50 respectively. Study 9.1 found firm size to be reported with substantial error.
 
 **Earnings reporting.** The share of baseline workers reporting positive hourly earnings fell over the period:
 - **formal:** from 90% in 2005 to 57% in 2025;
@@ -67,8 +67,8 @@ The first term is the effect of flatter informal profiles; the second the effect
 | All baseline workers | 25.7% | 24.9–26.4% | 859,695 |
 | Formal | 25.4% | 24.5–26.4% | 506,847 |
 | Informal | 15.6% | 14.8–16.4% | 352,848 |
-| Firms with more than 10 workers | 30.6% | 29.1–32.0% | 295,855 |
-| Firms with up to 10 workers | 24.6% | 23.7–25.6% | 436,777 |
+| Medium and large establishments | 30.6% | 29.1–32.0% | 295,855 |
+| Micro and small establishments | 24.6% | 23.7–25.6% | 436,777 |
 | Women (otherwise baseline) | 16.8% | 15.9–17.6% | 469,198 |
 | Own-account men, all hours | −9.4% | −12.1 to −7.0% | 227,334 |
 
@@ -98,7 +98,7 @@ Within the two sectors with enough informal wage employees to estimate both prof
 | Manufacturing | 22.7% | 22.9% |
 | Commerce | 24.0% | 23.3% |
 
-The formal–informal gap in the pooled sample (9.8 points) therefore reflects which sectors formal and informal jobs are in. The sector range (21 points) exceeds the formality gap, so P28 is rejected under the rule stated in the plan, even though the pooled formal profile is 1.6 times as steep as the informal one. Profiles are steeper in firms with more than ten workers (31%) than in smaller ones (25%), with the caveat about how firm size is reported.
+The formal–informal gap in the pooled sample (9.8 points) therefore reflects which sectors formal and informal jobs are in. The sector range (21 points) exceeds the formality gap, so P28 is rejected under the rule stated in the plan, even though the pooled formal profile is 1.6 times as steep as the informal one. Profiles are steeper in medium and large establishments (31%) than in micro and small ones (25%), with the caveat about how firm size is reported.
 
 ### 4.3 The national profile is not flat because of composition
 
