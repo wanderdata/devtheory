@@ -25,8 +25,8 @@
 | formal, commerce | cross-section | 0.240 | [0.220, 0.260] | 101,819 |
 | informal, manufacturing | cross-section | 0.229 | [0.205, 0.250] | 46,243 |
 | informal, commerce | cross-section | 0.233 | [0.207, 0.262] | 41,870 |
-| firm size: up to 10 workers | cross-section | 0.246 | [0.237, 0.256] | 436,777 |
-| firm size: more than 10 workers | cross-section | 0.306 | [0.291, 0.320] | 295,855 |
+| establishments: micro and small | cross-section | 0.246 | [0.237, 0.256] | 436,777 |
+| establishments: medium and large | cross-section | 0.306 | [0.291, 0.320] | 295,855 |
 | women (baseline otherwise) | cross-section | 0.168 | [0.159, 0.176] | 469,198 |
 | men, all hours | cross-section | 0.243 | [0.236, 0.249] | 985,106 |
 | own-account men, all hours | cross-section | -0.094 | [-0.121, -0.070] | 227,334 |
