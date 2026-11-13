@@ -65,6 +65,7 @@ def chain(quarters, key=KEY):
 
 def wide(panel, cols):
     """One row per person with columns `col_pos` for each requested column and position."""
-    w = panel.pivot_table(index="pid", columns="pos", values=cols, aggfunc="first")
+    w = panel.pivot_table(index="pid", columns="pos", values=cols, aggfunc="first", dropna=False)
     w.columns = [f"{c}_{p}" for c, p in w.columns]
-    return w
+    want = [f"{c}_{p}" for c in cols for p in sorted(panel["pos"].unique())]
+    return w.reindex(columns=want)

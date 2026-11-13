@@ -17,7 +17,7 @@ from enoe_config import AGE_MAX, AGE_MIN, INTERIM, KEY, KEY_OPTIONAL, OUTPUT, RA
 
 SDEM = KEY + ["n_ent", "eda", "sex", "clase1", "clase2", "pos_ocu", "rama_est2", "ambito2", "emp_ppal",
               "ing_x_hrs", "ingocup", "hrsocup", "cs_p13_1", "fac_tri", "fac", "r_def", "c_res", "upm", "tipo",
-              "mes_cal", "est_d_tri", "est_d"]
+              "mes_cal", "d_sem", "est_d_tri", "est_d"]
 COE1 = KEY + ["n_ent", "tipo", "p3r_anio", "p3r_mes", "n_inf"]
 
 

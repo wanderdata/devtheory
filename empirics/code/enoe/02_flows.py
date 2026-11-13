@@ -56,6 +56,12 @@ def prepare(panel):
     for c in COLS:
         if c not in p.columns:
             p[c] = np.nan
+    # Interview month: MES_CAL where present (2023-24); otherwise from D_SEM, whose last two
+    # digits are the week of the quarter (01-13), so month = 3(q-1) + ceil(week / 4.33).
+    if "d_sem" in p.columns:
+        week = pd.to_numeric(p["d_sem"], errors="coerce") % 100
+        approx = 3 * (p["q"] - 1) + np.clip(np.ceil(week / (13 / 3)), 1, 3)
+        p["mes_cal"] = p["mes_cal"].where(p["mes_cal"].between(1, 12), approx)
     return p
 
 
