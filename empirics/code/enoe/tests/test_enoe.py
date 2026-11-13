@@ -170,3 +170,24 @@ def test_pipeline_on_synthetic_panel():
     m = f2.misreport(p)
     assert len(m) == 1 and m.iloc[0]["from_pos"] == 0 and m.iloc[0]["to_pos"] == 4
     assert m.iloc[0]["size_changes"] == 0 and m.iloc[0]["formality_changes"] == 0
+
+
+def test_attrition_factor_restores_cell_totals():
+    import importlib
+    f2 = importlib.import_module("02_flows")
+    panel, _ = link.chain(synthetic_panel(n=4000, seed=3))
+    p = f2.prepare(panel)
+    fac = f2.attrition_factor(p, 0, 4)
+    full = p[(p["pos"] == 0) & (p["n_ent"] == 1) & p["eda"].between(16, 65)]
+    linked = full[full["pid"].isin(fac.index)]
+    assert (fac >= 1 - 1e-12).all()
+    assert (linked["fac_tri"] * linked["pid"].map(fac)).sum() == pytest.approx(full["fac_tri"].sum())
+
+
+def test_transitions_rows_sum_to_one():
+    import importlib
+    f2 = importlib.import_module("02_flows")
+    panel, _ = link.chain(synthetic_panel())
+    t = f2.transitions(f2.prepare(panel), None)
+    s = t.groupby(["horizon", "weights", "origin"])["share"].sum()
+    assert np.allclose(s, 1.0)

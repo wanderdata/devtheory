@@ -34,6 +34,12 @@
 | pre | upward transition within a year (any) | confirmed transitions | 6,699 | 0.0127 | 0.0370 | +0.0243 [+0.0095, +0.0422] |
 | pre | exit to non-employment within a year | self-reported only | 9,117 | 0.0092 | 0.0389 | +0.0297 [+0.0198, +0.0385] |
 | pre | upward transition within a year (any) | self-reported only | 9,115 | 0.0110 | 0.0575 | +0.0465 [+0.0339, +0.0609] |
+| pre | exit to non-employment within a year | reweighted for attrition | 24,884 | 0.0082 | 0.0223 | +0.0141 [+0.0099, +0.0188] |
+| pre | upward transition within a year (any) | reweighted for attrition | 24,875 | 0.0191 | 0.0532 | +0.0341 [+0.0262, +0.0414] |
+| pre | exit to non-employment within a year | formality alone vs sector | 24,884 | 0.0074 | 0.0195 | +0.0121 [+0.0073, +0.0154] |
+| pre | upward transition within a year (any) | formality alone vs sector | 24,875 | 0.0240 | 0.0013 | -0.0228 [-0.0289, -0.0192] |
+| pre | exit to non-employment within a year | formality alone vs sector, confirmed transitions | 6,700 | 0.0237 | 0.0086 | -0.0151 [-0.0303, -0.0083] |
+| pre | upward transition within a year (any) | formality alone vs sector, confirmed transitions | 6,699 | 0.0139 | 0.0011 | -0.0127 [-0.0255, -0.0092] |
 | pre | upward transition within a year (any) | main, conditional on origin rank decile (exploratory) | 24,875 | 0.0323 | 0.0610 | +0.0286 [+0.0202, +0.0375] |
 | post | exit to non-employment within a year | main | 26,419 | 0.0099 | 0.0192 | +0.0092 [+0.0046, +0.0139] |
 | post | upward transition within a year (any) | main | 26,419 | 0.0126 | 0.0559 | +0.0432 [+0.0349, +0.0517] |
@@ -44,24 +50,117 @@
 | post | exit to non-employment within a year | self-reported only | 9,876 | 0.0107 | 0.0395 | +0.0288 [+0.0198, +0.0377] |
 | post | upward transition within a year (any) | self-reported only | 9,876 | 0.0105 | 0.0575 | +0.0470 [+0.0327, +0.0596] |
 | post | upward transition within a year with a change of employer | self-reported only | 9,825 | 0.0056 | 0.0106 | +0.0050 [-0.0000, +0.0115] |
+| post | exit to non-employment within a year | reweighted for attrition | 26,419 | 0.0100 | 0.0192 | +0.0092 [+0.0044, +0.0138] |
+| post | upward transition within a year (any) | reweighted for attrition | 26,419 | 0.0126 | 0.0556 | +0.0430 [+0.0347, +0.0514] |
+| post | upward transition within a year with a change of employer | reweighted for attrition | 26,225 | 0.0040 | 0.0095 | +0.0055 [+0.0030, +0.0094] |
+| post | exit to non-employment within a year | formality alone vs sector | 26,419 | 0.0096 | 0.0171 | +0.0075 [+0.0023, +0.0111] |
+| post | upward transition within a year (any) | formality alone vs sector | 26,419 | 0.0125 | 0.0032 | -0.0093 [-0.0147, -0.0059] |
+| post | upward transition within a year with a change of employer | formality alone vs sector | 26,225 | 0.0043 | 0.0034 | -0.0009 [-0.0045, +0.0015] |
+| post | exit to non-employment within a year | formality alone vs sector, confirmed transitions | 6,968 | 0.0161 | 0.0080 | -0.0081 [-0.0201, -0.0038] |
+| post | upward transition within a year (any) | formality alone vs sector, confirmed transitions | 6,968 | 0.0093 | 0.0007 | -0.0086 [-0.0194, -0.0058] |
+| post | upward transition within a year with a change of employer | formality alone vs sector, confirmed transitions | 6,922 | 0.0019 | 0.0017 | -0.0002 [-0.0046, +0.0005] |
 | post | upward transition within a year (any) | main, conditional on origin rank decile (exploratory) | 26,419 | 0.0303 | 0.0456 | +0.0154 [+0.0086, +0.0229] |
 
 ## 4. Manufacturing minus services within size × formality cells
 
 Controls: size × formality, age group, sex, schooling level. Services: rama_est2 5–10.
 
-| Window | Outcome | n | Services mean | Manufacturing − services [90% interval] |
-|---|---|---|---|---|
-| pre | exit to non-employment within a year | 19,171 | 0.157 | +0.0217 [+0.0002, +0.0435] |
-| pre | upward transition within a year (any) | 19,164 | 0.248 | +0.0493 [+0.0232, +0.0745] |
-| post | exit to non-employment within a year | 20,665 | 0.146 | +0.0167 [-0.0006, +0.0340] |
-| post | upward transition within a year (any) | 20,665 | 0.237 | +0.0923 [+0.0676, +0.1169] |
-| post | upward transition within a year with a change of employer | 20,523 | 0.040 | +0.0137 [+0.0024, +0.0249] |
+| Window | Weights | Outcome | n | Services mean | Manufacturing − services [90% interval] |
+|---|---|---|---|---|---|
+| pre | origin weights | exit to non-employment within a year | 19,171 | 0.157 | +0.0217 [+0.0002, +0.0435] |
+| pre | origin weights | upward transition within a year (any) | 19,164 | 0.248 | +0.0493 [+0.0232, +0.0745] |
+| pre | reweighted for attrition | exit to non-employment within a year | 19,171 | 0.158 | +0.0203 [-0.0013, +0.0425] |
+| pre | reweighted for attrition | upward transition within a year (any) | 19,164 | 0.250 | +0.0498 [+0.0230, +0.0762] |
+| post | origin weights | exit to non-employment within a year | 20,665 | 0.146 | +0.0167 [-0.0006, +0.0340] |
+| post | origin weights | upward transition within a year (any) | 20,665 | 0.237 | +0.0923 [+0.0676, +0.1169] |
+| post | origin weights | upward transition within a year with a change of employer | 20,523 | 0.040 | +0.0137 [+0.0024, +0.0249] |
+| post | reweighted for attrition | exit to non-employment within a year | 20,665 | 0.146 | +0.0160 [-0.0012, +0.0338] |
+| post | reweighted for attrition | upward transition within a year (any) | 20,665 | 0.238 | +0.0926 [+0.0679, +0.1177] |
+| post | reweighted for attrition | upward transition within a year with a change of employer | 20,523 | 0.042 | +0.0135 [+0.0022, +0.0253] |
 
 ## 5. Same employer, different answers (two first-quarter visits a year apart)
 
 | Window | n | Size class differs | Formality differs |
 |---|---|---|---|
 | post | 2,300 | 0.338 | 0.087 |
+
+## 6. Transitions between not employed, informal and formal (origin weights)
+
+Rows: state at the first visit; columns: state one year later (quarterly matrices in transitions.csv).
+
+**pre**
+
+| From (row) → to (column) | not employed | informal | formal |
+|---|---|---|---|
+| not employed | 0.745 | 0.190 | 0.065 |
+| informal | 0.190 | 0.680 | 0.130 |
+| formal | 0.089 | 0.151 | 0.760 |
+
+**post**
+
+| From (row) → to (column) | not employed | informal | formal |
+|---|---|---|---|
+| not employed | 0.748 | 0.186 | 0.067 |
+| informal | 0.175 | 0.680 | 0.145 |
+| formal | 0.083 | 0.149 | 0.768 |
+
+## 7. Change in log hourly earnings over a year, by origin size × formality
+
+People employed at both visits with positive hourly earnings at both.
+
+| Window | Origin cell | Group | n | Share with valid earnings | Median change |
+|---|---|---|---|---|---|
+| pre | government|formal | moved | 212 | 0.42 | -0.069 |
+| pre | government|formal | same cell | 802 | 0.51 | -0.016 |
+| pre | government|informal | moved | 125 | 0.55 | -0.118 |
+| pre | government|informal | same cell | 83 | 0.71 | +0.154 |
+| pre | large|formal | moved | 559 | 0.49 | +0.032 |
+| pre | large|formal | same cell | 1,057 | 0.62 | +0.069 |
+| pre | medium|formal | moved | 1,159 | 0.49 | +0.022 |
+| pre | medium|formal | same cell | 648 | 0.61 | +0.087 |
+| pre | micro, no premises|informal | moved | 1,533 | 0.52 | -0.065 |
+| pre | micro, no premises|informal | same cell | 2,136 | 0.64 | +0.065 |
+| pre | micro, with premises|formal | moved | 592 | 0.47 | +0.000 |
+| pre | micro, with premises|formal | same cell | 372 | 0.48 | +0.168 |
+| pre | micro, with premises|informal | moved | 1,230 | 0.52 | +0.165 |
+| pre | micro, with premises|informal | same cell | 996 | 0.57 | +0.055 |
+| pre | other or not specified|formal | moved | 323 | 0.51 | +0.000 |
+| pre | other or not specified|formal | same cell | 164 | 0.62 | +0.141 |
+| pre | other or not specified|informal | moved | 580 | 0.63 | +0.069 |
+| pre | other or not specified|informal | same cell | 1,751 | 0.61 | +0.024 |
+| pre | other sizes|formal | moved | 2,097 | 0.45 | +0.043 |
+| pre | other sizes|formal | same cell | 799 | 0.47 | +0.015 |
+| pre | other sizes|informal | moved | 1,273 | 0.50 | +0.038 |
+| pre | other sizes|informal | same cell | 268 | 0.58 | +0.236 |
+| pre | small|formal | moved | 1,134 | 0.50 | +0.045 |
+| pre | small|formal | same cell | 1,052 | 0.58 | +0.041 |
+| pre | small|informal | moved | 250 | 0.50 | +0.069 |
+| pre | small|informal | same cell | 116 | 0.59 | +0.113 |
+| post | government|formal | moved | 200 | 0.42 | +0.000 |
+| post | government|formal | same cell | 794 | 0.44 | +0.044 |
+| post | government|informal | moved | 110 | 0.41 | +0.172 |
+| post | government|informal | same cell | 73 | 0.53 | +0.154 |
+| post | large|formal | moved | 634 | 0.46 | +0.049 |
+| post | large|formal | same cell | 1,383 | 0.56 | +0.116 |
+| post | medium|formal | moved | 1,152 | 0.50 | +0.118 |
+| post | medium|formal | same cell | 641 | 0.59 | +0.098 |
+| post | micro, no premises|informal | moved | 1,819 | 0.53 | +0.041 |
+| post | micro, no premises|informal | same cell | 2,307 | 0.55 | +0.106 |
+| post | micro, with premises|formal | moved | 797 | 0.43 | +0.087 |
+| post | micro, with premises|formal | same cell | 475 | 0.44 | +0.175 |
+| post | micro, with premises|informal | moved | 1,234 | 0.47 | +0.139 |
+| post | micro, with premises|informal | same cell | 1,030 | 0.53 | +0.223 |
+| post | other or not specified|formal | moved | 490 | 0.37 | +0.008 |
+| post | other or not specified|formal | same cell | 258 | 0.49 | +0.057 |
+| post | other or not specified|informal | moved | 676 | 0.59 | +0.146 |
+| post | other or not specified|informal | same cell | 1,587 | 0.59 | +0.105 |
+| post | other sizes|formal | moved | 2,044 | 0.43 | +0.118 |
+| post | other sizes|formal | same cell | 809 | 0.49 | +0.110 |
+| post | other sizes|informal | moved | 1,425 | 0.46 | +0.090 |
+| post | other sizes|informal | same cell | 317 | 0.48 | +0.154 |
+| post | small|formal | moved | 1,342 | 0.46 | +0.069 |
+| post | small|formal | same cell | 1,123 | 0.52 | +0.118 |
+| post | small|informal | moved | 167 | 0.66 | +0.000 |
+| post | small|informal | same cell | 69 | 0.70 | +0.154 |
 
 Rates by sector, by size × formality and by job cell are in `rates_*.csv`.

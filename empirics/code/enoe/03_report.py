@@ -38,15 +38,37 @@ def main():
                  f"{r.shapley_sizeform:.4f} | {r['diff']:+.4f} [{r.diff_lo90:+.4f}, {r.diff_hi90:+.4f}] |")
     L += ["", "## 4. Manufacturing minus services within size × formality cells", "",
           "Controls: size × formality, age group, sex, schooling level. Services: rama_est2 5–10.", "",
-          "| Window | Outcome | n | Services mean | Manufacturing − services [90% interval] |", "|---|---|---|---|---|"]
+          "| Window | Weights | Outcome | n | Services mean | Manufacturing − services [90% interval] |", "|---|---|---|---|---|---|"]
     for _, r in st.iterrows():
-        L.append(f"| {r.window} | {LABEL.get(r.outcome, r.outcome)} | {int(r.n):,} | {r.mean_services:.3f} | "
-                 f"{r.manufacturing_minus_services:+.4f} [{r.lo90:+.4f}, {r.hi90:+.4f}] |")
+        L.append(f"| {r.window} | {r.get('weights', 'origin weights')} | {LABEL.get(r.outcome, r.outcome)} | {int(r.n):,} | "
+                 f"{r.mean_services:.3f} | {r.manufacturing_minus_services:+.4f} [{r.lo90:+.4f}, {r.hi90:+.4f}] |")
     if len(mis):
         L += ["", "## 5. Same employer, different answers (two first-quarter visits a year apart)", "",
               "| Window | n | Size class differs | Formality differs |", "|---|---|---|---|"]
         for _, r in mis.iterrows():
             L.append(f"| {r.window} | {int(r.n):,} | {r.size_changes:.3f} | {r.formality_changes:.3f} |")
+    tr = OUTPUT / "transitions.csv"
+    if tr.exists():
+        t = pd.read_csv(tr)
+        t = t[t["weights"] == "origin weights"]
+        L += ["", "## 6. Transitions between not employed, informal and formal (origin weights)", "",
+              "Rows: state at the first visit; columns: state one year later (quarterly matrices in transitions.csv).", ""]
+        for win, g in t[t["horizon"] == "year"].groupby("window", sort=False):
+            m = g.pivot_table(index="origin", columns="destination", values="share")
+            cols = [c for c in ["not employed", "informal", "formal"] if c in m.columns]
+            L += [f"**{win}**", "", "| From (row) → to (column) | " + " | ".join(cols) + " |", "|---" * (len(cols) + 1) + "|"]
+            for o in [c for c in ["not employed", "informal", "formal"] if c in m.index]:
+                L.append(f"| {o} | " + " | ".join(f"{m.loc[o, c]:.3f}" for c in cols) + " |")
+            L.append("")
+    eg = OUTPUT / "earnings_growth.csv"
+    if eg.exists():
+        e = pd.read_csv(eg)
+        e = e[e["dimension"] == "sizeform"]
+        L += ["## 7. Change in log hourly earnings over a year, by origin size × formality", "",
+              "People employed at both visits with positive hourly earnings at both.", "",
+              "| Window | Origin cell | Group | n | Share with valid earnings | Median change |", "|---|---|---|---|---|---|"]
+        for _, r in e.iterrows():
+            L.append(f"| {r.window} | {r.cell} | {r.group} | {int(r.n):,} | {r.share_valid:.2f} | {r.median_dlog:+.3f} |")
     L += ["", "Rates by sector, by size × formality and by job cell are in `rates_*.csv`."]
     (OUTPUT / "results.md").write_text("\n".join(L) + "\n")
 

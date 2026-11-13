@@ -184,6 +184,20 @@ def load_extra(folder, name):
     return _load_extra(scope(), folder, name)
 
 
+@st.cache_data
+def load_enoe(name):
+    """Aggregate tables of the ENOE job-ladder study (WP09); empty if not present."""
+    f = ROOT / "empirics" / "output" / "enoe" / f"{name}.csv"
+    return pd.read_csv(f) if f.exists() else pd.DataFrame()
+
+
+# ENOE sector groups (rama_est2) and labels used on the jobs page.
+ENOE_SECTORS = {"0": "Not specified", "1": "Agriculture, forestry, fishing", "2": "Mining and electricity",
+                "3": "Manufacturing", "4": "Construction", "5": "Commerce", "6": "Restaurants and accommodation",
+                "7": "Transport and communications", "8": "Professional, financial and corporate services",
+                "9": "Social services", "10": "Other services", "11": "Government"}
+
+
 # Ladder verdicts (08_ladder.py), best to worst, with fixed colours.
 LADDER_VERDICTS = {
     "improvement": "#1baf7a",

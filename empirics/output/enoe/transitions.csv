@@ -1,0 +1,73 @@
+horizon,weights,origin,destination,share,window
+quarter,origin weights,formal,formal,0.7959737603193849,pre
+quarter,origin weights,formal,informal,0.13899478637691734,pre
+quarter,origin weights,formal,not employed,0.06503145330369774,pre
+quarter,origin weights,informal,formal,0.11518869636471335,pre
+quarter,origin weights,informal,informal,0.7125559916884442,pre
+quarter,origin weights,informal,not employed,0.17225531194684246,pre
+quarter,origin weights,not employed,formal,0.046337831967082146,pre
+quarter,origin weights,not employed,informal,0.1700702342665565,pre
+quarter,origin weights,not employed,not employed,0.7835919337663614,pre
+quarter,reweighted for attrition,formal,formal,0.7958407940625255,pre
+quarter,reweighted for attrition,formal,informal,0.13893487179439637,pre
+quarter,reweighted for attrition,formal,not employed,0.06522433414307807,pre
+quarter,reweighted for attrition,informal,formal,0.11531437756711602,pre
+quarter,reweighted for attrition,informal,informal,0.712288109164405,pre
+quarter,reweighted for attrition,informal,not employed,0.172397513268479,pre
+quarter,reweighted for attrition,not employed,formal,0.046582365950378846,pre
+quarter,reweighted for attrition,not employed,informal,0.1701976498743266,pre
+quarter,reweighted for attrition,not employed,not employed,0.7832199841752946,pre
+year,origin weights,formal,formal,0.7600865297243715,pre
+year,origin weights,formal,informal,0.1511140902791163,pre
+year,origin weights,formal,not employed,0.08879937999651219,pre
+year,origin weights,informal,formal,0.13038179678045506,pre
+year,origin weights,informal,informal,0.6795294294462872,pre
+year,origin weights,informal,not employed,0.19008877377325775,pre
+year,origin weights,not employed,formal,0.06495024483401768,pre
+year,origin weights,not employed,informal,0.18964400908582196,pre
+year,origin weights,not employed,not employed,0.7454057460801603,pre
+year,reweighted for attrition,formal,formal,0.7606771702578838,pre
+year,reweighted for attrition,formal,informal,0.1506366060903112,pre
+year,reweighted for attrition,formal,not employed,0.08868622365180479,pre
+year,reweighted for attrition,informal,formal,0.13189613659319172,pre
+year,reweighted for attrition,informal,informal,0.6784003180487747,pre
+year,reweighted for attrition,informal,not employed,0.18970354535803371,pre
+year,reweighted for attrition,not employed,formal,0.06653628638435706,pre
+year,reweighted for attrition,not employed,informal,0.19040289654892165,pre
+year,reweighted for attrition,not employed,not employed,0.7430608170667212,pre
+quarter,origin weights,formal,formal,0.8017290908015607,post
+quarter,origin weights,formal,informal,0.1380056073031588,post
+quarter,origin weights,formal,not employed,0.060265301895280426,post
+quarter,origin weights,informal,formal,0.12206185402437864,post
+quarter,origin weights,informal,informal,0.7133769210453507,post
+quarter,origin weights,informal,not employed,0.16456122493027073,post
+quarter,origin weights,not employed,formal,0.04744783827370075,post
+quarter,origin weights,not employed,informal,0.16540325468408207,post
+quarter,origin weights,not employed,not employed,0.7871489070422172,post
+quarter,reweighted for attrition,formal,formal,0.8016299202051371,post
+quarter,reweighted for attrition,formal,informal,0.13799011657052224,post
+quarter,reweighted for attrition,formal,not employed,0.0603799632243406,post
+quarter,reweighted for attrition,informal,formal,0.12214566228442766,post
+quarter,reweighted for attrition,informal,informal,0.7133176771948119,post
+quarter,reweighted for attrition,informal,not employed,0.1645366605207604,post
+quarter,reweighted for attrition,not employed,formal,0.04776538106104353,post
+quarter,reweighted for attrition,not employed,informal,0.16572876546909937,post
+quarter,reweighted for attrition,not employed,not employed,0.7865058534698571,post
+year,origin weights,formal,formal,0.7675736987912721,post
+year,origin weights,formal,informal,0.1492439907857548,post
+year,origin weights,formal,not employed,0.08318231042297307,post
+year,origin weights,informal,formal,0.14510257304996396,post
+year,origin weights,informal,informal,0.6796001235011728,post
+year,origin weights,informal,not employed,0.1752973034488632,post
+year,origin weights,not employed,formal,0.06676209884166813,post
+year,origin weights,not employed,informal,0.1855613318269861,post
+year,origin weights,not employed,not employed,0.7476765693313457,post
+year,reweighted for attrition,formal,formal,0.7680993872272813,post
+year,reweighted for attrition,formal,informal,0.14865924826491023,post
+year,reweighted for attrition,formal,not employed,0.08324136450780842,post
+year,reweighted for attrition,informal,formal,0.14628320764639646,post
+year,reweighted for attrition,informal,informal,0.6780837751513241,post
+year,reweighted for attrition,informal,not employed,0.17563301720227945,post
+year,reweighted for attrition,not employed,formal,0.06847085638899439,post
+year,reweighted for attrition,not employed,informal,0.1868931770177892,post
+year,reweighted for attrition,not employed,not employed,0.7446359665932164,post

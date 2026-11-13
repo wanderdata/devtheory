@@ -7,6 +7,7 @@ Research project on productive development in Latin America and the Caribbean. A
 - Commits are authored as `Paul Wander <pjwander@gmail.com>`; set `git config user.name/user.email` in a fresh clone.
 - Write as a careful development economist: precise, argued, sceptical of one's own results, plain English, no hype. State what the evidence shows, what it does not, and what would change the conclusion.
 - Papers and app text must read as written by an economist, not generated: no dramatic phrasing, no sentences built for effect, no stock devices ("not X but Y" contrasts, rhetorical questions, triads, "crucially", "it's worth noting"). Keep technical detail (definitions, units, samples, caveats) even when it makes a sentence plainer.
+- Papers are written as academic work for outside readers: outward-facing section titles (e.g. "Data", "Results", "Robustness"), not process titles ("gaps relative to the plan", "what failed"). Procedural material (deviations from a pre-analysis plan, choices made after seeing the data, implementation notes, further needs) goes in an annex at the end. The registers keep the full process record.
 
 ## Registers (mandatory)
 

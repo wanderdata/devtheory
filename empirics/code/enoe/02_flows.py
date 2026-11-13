@@ -13,6 +13,11 @@ empirics/output/enoe/:
   misreport.csv         employees with the same employer start date at two first-quarter visits
                         whose size class or formality changes (§5.4 c)
   sector_test.csv       manufacturing minus services within size x formality cells (§5.3)
+  earnings_growth.csv   change in log hourly earnings over a year by origin cell (outcome 5)
+  transitions.csv       not employed / informal / formal transition matrices, quarter and year
+Robustness: every decomposition and the sector test are also run with weights adjusted for
+attrition (age group x sex x labour-force status, plan §2), and the decomposition with formality
+alone in place of size x formality (OQ-65).
   results.md            report
 """
 import sys
@@ -134,6 +139,7 @@ def annual(p):
     w["rank_decile"] = pd.qcut(w["state_0"].map(rank), 10, labels=False, duplicates="drop")
     w["exit_y"] = (w["state_4"] == "N").astype(float)
     w["persist_y"] = (w["state_4"] == w["state_0"]).astype(float)
+    w["same_cell"] = w["state_4"] == w["state_0"]          # before small cells are merged
     w["up_y"] = fl.upward(w["state_0"], w["state_4"], rank)
     w["sector"], w["sizeform"] = fl.parts(w["state_0"])
     # Employer change between visits 0 and 4, from the start date reported at visit 4 (only when
@@ -227,6 +233,86 @@ def sector_test(w, y, nboot=NBOOT, seed=SEED):
             "mean_services": np.average(yv[d["sector"] != MANUF], weights=wv[d["sector"] != MANUF])}
 
 
+AGE_GROUPS = [15, 24, 34, 44, 54, 65]
+
+
+def attrition_factor(p, a, b):
+    """Reweighting for attrition (plan §2): factor per person observed at a and b so that the
+    linked sample matches, by age group x sex x labour-force status at a, the weighted
+    distribution of everyone at a who could have been observed at b (visit number <= 5 - (b - a))."""
+    full = p[(p["pos"] == a) & p["eda"].between(AGE_MIN, AGE_MAX) & (p["n_ent"] <= 5 - (b - a))].copy()
+    seen = set(p.loc[p["pos"] == b, "pid"])
+    full["linked"] = full["pid"].isin(seen)
+    full["cell"] = (pd.cut(full["eda"], AGE_GROUPS, labels=False).astype(str) + "|" + full["sex"].astype(str)
+                    + "|" + (full["state"] == "N").map({True: "N", False: "E"}))
+    tot = full.groupby("cell")["fac_tri"].sum()
+    lnk = full[full["linked"]].groupby("cell")["fac_tri"].sum()
+    f = (tot / lnk).rename("factor")
+    out = full[full["linked"]][["pid", "cell"]].join(f, on="cell").set_index("pid")["factor"]
+    return out
+
+
+def reweighted(w, factor):
+    """Copy of an annual sample with fac_tri_0 replaced by the attrition-adjusted weight."""
+    x = w.copy()
+    x["fac_tri_0"] = x["fac_tri_0"] * x.index.map(factor).to_numpy(float)
+    return x[x["fac_tri_0"].notna()]
+
+
+def formality_only(w):
+    """Copy of an annual sample whose 'sizeform' column holds formality alone (OQ-65)."""
+    x = w.copy()
+    x["sizeform"] = x["sizeform"].str.split("|").str[1]
+    return x
+
+
+def earnings_growth(w):
+    """Plan outcome 5 (secondary): change in log hourly earnings between visits 0 and 4 for people
+    employed at both with positive hourly earnings, by origin size x formality and by sector, for
+    those in the same job cell and those who moved. Earnings non-response is reported."""
+    emp4 = w["state_4"] != "N"
+    x = w[emp4].copy()
+    x["valid"] = (x["ing_x_hrs_0"] > 0) & (x["ing_x_hrs_4"] > 0)
+    x["dlog"] = np.where(x["valid"], np.log(x["ing_x_hrs_4"].where(x["valid"]) / x["ing_x_hrs_0"].where(x["valid"])), np.nan)
+    x["mover"] = np.where(x["same_cell"], "same cell", "moved")
+    rows = []
+    for col in ["sizeform", "sector"]:
+        for (c, m), g in x.groupby([col, "mover"]):
+            v = g[g["valid"]]
+            rows.append({"dimension": col, "cell": c, "group": m, "n": len(g), "share_valid": g["valid"].mean(),
+                         "mean_dlog": wavg(v["dlog"], v["fac_tri_0"]) if len(v) else np.nan,
+                         "median_dlog": wmedian(v["dlog"].to_numpy(), v["fac_tri_0"].to_numpy()) if len(v) else np.nan})
+    return pd.DataFrame(rows)
+
+
+def segment(state):
+    return np.where(state == "N", "not employed", np.where(state.str.endswith("|formal"), "formal",
+                    np.where(state.str.endswith("|informal"), "informal", "employed, formality not specified")))
+
+
+def transitions(p, w_all):
+    """Weighted transition matrix between not employed, informal and formal employment over one
+    quarter (average of the window's pairs) and over one year (first to fifth visit), ages 16-65,
+    with origin weights and with attrition-adjusted weights."""
+    rows = []
+    specs = [("quarter", i, i + 1) for i in range(4)] + [("year", 0, 4)]
+    for horizon, a, b in specs:
+        w = pairs(p, a, b)
+        fac = attrition_factor(p, a, b)
+        w["o"], w["d"] = segment(w[f"state_{a}"]), segment(w[f"state_{b}"])
+        for wt_name, wt in [("origin weights", w[f"fac_tri_{a}"]),
+                            ("reweighted for attrition", w[f"fac_tri_{a}"] * w.index.map(fac).to_numpy(float))]:
+            d = pd.DataFrame({"o": w["o"], "d": w["d"], "wt": wt}).dropna()
+            m = d.groupby(["o", "d"])["wt"].sum().unstack(fill_value=0)
+            m = m.div(m.sum(axis=1), axis=0)
+            for o in m.index:
+                for dd in m.columns:
+                    rows.append({"horizon": horizon, "pair": a, "weights": wt_name, "origin": o, "destination": dd,
+                                 "share": m.loc[o, dd]})
+    t = pd.DataFrame(rows)
+    return t.groupby(["horizon", "weights", "origin", "destination"], as_index=False)["share"].mean()
+
+
 def misreport(p):
     """Employees with the same reported employer start date at two first-quarter visits (the only
     quarters with the start-date question): same year and month, or, for those who started
@@ -268,7 +354,7 @@ def main():
         print("No linked panels: run 01_link.py first. Nothing done.")
         return 0
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    qr, cells, dec, mis, st = [], {"sector": [], "sizeform": [], "state_0": []}, [], [], []
+    qr, cells, dec, mis, st, eg, tr = [], {"sector": [], "sizeform": [], "state_0": []}, [], [], [], [], []
     for win, f in files.items():
         p = prepare(pd.read_parquet(f))
         qr.append(quarterly_rates(p, win))
@@ -277,9 +363,14 @@ def main():
         w["state_0"] = merge_small(w["state_0"], n0)
         w["sector"], w["sizeform"] = fl.parts(w["state_0"])
         for col in cells:
-            cells[col].append(by_cell(w, col).assign(window=win))
+            cells[col].append(by_cell(w, col).assign(window=win, weights="origin weights"))
+        factor = attrition_factor(p, 0, 4)
+        w_rw = reweighted(w, factor)
         for variant, d in [("main", w), ("confirmed transitions", w[w["confirmed"]]),
-                           ("self-reported only", w[w["selfreport"]])]:
+                           ("self-reported only", w[w["selfreport"]]),
+                           ("reweighted for attrition", w_rw),
+                           ("formality alone vs sector", formality_only(w)),
+                           ("formality alone vs sector, confirmed transitions", formality_only(w[w["confirmed"]]))]:
             for y in ["exit_y", "up_y", "up_emp_y"]:
                 if d[y].notna().sum() > 1000:
                     r = boot_decomp(d, y)
@@ -293,10 +384,14 @@ def main():
             r.update({"window": win, "variant": "main, conditional on origin rank decile (exploratory)",
                       "outcome": "up_y"})
             dec.append(r)
-        for y in ["exit_y", "up_y", "up_emp_y"]:
-            r = sector_test(w, y) if w[y].notna().sum() > 1000 else None
-            if r:
-                st.append({**r, "window": win})
+        for wlab, ww in [("origin weights", w), ("reweighted for attrition", w_rw)]:
+            for y in ["exit_y", "up_y", "up_emp_y"]:
+                r = sector_test(ww, y) if ww[y].notna().sum() > 1000 else None
+                if r:
+                    st.append({**r, "window": win, "weights": wlab})
+        cells["sizeform"].append(by_cell(w_rw, "sizeform").assign(window=win, weights="reweighted for attrition"))
+        eg.append(earnings_growth(w).assign(window=win))
+        tr.append(transitions(p, w).assign(window=win))
         m = misreport(p)
         if len(m):
             mis.append(m.assign(window=win))
@@ -307,6 +402,8 @@ def main():
     dec.to_csv(OUTPUT / "decomposition.csv", index=False)
     if mis:
         pd.concat(mis).to_csv(OUTPUT / "misreport.csv", index=False)
+    pd.concat(eg).to_csv(OUTPUT / "earnings_growth.csv", index=False)
+    pd.concat(tr).to_csv(OUTPUT / "transitions.csv", index=False)
     st = pd.DataFrame(st)
     st.to_csv(OUTPUT / "sector_test.csv", index=False)
     print(st.round(4).to_string(index=False))

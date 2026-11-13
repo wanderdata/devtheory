@@ -14,6 +14,8 @@ One entry per work session, newest first.
 
 **Key results:** P-RG3 inconclusive under the plan's rules: size × formality explains more than sector for upward transitions (all variants, including the employer-change version), but not for exits once transitions must be confirmed. Within size × formality cells, manufacturing jobs show more upward movement than service jobs but not lower exits. Same-employer size reports differ 34% of the time over a year; formality 8.7%. Cells explain 1–7% of individual variation.
 
+**Later the same day:** reweighting for attrition (robustness; no change of substance), formality-alone decomposition (removes the advantage for upward moves), earnings growth and transition matrices, results note rewritten as an academic paper with an annex (new standing convention in CLAUDE.md), page 'Job ladders in Mexico' in the productivity app, checked in a browser. Bug fixed: stayers in merged small cells were classed as movers in the earnings table.
+
 **What failed / corrections:** in 2023–24 files 10–13% of person keys were duplicated until TIPO was added; the visit number became text in a merge; 2018–19 files lack MES_CAL (month derived from D_SEM); the job-to-job rate was first computed among recent starters only (26–31%; corrected to 5.6–6.1%); the misreporting check first required the same start month, which is asked only of recent starters (n = 74; corrected to 2,300).
 
 ---

@@ -29,6 +29,7 @@ Run locally: `pip install -r apps/productivity/requirements.txt && streamlit run
 | | Reallocation and productivity gaps | McMillan–Rodrik scatter with weighted slope; dispersion index; hours vs output per hour; relative prices and measured productivity by sector (Baumol slope) |
 | | Output per working-age person | Growth of output per person aged 15+ split into within-sector, structural-change and employment-rate terms; demographic and terms-of-trade terms; how the employment-rate term's weight changes with the horizon (WP08) |
 | | Ladder of the working-age population | Everyone aged 15+ placed at their sector's output per worker, the non-employed at zero; dominance verdicts at two price bases, incidence curve, threshold indices (WP08) |
+| | Job ladders in Mexico | ENOE rotating panel (WP09): exit and upward-move rates by sector and by firm size × formality, Shapley comparison of the two with robustness variants (confirmed transitions, self-reports, reweighting for attrition, formality alone), manufacturing vs services, transitions between not employed, informal and formal work, earnings growth, reporting reliability |
 | | Data quality and coverage | Survey timeline, validation, model vs survey shares, grades |
 
 ### Data notes
