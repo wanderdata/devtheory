@@ -13,12 +13,12 @@ import pandas as pd
 
 import enoe_io
 import enoe_link
-from enoe_config import AGE_MAX, AGE_MIN, INTERIM, KEY, OUTPUT, RAW, WINDOWS
+from enoe_config import AGE_MAX, AGE_MIN, INTERIM, KEY, KEY_OPTIONAL, OUTPUT, RAW, WINDOWS
 
 SDEM = KEY + ["n_ent", "eda", "sex", "clase1", "clase2", "pos_ocu", "rama_est2", "ambito2", "emp_ppal",
               "ing_x_hrs", "ingocup", "hrsocup", "cs_p13_1", "fac_tri", "fac", "r_def", "c_res", "upm", "tipo",
               "mes_cal", "est_d_tri", "est_d"]
-COE1 = KEY + ["n_ent", "p3r_anio", "p3r_mes", "n_inf"]
+COE1 = KEY + ["n_ent", "tipo", "p3r_anio", "p3r_mes", "n_inf"]
 
 
 def quarter(year, q):
@@ -31,10 +31,13 @@ def quarter(year, q):
     try:
         c = enoe_io.read("coe1", year, q, COE1)
         c = c.drop(columns=[x for x in ["year", "q"] if x in c.columns])
-        s = s.merge(c, on=KEY + ["n_ent"], how="left")
+        on = KEY + ["n_ent"] + [k for k in KEY_OPTIONAL if k in s.columns and k in c.columns]
+        for k in on:
+            s[k], c[k] = s[k].astype(str).str.strip(), c[k].astype(str).str.strip()
+        s = s.merge(c, on=on, how="left")
     except FileNotFoundError:
         pass
-    for k in KEY:
+    for k in KEY + [k for k in KEY_OPTIONAL if k in s.columns]:
         s[k] = s[k].astype(str).str.strip()
     return s
 
@@ -53,11 +56,12 @@ def main():
         except FileNotFoundError as e:
             print(f"[skip] window {w}: {e}")
             continue
+        key = KEY + [k for k in KEY_OPTIONAL if all(k in f.columns for f in frames)]
         for (y, q), f in zip(quarters, frames):
-            dup = int(f.duplicated(KEY).sum())
-            print(f"{w} {y}Q{q}: {len(f)} persons, {dup} duplicated keys")
-        panel, d = enoe_link.chain(frames)
-        d["window"] = w
+            dup = int(f.duplicated(key).sum())
+            print(f"{w} {y}Q{q}: {len(f)} persons, {dup} duplicated keys (key: {', '.join(key)})")
+        panel, d = enoe_link.chain(frames, key)
+        d["window"], d["key"] = w, "+".join(key)
         d["quarter_from"] = [f"{y}Q{q}" for y, q in quarters[:-1]]
         diags.append(d)
         panel.to_parquet(INTERIM / f"{w}.parquet", index=False)

@@ -120,3 +120,5 @@ Only aggregate tables leave the raw-data folder. Code is in `empirics/code/enoe/
 - **Start date with the employer** (P3R_ANIO, P3R_MES). These questions are only in the extended questionnaire, which is applied in first quarters. So:
   - outcome 4 (job change) is computed only for Q4→Q1 pairs (2018Q4→2019Q1 and 2023Q4→2024Q1);
   - check (c) in §5.4 uses people with the same start date at two first-quarter visits, which is possible only in the post-redesign window (2023Q1 and 2024Q1, one year apart). Over a year, a change of size class with the same employer can also be genuine growth, so this bounds misreporting from above.
+
+**2026-11-13, from the linking diagnostics, before any outcome was computed (D-047).** In the 2023–24 files, 10–13% of person keys were shared by two different households, distinguished only by TIPO. TIPO is therefore added to the linking key when present. It changes between visits in 0.006% of links. This supersedes the earlier statement that TIPO is not used for linking. The 2018–19 files have no TIPO and no duplicated keys.
