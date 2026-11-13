@@ -1,13 +1,16 @@
 """Read SDEMT (and the tenure questions of COE1) for each window, apply the sample rules, and
 link respondents across the five quarters (pre-analysis plan §§2–3).
 
-    python empirics/code/enoe/01_link.py
+    python empirics/code/enoe/ladders/01_link.py
 
 Writes the linked long panel (person id `pid`, quarter position `pos`) to the uncommitted
 empirics/data/raw/enoe_interim/<window>.parquet
-and aggregate linking diagnostics to empirics/output/enoe/link_diagnostics.csv.
+and aggregate linking diagnostics to empirics/output/enoe/ladders/link_diagnostics.csv.
 """
 import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # shared ENOE modules
 
 import pandas as pd
 

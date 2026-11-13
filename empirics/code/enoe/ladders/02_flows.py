@@ -1,9 +1,9 @@
 """Flows, rates by job cell and the test of P-RG3 (pre-analysis plan §§4–5).
 
-    python empirics/code/enoe/02_flows.py
+    python empirics/code/enoe/ladders/02_flows.py
 
 Reads the linked panels written by 01_link.py and writes aggregate tables only, to
-empirics/output/enoe/:
+empirics/output/enoe/ladders/:
   quarterly_rates.csv   employment exit and job-finding rates, quarter to quarter (§5.1)
   rates_<dim>.csv       exit (1 quarter, 1 year), persistence and upward transition (1 year)
                         by sector, by size x formality and by job cell (§5.2)
@@ -21,6 +21,9 @@ alone in place of size x formality (OQ-65).
   results.md            report
 """
 import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # shared ENOE modules
 
 import numpy as np
 import pandas as pd

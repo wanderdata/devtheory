@@ -7,7 +7,7 @@ from streamlit.testing.v1 import AppTest
 APP = str(Path(__file__).resolve().parents[1] / "app.py")
 PAGES = ["views/home.py", "views/ref_regional.py", "views/ref_sectors.py", "views/ref_labour.py",
          "views/ref_country.py", "views/ext_periods.py", "views/ext_annual.py", "views/ext_structure.py",
-         "views/ext_working_age.py", "views/ext_ladder.py", "views/ext_jobs_mexico.py", "views/ext_data.py"]
+         "views/ext_working_age.py", "views/ext_ladder.py", "views/ext_data.py"]
 
 
 @pytest.mark.parametrize("scope", ["lac", "carib"])

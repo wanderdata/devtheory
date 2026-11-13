@@ -1,8 +1,8 @@
-"""Settings for the ENOE job-ladder study (WP09; design in
-papers/WP09_job_ladders_mexico/00_pre_analysis_plan.md, D-046).
+"""Shared settings for the ENOE studies of WP09 (Jobs in Mexico; programme overview in
+papers/WP09_jobs_mexico/README.md, D-046, D-050).
 
 ENOE microdata are not committed: put INEGI's quarterly zips (CSV version) in
-empirics/data/raw/enoe/, unchanged. Only aggregate tables are written to empirics/output/enoe/.
+empirics/data/raw/enoe/, unchanged. Only aggregate tables are written, to empirics/output/enoe/<study>/.
 """
 import sys
 from pathlib import Path
@@ -13,7 +13,8 @@ if str(ROOT) not in sys.path:
 
 RAW = ROOT / "empirics" / "data" / "raw" / "enoe"
 INTERIM = ROOT / "empirics" / "data" / "raw" / "enoe_interim"   # linked microdata: never committed
-OUTPUT = ROOT / "empirics" / "output" / "enoe"
+OUTPUT_ROOT = ROOT / "empirics" / "output" / "enoe"
+OUTPUT = OUTPUT_ROOT / "ladders"          # study 9.1; other studies define their own subfolder
 
 # Two windows of five consecutive quarters (year, quarter); no window spans the 2020 break.
 WINDOWS = {

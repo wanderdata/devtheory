@@ -1,21 +1,20 @@
-"""Extended: job ladders in Mexico from the ENOE rotating panel (WP09)."""
+"""Study 9.1: which jobs are rungs? Flows by sector, firm size and formality (ENOE rotating panel)."""
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from lib import C_CONTEXT, C_HIGHLIGHT, ENOE_SECTORS, INK2, MUTED, base_layout, credit, load_enoe, show
+from jobs_lib import C_CONTEXT, C_HIGHLIGHT, INK2, MUTED, SECTORS as ENOE_SECTORS, base_layout, footer, load, show
 
-st.title("Job ladders in Mexico")
+st.title("9.1 Which jobs are rungs?")
 st.markdown(
     "This page uses Mexico's quarterly labour-force survey (ENOE), which interviews the same dwellings in five "
     "consecutive quarters, to follow workers for a year. It asks which characteristics of a job predict whether "
     "the person holding it stays employed and moves to better-paid work: the job's **sector**, or its **firm size "
     "and formality**. Two windows are compared: 2018 Q4–2019 Q4 and 2023 Q1–2024 Q1. Ages 16–65. The design was "
-    "written down before the data were opened (WP09 pre-analysis plan); results are descriptive, not causal. "
-    "This page does not depend on the region selector.")
+    "written down before the data were opened (pre-analysis plan of study 9.1); results are descriptive, not causal.")
 
-dec = load_enoe("decomposition")
+dec = load("ladders", "decomposition")
 if dec.empty:
     st.warning("No results: run `empirics/code/enoe/run_all.py` (needs the ENOE microdata).")
     st.stop()
@@ -43,11 +42,11 @@ wts = c3.radio("Weights", ["origin weights", "reweighted for attrition"], key="j
                help="Reweighting adjusts the people still in the panel a year later to the age, sex and "
                     "labour-force-status mix of everyone who could have been followed.")
 if dim == "Sector":
-    r = load_enoe("rates_sector").assign(cell=lambda d: d["sector"].astype(str).map(ENOE_SECTORS))
+    r = load("ladders", "rates_sector").assign(cell=lambda d: d["sector"].astype(str).map(ENOE_SECTORS))
     if wts != "origin weights":
         st.caption("Sector rates are shown with origin weights only.")
 else:
-    r = load_enoe("rates_sizeform").rename(columns={"sizeform": "cell"})
+    r = load("ladders", "rates_sizeform").rename(columns={"sizeform": "cell"})
     r = r[r["weights"] == wts] if "weights" in r.columns else r
     r["cell"] = r["cell"].str.replace("|", " · ", regex=False)
 r = r.dropna(subset=[out])
@@ -108,7 +107,7 @@ show(fig, d[["window", "outcome", "variant", "n", "shapley_sector", "shapley_siz
 
 # ---- 3. manufacturing vs services
 st.subheader("Manufacturing versus services in the same type of firm")
-stt = load_enoe("sector_test")
+stt = load("ladders", "sector_test")
 if not stt.empty:
     if "weights" not in stt.columns:
         stt["weights"] = "origin weights"
@@ -132,7 +131,7 @@ if not stt.empty:
 
 # ---- 4. transitions between segments
 st.subheader("Moving between not employed, informal and formal work")
-tr = load_enoe("transitions")
+tr = load("ladders", "transitions")
 if not tr.empty:
     c1, c2, c3 = st.columns(3)
     hz = c1.radio("Horizon", ["year", "quarter"], horizontal=True, format_func=lambda h: f"One {h}")
@@ -158,7 +157,7 @@ if not tr.empty:
 
 # ---- 5. earnings growth
 st.subheader("Earnings growth over a year")
-eg = load_enoe("earnings_growth")
+eg = load("ladders", "earnings_growth")
 if not eg.empty:
     wn = st.radio("Window", ["pre", "post"], horizontal=True, format_func=WIN.get, key="egw")
     e = eg[(eg["dimension"] == "sizeform") & (eg["window"] == wn) & (eg["n"] >= 200)].copy()
@@ -183,7 +182,7 @@ if not eg.empty:
 
 # ---- 6. data quality
 st.subheader("How reliable are the job characteristics?")
-mis = load_enoe("misreport")
+mis = load("ladders", "misreport")
 if not mis.empty:
     m = mis.iloc[0]
     st.markdown(
@@ -192,5 +191,4 @@ if not mis.empty:
         f"**{m['formality_changes']:.0%} a different formality status**. Some genuine growth across a size boundary is "
         "possible in a year, but most of the size changes are reporting error. Results that rely on firm size are "
         "therefore weaker than their intervals suggest; formality is reported far more consistently.")
-credit("Source: INEGI, Encuesta Nacional de Ocupación y Empleo (ENOE), quarterly microdata, 2018 Q4–2019 Q4 and "
-       "2023 Q1–2024 Q1. Method: devtheory WP09, after Donovan, Lu and Schoellman (2023).")
+footer("2018 Q4–2019 Q4 and 2023 Q1–2024 Q1. Method: devtheory WP09, study 9.1, after Donovan, Lu and Schoellman (2023).")

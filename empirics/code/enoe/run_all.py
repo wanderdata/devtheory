@@ -1,4 +1,4 @@
-"""Run the ENOE job-ladder pipeline (WP09): 00 fetch -> 01 link -> 02 flows -> 03 report.
+"""Run the ENOE programme (WP09): fetch the data, then each study's pipeline.
 
     python empirics/code/enoe/run_all.py [--no-fetch]
 
@@ -11,10 +11,11 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-STEPS = ["00_fetch.py", "01_link.py", "02_flows.py", "03_report.py"]
+STUDIES = ["ladders"]
 
 if __name__ == "__main__":
-    steps = STEPS[1:] if "--no-fetch" in sys.argv else STEPS
-    for s in steps:
-        print(f"== {s}")
-        subprocess.run([sys.executable, str(HERE / s)], check=True, cwd=HERE)
+    if "--no-fetch" not in sys.argv:
+        subprocess.run([sys.executable, str(HERE / "00_fetch.py")], check=True, cwd=HERE)
+    for st in STUDIES:
+        print(f"==== study {st}")
+        subprocess.run([sys.executable, str(HERE / st / "run_all.py")], check=True, cwd=HERE / st)
