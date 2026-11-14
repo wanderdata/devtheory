@@ -1,6 +1,6 @@
 # Doubling the Minimum Wage on Mexico's Northern Border: Earnings, Employment and Moves out of Informality, 2016–2019
 
-*Paul Wander. Working draft v0.1, 2026-11-13. Pre-analysis plan: [`00_pre_analysis_plan.md`](00_pre_analysis_plan.md). Generated tables: [`empirics/output/enoe/border_mw/results.md`](../../../empirics/output/enoe/border_mw/results.md). App: Jobs in Mexico, page 9.4.*
+*Paul Wander. Working draft v0.2, 2026-11-13. Pre-analysis plan: [`00_pre_analysis_plan.md`](00_pre_analysis_plan.md). Generated tables: [`empirics/output/enoe/border_mw/results.md`](../../../empirics/output/enoe/border_mw/results.md). App: Jobs in Mexico, page 9.4.*
 
 ## Abstract
 
@@ -10,7 +10,11 @@ In January 2019 Mexico doubled the minimum wage in the 43 municipalities of its 
 
 **Reported earnings.** The distribution of reported earnings moved at the new minimum. The share of wage employees reporting less than it fell by 8.4 points, from a pre-period level of 47%, with fewer jobs below the minimum and more just above it, mostly in formal employment.
 
-**Non-reporting.** At the same time, the share of wage employees reporting any earnings fell by 7.8 points in the zone relative to the comparison group. The rise in non-reporters is almost as large as the fall in jobs below the minimum. The shift in the distribution is therefore real in direction but not determined in size, and mean log earnings show no clear effect.
+**Non-reporting.** At the same time, the share of wage employees reporting an amount of earnings fell by 7.8 points in the zone relative to the comparison group.
+- About 1.6 points of this is a rise in answers to ENOE's follow-up question in ranges of the minimum wage. These answers are concentrated at "equal to the minimum".
+- The rest is a rise in refusals and "don't know".
+
+Allocating the range answers to earnings bins gives 5.6 fewer jobs below the minimum and 3.5 more just above it, per 100 people aged 15+. Even if every remaining new non-reporter earned less than the minimum, at least 2.6 jobs per 100 are missing from below it. Mean log earnings of those reporting an amount show no clear effect.
 
 **Formality.** Moves from informal to formal work did not increase: −1.2 points a quarter (−5.0 to +1.6) against a pre-period rate of 18.5%. Neither the formal share of employment nor any other transition rate changed detectably.
 
@@ -127,17 +131,37 @@ In formal employment the pattern is that of a binding floor: fewer formal jobs a
 
 **Non-reporting rose at the same time.** The share of wage employees reporting any earnings fell by 7.8 points (−13.5 to −2.0) relative to the comparison group, from 77%. The decline appears from 2019Q2 and deepens through the year (event study: −7, −9 and −12 points in 2019Q2–Q4), with no pre-period movement (joint p = 0.72). Per 100 persons aged 15+, non-reporting wage employees rose by 3.9 (formal 2.7, informal 1.1).
 
-The bins add up: the number of wage employees did not change significantly, and the fall below the minimum is matched by the rise just above it and among non-reporters. Two extremes bound the number of missing jobs:
+The bins add up: the number of wage employees did not change significantly, and the fall below the minimum is matched by the rise just above it and among non-reporters. On amounts alone, two extremes bound the number of missing jobs:
 - if every additional non-reporter would have reported less than the new minimum, the missing jobs are −0.2 per 100;
 - if none would have, they are −4.0.
 
-The direction of the shift is clear in formal employment, where excess jobs above the minimum are observed directly. Its size is not determined.
+**Range answers.** Respondents who give no amount are asked whether their income is below, equal to, or in ranges of the minimum wage read out by the interviewer. That minimum is the one in force where they live: 5,302 pesos a month in the zone in 2019. A follow-up analysis set out in an addendum to the plan, before these answers were tabulated by zone or period, shows that range answers explain a small part of the fall in reporting.
+
+| Answer, share of wage employees | Estimate | 90% interval | Pre-period mean, zone |
+|---|---|---|---|
+| Amount | −0.078 | −0.135 to −0.020 | 0.769 |
+| Range (codes 1–7) | +0.016 | −0.010 to +0.041 | 0.083 |
+| of which: below the minimum | +0.006 | +0.002 to +0.008 | 0.002 |
+| of which: equal to the minimum | +0.012 | +0.005 to +0.021 | 0.005 |
+| of which: 1–2 minimums | +0.018 | +0.004 to +0.037 | 0.033 |
+| No answer (refused, don't know) | +0.063 | +0.016 to +0.104 | 0.148 |
+
+- **Answers at the minimum.** "Equal to the minimum" rose from 0.5% of wage employees to about 1.7%, which is 79% of the net rise in range answers. This is what workers paid the new minimum would say. The higher ranges fell, partly because the yardstick read out had doubled.
+- **The rest of the fall.** Most of the fall in reporting is a rise in refusals and "don't know" (+6.3 points), whose cause this survey cannot reveal. Plausible explanations include reluctance among workers paid less than the new legal minimum, and changes in fieldwork in the enlarged zone sample. Neither can be tested here.
+
+**Corrected bins.** Each range answer is placed in the earnings bins by spreading it uniformly over its interval, with the minimum in force for that person and quarter, and a point for "equal to the minimum". Per 100 people aged 15+:
+- **Missing jobs:** −5.6 below the minimum (−7.1 to −3.9).
+- **Excess jobs:** +3.5 at 1.0–1.5 times it (+2.2 to +5.4); nearly all formal (+3.3).
+- **Share below the minimum:** −11.8 points among those giving an amount or a range (−15.5 to −7.4). This measure passes the pre-trend test (p = 0.18).
+- **Remaining non-response:** +3.0. If all of these people earned below the minimum, missing jobs would be −2.6. If none did, −5.6.
+
+The shift of formal jobs from below to above the new minimum is therefore established in direction and bounded in size: between 2.6 and 5.6 jobs per 100 people aged 15+ moved out of the range below the minimum. The ratio of excess to missing jobs in the corrected bins is 0.63.
 
 **Mean earnings.** Mean log hourly earnings of reporting wage employees rose by 1.5% (−1.8 to +6.3). The pre-period coefficients are jointly significant (p = 0.045), and the estimate depends on the comparison group: +4.7% with a national comparison group (p = 0.01), and +4.3% among workers with less schooling (p = 0.001). Own-account workers' hourly earnings rose by 2.9% (−3.9 to +9.2).
 
 ### 4.4 Propositions
 
-- **P31** (higher low wages without less employment): **inconclusive**.
+- **P31** (higher low wages without less employment): **inconclusive** under the plan's rules (the addendum does not change the rule applied).
   - The employment part holds.
   - The earnings part cannot be judged under the plan's rules: log earnings and the below-minimum measures have pre-trends, and the bins are affected by the change in reporting.
   - The ratio of excess to missing jobs is 0.59.
@@ -162,13 +186,13 @@ This is a picture of the difference in differences in space, not a separate esti
 - **Pre-trends.** The share earning below the minimum fell faster in the zone than elsewhere in 2016–2017, before stabilising from 2017Q4.
   - Starting the pre-period in 2017Q3, an analysis added after seeing the event studies, gives −7.1 points for the below-minimum share (−11.4 to −3.9), against −8.4 in the main specification.
   - The 2019 drop is far larger than any pre-period movement since 2017.
-- **Non-reporting.** Why reporting fell is not established here. One hypothesis concerns ENOE's follow-up question for respondents who do not state an amount, which asks for income in multiples of the minimum wage. After 2019 the reference minimum differed between the zone and the rest of the country. This can be tested with ENOE's coded income ranges.
+- **Non-reporting.** Range answers explain about a fifth of the fall in reporting, and are concentrated at the new minimum. The rest is refusals and "don't know", whose cause is not established. The corrected bins rely on spreading range answers uniformly within their intervals. For "below the minimum" and "equal to the minimum" this assumption does not affect which side of the minimum the answer falls on.
 - **Survey design.** Restricting to pre-2019 sampling units avoids the 2019 sample expansion. The full sample gives almost identical estimates, for example −8.0 points for the below-minimum share and +0.8 for the employment rate.
 - **Statistical power.** With about thirty treated municipalities and a quarterly panel of one year after the change, effects on transitions of a few points a quarter cannot be ruled out.
 
 ## 6. Conclusions
 
-**Employment and the wage floor.** Doubling the minimum wage on Mexico's northern border, together with tax cuts, did not reduce employment. In formal employment it pushed reported earnings up to the new floor, which is consistent with administrative evidence.
+**Employment and the wage floor.** Doubling the minimum wage on Mexico's northern border, together with tax cuts, did not reduce employment. In formal employment it moved earnings from below the new floor to just above it, for between 2.6 and 5.6 jobs per 100 people aged 15+ once answers given in ranges of the minimum wage are counted. This is consistent with administrative evidence.
 
 **Formality.** It did not move workers out of informality on a detectable scale. Informal-to-formal transitions, formal employment and the formal share were unchanged within a year. For the search for policies that move workers up the job ladder, a large minimum-wage increase in a region with a deep formal sector raised pay at the bottom of formal employment but did not by itself change who holds formal jobs.
 
@@ -176,10 +200,10 @@ This is a picture of the difference in differences in space, not a separate esti
 - the expansion of the sample in the zone at the date of the policy;
 - a fall in earnings reporting in the zone after it.
 
-The second limits what household-survey data can say about the size of the wage effects.
+Counting answers given in ranges of the minimum wage recovers about a fifth of the lost reports and narrows the uncertainty about the wage effect. The rest, a rise in refusals, still limits what household-survey data can say about its exact size.
 
 **What would change these conclusions:**
-- evidence on why earnings reporting fell, for example from coded income ranges;
+- evidence on why refusals rose in the zone, for example from interviewer or fieldwork records;
 - a longer post-period that separates the 2019 change from the 2020 increases and the pandemic;
 - administrative records that link formal hires to their previous informal status.
 
@@ -195,6 +219,8 @@ Records with no municipality code (about 1% a quarter, outside self-represented 
 **A.2 Choices made after seeing results** (decision D-055):
 - **Rule §6 made explicit in the report.** The rule was applied mechanically to the propositions: an outcome flagged by a pre-trend or by the change in reporting cannot support or reject a proposition.
 - **Bounds on missing jobs** under extreme assumptions about non-reporters.
+- **Addendum A1 to the plan** (D-056): range answers and corrected bins, written before tabulating the follow-up question by zone or period. H-A (most of the fall in reporting is range answers) is inconclusive; H-B (range answers concentrated at "equal to the minimum") is supported.
+- **Byte-order marks.** Some 2016–2019 ENOE files begin with a UTF-8 byte-order mark; the reader now strips it. No earlier result used an affected column.
 - **A pre-period starting in 2017Q3.**
 - **Baja California Sur** added to the geometry, only to locate the zone's southern edge in Baja California.
 - **Fit lines** in the distance plot drawn only over the observed range.
@@ -202,7 +228,7 @@ Records with no municipality code (about 1% a quarter, outside self-represented 
 **A.3 Maps.** Municipal values are ratio estimates with variances from a bootstrap over primary sampling units within the municipality (200 replications). Changes are net of the population-weighted mean change among comparison municipalities, and are shrunk towards the mean of the municipality's group by a method-of-moments empirical Bayes estimator. Variances of changes ignore the positive covariance from repeated interviews of the same dwellings, so shrinkage is conservative.
 
 **A.4 Further work.**
-- **Coded income ranges.** Use them to explain and correct the fall in reporting.
+- **Refusals.** Examine who refuses (by formality, sex, schooling, establishment size) and whether refusals cluster by interviewer area in the enlarged zone sample.
 - **IMSS records.** Link formal hires in the zone to their previous status, for a sharper test of moves out of informality.
 - **Longer windows.** Extend to 2020Q3–2023 with ENOE^N, modelling the 2020–2023 increases in both regions (doses of 5–20% a year).
 - **Prices.** Separate the tax cuts with price data.

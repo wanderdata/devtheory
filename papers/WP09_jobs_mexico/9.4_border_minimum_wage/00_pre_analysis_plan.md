@@ -131,3 +131,40 @@ ENOE is not designed to be representative at municipality level, so the maps are
 - **Differential trends.** Pre-trends in the event study (a joint test with p < 0.10 for a primary outcome) make that outcome's estimate unreliable; this is reported as such.
 - **Differential non-reporting.** A change in earnings non-reporting in the zone of more than 3 percentage points relative to controls would make the earnings bins unreliable.
 - **Confounding by the tax package.** VAT and income-tax cuts would bias employment effects upward relative to a pure minimum-wage effect. Nothing in ENOE separates the two.
+
+## Addendum A1 (2026-11-13): range answers and the fall in earnings reporting
+
+*Written after the main results, before tabulating the follow-up income question by zone or period (OQ-70, D-056).*
+
+**Why.** In the zone, the share of wage employees reporting an amount of earnings fell by 7.8 points relative to controls in 2019. ENOE asks respondents who give no amount a follow-up question (P6C). The interviewer reads the current monthly minimum wage, and the respondent says whether their income is:
+1. below it;
+2. equal to it;
+3. more than 1 up to 2 minimum wages;
+4. more than 2 up to 3;
+5. more than 3 up to 5;
+6. more than 5 up to 10;
+7. more than 10;
+8. refused;
+9. don't know.
+
+The minimum read out is the one in force where the respondent lives: 2,651 pesos a month in 2018, and in 2019 5,302 in the zone and 3,080 elsewhere (ENOE variable `salario`). Published monthly income (`ingocup`) is zero for range answers.
+
+**Hypotheses.**
+- **H-A.** Most of the fall in reporting is a rise in range answers, not in refusals or "don't know".
+  - *Supported* if the DiD for the share of wage employees answering P6C with codes 1–7 is positive and at least half the size of the fall in reporting.
+  - *Rejected* if its 90% interval excludes half.
+- **H-B.** The rise in range answers is concentrated at "equal to the minimum" (code 2), consistent with workers paid the new minimum answering that they earn the minimum.
+  - *Supported* if code 2 accounts for at least half of the DiD for codes 1–7.
+  - *Rejected* if its 90% interval excludes half.
+
+**Corrected bins.** Each range answer is converted into an interval of monthly income relative to M = 5,302, using the minimum in force for that person and quarter (`salario` × the code's bounds):
+- code 1: [0, `salario`);
+- code 2: the point `salario`;
+- codes 3–6: the stated multiples;
+- code 7: above 10 × `salario`.
+
+Each answer is spread uniformly in pesos over its interval and added to the earnings bins of §3. "Not reported" then contains only codes 8–9 and missing answers.
+
+The DiD for missing jobs (below M) and excess jobs (1.0–1.5 M) is re-estimated on the corrected bins, for formal and informal wage employees, with the same specification and inference as the main analysis. The corrected share below M among all who gave an amount or a range is estimated as well. These corrected estimates replace the bounds in the paper if H-A is supported.
+
+**Limitation.** Spreading answers uniformly within a range is an assumption. For codes 1 and 3 the conclusion about missing jobs does not depend on it, because those intervals lie wholly below M in the zone in 2019, and wholly below M for everyone before 2019 except for code 3 in the control group in 2019.

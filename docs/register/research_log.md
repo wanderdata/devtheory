@@ -4,6 +4,22 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-13 — Session 23: study 9.4 follow-up, why earnings reporting fell (OQ-70)
+
+**Prompt (user):** next step.
+
+**Done**
+- Read ENOE's file description for the follow-up income question (P6C: below, equal to, or in ranges of the minimum wage read out by the interviewer; `ingocup` is zero for range answers).
+- Addendum A1 to the 9.4 plan (H-A, H-B, corrected bins) committed before tabulating P6C by zone or period (D-056).
+- Found and fixed: some 2016–2019 COE1/COE2/HOG/VIV files carry a UTF-8 byte-order mark that `enoe_io.read` left in the first column name; no earlier output used an affected column (output check unchanged).
+- New step `06_ranges.py` (answer shares, range answers converted to income intervals with `salario`, corrected bins, DiD and event studies); test of the allocation; report, paper (v0.2) and app page updated.
+
+**Key results:** of the 7.8-point fall in amounts reported, range answers +1.6 (−1.0 to +4.1) and refusals/don't know +6.3 (+1.6 to +10.4): H-A inconclusive. 'Equal to the minimum' +1.2 points (from 0.5%), 79% of the rise in range answers: H-B supported. Corrected bins: missing −5.6 per 100 people 15+ (−7.1 to −3.9), excess +3.5 (+2.2 to +5.4), corrected share below the minimum −11.8 points without a pre-trend (p = 0.18); missing jobs bounded at −2.6 to −5.6, excluding zero.
+
+**What failed / corrections:** the byte-order mark (above). The bounds reported in v0.1 of the paper (−0.2 to −4.0) are superseded by the corrected bins.
+
+---
+
 ## 2026-11-13 — Session 22: study 9.4 (the 2019 border minimum wage)
 
 **Prompt (user):** do 9.4 now, before deploying the app; add municipality maps before, during and after the change ("the visual of a diff-in-diff with a discontinuity"), adapted to keep rigour.

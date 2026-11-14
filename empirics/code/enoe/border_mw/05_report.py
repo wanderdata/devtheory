@@ -143,6 +143,34 @@ def main():
     b["pre"] = b["pre_mean_zone"].map(lambda x: f"{x:.5f}")
     b["p"] = b["p_wild"].map(lambda x: f"{x:.3f}")
     txt.append(table(b, ["formality", "bin", "beta", "p", "pre"]))
+    rpath = OUT / "ranges_did.csv"
+    if rpath.exists():
+        rd = pd.read_csv(rpath).set_index("outcome")
+        fall = -mm["report"]
+        rg = rd.loc["sh_range"]
+        share2 = rd.loc["sh_p6c2", "beta"] / rg["beta"] if rg["beta"] > 0 else np.nan
+        ha = "supported" if (rg["beta"] >= fall / 2) else "rejected" if rg["hi90"] < fall / 2 else "inconclusive"
+        p2 = rd.loc["sh_p6c2"]
+        hb = "supported" if share2 >= 0.5 else "inconclusive"
+        txt.append("\n## Addendum A1: range answers and corrected bins (D-056)\n")
+        txt.append(f"- **H-A: {ha}.** Fall in amounts reported {-fall:+.4f}; range answers (P6C 1-7) {rg['beta']:+.4f} "
+                   f"[{rg['lo90']:+.4f}, {rg['hi90']:+.4f}] against half the fall, {fall / 2:.4f}; no answer "
+                   f"{rd.loc['sh_none', 'beta']:+.4f} [{rd.loc['sh_none', 'lo90']:+.4f}, {rd.loc['sh_none', 'hi90']:+.4f}].")
+        txt.append(f"- **H-B: {hb}.** 'Equal to the minimum' {p2['beta']:+.4f} [{p2['lo90']:+.4f}, {p2['hi90']:+.4f}], "
+                   f"{share2:.0%} of the rise in range answers. Codes 4-6 fall partly because the minimum read out doubled.")
+        cm, ce = rd.loc["c_missing"], rd.loc["c_excess"]
+        none = rd.loc["fc_none", "beta"] + rd.loc["ic_none", "beta"]
+        txt.append(f"- Corrected bins: missing {cm['beta']:+.4f} [{cm['lo90']:+.4f}, {cm['hi90']:+.4f}], excess "
+                   f"{ce['beta']:+.4f} [{ce['lo90']:+.4f}, {ce['hi90']:+.4f}] per person 15+; remaining rise in non-response "
+                   f"{none:+.4f}, so missing jobs lie between {cm['beta'] + none:+.4f} and {cm['beta']:+.4f}. Corrected share "
+                   f"below M {rd.loc['below_m_corr', 'beta']:+.4f} [{rd.loc['below_m_corr', 'lo90']:+.4f}, "
+                   f"{rd.loc['below_m_corr', 'hi90']:+.4f}].\n")
+        t = rd.reset_index()
+        for c in ["beta", "lo90", "hi90"]:
+            t[c] = t[c].map(fmt)
+        t["p"] = t["p_wild"].map(lambda x: f"{x:.3f}")
+        t["pre"] = t["pre_mean_zone"].map(lambda x: f"{x:.4f}")
+        txt.append(table(t, ["outcome", "beta", "lo90", "hi90", "p", "pre"]))
     (OUT / "results.md").write_text("\n".join(txt) + "\n")
     print("\n".join(txt[:12]))
     return 0

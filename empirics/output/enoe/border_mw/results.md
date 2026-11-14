@@ -106,3 +106,32 @@ Missing jobs below the new minimum: -0.0403 per person 15+; rise in wage employe
 | informal | b30_up | -0.00056 | 0.103 | 0.00129 |
 | informal | norep | +0.01116 | 0.006 | 0.03562 |
 
+
+## Addendum A1: range answers and corrected bins (D-056)
+
+- **H-A: inconclusive.** Fall in amounts reported -0.0783; range answers (P6C 1-7) +0.0157 [-0.0097, +0.0411] against half the fall, 0.0391; no answer +0.0626 [+0.0162, +0.1036].
+- **H-B: supported.** 'Equal to the minimum' +0.0124 [+0.0051, +0.0209], 79% of the rise in range answers. Codes 4-6 fall partly because the minimum read out doubled.
+- Corrected bins: missing -0.0562 [-0.0714, -0.0389], excess +0.0353 [+0.0222, +0.0543] per person 15+; remaining rise in non-response +0.0300, so missing jobs lie between -0.0262 and -0.0562. Corrected share below M -0.1178 [-0.1554, -0.0739].
+
+| outcome | beta | lo90 | hi90 | p | pre |
+|---|---|---|---|---|---|
+| sh_amount | -0.0783 | -0.1347 | -0.0199 | 0.036 | 0.7687 |
+| sh_range | +0.0157 | -0.0097 | +0.0411 | 0.267 | 0.0833 |
+| sh_none | +0.0626 | +0.0162 | +0.1036 | 0.039 | 0.1479 |
+| sh_p6c1 | +0.0057 | +0.0024 | +0.0084 | 0.001 | 0.0018 |
+| sh_p6c2 | +0.0124 | +0.0051 | +0.0209 | 0.002 | 0.0046 |
+| sh_p6c3 | +0.0182 | +0.0042 | +0.0367 | 0.009 | 0.0332 |
+| sh_p6c4 | -0.0097 | -0.0286 | +0.0058 | 0.438 | 0.0281 |
+| sh_p6c5 | -0.0083 | -0.0152 | -0.0008 | 0.044 | 0.0110 |
+| sh_p6c6 | -0.0022 | -0.0043 | -0.0006 | 0.014 | 0.0033 |
+| sh_p6c7 | -0.0004 | -0.0018 | +0.0008 | 0.701 | 0.0013 |
+| below_m_corr | -0.1178 | -0.1554 | -0.0739 | 0.000 | 0.4828 |
+| c_missing | -0.0562 | -0.0714 | -0.0389 | 0.000 | 0.1946 |
+| c_excess | +0.0353 | +0.0222 | +0.0543 | 0.000 | 0.1166 |
+| fc_missing | -0.0453 | -0.0581 | -0.0295 | 0.000 | 0.1293 |
+| fc_excess | +0.0330 | +0.0201 | +0.0531 | 0.000 | 0.0938 |
+| ic_missing | -0.0109 | -0.0195 | -0.0014 | 0.059 | 0.0653 |
+| ic_excess | +0.0023 | -0.0005 | +0.0049 | 0.178 | 0.0229 |
+| fc_none | +0.0218 | +0.0050 | +0.0365 | 0.043 | 0.0408 |
+| ic_none | +0.0082 | +0.0037 | +0.0127 | 0.008 | 0.0282 |
+

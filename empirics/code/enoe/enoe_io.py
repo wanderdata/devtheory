@@ -53,7 +53,9 @@ def read(table, year, q, columns=None, raw=RAW):
     else:
         with zipfile.ZipFile(zp) as z, z.open(member) as f:
             df = pd.read_csv(io.BytesIO(f.read()), encoding="latin-1", low_memory=False)
-    df.columns = [c.strip().lower() for c in df.columns]
+    # Some INEGI files begin with a UTF-8 byte-order mark, which latin-1 decoding turns into "ï»¿"
+    # at the start of the first column name.
+    df.columns = [c.replace("\ufeff", "").replace("ï»¿", "").strip().lower() for c in df.columns]
     if columns:
         df = df[[c for c in columns if c in df.columns]]
     df["year"], df["q"] = year, q
