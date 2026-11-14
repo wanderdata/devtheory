@@ -4,6 +4,22 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-13 — Session 24: study 9.5 (where careers start)
+
+**Prompt (user):** take the next step.
+
+**Done**
+- Found that ENOE asks everyone not employed whether they have ever worked (P2H), with the same codes 2005–2026; defined first-job entrants from it.
+- Literature checked (Cruces, Ham & Viollaz 2012; Conover, Khamis & Pearlman 2021; Donovan, Lu & Schoellman 2023).
+- Pre-analysis plan committed before outcomes (D-057, P34–P37).
+- Downloaded every CSV quarter (`00_fetch.py --all-csv`, 2.6 GB, uncommitted); code `empirics/code/enoe/first_jobs/` 01–04; tests; paper; app page 9.5.
+
+**Key results:** 70 panels; 47,186 first-job entrants aged 15–24. 85% of first jobs informal (68% of all young workers' jobs): P34 supported. Informal first job vs still not working: +3.4 pp formal three quarters later, from 2.5%: P35 supported (a weak stepping stone). Formal vs informal first job: +34 pp: P36 supported. Informal wage job with premises vs own-account/unpaid: +4.2 pp: P37 rejected (below 10). Half of informal entrants and a third of formal entrants not working three quarters later.
+
+**What failed / corrections:** INEGI renamed `ent` to `cve_ent` from 2025Q3 (reader fixed); a module-name collision between the 9.4 and 9.5 `01_extract.py` sent step 3 to the wrong folder; a constant control made a subsample singular; the clustered probit ran out of memory (simplified, D-058). The draft paper said 73 panels; corrected to 70.
+
+---
+
 ## 2026-11-13 — Session 23: study 9.4 follow-up, why earnings reporting fell (OQ-70)
 
 **Prompt (user):** next step.

@@ -19,7 +19,7 @@ Mexico comes first because its labour-force survey (ENOE) offers:
 | **9.2 Which jobs build skills?** | Are Mexico's flat experience–earnings profiles general, or concentrated in some types of job? | ENOE first quarters 2005–2025; panels of 9.1 | Draft paper | [plan](9.2_experience_profiles/00_pre_analysis_plan.md) · [paper](9.2_experience_profiles/01_paper.md) · app page 9.2 |
 | **9.3 A productivity ladder for Mexico** | Do WP08's verdicts change when sectors are split into formal and informal steps? | ENOE, all quarters of 2005, 2008, 2019, 2024; UN national accounts | Draft paper | [plan](9.3_productivity_ladder/00_pre_analysis_plan.md) · [paper](9.3_productivity_ladder/01_paper.md) · app page 9.3 |
 | **9.4 The 2019 border minimum wage** | Did doubling the minimum wage in the northern border zone change formal hiring and moves out of informality? | ENOE, every quarter 2016Q1–2020Q1; CONABIO/INEGI municipal boundaries | Draft paper | [plan](9.4_border_minimum_wage/00_pre_analysis_plan.md) · [paper](9.4_border_minimum_wage/01_paper.md) · app page 9.4 |
-| 9.5 Where careers start | What are young workers' first jobs, and where are they a year later? | ENOE panels | Possible | — |
+| **9.5 Where careers start** | What are young workers' first jobs, and where do they lead? | ENOE, every quarter 2005–2019 and 2022–2026 (70 five-quarter panels) | Draft paper | [plan](9.5_first_jobs/00_pre_analysis_plan.md) · [paper](9.5_first_jobs/01_paper.md) · app page 9.5 |
 | 9.6 States | Which states have more rungs, and does that track state growth? | ENOE + state accounts | Possible | — |
 
 ## Common elements

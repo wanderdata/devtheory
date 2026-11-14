@@ -24,7 +24,7 @@ st.markdown(
     "sectors are split into formal and informal steps? | Results |\n"
     "| **9.4 The 2019 border minimum wage** | Did doubling the minimum wage in the northern border zone change formal "
     "hiring and moves out of informality? | Results |\n"
-    "| 9.5 Where careers start | What are young workers' first jobs, and where are they a year later? | Possible |\n"
+    "| **9.5 Where careers start** | What are young workers' first jobs, and where do they lead? | Results |\n"
     "| 9.6 States | Which states have more rungs, and does that track state growth? | Possible |")
 st.markdown(
     "Each study has a pre-analysis plan written before its estimates, a paper and a page in this app. All results "
