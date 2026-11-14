@@ -44,3 +44,17 @@ Plan and paper in `papers/WP09_jobs_mexico/9.3_productivity_ladder/`. Uses WP08'
 | `01_extract.py` | `cells.csv`: weighted employment, labour income and population 15+ by year × quarter × sector × formality × size (aggregates only, committed) |
 | `02_ladder.py` | `segments.csv`, `verdicts.csv`, `decomposition.csv`, `ladders.csv`, `incidence.csv` |
 | `03_report.py` | `results.md` |
+
+## Study 9.4 — The 2019 border minimum wage (`border_mw/`)
+
+Plan and paper in `papers/WP09_jobs_mexico/9.4_border_minimum_wage/`. Main sample: sampling units observed in 2016–2018 (INEGI enlarged the sample in the border zone only, in 2019Q1; D-054).
+
+| Step | Output |
+|---|---|
+| `00_geo.py` | Municipal boundaries (CONABIO 2020, downloaded to the uncommitted `empirics/data/raw/geo_mx/`), ZLFN list matched to INEGI codes, distance to the zone's edge: `municipalities.csv`, `municipalities.geojson` |
+| `01_extract.py` | Persons and links between consecutive quarters, 2016Q1–2020Q1 (uncommitted); `linkage.csv` |
+| `02_cells.py` | Municipality × quarter cells by sample and group; six-state cells in `cells.csv` |
+| `03_did.py` | `did.csv`, `event.csv`, `pretrend.csv`, `bins.csv`, `pre_means.csv` |
+| `04_maps.py` | `map_values.csv` (levels, net changes, empirical Bayes), `rd_bins.csv` |
+| `05_report.py` | `results.md`, applying the plan's decision rules |
+| `border_lib.py` | Two-way FE regressions, CR1 variances, restricted wild cluster bootstrap |
