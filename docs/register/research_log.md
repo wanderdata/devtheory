@@ -4,6 +4,23 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-13 — Session 22: study 9.4 (the 2019 border minimum wage)
+
+**Prompt (user):** do 9.4 now, before deploying the app; add municipality maps before, during and after the change ("the visual of a diff-in-diff with a discontinuity"), adapted to keep rigour.
+
+**Done**
+- Literature checked (Campos-Vázquez & Esquivel 2021; Alvarado Pérez et al. 2023; Cabrera-Hernandez & Duval-Hernández 2026; the tax decree).
+- Design checks before the plan: municipalities identified by `mun`; ENOE's `zona` marks the zone from 2019; all 29 sampled zone municipalities are on the decree list. Found that INEGI enlarged the sample in the zone only, in 2019Q1 (sampling units 1,169 → 2,029).
+- Pre-analysis plan committed before any outcome (D-054, P31–P33). Main sample: sampling units observed in 2016–2018.
+- Code `empirics/code/enoe/border_mw/` 00–05: CONABIO/INEGI boundaries and distance to the zone's edge; persons and linked pairs 2016Q1–2020Q1 (linkage 91.5–93.2%); municipality × quarter cells; DiD with restricted wild cluster bootstrap (tested on synthetic panels, including size with few treated clusters); event studies; earnings bins; maps with empirical Bayes shrinkage; discontinuity plot.
+- Paper, app page 9.4 (maps, distance plot, event studies, bins, flows, robustness).
+
+**Key results:** employment rate +0.9 pp (−0.1 to +1.8); share of wage employees reporting below the new minimum −8.4 pp from 47%, with formal jobs shifting from just below to just above it; but earnings reporting fell 7.8 pp in the zone at the same time, matching most of the missing jobs (bounds −0.2 to −4.0 per 100 people 15+); log earnings +1.5% (not significant, pre-trend); informal → formal −1.2 pp a quarter (−5.0 to +1.6), so P32 rejected narrowly; P31 and P33 inconclusive under the plan's §6 rule.
+
+**What failed / corrections:** first maps were blank (Plotly geo needs a base map from cdn.plot.ly, unreachable here; switched to MapLibre with the blank style, D-055); polygons reoriented clockwise for d3; distance-plot fits first extrapolated to ±200 km (now observed range only); two statements in the draft paper corrected against outputs (employment range across specifications; exceptions on the map).
+
+---
+
 ## 2026-11-13 — Session 21: study 9.3 (a productivity ladder for Mexico with formal and informal steps)
 
 **Prompt (user):** continue to the next study.

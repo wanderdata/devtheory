@@ -20,10 +20,10 @@ st.markdown(
     "stable, better-paid work within a year? | Draft results |\n"
     "| **9.2 Which jobs build skills?** | Are Mexico's flat experience–earnings profiles general, or concentrated in "
     "some types of job? | Results |\n"
-    "| 9.3 A productivity ladder for Mexico | Do the verdicts of the ladder of the working-age population change when "
+    "| **9.3 A productivity ladder for Mexico** | Do the verdicts of the ladder of the working-age population change when "
     "sectors are split into formal and informal steps? | Results |\n"
-    "| 9.4 The 2019 border minimum wage | Did doubling the minimum wage in the northern border zone change formal "
-    "hiring and moves out of informality? | Planned |\n"
+    "| **9.4 The 2019 border minimum wage** | Did doubling the minimum wage in the northern border zone change formal "
+    "hiring and moves out of informality? | Results |\n"
     "| 9.5 Where careers start | What are young workers' first jobs, and where are they a year later? | Possible |\n"
     "| 9.6 States | Which states have more rungs, and does that track state growth? | Possible |")
 st.markdown(
