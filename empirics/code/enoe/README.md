@@ -58,3 +58,14 @@ Plan and paper in `papers/WP09_jobs_mexico/9.4_border_minimum_wage/`. Main sampl
 | `04_maps.py` | `map_values.csv` (levels, net changes, empirical Bayes), `rd_bins.csv` |
 | `05_report.py` | `results.md`, applying the plan's decision rules |
 | `border_lib.py` | Two-way FE regressions, CR1 variances, restricted wild cluster bootstrap |
+
+## Study 9.5 — Where careers start (`first_jobs/`)
+
+Plan and paper in `papers/WP09_jobs_mexico/9.5_first_jobs/`. Needs every CSV quarter: `python empirics/code/enoe/00_fetch.py --all-csv`.
+
+| Step | Output |
+|---|---|
+| `01_extract.py` | Cached extracts of persons aged 15–30 per quarter, with household variables and the never-worked answer (uncommitted; two processes); `stock.csv` |
+| `02_panels.py` | Five-interview histories of never-worked, non-employed 15–29-year-olds (uncommitted); `linkage.csv` |
+| `03_estimates.py` | `composition.csv`, `transitions.csv`, `estimates.csv`, `oster.csv`, `earnings.csv`, `checks.csv` |
+| `04_report.py` | `results.md`, applying the plan's decision rules |

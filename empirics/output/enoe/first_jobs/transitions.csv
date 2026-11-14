@@ -1,0 +1,73 @@
+entry,interview,state,share,n
+formal,3,formal,0.4976236214042266,7045
+formal,3,informal,0.16005832785033206,7045
+formal,3,not employed,0.34231805074544136,7045
+formal,3,"employed, formality unknown",0.0,7045
+informal own-account or unpaid,3,formal,0.014946094062695677,15027
+informal own-account or unpaid,3,informal,0.38923206897095564,15027
+informal own-account or unpaid,3,not employed,0.5958218369663487,15027
+informal own-account or unpaid,3,"employed, formality unknown",0.0,15027
+"informal wage, other",3,formal,0.0450536240369151,8225
+"informal wage, other",3,informal,0.43984339613963064,8225
+"informal wage, other",3,not employed,0.5151029798234542,8225
+"informal wage, other",3,"employed, formality unknown",0.0,8225
+"informal wage, premises",3,formal,0.07934143902064629,13425
+"informal wage, premises",3,informal,0.4381710735211087,13425
+"informal wage, premises",3,not employed,0.48248748745824505,13425
+"informal wage, premises",3,"employed, formality unknown",0.0,13425
+not employed,3,formal,0.011529165093997405,251787
+not employed,3,informal,0.07597216385833239,251787
+not employed,3,not employed,0.9124986710476702,251787
+not employed,3,"employed, formality unknown",0.0,251787
+other,3,formal,0.06216348507097406,107
+other,3,informal,0.29354590588070767,107
+other,3,not employed,0.6442906090483183,107
+other,3,"employed, formality unknown",0.0,107
+formal,4,formal,0.47823175044872557,6528
+formal,4,informal,0.1714613377807848,6528
+formal,4,not employed,0.3503069117704896,6528
+formal,4,"employed, formality unknown",0.0,6528
+informal own-account or unpaid,4,formal,0.027017231781444787,14205
+informal own-account or unpaid,4,informal,0.39498110088789407,14205
+informal own-account or unpaid,4,not employed,0.5780016673306612,14205
+informal own-account or unpaid,4,"employed, formality unknown",0.0,14205
+"informal wage, other",4,formal,0.05699087227729744,7682
+"informal wage, other",4,informal,0.42593803215015014,7682
+"informal wage, other",4,not employed,0.5170710955725524,7682
+"informal wage, other",4,"employed, formality unknown",0.0,7682
+"informal wage, premises",4,formal,0.09103282163802988,12578
+"informal wage, premises",4,informal,0.41762676497618256,12578
+"informal wage, premises",4,not employed,0.4913404133857876,12578
+"informal wage, premises",4,"employed, formality unknown",0.0,12578
+not employed,4,formal,0.01792907278586882,237938
+not employed,4,informal,0.0880254093038324,237938
+not employed,4,not employed,0.8940455179102987,237938
+not employed,4,"employed, formality unknown",0.0,237938
+other,4,formal,0.0742713103986935,103
+other,4,informal,0.42201867433521495,103
+other,4,not employed,0.5037100152660915,103
+other,4,"employed, formality unknown",0.0,103
+formal,5,formal,0.47788638574041337,6083
+formal,5,informal,0.16645767449826587,6083
+formal,5,not employed,0.35565593976132076,6083
+formal,5,"employed, formality unknown",0.0,6083
+informal own-account or unpaid,5,formal,0.03850058655766746,13531
+informal own-account or unpaid,5,informal,0.3925883405002708,13531
+informal own-account or unpaid,5,not employed,0.5689110729420617,13531
+informal own-account or unpaid,5,"employed, formality unknown",0.0,13531
+"informal wage, other",5,formal,0.06113770542001751,7228
+"informal wage, other",5,informal,0.42329466759768875,7228
+"informal wage, other",5,not employed,0.5155676269822937,7228
+"informal wage, other",5,"employed, formality unknown",0.0,7228
+"informal wage, premises",5,formal,0.10178092511676963,11854
+"informal wage, premises",5,informal,0.3999436492391141,11854
+"informal wage, premises",5,not employed,0.4982754256441163,11854
+"informal wage, premises",5,"employed, formality unknown",0.0,11854
+not employed,5,formal,0.024852888327395517,226980
+not employed,5,informal,0.09840852341255409,226980
+not employed,5,not employed,0.8767385882600504,226980
+not employed,5,"employed, formality unknown",0.0,226980
+other,5,formal,0.0517208881516945,97
+other,5,informal,0.3862479737625815,97
+other,5,not employed,0.562031138085724,97
+other,5,"employed, formality unknown",0.0,97

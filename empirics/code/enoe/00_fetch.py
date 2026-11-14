@@ -3,6 +3,7 @@ uncommitted empirics/data/raw/enoe/ and record their SHA-256 in a manifest (D-04
 
     python empirics/code/enoe/00_fetch.py            # CSV zips for the quarters in WINDOWS and CROSS_SECTIONS
     python empirics/code/enoe/00_fetch.py --all      # every asset of every release
+    python empirics/code/enoe/00_fetch.py --all-csv  # the CSV zip of every quarter (study 9.5)
 
 The release holds INEGI's files for 2005 onward in four formats (csv, dbf, dta, sav); by default
 only the CSV version of the quarters the study uses is downloaded.
@@ -26,12 +27,14 @@ def api(path, binary=False):
     return r.stdout if binary else json.loads(r.stdout)
 
 
-def wanted(name, everything=False):
+def wanted(name, everything=False, all_csv=False):
     if everything:
         return True
     n = name.lower()
     if not n.endswith("_csv.zip"):
         return False
+    if all_csv:
+        return True
     quarters = ({yq for qs in WINDOWS.values() for yq in qs} | set(CROSS_SECTIONS)
                 | {(y, q) for y in LADDER_YEARS for q in (1, 2, 3, 4)} | set(BORDER_QUARTERS))
     return any(f"{y}trim{q}_csv" in n or f"{y}_trim{q}_csv" in n for y, q in quarters)
@@ -50,6 +53,7 @@ def assets(release_id):
 def main(args):
     RAW.mkdir(parents=True, exist_ok=True)
     everything = "--all" in args
+    all_csv = "--all-csv" in args
     releases = api(f"repos/{REPO}/releases?per_page=100")
     if not releases:
         print(f"No releases found in {REPO}. Nothing done.")
@@ -57,7 +61,7 @@ def main(args):
     manifest = []
     for r in releases:
         for a in assets(r["id"]):
-            if not wanted(a["name"], everything):
+            if not wanted(a["name"], everything, all_csv):
                 continue
             dest = RAW / a["name"]
             if not (dest.exists() and dest.stat().st_size == a["size"]):

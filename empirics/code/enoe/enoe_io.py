@@ -56,6 +56,9 @@ def read(table, year, q, columns=None, raw=RAW):
     # Some INEGI files begin with a UTF-8 byte-order mark, which latin-1 decoding turns into "ï»¿"
     # at the start of the first column name.
     df.columns = [c.replace("\ufeff", "").replace("ï»¿", "").strip().lower() for c in df.columns]
+    # From 2025Q3 INEGI prefixes geographic codes with cve_ (cve_ent, cve_mun, cve_loc, cve_ageb).
+    df = df.rename(columns={c: c[4:] for c in df.columns if c in ("cve_ent", "cve_mun", "cve_loc", "cve_ageb")
+                            and c[4:] not in df.columns})
     if columns:
         df = df[[c for c in columns if c in df.columns]]
     df["year"], df["q"] = year, q
