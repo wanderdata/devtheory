@@ -21,6 +21,8 @@ if d.empty:
     st.stop()
 m = d[d["spec"] == "main"].set_index("outcome")
 pre = load("border_mw", "pre_means").set_index("outcome")["pre_mean_zone"]
+rr = load("border_mw", "ranges_did").set_index("outcome")
+rnone = rr.loc["fc_none", "beta"] + rr.loc["ic_none", "beta"]
 
 
 def ci(o, k=1, pct=False):
@@ -33,8 +35,10 @@ st.info(
     f"**Results.** Employment did not fall: the employment rate of the population aged 15+ changed by "
     f"{ci('emp_rate', 1, True)} percentage points. The reported earnings distribution moved at the new "
     f"minimum: the share of wage employees reporting less than it fell by {-100 * m.loc['below_m', 'beta']:.1f} points. "
-    f"But the share reporting any amount fell by {-100 * m.loc['report', 'beta']:.1f} points at the same time, so the "
-    f"size of that shift is not pinned down. Moves from informal to formal work did not increase: the quarterly "
+    f"But the share reporting an amount fell by {-100 * m.loc['report', 'beta']:.1f} points at the same time. Counting "
+    f"answers given in ranges of the minimum wage, between {-100 * (rr.loc['c_missing', 'beta'] + rnone):.1f} and "
+    f"{-100 * rr.loc['c_missing', 'beta']:.1f} jobs per 100 people aged 15+ moved out of the range below the new minimum. "
+    f"Moves from informal to formal work did not increase: the quarterly "
     f"rate changed by {ci('i_to_f', 1, True)} points, against a pre-period rate of {100 * pre['i_to_f']:.1f}%.")
 
 with st.expander("A change in the ENOE sample in the border zone in 2019"):
@@ -188,8 +192,49 @@ show(fig, bn[["formality", "bin", "beta", "p_wild", "pre_mean_zone"]].round(5),
              "15+. Jobs below the new minimum fell and jobs just above it rose, mostly in formal employment; the "
              "number not reporting earnings rose by almost as much as the jobs below the minimum fell. If every "
              "additional non-reporter would have reported less than the minimum, there were almost no missing jobs; "
-             "if none would have, the missing jobs are as shown. The rule set in the plan treats these bins as "
-             "unreliable for that reason.")
+             "if none would have, the missing jobs are as shown. The next section counts answers given in ranges.")
+
+# ---------------------------------------------------------------- range answers
+st.subheader("Why fewer workers reported earnings")
+st.markdown(
+    "Respondents who give no amount are asked whether their income is below, equal to, or in ranges of the minimum "
+    "wage, which the interviewer reads out: 5,302 pesos a month in the zone in 2019. An addendum to the plan, written "
+    "before these answers were tabulated by zone or period, tests whether the fall in reporting is a shift to such "
+    "range answers.")
+ANS = {"sh_amount": "amount", "sh_range": "range (any)", "sh_p6c1": "  below the minimum", "sh_p6c2": "  equal to the "
+       "minimum", "sh_p6c3": "  1–2 minimums", "sh_p6c4": "  2–3 minimums", "sh_p6c5": "  3–5 minimums",
+       "sh_p6c6": "  5–10 minimums", "sh_none": "no answer (refused, don't know)"}
+at = rr.loc[list(ANS)].reset_index()
+at["answer"] = at["outcome"].map(ANS)
+fig = go.Figure(go.Bar(y=at["answer"][::-1], x=100 * at["beta"][::-1], orientation="h",
+                       marker=dict(color=[TYPE_COLORS["informal"] if "none" in o else C_HIGHLIGHT for o in at["outcome"][::-1]]),
+                       error_x=dict(type="data", symmetric=False, array=100 * (at["hi90"] - at["beta"])[::-1],
+                                    arrayminus=100 * (at["beta"] - at["lo90"])[::-1], color=INK2, thickness=1),
+                       hovertemplate="%{y}: %{x:+.1f} points<extra></extra>"))
+base_layout(fig, xtitle="change in the share of wage employees giving each answer, percentage points (90% interval)",
+            height=380, legend=False)
+show(fig, at[["answer", "beta", "lo90", "hi90", "p_wild", "pre_mean_zone"]].round(4),
+     caption="Range answers rose by less than a quarter of the fall in reported amounts, and the rise is at and near the "
+             "new minimum: 'equal to the minimum' went from 0.5% of wage employees to about 1.7%. Higher ranges fell partly "
+             "because the minimum read out doubled. Most of the fall is a rise in refusals and 'don't know'.")
+cb = load("border_mw", "ranges_bins")
+fig = go.Figure()
+for f, colr in [("formal", C_HIGHLIGHT), ("informal", TYPE_COLORS["informal"])]:
+    g = cb[cb["formality"] == f]
+    fig.add_trace(go.Bar(x=[BL["norep" if b == "none" else b] for b in g["bin"]], y=100 * g["beta"],
+                         name=f"{f} wage employees", marker=dict(color=colr), customdata=g["p_wild"],
+                         hovertemplate="%{x}: %{y:+.2f} per 100 people 15+ (p = %{customdata:.2f})<extra></extra>"))
+base_layout(fig, xtitle="monthly earnings relative to the new border minimum, range answers included",
+            ytitle="change per 100 people aged 15+", height=380)
+fig.update_layout(barmode="group")
+show(fig, cb[["formality", "bin", "beta", "p_wild", "pre_mean_zone"]].round(5),
+     caption=f"Range answers spread uniformly over their intervals, using the minimum in force for each person and "
+             f"quarter ('equal to the minimum' as a point). Missing jobs below the minimum: "
+             f"{100 * rr.loc['c_missing', 'beta']:+.1f} per 100 ({100 * rr.loc['c_missing', 'lo90']:+.1f} to "
+             f"{100 * rr.loc['c_missing', 'hi90']:+.1f}); excess at 1.0–1.5 times: {100 * rr.loc['c_excess', 'beta']:+.1f} "
+             f"({100 * rr.loc['c_excess', 'lo90']:+.1f} to {100 * rr.loc['c_excess', 'hi90']:+.1f}). The remaining rise in "
+             f"non-response ({100 * rnone:+.1f}) bounds missing jobs between {100 * (rr.loc['c_missing', 'beta'] + rnone):+.1f} "
+             f"and {100 * rr.loc['c_missing', 'beta']:+.1f}.")
 
 # ---------------------------------------------------------------- flows and robustness
 st.subheader("Flows and robustness")

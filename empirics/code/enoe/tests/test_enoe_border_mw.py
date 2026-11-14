@@ -72,3 +72,18 @@ def test_event_study_no_pretrend():
     post = es[es["t"] >= 8]["beta"]
     assert pre.abs().max() < 0.25 and post.mean() == pytest.approx(0.4, abs=0.15)
     assert p > 0.01
+
+
+def test_range_allocation():
+    import importlib
+    r = importlib.import_module("06_ranges")
+    # a range wholly inside one bin
+    s = r.shares_of_interval(0.0, 0.5)
+    assert s[0] == pytest.approx(1.0) and s.sum() == pytest.approx(1.0)
+    # a range crossing M: 0.58 to 1.16 M (code 3 in the control group, 2019)
+    s = r.shares_of_interval(0.58, 1.16)
+    assert s.sum() == pytest.approx(1.0)
+    assert s[:3].sum() == pytest.approx((1.0 - 0.58) / 0.58)
+    # a point at M falls in [1.0, 1.2)
+    s = r.shares_of_interval(1.0, 1.0)
+    assert s[3] == 1.0
