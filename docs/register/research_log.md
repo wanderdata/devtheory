@@ -17,9 +17,9 @@ One entry per work session, newest first.
 - ENOE extracts for all 72 quarters (2005–2019, 2022–2024) built (step 1).
 - MEITEF tabulados received from the user; release creation from this session is refused (403), so the user created the release `inegi-meitef` with the zip; `00_meitef.py` downloads it from there and verifies the hash (tested). A derived annual file and INEGI's file index are committed (D-066, L168). Plan addendum A1 fixes how MEITEF enters the formal–informal split, written before any productivity estimate.
 
-**Key results:** none yet (plan only).
+**Key results (study 9.7, draft v0.1):** non-oil labour productivity grew 0.08 log points a year nationally (2005–2007 to 2017–2019); within −0.26, static +0.50, dynamic −0.16. Units range from 1.45 (Zacatecas) to −2.34 (Campeche); 13 of 31 grew, 12 distinguishably. P41 rejected, not robust (3 of 12; inconclusive at 2005–2007 prices, fine classification and hours). P42 supported (ρ = 0.71, 0.52 to 0.83; split-sample 0.58 and 0.53). P43 rejected (corrected pass-through 0.16, 0.06 to 0.24). In the Bajío, growth came from reallocation into machinery and transport equipment, whose measured productivity fell (OQ-82). Sampling error biases the dynamic term by about −0.16.
 
-**What failed:** first feasibility script assumed `fac` exists in every year; files from 2021 have only `fac_tri`.
+**What failed:** first feasibility script assumed `fac` exists in every year; files from 2021 have only `fac_tri`. First bootstrap was not calibrated to state population and overstated sampling error about sevenfold (D-067). ENOE codes oil extraction as 2110, not 2111 as the plan assumed; first run left oil workers in non-oil mining and was replaced. Allocating MEITEF informal value added at fine-activity level capped 13% of cells; the plan's group-level allocation caps 2%. A shell heredoc garbled a research-log line (fixed).
 
 ---
 
