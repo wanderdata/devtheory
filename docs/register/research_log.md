@@ -4,6 +4,21 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-16 — Session 25: study 9.6 (where workers move up)
+
+**Prompt (user):** continue; then supplied INEGI's state GDP (PIBE) open-data files and the national-accounts methodology book, asking that they be kept on GitHub.
+
+**Done**
+- Pre-analysis plan committed before state estimates (D-059, P38–P40), while the GDP file was requested.
+- PIBE zips committed unmodified in `empirics/data/source/inegi/` with excerpts of the methodology (§4.3 PIBE, §4.4 informal economy); loader `states/gdp.py` (states add up to the national total); D-060. A GitHub release for the 41 MB book could not be created from this session.
+- Code `empirics/code/enoe/states/` 00–04: state boundaries, extracts of all quarters, one-year panels (3.68 million people, 2.80 million linked), sparse LPMs with 32 state effects and clustered variances, signal and persistence, growth tests with bootstrap over states; tests; paper; app page 9.6.
+
+**Key results:** adjusted one-year informal-to-formal rate 6.3% (Querétaro) to 19.1% (Guerrero), signal share 0.98 (P38 supported); correlation of state rankings 0.96 between 2005–2011 and 2012–2018 and 0.97 into 2022–2025 (P39 supported); rank correlation with growth of GDP per person 2012–2019 0.32 (0.01 to 0.55), 30 states (P40 supported, narrowly), 0.40 with non-oil GDP for 32 states, none over 2005–2019 as a whole. Mobility unrelated to the formal share (−0.01).
+
+**What failed / corrections:** the draft paper overstated the disattenuation correction (0.04, actually 0.03) and gave an untested explanation for the effect of adjustment on M2 (replaced by the variance ratio, 3.7); P40's upper bound corrected from 0.56 to 0.55.
+
+---
+
 ## 2026-11-13 — Session 24: study 9.5 (where careers start)
 
 **Prompt (user):** take the next step.

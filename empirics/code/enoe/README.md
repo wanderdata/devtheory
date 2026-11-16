@@ -69,3 +69,15 @@ Plan and paper in `papers/WP09_jobs_mexico/9.5_first_jobs/`. Needs every CSV qua
 | `02_panels.py` | Five-interview histories of never-worked, non-employed 15–29-year-olds (uncommitted); `linkage.csv` |
 | `03_estimates.py` | `composition.csv`, `transitions.csv`, `estimates.csv`, `oster.csv`, `earnings.csv`, `checks.csv` |
 | `04_report.py` | `results.md`, applying the plan's decision rules |
+
+## Study 9.6 — Where workers move up (`states/`)
+
+Plan and paper in `papers/WP09_jobs_mexico/9.6_states/`. Needs every CSV quarter (`00_fetch.py --all-csv`) and INEGI's PIBE, committed in `empirics/data/source/inegi/` and read by `gdp.py`.
+
+| Step | Output |
+|---|---|
+| `00_geo.py` | `states.geojson` (dissolved from CONABIO 2020 municipal boundaries) |
+| `01_extract.py` | Cached extracts of persons aged 16–70 per quarter (uncommitted); `state_quarters.csv` (population, formal share) |
+| `02_panels.py` | One-year histories, first to fifth interview (uncommitted); `linkage.csv` |
+| `03_estimates.py` | `state_effects.csv`, `signal.csv`, `growth.csv`, `state_table.csv` |
+| `04_report.py` | `results.md`, applying the plan's decision rules |

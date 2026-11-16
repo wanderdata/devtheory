@@ -15,6 +15,7 @@ pages = {
         st.Page("views/s3_ladder.py", title="9.3 A productivity ladder for Mexico", url_path="ladder"),
         st.Page("views/s4_border.py", title="9.4 The 2019 border minimum wage", url_path="border"),
         st.Page("views/s5_first_jobs.py", title="9.5 Where careers start", url_path="first-jobs"),
+        st.Page("views/s6_states.py", title="9.6 Where workers move up", url_path="states"),
     ],
 }
 st.navigation(pages).run()
