@@ -6,7 +6,7 @@
 
 INEGI's 480 tabulados (xlsx), supplied by the user on 2026-11-16, are kept unmodified as one zip
 (125 MB, too large to commit) in the uncommitted empirics/data/raw/inegi/. If the zip is missing it is
-downloaded from the release asset RELEASE of wanderdata/devtheory with the GitHub CLI, and its SHA-256
+downloaded from asset ASSET of the (draft) release named RELEASE of wanderdata/devtheory with the GitHub CLI, and its SHA-256
 is checked. The tables published "by activity within each state" are read (the tables "by state
 within each activity" repeat the same figures), and level measures only are kept: value added at
 constant 2018 and current prices, the implicit price index, the volume index, pay (current prices) and
@@ -28,7 +28,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[4]
 RAW = ROOT / "empirics" / "data" / "raw" / "inegi" / "inegi_meitef_base2018_tabulados_2005q1-2026q1.zip"
 SHA256 = "d1ef95e826b083f5a769da12c08607511d90296ad642cb3581b0bfff4a636678"
-REPO, RELEASE = "wanderdata/devtheory", "inegi-meitef-2026q1"
+REPO, RELEASE, ASSET = "wanderdata/devtheory", "inegi-meitef", "tabulados_MEITEF.zip"  # draft release, found by name
 OUT = ROOT / "empirics" / "data" / "source" / "inegi" / "meitef_annual.csv.gz"
 VARIABLE = {"Valor agregado bruto": "gva", "Remuneraciones": "pay", "Puestos de trabajo remunerados": "jobs"}
 COMPONENT = {"Economía informal": "informal_economy", "Sector informal": "informal_sector",
@@ -43,9 +43,9 @@ KEEP = {"Millones de pesos anualizados a precios de 2018": "mxn_m_2018",
 def fetch():
     if not RAW.exists():
         RAW.parent.mkdir(parents=True, exist_ok=True)
-        rel = subprocess.run(["gh", "api", f"repos/{REPO}/releases/tags/{RELEASE}", "--jq",
-                              f'.assets[] | select(.name=="{RAW.name}") | .id'],
-                             capture_output=True, text=True, check=True).stdout.strip()
+        rel = subprocess.run(["gh", "api", f"repos/{REPO}/releases", "--jq",
+                              f'.[] | select(.name=="{RELEASE}") | .assets[] | select(.name=="{ASSET}") | .id'],
+                             capture_output=True, text=True, check=True).stdout.strip().split()[0]
         data = subprocess.run(["gh", "api", "-H", "Accept: application/octet-stream",
                                f"repos/{REPO}/releases/assets/{rel}"], capture_output=True, check=True).stdout
         RAW.write_bytes(data)
