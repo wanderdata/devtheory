@@ -129,6 +129,8 @@ Municipal values in the maps are ratio estimates with variances from a bootstrap
 
 Further work could examine who refuses to report earnings and whether refusals cluster by area (open question OQ-73); link formal hires to IMSS records to test transitions out of informality with administrative data; extend the analysis to 2020Q3–2023 with ENOE^N, modelling the 2020–2023 increases in both regions; and use price data to separate the tax reductions.
 
+Correction of 2026-11-16 (D-069): the fixed-effects projection used in all estimates was replaced by a pivoted QR decomposition after it was found to give incorrect coefficients when the fixed effects contain several linear dependencies. Only the robustness specification with state × quarter effects is affected; its estimates change slightly (for example, the informal-to-formal transition rate from −1.9 to −2.3 points), and the statements above about that specification are unchanged.
+
 ## References
 
 Alvarado Pérez, R., Orraca Romano, P.P. and Cabrera-Hernandez, F. (2023). El efecto de duplicar el salario mínimo en la brecha de género en empleo y salarios en México. *El Trimestre Económico* 90(360): 961–999. [L151]

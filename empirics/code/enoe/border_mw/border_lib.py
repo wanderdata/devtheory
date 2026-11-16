@@ -21,9 +21,13 @@ class Projector:
             d = pd.get_dummies(fe[c].astype(str), drop_first=j > 0).to_numpy(float)
             cols.append(d)
         D = np.hstack(cols) * self.sw[:, None]
-        q, r = np.linalg.qr(D)
-        keep = np.abs(np.diag(r)) > 1e-10 * np.abs(np.diag(r)).max()
-        self.Q = q[:, keep]
+        # QR with column pivoting, so that the leading columns of Q span the column space of D even
+        # when the fixed effects have several linear dependencies (D-069)
+        from scipy.linalg import qr
+        q, r, _ = qr(D, mode="economic", pivoting=True)
+        d = np.abs(np.diag(r))
+        rank = int((d > 1e-10 * d.max()).sum())
+        self.Q = q[:, :rank]
 
     def resid(self, v):
         v = np.asarray(v, float)

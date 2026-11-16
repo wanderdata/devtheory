@@ -1,0 +1,71 @@
+specification,outcome,post,lo_cr1,hi_cr1,ratio_to_first_stage,cells
+main,w_all,0.337294,0.260022,0.414565,1.000000,479
+main,lemp,-0.150898,-0.328585,0.026789,-0.447379,479
+main,formal,0.048980,0.026347,0.071613,0.145215,479
+main,lprod,0.155028,0.029599,0.280457,0.459622,479
+main,w_informal,0.256869,0.164591,0.349147,0.761559,468
+bite measured in 2017,w_all,0.312071,0.212303,0.411840,1.000000,479
+bite measured in 2017,lemp,-0.224697,-0.431043,-0.018352,-0.720019,479
+bite measured in 2017,formal,0.020411,-0.012906,0.053728,0.065404,479
+bite measured in 2017,lprod,0.200078,0.029052,0.371103,0.641128,479
+bite measured in 2017,w_informal,0.213485,0.113051,0.313919,0.684091,468
+Kaitz index,w_all,0.374769,0.284403,0.465136,1.000000,479
+Kaitz index,lemp,-0.249226,-0.447604,-0.050848,-0.665012,479
+Kaitz index,formal,0.039844,0.001927,0.077761,0.106316,479
+Kaitz index,lprod,0.086369,-0.127795,0.300532,0.230458,479
+Kaitz index,w_informal,0.204808,0.141782,0.267833,0.546490,468
+bite among formal employees,w_all,0.257006,0.174755,0.339257,1.000000,479
+bite among formal employees,lemp,0.129117,-0.057378,0.315611,0.502388,479
+bite among formal employees,formal,0.032620,0.006771,0.058468,0.126921,479
+bite among formal employees,lprod,-0.083829,-0.336304,0.168645,-0.326177,479
+bite among formal employees,w_informal,0.063298,-0.061330,0.187926,0.246290,468
+cells with >= 50 workers,w_all,0.340007,0.262556,0.417458,1.000000,555
+cells with >= 50 workers,lemp,-0.144988,-0.321968,0.031991,-0.426427,555
+cells with >= 50 workers,formal,0.049227,0.027310,0.071145,0.144784,555
+cells with >= 50 workers,lprod,0.162690,0.042445,0.282934,0.478489,555
+cells with >= 50 workers,w_informal,0.260221,0.166833,0.353609,0.765339,509
+unweighted,w_all,0.398732,0.294666,0.502798,1.000000,479
+unweighted,lemp,0.020046,-0.103886,0.143979,0.050275,479
+unweighted,formal,0.089658,0.037671,0.141646,0.224859,479
+unweighted,lprod,-0.117619,-0.322395,0.087156,-0.294984,479
+unweighted,w_informal,0.354588,0.218368,0.490807,0.889289,468
+excluding agriculture,w_all,0.470631,0.329947,0.611314,1.000000,448
+excluding agriculture,lemp,0.205106,-0.009356,0.419569,0.435812,448
+excluding agriculture,formal,0.048991,-0.006786,0.104767,0.104096,448
+excluding agriculture,lprod,-0.186938,-0.412604,0.038728,-0.397208,448
+excluding agriculture,w_informal,0.377121,0.172181,0.582061,0.801309,437
+excluding accommodation and food,w_all,0.337621,0.259195,0.416048,1.000000,448
+excluding accommodation and food,lemp,-0.159891,-0.342953,0.023172,-0.473580,448
+excluding accommodation and food,formal,0.045442,0.021733,0.069151,0.134595,448
+excluding accommodation and food,lprod,0.131738,0.002825,0.260650,0.390194,448
+excluding accommodation and food,w_informal,0.254299,0.160104,0.348493,0.753207,437
+"excluding professional, corporate and support services",w_all,0.339074,0.262444,0.415705,1.000000,448
+"excluding professional, corporate and support services",lemp,-0.163147,-0.331283,0.004988,-0.481155,448
+"excluding professional, corporate and support services",formal,0.044539,0.022957,0.066122,0.131355,448
+"excluding professional, corporate and support services",lprod,0.138820,0.009862,0.267779,0.409409,448
+"excluding professional, corporate and support services",w_informal,0.247178,0.167652,0.326703,0.728978,437
+excluding government,w_all,0.356953,0.276030,0.437875,1.000000,448
+excluding government,lemp,-0.152499,-0.339211,0.034213,-0.427225,448
+excluding government,formal,0.050679,0.026644,0.074714,0.141977,448
+excluding government,lprod,0.142091,0.009079,0.275103,0.398067,448
+excluding government,w_informal,0.269440,0.179961,0.358919,0.754834,437
+excluding southeastern states,w_all,0.382600,0.289768,0.475433,1.000000,400
+excluding southeastern states,lemp,-0.042322,-0.209112,0.124469,-0.110616,400
+excluding southeastern states,formal,0.039095,0.006840,0.071350,0.102182,400
+excluding southeastern states,lprod,0.098494,-0.066604,0.263592,0.257432,400
+excluding southeastern states,w_informal,0.287997,0.152961,0.423034,0.752737,389
+excluding border states,w_all,0.318152,0.213950,0.422354,1.000000,382
+excluding border states,lemp,-0.192066,-0.380634,-0.003498,-0.603693,382
+excluding border states,formal,0.054492,0.029790,0.079194,0.171276,382
+excluding border states,lprod,0.120521,-0.036266,0.277308,0.378816,382
+excluding border states,w_informal,0.313088,0.214906,0.411269,0.984082,375
+clustered by activity,w_all,0.337294,0.224983,0.449604,1.000000,479
+clustered by activity,lemp,-0.150898,-0.384963,0.083167,-0.447379,479
+clustered by activity,formal,0.048980,0.013472,0.084488,0.145215,479
+clustered by activity,lprod,0.155028,-0.093660,0.403715,0.459622,479
+clustered by activity,w_informal,0.256869,0.130158,0.383580,0.761559,468
+cell-specific linear pre-trend removed,w_all,0.532101,0.323109,0.741093,1.000000,479
+cell-specific linear pre-trend removed,lemp,-0.123310,-0.634520,0.387900,-0.231741,479
+cell-specific linear pre-trend removed,formal,0.074157,0.012603,0.135710,0.139365,479
+cell-specific linear pre-trend removed,lprod,0.079724,-0.348391,0.507839,0.149829,479
+cell-specific linear pre-trend removed,w_informal,0.470960,0.244715,0.697205,0.885095,441

@@ -14,9 +14,9 @@ One entry per work session, newest first.
 - Feasibility check of the treatment only: 2018 bite across state × activity cells (national 12.8%; 479 cells with ≥ 100 workers; median 7.8%, IQR 3.7–15.9%).
 - Pre-analysis plan for 9.8 written and committed before any outcome was computed (D-068, P44–P47, L170–L172).
 
-**Key results:** none yet (plan only).
+**Key results (9.8 draft v0.1, per 10 points of bite, 2022–2024 vs 2018):** wages of wage employees +3.4% (2.5 to 4.4; pre-trend p = 0.016, mean reversion around 2018); informal wages +2.6% (1.5 to 3.7; p = 0.080); employment −1.5% (−3.6 to 0.7); formal share +0.5 pp (0.2 to 0.7); value added per worker +1.6% (0.0 to 2.8) with value added unchanged. P44 inconclusive, P45 rejected, P46 supported narrowly (mirrors employment; not robust), P47 inconclusive (pre-trend rule). With the 2017 bite, pre-trends pass and wage and formality results are smaller but similar.
 
-**What failed:** nothing.
+**What failed:** the shared fixed-effects routine (QR without pivoting) gave wrong coefficients with three sets of fixed effects; fixed with pivoted QR; 9.4's state × quarter robustness row changes slightly, 9.5 unchanged (D-069).
 
 ---
 
