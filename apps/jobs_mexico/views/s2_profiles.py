@@ -1,4 +1,4 @@
-"""Study 9.2: which jobs build skills? Experience-earnings profiles by type of job."""
+"""Study 9.2: experience-earnings profiles by type of job."""
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st

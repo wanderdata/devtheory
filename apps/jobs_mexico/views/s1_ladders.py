@@ -1,4 +1,4 @@
-"""Study 9.1: which jobs are rungs? Flows by sector, firm size and formality (ENOE rotating panel)."""
+"""Study 9.1: job transitions by sector, establishment size and formality (ENOE rotating panel)."""
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go

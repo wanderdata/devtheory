@@ -4,6 +4,23 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-16 — Session 26: independent audit of WP09, corrections, change of style, synthesis
+
+**Prompt (user):** go ahead with the audit, register the changes, and take the opportunity to shift the style and tone: clear technical communication rather than headlines, for papers and all online content.
+
+**Done**
+- An agent that had not seen the work audited studies 9.1–9.6 against their plans, code and outputs from a frozen snapshot. Each finding was logged and either corrected or recorded as a disclosed departure (D-064).
+- Style rules for papers and online content written into CLAUDE.md (D-062, D-063): argued prose, no bold lead-ins or emphasis, neutral titles, estimates with units, sample, interval and base, verdicts in a separate subsection.
+- All six WP09 papers rewritten in that style (9.1 v0.3, 9.2 v0.2, 9.3 v0.2, 9.4 v0.3, 9.5 v0.2, 9.6 v0.2); app titles and results boxes rewritten; programme README retitled.
+- New analyses after the audit: 9.1 manufacturing comparison conditional on the earnings-rank decile and decomposition without agricultural origins; 9.2 reweighting for earnings non-response (`profiles/06_reweight.py`); 9.4 comparison of existing and added sampling units in 2019 (`border_mw/07_units.py`).
+- Synthesis of the programme drafted (`papers/WP09_jobs_mexico/00_synthesis.md`, v0.1).
+
+**Key results:** the 9.1 manufacturing advantage in upward moves disappears with the rank control (−0.008 before, +0.027 n.s. after); excluding agricultural origins, size × formality still explains more than sector. Reweighting raises 9.2 profile heights (all 25.7% to 28.6%, formal 25.4% to 28.1%, informal 15.6% to 16.6%) without changing comparisons. The corrected 9.4 missing-jobs estimate fails the pre-trend test (p = 0.018) and is now reported as descriptive; the formal-only bound is −2.4 to −4.5. Status of P29 recorded as a departure from the literal rule.
+
+**What failed / corrections:** numbers corrected after re-checking or the audit: 9.3 share of the within term (26%, not a fifth); 9.6 Coahuila rank, label of the 0.97 persistence figure, P40 upper bound 0.55; 9.5 micro share of informal entry jobs 42%; 9.2 formal reweighted difference 2.8; 9.1 coverage 37–71% and attrition changes up to 0.003. Two plan tests (P34, P38) could hardly have failed (OQ-78). Rewriting the literature CSV altered its line endings; restored and edited row by row.
+
+---
+
 ## 2026-11-16 — Session 25: study 9.6 (where workers move up)
 
 **Prompt (user):** continue; then supplied INEGI's state GDP (PIBE) open-data files and the national-accounts methodology book, asking that they be kept on GitHub.

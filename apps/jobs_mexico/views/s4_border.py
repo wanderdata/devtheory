@@ -37,8 +37,8 @@ st.info(
     f"base of {100 * pre['i_to_f']:.1f}%. The share of wage employees reporting earnings below the new minimum fell by "
     f"{-100 * m.loc['below_m', 'beta']:.1f} points, while the share reporting any amount fell by "
     f"{-100 * m.loc['report', 'beta']:.1f} points. Counting answers given in ranges of the minimum wage, the share below "
-    f"the minimum fell by {-100 * rr.loc['below_m_corr', 'beta']:.1f} points (90% interval "
-    f"{-100 * rr.loc['below_m_corr', 'hi90']:.1f} to {-100 * rr.loc['below_m_corr', 'lo90']:.1f}). Counts of jobs that "
+    f"the minimum changed by {100 * rr.loc['below_m_corr', 'beta']:.1f} points (90% interval "
+    f"{100 * rr.loc['below_m_corr', 'lo90']:.1f} to {100 * rr.loc['below_m_corr', 'hi90']:.1f}). Counts of jobs that "
     "moved from below to above the minimum fail the plan's pre-trend test and are shown as descriptive. The estimates "
     "are of the whole package (minimum wage and tax cuts).")
 

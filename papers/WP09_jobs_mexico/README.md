@@ -6,10 +6,7 @@
 
 Earlier work in this project looked for sectors that act as motors of development and found none whose role holds up across specifications (WP07); it also found that sector averages conceal most of the variation in productivity (WP06, WP08). This programme takes the job as the unit of analysis and asks which jobs, held by which workers, are associated with stable employment, earnings growth with experience and transitions to formal or better-paid work.
 
-Mexico comes first because its labour-force survey (ENOE) offers:
-- a five-quarter rotating panel;
-- a consistent formality measure;
-- quarterly microdata from 2005 onward, all public.
+Mexico comes first because its labour-force survey (ENOE) has a five-quarter rotating panel, a formality measure that is consistent over time, and public quarterly microdata from 2005 onward.
 
 ## Studies
 
@@ -22,16 +19,10 @@ Mexico comes first because its labour-force survey (ENOE) offers:
 | 9.5 First jobs and employment three quarters later | What are young people's first jobs, and how are they related to formal employment three quarters later? | ENOE, every quarter 2005–2019 and 2022–2026 (70 five-quarter panels) | Draft paper | [plan](9.5_first_jobs/00_pre_analysis_plan.md) · [paper](9.5_first_jobs/01_paper.md) · app page 9.5 |
 | 9.6 Job mobility and growth across states | How much do states differ in job mobility at given workforce composition, and is mobility related to growth? | ENOE 2005–2026 one-year panels; INEGI PIBE base 2018 | Draft paper | [plan](9.6_states/00_pre_analysis_plan.md) · [paper](9.6_states/01_paper.md) · app page 9.6 |
 
+Synthesis: [Jobs and productive development in Mexico: findings of six studies, 2005–2026](00_synthesis.md) (draft v0.1).
+
 ## Common elements
 
-- **Data.** INEGI's quarterly zips are kept unchanged as release assets of `wanderdata/enoe_data` and downloaded by `empirics/code/enoe/00_fetch.py`. Microdata never enter the devtheory repository.
-- **Shared code** in `empirics/code/enoe/`:
-  - reading files whatever INEGI's naming convention;
-  - linking people across quarters;
-  - configuration.
-- **One folder per study** for code (`empirics/code/enoe/<study>/`) and outputs (`empirics/output/enoe/<study>/`).
-- **App.** `apps/jobs_mexico/`, with one page per study.
-- **Conventions:**
-  - a pre-analysis plan before each study's estimates, amended only with dated entries;
-  - papers written for outside readers, with procedural notes in an annex;
-  - decisions D-046 onward.
+INEGI's quarterly zips are kept unchanged as release assets of `wanderdata/enoe_data` and downloaded by `empirics/code/enoe/00_fetch.py`; microdata never enter the devtheory repository. Shared code in `empirics/code/enoe/` reads the files whatever INEGI's naming convention, links people across quarters and holds the configuration. Each study has one folder for code (`empirics/code/enoe/<study>/`) and one for outputs (`empirics/output/enoe/<study>/`), and one page in the app `apps/jobs_mexico/`.
+
+Each study has a pre-analysis plan committed before its estimates and amended only with dated entries. Papers are written for outside readers, with procedural notes in an annex, following the style rules in decision D-062. Decisions for the programme start at D-046.

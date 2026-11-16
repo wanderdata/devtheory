@@ -9,8 +9,8 @@ from jobs_lib import C_CONTEXT, C_HIGHLIGHT, INK2, MUTED, OUT, TYPE_COLORS, base
 
 st.title("9.6 Job mobility and growth across states")
 st.markdown(
-    "For each state, how often do workers move up within a year: from informal to formal employment, or into a "
-    "better-paid type of job? Rates are adjusted for age, sex, schooling, sector and urban residence, so that states are "
+    "This page shows, for each state, the share of workers who move within a year from informal to formal employment "
+    "or into a better-paid type of job. Rates are adjusted for age, sex, schooling, sector and urban residence, so that states are "
     "compared at the same workforce composition. They rest on 2.8 million people followed for a year in ENOE, "
     "2005–2025. GDP is INEGI's state accounts (base 2018).")
 
