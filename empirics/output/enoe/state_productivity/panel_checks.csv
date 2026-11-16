@@ -1,0 +1,6 @@
+check,value
+"PIBE: max |sum of FINE activities - (B.1bV - oil)| / B.1bV, constant prices",4.3328898472364104e-16
+"PIBE: same, current prices",4.422199864896082e-16
+ENOE: max share of non-oil employment lost when distributing unspecified codes (by year),0.0
+"ENOE: employed persons 15+ (millions), 2019 annual average",54.57904525
+Cells (state x FINE activity x year) with no ENOE observation,620.0

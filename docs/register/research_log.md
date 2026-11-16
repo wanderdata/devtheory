@@ -4,6 +4,25 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-16 — Session 27: selection on the outcome; plan for study 9.7 (productivity by state and activity)
+
+**Prompt (user):** summarise what has been learned about development; asked whether the exercise suffers from looking for causes of an outcome that rarely occurs; asked what else ENOE and PIBE can support; chose to start with productivity growth by state and activity.
+
+**Done**
+- Discussion recorded as OQ-80: national productivity barely moved, so WP09's null results are statements about prediction in a low-growth sample (selection on, or restricted range of, the outcome). Synthesis conclusions to be restated after 9.7.
+- Checked the committed PIBE files: 41 activities by state, 2003–2024, constant and current prices with implicit price indices.
+- Feasibility checks on ENOE only: the four-digit industry code (`p4a`) is complete and stable 2005–2025 at the level used; median state × fine-activity cell about 300 person-quarters a year, a fifth below 100.
+- Found that INEGI publishes MEITEF (informal value added, jobs and pay by state, quarterly from 2005); requested from the user (OQ-81).
+- Pre-analysis plan for study 9.7 written and committed before any productivity estimate (D-065, P41–P43, L164–L167).
+- ENOE extracts for all 72 quarters (2005–2019, 2022–2024) built (step 1).
+- MEITEF tabulados received from the user; release creation from this session is refused (403), so the user created the release `inegi-meitef` with the zip; `00_meitef.py` downloads it from there and verifies the hash (tested). A derived annual file and INEGI's file index are committed (D-066, L168). Plan addendum A1 fixes how MEITEF enters the formal–informal split, written before any productivity estimate.
+
+**Key results (study 9.7, draft v0.1):** non-oil labour productivity grew 0.08 log points a year nationally (2005–2007 to 2017–2019); within −0.26, static +0.50, dynamic −0.16. Units range from 1.45 (Zacatecas) to −2.34 (Campeche); 13 of 31 grew, 12 distinguishably. P41 rejected, not robust (3 of 12; inconclusive at 2005–2007 prices, fine classification and hours). P42 supported (ρ = 0.71, 0.52 to 0.83; split-sample 0.58 and 0.53). P43 rejected (corrected pass-through 0.16, 0.06 to 0.24). In the Bajío, growth came from reallocation into machinery and transport equipment, whose measured productivity fell (OQ-82). Sampling error biases the dynamic term by about −0.16.
+
+**What failed:** first feasibility script assumed `fac` exists in every year; files from 2021 have only `fac_tri`. First bootstrap was not calibrated to state population and overstated sampling error about sevenfold (D-067). ENOE codes oil extraction as 2110, not 2111 as the plan assumed; first run left oil workers in non-oil mining and was replaced. Allocating MEITEF informal value added at fine-activity level capped 13% of cells; the plan's group-level allocation caps 2%. A shell heredoc garbled a research-log line (fixed).
+
+---
+
 ## 2026-11-16 — Session 26: independent audit of WP09, corrections, change of style, synthesis
 
 **Prompt (user):** go ahead with the audit, register the changes, and take the opportunity to shift the style and tone: clear technical communication rather than headlines, for papers and all online content.

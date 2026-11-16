@@ -29,7 +29,9 @@ st.markdown(
     "| 9.5 First jobs and employment three quarters later | What are young people's first jobs, and how are they "
     "related to formal employment three quarters later? | Draft paper |\n"
     "| 9.6 Job mobility and growth across states | How much do states differ in job mobility at given workforce "
-    "composition, and is mobility related to growth? | Draft paper |")
+    "composition, and is mobility related to growth? | Draft paper |\n"
+    "| 9.7 Labour productivity growth by state and activity | Where did non-oil labour productivity grow, through "
+    "which channels, and did formality and pay move with it? | Draft paper |")
 st.markdown(
     "Each study has a pre-analysis plan written before its estimates, a paper and a page in this application. "
     "Results are descriptive unless a page states an identifying assumption. The studies were checked by an "

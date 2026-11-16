@@ -16,6 +16,8 @@ pages = {
         st.Page("views/s4_border.py", title="9.4 The 2019 minimum-wage increase in the northern border zone", url_path="border"),
         st.Page("views/s5_first_jobs.py", title="9.5 First jobs and employment three quarters later", url_path="first-jobs"),
         st.Page("views/s6_states.py", title="9.6 Job mobility and growth across states", url_path="states"),
+        st.Page("views/s7_state_productivity.py", title="9.7 Labour productivity growth by state and activity",
+                url_path="state-productivity"),
     ],
 }
 st.navigation(pages).run()
