@@ -20,6 +20,7 @@ Run locally: `pip install -r apps/productivity/requirements.txt && streamlit run
 
 | Section | Page | Contents |
 |---|---|---|
+| Explainers | Unbalanced growth and the decomposition | A three-sector model (theory note 04) solved live from user controls: employment shares, relative prices, the within/static/dynamic decomposition at chained and fixed prices, and the relative-price slope against the step-09 estimate (D-070) |
 | Baseline analysis (following McMillan & Rodrik) | Regional productivity | Level over time, ranking, annual change, within/structural-change components by year |
 | | Sectors and structural change | Productivity ladder (relative productivity × employment share), sector trends, sector contributions to the within and structural-change components |
 | | Employment | Productivity vs employment-rate quadrants, employment rate, Shapley split into participation and unemployment, unemployment and participation rates |

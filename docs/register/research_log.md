@@ -4,6 +4,21 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-16 — Session 29: theory note on unbalanced growth and the reallocation term; explainer page
+
+**Prompt (user):** develop the theory of Baumol's cost disease and its relation to the McMillan–Rodrik decomposition, with extensions for developing economies, in the repository and in an interactive explainer tab of the app; keep the data list for a planned DENUE study of rents and innovation in Mexico.
+
+**Done**
+- Theory note 04 (`docs/theory/04_unbalanced_growth_and_reallocation.md`): three-sector model with markups, an informal wage gap and partial wage pass-through. Results: the relative-price slope of step 09 equals −1 plus the covariances of wage and markup growth with productivity growth over its variance, so −(1 − φ) with constant markups; the static term at initial-year prices weights employment changes by wages times markups, so it is zero in Baumol's case at chained prices, negative when informal employment grows, and positive when employment grows in high-markup sectors. Propositions P48–P51.
+- Model code `apps/productivity/unbalanced.py` with tests of the identities (`apps/productivity/tests/test_unbalanced.py`) and a new page 'Unbalanced growth and the decomposition' in the productivity app (D-070), including an interaction test of the presets.
+- Registers: D-070, D-071 (planned DENUE study), OQ-84–OQ-86, L173–L178 (two verified).
+
+**Key results (illustrative parameters, not calibrated):** in Baumol's case the static term averages 0.000 points a year at chained prices and −0.19 at year-0 prices for the same economy; with ρ = 0.45 and φ = 0.5 the model reproduces a slope of −0.50, near the regional estimate of −0.48 (2000–2019).
+
+**What failed:** browser automation could not operate Streamlit's dropdown for screenshots of the presets; presets were checked with AppTest instead.
+
+---
+
 ## 2026-11-16 — Session 28: causal designs with the ENOE–PIBE panel; plan for study 9.8 (minimum-wage bite)
 
 **Prompt (user):** asked for causal designs using the ENOE–PIBE link; chose the minimum-wage bite design.
