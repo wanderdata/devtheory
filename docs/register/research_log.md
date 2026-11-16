@@ -4,6 +4,22 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-16 — Session 28: causal designs with the ENOE–PIBE panel; plan for study 9.8 (minimum-wage bite)
+
+**Prompt (user):** asked for causal designs using the ENOE–PIBE link; chose the minimum-wage bite design.
+
+**Done**
+- Proposed six designs (minimum-wage bite 2019–2024; US tariffs on China 2018–19 as trade diversion; Chinese import competition in the 2000s; automotive plant openings; the 2014 oil collapse; Jóvenes Construyendo el Futuro). Chose the first, whose data are in hand.
+- Verified the minimum-wage schedule 2016–2026 (L169).
+- Feasibility check of the treatment only: 2018 bite across state × activity cells (national 12.8%; 479 cells with ≥ 100 workers; median 7.8%, IQR 3.7–15.9%).
+- Pre-analysis plan for 9.8 written and committed before any outcome was computed (D-068, P44–P47, L170–L172).
+
+**Key results:** none yet (plan only).
+
+**What failed:** nothing.
+
+---
+
 ## 2026-11-16 — Session 27: selection on the outcome; plan for study 9.7 (productivity by state and activity)
 
 **Prompt (user):** summarise what has been learned about development; asked whether the exercise suffers from looking for causes of an outcome that rarely occurs; asked what else ENOE and PIBE can support; chose to start with productivity growth by state and activity.
