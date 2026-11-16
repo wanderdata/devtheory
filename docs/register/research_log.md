@@ -14,6 +14,8 @@ One entry per work session, newest first.
 - Feasibility checks on ENOE only: the four-digit industry code (`p4a`) is complete and stable 2005–2025 at the level used; median state × fine-activity cell about 300 person-quarters a year, a fifth below 100.
 - Found that INEGI publishes MEITEF (informal value added, jobs and pay by state, quarterly from 2005); requested from the user (OQ-81).
 - Pre-analysis plan for study 9.7 written and committed before any productivity estimate (D-065, P41–P43, L164–L167).
+- ENOE extracts for all 72 quarters (2005–2019, 2022–2024) built (step 1).
+- MEITEF tabulados received from the user; release creation from this session is refused (403), so the zip is kept in the uncommitted raw folder for the user to attach to a release, and a derived annual file is committed (D-066, L168). Plan addendum A1 fixes how MEITEF enters the formal–informal split, written before any productivity estimate.
 
 **Key results:** none yet (plan only).
 

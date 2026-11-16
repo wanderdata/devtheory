@@ -77,3 +77,11 @@ PIBE at state level is partly estimated by distributing national totals with ind
 Population weights before 2020 follow projections based on the 2010 census (OQ-79). Levels of employment by state are affected; shares within states, which drive the decomposition, much less.
 
 None of the comparisons identifies causes. The decomposition is an accounting identity, and the correlations in P42 and P43 can arise from common shocks, from changes in the composition of workers within cells, or from causation in either direction.
+
+## Addendum A1 (2026-11-16): use of MEITEF
+
+Written after MEITEF arrived and before any productivity estimate was computed; the only figures examined were MEITEF's own consistency checks (states sum to the national total; activities sum to the state total).
+
+MEITEF gives informal-economy value added, at constant 2018 and current prices, for each state and 19 activities (two-digit SCIAN sectors, with manufacturing as one sector, wholesale and retail trade combined, and corporate and support services combined), annually 2005–2025, together with paid informal jobs and pay. Its informal economy is the informal sector plus other informal employment, which corresponds to INEGI's labour-informality definition used for formality in ENOE. The split of Section 3.2 is therefore made as follows: the informal value added of a state and activity is MEITEF's, and formal value added is PIBE's non-oil value added minus MEITEF's; where the plan's activity groups are finer than MEITEF's (the four manufacturing groups, wholesale and retail, and professional, corporate and support services), MEITEF's informal value added is divided among them in proportion to the informal labour income of each group in ENOE. Where MEITEF's informal value added exceeds PIBE's for a group, which can happen through rounding in small cells, the group is treated as wholly informal and the case is reported.
+
+MEITEF is compiled partly from ENOE, so formal and informal productivity are not independent of the survey used for employment. The formalisation term measured this way rests on INEGI's allocation of value added between the segments, which uses the economic censuses and the national accounts, rather than on an assumed gap. The θ = 1 split of study 9.3 is reported as a comparison.
