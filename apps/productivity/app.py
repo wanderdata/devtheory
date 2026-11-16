@@ -24,6 +24,10 @@ pages = {
     "Overview": [
         st.Page("views/home.py", title="About this dashboard", default=True),
     ],
+    "Explainers": [
+        st.Page("views/explainer_unbalanced.py", title="Unbalanced growth and the decomposition",
+                url_path="explainer-unbalanced"),
+    ],
     "Baseline (McMillan & Rodrik)": [
         st.Page("views/ref_regional.py", title="Regional productivity", url_path="regional"),
         st.Page("views/ref_sectors.py", title="Sectors and structural change", url_path="sectors"),
