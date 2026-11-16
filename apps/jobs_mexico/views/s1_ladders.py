@@ -8,11 +8,12 @@ from jobs_lib import C_CONTEXT, C_HIGHLIGHT, INK2, MUTED, SECTORS as ENOE_SECTOR
 
 st.title("9.1 Job transitions by sector, establishment size and formality")
 st.markdown(
-    "This page uses Mexico's quarterly labour-force survey (ENOE), which interviews the same dwellings in five "
-    "consecutive quarters, to follow workers for a year. It asks which characteristics of a job predict whether "
-    "the person holding it stays employed and moves to better-paid work: the job's **sector**, or its **firm size "
-    "and formality**. Two windows are compared: 2018 Q4–2019 Q4 and 2023 Q1–2024 Q1. Ages 16–65. The design was "
-    "written down before the data were opened (pre-analysis plan of study 9.1); results are descriptive, not causal.")
+    "Mexico's labour-force survey (ENOE) interviews the same dwellings in five consecutive quarters, which allows "
+    "persons aged 16–65 employed at a first interview to be followed for a year. This page compares how well the "
+    "sector of a job, and the size class and formality of the establishment, predict two outcomes: exit to "
+    "non-employment, and a move to a job cell with higher median hourly earnings. Two windows are compared, "
+    "2018Q4–2019Q4 and 2023Q1–2024Q1. The design was set out in a pre-analysis plan before the data were opened; the "
+    "results are descriptive.")
 
 dec = load("ladders", "decomposition")
 if dec.empty:
@@ -25,13 +26,14 @@ OUT = {"exit_y": "Not employed one year later", "up_y": "In a better-paid job ce
        "persist_y": "In the same job cell one year later", "exit_q": "Not employed one quarter later"}
 
 st.info(
-    "**Verdict under the pre-analysis plan: inconclusive.** Firm size × formality accounts for more of the variation "
-    "in upward moves than sector does, in every variant. For exits to non-employment it accounts for more in the main "
-    "sample, but not when a transition must be confirmed at the following visit, which the plan makes decisive. "
-    "With formality alone in place of size × formality, sector explains upward moves as well or better, so the case "
-    "for size × formality rests on firm size, which workers report inconsistently (see the last section). "
-    "Reweighting for attrition changes nothing of substance. Both dimensions together explain 1–7% of what "
-    "happens to individual workers within a year.")
+    "In a Shapley decomposition, establishment size × formality explains more than sector of exits and of upward "
+    "moves, but the two groupings together explain only 3% of the variance of exits and 7% of that of upward moves. "
+    "The advantage for exits disappears when transitions must be confirmed at an adjacent interview, which the plan "
+    "makes decisive. The advantage for upward moves rests on establishment size, which a third of employees with the "
+    "same employer report differently a year later; with upward moves defined on changes of employer, as the plan "
+    "requires given this reporting error, the advantage is 0.5 points of R² in 2023–24. Under the plan's rule the "
+    "proposition is inconclusive. Manufacturing jobs show more upward moves than service jobs in the same type of "
+    "establishment, but not once the earnings rank of the starting job is held constant.")
 
 # ---- 1. rates by cell
 st.subheader("Rates by type of job")
@@ -116,7 +118,7 @@ if not stt.empty:
     fig = go.Figure()
     for k, (wl, g) in enumerate(stt.groupby("weights", sort=False)):
         fig.add_trace(go.Scatter(x=g["manufacturing_minus_services"], y=g["label"], mode="markers", name=wl,
-                                 marker=dict(color=[C_HIGHLIGHT, "#eb6834"][k % 2], size=9),
+                                 marker=dict(color=[C_HIGHLIGHT, "#eb6834", INK2][k % 3], size=9),
                                  error_x=dict(type="data", symmetric=False, array=g["hi90"] - g["manufacturing_minus_services"],
                                               arrayminus=g["manufacturing_minus_services"] - g["lo90"], thickness=1.2, width=0),
                                  hovertemplate="%{y}<br>%{x:+.3f}<extra>" + wl + "</extra>"))
@@ -126,8 +128,10 @@ if not stt.empty:
     show(fig, stt.drop(columns="label").round(4),
          caption="Weighted regression on a manufacturing indicator (services: commerce, restaurants and accommodation, "
                  "transport and communications, professional, social and other services), with firm size × "
-                 "formality, age group, sex and schooling level as controls. Manufacturing jobs lead more often to "
-                 "better-paid cells but are not less likely to end in non-employment.")
+                 "formality, age group, sex and schooling level as controls. The third series (added after the independent "
+                 "audit) also holds constant the earnings-rank decile of the starting cell: manufacturing cells start "
+                 "lower in the ranking, which leaves more room for upward moves, and with this control the difference "
+                 "in upward moves is not significant. Manufacturing jobs are not less likely to end in non-employment.")
 
 # ---- 4. transitions between segments
 st.subheader("Moving between not employed, informal and formal work")
@@ -187,8 +191,8 @@ if not mis.empty:
     m = mis.iloc[0]
     st.markdown(
         f"Among {int(m['n']):,} employees who reported the same start date with their employer at two first-quarter "
-        f"visits a year apart (2023 and 2024), **{m['size_changes']:.0%} reported a different firm-size class** and "
-        f"**{m['formality_changes']:.0%} a different formality status**. Some genuine growth across a size boundary is "
+        f"visits a year apart (2023 and 2024), {m['size_changes']:.0%} reported a different establishment size class and "
+        f"{m['formality_changes']:.0%} a different formality status. Some genuine growth across a size boundary is "
         "possible in a year, but most of the size changes are reporting error. Results that rely on firm size are "
         "therefore weaker than their intervals suggest; formality is reported far more consistently.")
 footer("2018 Q4–2019 Q4 and 2023 Q1–2024 Q1. Method: devtheory WP09, study 9.1, after Donovan, Lu and Schoellman (2023).")

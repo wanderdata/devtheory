@@ -8,12 +8,12 @@ from jobs_lib import C_CONTEXT, C_HIGHLIGHT, INK2, MUTED, TYPE_COLORS, base_layo
 
 st.title("9.3 Productivity ladder with formal and informal segments")
 st.markdown(
-    "WP08 places every person aged 15 and over at the output per worker of the sector they work in, with people not "
-    "employed at zero, and asks whether the resulting distribution improved over time. For Mexico, with one step per "
-    "sector, no period since 2000 shows an unambiguous change. This page splits each sector into **formal and "
-    "informal** workers. National-accounts value added is allocated between them in proportion to their labour "
-    "income from ENOE, raised to a power θ (θ = 1: productivity differs as income does), keeping each sector's "
-    "total unchanged.")
+    "WP08 places every person aged 15 and over at the output per worker of the sector in which they work, with the "
+    "non-employed at zero, and compares the resulting distributions over time by stochastic dominance. For Mexico, "
+    "with one productivity level per sector, the comparisons are ambiguous for every period since 2008. This page "
+    "splits each sector into formal and informal segments. National-accounts value added is allocated between them "
+    "so that output per worker is proportional to mean labour income from ENOE raised to a power θ, with each "
+    "sector's total unchanged; with θ = 1 productivity differs between segments as income does.")
 
 v = load("productivity_ladder", "verdicts")
 if v.empty:
@@ -22,12 +22,12 @@ if v.empty:
 d = load("productivity_ladder", "decomposition")
 dm = d[(d["spec"] == "sector x formality, theta 1") & (d["period"] == "2005–2019")].iloc[0]
 st.info(
-    "**Results.** Splitting sectors into formal and informal steps changes no verdict, in any period or "
-    "specification (the pre-registered expectation that it would make them worse is rejected). It does change the "
-    "decomposition: between 2005 and 2019 the movement of workers from informal to formal work within sectors added "
-    f"{dm['between_within_sector_pp']:+.2f} percentage points a year to output per worker, while productivity within "
-    f"the formal and informal segments fell by {-dm['within_pp']:.2f} points a year, faster than the sector "
-    f"figures ({-dm['within_sector_level_pp']:.2f} a year) indicate.")
+    "The dominance verdicts are the same with formal and informal segments as with one level per sector, in all four "
+    "periods and for θ between 0.5 and 2. In the decomposition, reallocation from informal to formal segments within "
+    f"sectors contributes {dm['between_within_sector_pp']:.3f} percentage points a year to the growth of output per "
+    f"worker over 2005–2019 at θ = 1, against a sector-level within-sector term of {dm['within_sector_level_pp']:.3f}; "
+    "this contribution is roughly proportional to θ and follows from the assumed productivity gap rather than from an "
+    "independent measurement.")
 
 # ---- verdicts
 st.subheader("Verdicts")
@@ -106,11 +106,11 @@ s = load("productivity_ladder", "segments")
 inf = s[s["formality"] == "informal"]
 c1, c2 = st.columns(2)
 with c1:
-    st.markdown("**Informal share of sector employment**")
+    st.markdown("###### Informal share of sector employment")
     st.dataframe(inf.pivot(index="sector", columns="year", values="informal_share").round(3).rename(columns=str).reset_index(),
                  hide_index=True, width="stretch")
 with c2:
-    st.markdown("**Informal / formal mean monthly labour income**")
+    st.markdown("###### Informal / formal mean monthly labour income")
     st.dataframe(inf.pivot(index="sector", columns="year", values="informal_formal_ratio").round(3).rename(columns=str).reset_index(),
                  hide_index=True, width="stretch")
 st.caption("Sectors: AGR agriculture; MIU mining and utilities; MAN manufacturing; CON construction; TRH trade, "

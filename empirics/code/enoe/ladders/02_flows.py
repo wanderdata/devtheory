@@ -207,7 +207,7 @@ def _wls(y, X, w):
     return np.linalg.lstsq(X * sw[:, None], y * sw, rcond=None)[0]
 
 
-def sector_test(w, y, nboot=NBOOT, seed=SEED):
+def sector_test(w, y, nboot=NBOOT, seed=SEED, control=None):
     """Second rejection condition of P-RG3 (plan §5.3): within size x formality cells, do
     manufacturing jobs have lower exit rates and higher upward-transition rates than service jobs?
     WLS of y on a manufacturing indicator (services = rama_est2 5-10) with size x formality,
@@ -217,8 +217,10 @@ def sector_test(w, y, nboot=NBOOT, seed=SEED):
         return None
     age = pd.cut(d["eda_0"], [15, 24, 34, 44, 54, 65], labels=False).astype(str)
     edu = pd.cut(d["cs_p13_1_0"].where(d["cs_p13_1_0"] < 99), [-1, 2, 3, 6, 9], labels=False).astype(str)
-    ctl = pd.get_dummies(pd.DataFrame({"sf": d["sizeform"], "age": age, "sex": d["sex_0"].astype(str), "edu": edu}),
-                         drop_first=True).to_numpy(float)
+    cols = {"sf": d["sizeform"], "age": age, "sex": d["sex_0"].astype(str), "edu": edu}
+    if control:
+        cols[control] = d[control].astype(str)
+    ctl = pd.get_dummies(pd.DataFrame(cols), drop_first=True).to_numpy(float)
     X = np.column_stack([np.ones(len(d)), (d["sector"] == MANUF).astype(float), ctl])
     yv, wv = d[y].to_numpy(float), d["fac_tri_0"].to_numpy(float)
     est = _wls(yv, X, wv)[1]
@@ -379,6 +381,14 @@ def main():
                     r = boot_decomp(d, y)
                     r.update({"window": win, "variant": variant, "outcome": y})
                     dec.append(r)
+        # Added after the independent audit (D-064): INEGI's ambito2 = 0 (agriculture or size not
+        # specified) is grouped with "other or not specified", so that size cell partly encodes
+        # agriculture. Same decomposition without agricultural origins.
+        na = w[w["sector"] != "1"]
+        for y in ["exit_y", "up_y"]:
+            r = boot_decomp(na, y)
+            r.update({"window": win, "variant": "main, excluding agricultural origins (post-audit)", "outcome": y})
+            dec.append(r)
         # Exploratory, not in the plan (D-048): upward transitions have a ceiling for cells already
         # high in the earnings ranking, which favours whichever dimension tracks earnings more
         # closely. Same decomposition, conditional on the origin cell's earnings-rank decile.
@@ -392,6 +402,13 @@ def main():
                 r = sector_test(ww, y) if ww[y].notna().sum() > 1000 else None
                 if r:
                     st.append({**r, "window": win, "weights": wlab})
+        # Added after the independent audit (D-064): manufacturing origin cells rank lower in the
+        # earnings distribution, so they have more room for upward moves. Same test, conditional
+        # on the origin cell's earnings-rank decile.
+        for y in ["exit_y", "up_y", "up_emp_y"]:
+            r = sector_test(w, y, control="rank_decile") if w[y].notna().sum() > 1000 else None
+            if r:
+                st.append({**r, "window": win, "weights": "origin weights, conditional on origin rank decile (post-audit)"})
         cells["sizeform"].append(by_cell(w_rw, "sizeform").assign(window=win, weights="reweighted for attrition"))
         eg.append(earnings_growth(w).assign(window=win))
         tr.append(transitions(p, w).assign(window=win))

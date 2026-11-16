@@ -7,14 +7,13 @@ from jobs_lib import C_HIGHLIGHT, CATEGORICAL, MUTED, TYPE_COLORS, base_layout, 
 
 st.title("9.2 Experience–earnings profiles by type of job")
 st.markdown(
-    "Wages rise much less with experience in poor countries than in rich ones (Lagakos, Moll, Porzio, Qian and "
-    "Schoellman 2018). For Mexico, on the 1990–2010 censuses, men with 20–24 years of experience earned 41% more "
-    "than men just starting; in rich countries the figure was about 89%. This page asks whether Mexico's flat "
-    "profile is **general** or **concentrated** in some types of job, using ENOE first quarters 2005–2025 "
-    "(about 860,000 observations).\n\n"
-    "**Sample.** Men, full-time, private-sector wage employees with positive hourly earnings and 0–40 years of "
-    "potential experience (age − 18, or age − schooling − 6 with 12 or more years of schooling), as in Lagakos et al. "
-    "The *height* of a profile is earnings at 20–24 years of experience relative to 0–4 years.")
+    "Lagakos, Moll, Porzio, Qian and Schoellman (2018) estimate that, in Mexico's 1990–2010 censuses, hourly wages at "
+    "20–24 years of potential experience were 41% above those at 0–4 years, against about 89% on average in the rich "
+    "countries of their sample. This page estimates such profiles by formality, sector and establishment size with "
+    "ENOE first quarters 2005–2025 (about 860,000 observations). The sample, as in Lagakos et al., is men working full "
+    "time as private-sector wage employees with positive hourly earnings and 0–40 years of potential experience (age "
+    "minus 18, or age minus schooling minus 6 with 12 or more years of schooling). The height of a profile is "
+    "earnings at 20–24 years of experience relative to 0–4 years.")
 
 h = load("profiles", "heights")
 if h.empty:
@@ -23,13 +22,13 @@ if h.empty:
 cs = h[h["method"] == "cross-section"].set_index("group")
 
 st.info(
-    f"**Results.** Profiles are flat across the board: {cs.loc['all (baseline)', 'height']:.0%} for all baseline "
-    f"workers, {cs.loc['formal', 'height']:.0%} in formal and {cs.loc['informal', 'height']:.0%} in informal jobs. "
-    "Within the same sector, formal and informal profiles are about equal; differences across sectors are larger "
-    "than the difference by formality, so the pre-registered proposition that formality is what separates steep "
-    "from flat profiles is rejected. Formal profiles have flattened since 2005 and are now close to informal ones. "
-    "The cohort-adjusted method of Lagakos et al. gives implausible negative profiles in these data and is not used "
-    "for conclusions (see the last section).")
+    f"Heights at 20–24 years are {cs.loc['all (baseline)', 'height']:.1%} for all baseline workers, "
+    f"{cs.loc['formal', 'height']:.1%} in formal and {cs.loc['informal', 'height']:.1%} in informal jobs. In "
+    "manufacturing and commerce, the two sectors with enough informal wage employees for separate estimates, formal "
+    "and informal profiles are similar, and the range of heights across six sectors (21 points) exceeds the pooled "
+    "formality gap (9.8 points). The formal profile fell from 35.6% in 2005–2009 to 18.6% in 2020–2025. Reweighting "
+    "for earnings non-response raises the heights by 0.6–5.6 points without changing these comparisons. The "
+    "cohort correction of Lagakos et al. gives negative heights in these data and is not used for conclusions.")
 
 # ---- 1. profiles
 st.subheader("Earnings by years of experience")
@@ -94,14 +93,14 @@ base_layout(fig, ytitle="height at 20–24 years", height=360)
 fig.update_yaxes(tickformat=".0%", rangemode="tozero")
 nr = load("profiles", "nonresponse")
 show(fig, t[["period", "group", "height_20_24", "n"]].round(3),
-     caption="Same model estimated separately for each period (exploratory; not in the pre-analysis plan). The formal "
+     caption="Same model estimated separately for each period (an analysis added after the plan). The formal "
              "profile fell from about 36% to 19% while the informal one stayed near 15%. The share of baseline "
-             "workers reporting earnings fell over the period (formal: 90% in 2005, 57% in 2025) by similar amounts "
-             "at every level of experience, so differential non-response is an unlikely explanation, but it cannot "
-             "be excluded.")
+             "workers reporting earnings fell over the period (formal: 90% in 2005, 57% in 2025) at every level of "
+             "experience; a change in who reports could contribute to the flattening if the experienced formal "
+             "workers who stopped reporting were higher earners.")
 
 # ---- 4. composition
-st.subheader("Is the national profile flat because of who works where?")
+st.subheader("Composition of the national profile")
 comp = load("profiles", "composition")
 c = comp[comp["method"] == "cross-section"].iloc[0]
 st.markdown(
@@ -119,7 +118,7 @@ with st.expander("Cohort adjustment and within-person estimates: what did not wo
     st.markdown(
         "Cross-sectional profiles mix experience with differences between birth cohorts. Lagakos et al. separate them "
         "by assuming that wages no longer rise with experience in the last ten years of a career (the "
-        "Heckman–Lochner–Taber restriction). In these data that method gives **negative** profiles: "
+        "Heckman–Lochner–Taber restriction). In these data that method gives negative profiles: "
         f"{hl.loc[('all (baseline)', 'HLT, flat spot 30-39'), 'height']:.0%} for all baseline workers. The result is the same "
         "on 2005–2018 alone, before the large minimum-wage increases from 2019, so those increases are not the "
         "explanation. The more likely reason is that the assumption fails in Mexico: cross-sectional earnings fall "

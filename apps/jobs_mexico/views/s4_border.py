@@ -32,14 +32,15 @@ def ci(o, k=1, pct=False):
 
 
 st.info(
-    f"**Results.** Employment did not fall: the employment rate of the population aged 15+ changed by "
-    f"{ci('emp_rate', 1, True)} percentage points. The reported earnings distribution moved at the new "
-    f"minimum: the share of wage employees reporting less than it fell by {-100 * m.loc['below_m', 'beta']:.1f} points. "
-    f"But the share reporting an amount fell by {-100 * m.loc['report', 'beta']:.1f} points at the same time. Counting "
-    f"answers given in ranges of the minimum wage, between {-100 * (rr.loc['c_missing', 'beta'] + rnone):.1f} and "
-    f"{-100 * rr.loc['c_missing', 'beta']:.1f} jobs per 100 people aged 15+ moved out of the range below the new minimum. "
-    f"Moves from informal to formal work did not increase: the quarterly "
-    f"rate changed by {ci('i_to_f', 1, True)} points, against a pre-period rate of {100 * pre['i_to_f']:.1f}%.")
+    f"The employment rate of the population aged 15 and over changed by {ci('emp_rate', 1, True)} percentage points, "
+    f"and the quarterly rate of transition from informal to formal employment by {ci('i_to_f', 1, True)} points on a "
+    f"base of {100 * pre['i_to_f']:.1f}%. The share of wage employees reporting earnings below the new minimum fell by "
+    f"{-100 * m.loc['below_m', 'beta']:.1f} points, while the share reporting any amount fell by "
+    f"{-100 * m.loc['report', 'beta']:.1f} points. Counting answers given in ranges of the minimum wage, the share below "
+    f"the minimum fell by {-100 * rr.loc['below_m_corr', 'beta']:.1f} points (90% interval "
+    f"{-100 * rr.loc['below_m_corr', 'hi90']:.1f} to {-100 * rr.loc['below_m_corr', 'lo90']:.1f}). Counts of jobs that "
+    "moved from below to above the minimum fail the plan's pre-trend test and are shown as descriptive. The estimates "
+    "are of the whole package (minimum wage and tax cuts).")
 
 with st.expander("A change in the ENOE sample in the border zone in 2019"):
     st.markdown(
@@ -118,7 +119,7 @@ st.caption(
     "qualify. Boundaries: CONABIO/INEGI 2020.")
 
 # ---------------------------------------------------------------- discontinuity
-st.subheader("Change against distance to the edge of the zone")
+st.subheader("Change by distance to the edge of the zone")
 rd = load("border_mw", "rd_bins")
 s = x[(x["period"] == "during") & x["shown"]]
 r = rd[rd["outcome"] == o]
@@ -147,7 +148,7 @@ show(fig, s[["name", "zlfn", "dist_km", "n", "level", "change_net", "change_se"]
              "far from where people live.")
 
 # ---------------------------------------------------------------- event studies
-st.subheader("Quarter by quarter")
+st.subheader("Event studies")
 ev = load("border_mw", "event")
 pt = load("border_mw", "pretrend").set_index("outcome")["p_pretrend_wild"]
 EV_OUT = {"below_m": "Share of reporting wage employees below the new minimum", "report": "Share of wage employees "
@@ -173,7 +174,7 @@ show(fig, e.assign(quarter=lab)[["quarter", "beta", "se_cr1"]].round(4),
              f"in the zone and 20% elsewhere, and fieldwork was interrupted in March.")
 
 # ---------------------------------------------------------------- bins
-st.subheader("Where in the earnings distribution")
+st.subheader("Employment by earnings bin")
 bn = load("border_mw", "bins")
 bn = bn[bn["measure"] == "monthly"]
 BL = {"b00_06": "< 0.6", "b06_08": "0.6–0.8", "b08_10": "0.8–1.0", "b10_12": "1.0–1.2", "b12_15": "1.2–1.5",
@@ -195,7 +196,7 @@ show(fig, bn[["formality", "bin", "beta", "p_wild", "pre_mean_zone"]].round(5),
              "if none would have, the missing jobs are as shown. The next section counts answers given in ranges.")
 
 # ---------------------------------------------------------------- range answers
-st.subheader("Why fewer workers reported earnings")
+st.subheader("Earnings answers given in ranges of the minimum wage")
 st.markdown(
     "Respondents who give no amount are asked whether their income is below, equal to, or in ranges of the minimum "
     "wage, which the interviewer reads out: 5,302 pesos a month in the zone in 2019. An addendum to the plan, written "
@@ -214,8 +215,8 @@ fig = go.Figure(go.Bar(y=at["answer"][::-1], x=100 * at["beta"][::-1], orientati
 base_layout(fig, xtitle="change in the share of wage employees giving each answer, percentage points (90% interval)",
             height=380, legend=False)
 show(fig, at[["answer", "beta", "lo90", "hi90", "p_wild", "pre_mean_zone"]].round(4),
-     caption="Range answers rose by less than a quarter of the fall in reported amounts, and the rise is at and near the "
-             "new minimum: 'equal to the minimum' went from 0.5% of wage employees to about 1.7%. Higher ranges fell partly "
+     caption="Range answers account for about a fifth of the fall in reported amounts. The rise is in 'equal to the "
+             "minimum' (from 0.5% to about 1.7% of wage employees) and 'one to two minimums'; higher ranges fell, partly "
              "because the minimum read out doubled. Most of the fall is a rise in refusals and 'don't know'.")
 cb = load("border_mw", "ranges_bins")
 fig = go.Figure()
@@ -229,12 +230,13 @@ base_layout(fig, xtitle="monthly earnings relative to the new border minimum, ra
 fig.update_layout(barmode="group")
 show(fig, cb[["formality", "bin", "beta", "p_wild", "pre_mean_zone"]].round(5),
      caption=f"Range answers spread uniformly over their intervals, using the minimum in force for each person and "
-             f"quarter ('equal to the minimum' as a point). Missing jobs below the minimum: "
-             f"{100 * rr.loc['c_missing', 'beta']:+.1f} per 100 ({100 * rr.loc['c_missing', 'lo90']:+.1f} to "
-             f"{100 * rr.loc['c_missing', 'hi90']:+.1f}); excess at 1.0–1.5 times: {100 * rr.loc['c_excess', 'beta']:+.1f} "
-             f"({100 * rr.loc['c_excess', 'lo90']:+.1f} to {100 * rr.loc['c_excess', 'hi90']:+.1f}). The remaining rise in "
-             f"non-response ({100 * rnone:+.1f}) bounds missing jobs between {100 * (rr.loc['c_missing', 'beta'] + rnone):+.1f} "
-             f"and {100 * rr.loc['c_missing', 'beta']:+.1f}.")
+             f"quarter ('equal to the minimum' as a point). Jobs below the minimum: "
+             f"{100 * rr.loc['c_missing', 'beta']:+.1f} per 100 people aged 15+ ({100 * rr.loc['c_missing', 'lo90']:+.1f} to "
+             f"{100 * rr.loc['c_missing', 'hi90']:+.1f}); at 1.0–1.5 times the minimum: {100 * rr.loc['c_excess', 'beta']:+.1f} "
+             f"({100 * rr.loc['c_excess', 'lo90']:+.1f} to {100 * rr.loc['c_excess', 'hi90']:+.1f}). The pre-period coefficients "
+             "of the count below the minimum are jointly significant (p = 0.018), so under the plan's rule this estimate is "
+             f"descriptive. The remaining rise in non-response ({100 * rnone:+.1f}) would reduce the fall below the minimum to "
+             f"{100 * (rr.loc['c_missing', 'beta'] + rnone):+.1f} if all non-respondents earned less than the minimum.")
 
 # ---------------------------------------------------------------- flows and robustness
 st.subheader("Flows and robustness")
@@ -243,12 +245,12 @@ FL = {"i_to_f": "informal → formal", "n_to_f": "not employed → formal", "f_t
 fl = m.loc[list(FL)].reset_index()
 fl["transition"] = fl["outcome"].map(FL)
 fl["pre-period rate, zone"] = fl["outcome"].map(pre)
-st.markdown("**Quarterly transition rates** (difference in differences, 90% wild bootstrap interval)")
+st.markdown("###### Quarterly transition rates (difference in differences, 90% wild bootstrap interval)")
 st.dataframe(fl[["transition", "beta", "lo90", "hi90", "p_wild", "pre-period rate, zone"]].round(4),
              hide_index=True, width="stretch")
 rob = d[d["outcome"].isin(["emp_rate", "below_m", "lnw", "i_to_f", "report"])]
 piv = rob.pivot(index="spec", columns="outcome", values="beta").round(4).reset_index()
-st.markdown("**Estimates under each specification**")
+st.markdown("###### Estimates under each specification")
 st.dataframe(piv, hide_index=True, width="stretch")
 st.caption("Specifications set in the pre-analysis plan, plus one exploratory variant added after seeing the event "
            "studies (pre-period from 2017Q3). Groups re-estimate the main specification on subpopulations.")
