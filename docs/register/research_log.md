@@ -4,6 +4,23 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-16 — Session 27: selection on the outcome; plan for study 9.7 (productivity by state and activity)
+
+**Prompt (user):** summarise what has been learned about development; asked whether the exercise suffers from looking for causes of an outcome that rarely occurs; asked what else ENOE and PIBE can support; chose to start with productivity growth by state and activity.
+
+**Done**
+- Discussion recorded as OQ-80: national productivity barely moved, so WP09's null results are statements about prediction in a low-growth sample (selection on, or restricted range of, the outcome). Synthesis conclusions to be restated after 9.7.
+- Checked the committed PIBE files: 41 activities by state, 2003–2024, constant and current prices with implicit price indices.
+- Feasibility checks on ENOE only: the four-digit industry code (`p4a`) is complete and stable 2005–2025 at the level used; median state × fine-activity cell about 300 person-quarters a year, a fifth below 100.
+- Found that INEGI publishes MEITEF (informal value added, jobs and pay by state, quarterly from 2005); requested from the user (OQ-81).
+- Pre-analysis plan for study 9.7 written and committed before any productivity estimate (D-065, P41–P43, L164–L167).
+
+**Key results:** none yet (plan only).
+
+**What failed:** first feasibility script assumed `fac` exists in every year; files from 2021 have only `fac_tri`.
+
+---
+
 ## 2026-11-16 — Session 26: independent audit of WP09, corrections, change of style, synthesis
 
 **Prompt (user):** go ahead with the audit, register the changes, and take the opportunity to shift the style and tone: clear technical communication rather than headlines, for papers and all online content.

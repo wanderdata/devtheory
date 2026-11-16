@@ -18,6 +18,7 @@ Mexico comes first because its labour-force survey (ENOE) has a five-quarter rot
 | 9.4 The 2019 minimum-wage increase in the northern border zone | Did the 2019 package change employment, the earnings distribution and transitions out of informality? | ENOE, every quarter 2016Q1–2020Q1; CONABIO/INEGI municipal boundaries | Draft paper | [plan](9.4_border_minimum_wage/00_pre_analysis_plan.md) · [paper](9.4_border_minimum_wage/01_paper.md) · app page 9.4 |
 | 9.5 First jobs and employment three quarters later | What are young people's first jobs, and how are they related to formal employment three quarters later? | ENOE, every quarter 2005–2019 and 2022–2026 (70 five-quarter panels) | Draft paper | [plan](9.5_first_jobs/00_pre_analysis_plan.md) · [paper](9.5_first_jobs/01_paper.md) · app page 9.5 |
 | 9.6 Job mobility and growth across states | How much do states differ in job mobility at given workforce composition, and is mobility related to growth? | ENOE 2005–2026 one-year panels; INEGI PIBE base 2018 | Draft paper | [plan](9.6_states/00_pre_analysis_plan.md) · [paper](9.6_states/01_paper.md) · app page 9.6 |
+| 9.7 Labour productivity growth by state and activity | Where did non-oil labour productivity grow, through which channels, and did earnings and formality follow? | PIBE base 2018 by state and activity, 2003–2024; ENOE every quarter 2005–2024 | Plan | [plan](9.7_state_productivity/00_pre_analysis_plan.md) |
 
 Synthesis: [Jobs and productive development in Mexico: findings of six studies, 2005–2026](00_synthesis.md) (draft v0.1).
 
