@@ -1,0 +1,19 @@
+group,weights,height_20_24,lo90,hi90,n
+all (baseline),raw,0.2567,0.2489,0.2635,859695
+all (baseline),reweighted for non-response,0.2861,0.2759,0.2945,859695
+formal,raw,0.2535,0.2461,0.2622,506847
+formal,reweighted for non-response,0.2811,0.2663,0.2975,506847
+informal,raw,0.1561,0.1476,0.1633,352848
+informal,reweighted for non-response,0.1657,0.1577,0.1740,352848
+sector: agriculture and mining,raw,0.1464,,,92435
+sector: agriculture and mining,reweighted for non-response,0.1608,,,92435
+sector: commerce,raw,0.2935,,,143689
+sector: commerce,reweighted for non-response,0.3276,,,143689
+sector: construction,raw,0.2136,,,130440
+sector: construction,reweighted for non-response,0.2252,,,130440
+sector: manufacturing,raw,0.2786,,,199292
+sector: manufacturing,reweighted for non-response,0.2850,,,199292
+"sector: professional, financial, social services",raw,0.3559,,,103182
+"sector: professional, financial, social services",reweighted for non-response,0.4122,,,103182
+"sector: transport, restaurants, other services",raw,0.2406,,,188209
+"sector: transport, restaurants, other services",reweighted for non-response,0.2593,,,188209

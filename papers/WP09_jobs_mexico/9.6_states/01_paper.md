@@ -4,7 +4,7 @@
 
 ## Abstract
 
-This paper measures one-year job mobility in each of Mexico's 32 states with the rotating panel of the national labour-force survey (ENOE), 2005–2025, using 2.8 million persons aged 16–65 observed at their first and fifth interviews. The main measure is the share of informally employed persons who are formally employed one year later, adjusted for age, sex, schooling, sector and urban residence. In panels starting in 2005–2011 the adjusted rate ranges across states from 6.3% (Querétaro) to 19.1% (Guerrero), with a mean of 12.3%; sampling error accounts for about 2% of the variance across states. The state ranking is stable: the correlation between the 2005–2011 and 2012–2018 panels is 0.96 (90% interval 0.93–0.98). Across the 30 states other than Campeche and Tabasco, the 2005–2011 rate has a Spearman correlation of 0.32 (90% interval 0.01–0.55) with growth of GDP per person over 2012–2019, measured with INEGI's state accounts. The relation is not present for growth over 2005–2019 as a whole, and none of the estimates is causal.
+This paper measures one-year job mobility in each of Mexico's 32 states with the rotating panel of the national labour-force survey (ENOE), 2005–2025, using 2.8 million persons aged 16–65 observed at their first and fifth interviews. The main measure is the share of informally employed persons who are formally employed one year later, adjusted for age, sex, schooling, sector and urban residence. In panels starting in 2005–2011 the adjusted rate ranges across states from 6.3% (Querétaro) to 19.1% (Guerrero), with a mean of 12.3%; sampling error accounts for about 2% of the variance across states. State rates are stable: their correlation between the 2005–2011 and 2012–2018 panels is 0.96 (90% interval 0.93–0.98). Across the 30 states other than Campeche and Tabasco, the 2005–2011 rate has a Spearman correlation of 0.32 (90% interval 0.01–0.55) with growth of GDP per person over 2012–2019, measured with INEGI's state accounts. The relation is not present for growth over 2005–2019 as a whole, and none of the estimates is causal.
 
 ## 1. Introduction
 
@@ -32,7 +32,7 @@ GDP comes from INEGI's state accounts (Producto Interno Bruto por Entidad Federa
 
 For each measure and period, a weighted linear probability model is estimated on persons, with a full set of 32 state indicators and fixed effects for the quarter of the first interview, single years of age, sex, single years of schooling, the sector of employment at the first interview, formality at the first interview (for M2 and M3) and urban residence (ENOE's self-represented cities). The adjusted rate for a state is its predicted rate at the national average of the other covariates. Standard errors are clustered by primary sampling unit.
 
-The variance of the true state effects, τ², is estimated as the variance of the 32 adjusted rates minus the mean of their squared standard errors; the signal share is τ² divided by the variance of the estimates. Persistence is the correlation of adjusted rates between periods, reported with a 90% interval from 1,999 bootstrap resamples of states, and corrected for sampling error by dividing by the square root of the product of the two signal shares.
+The variance of the true state effects, τ², is estimated as the variance of the 32 adjusted rates minus the mean of their squared standard errors; the signal share is τ² divided by the variance of the estimates. Persistence is the Pearson correlation of adjusted rates between periods, reported with a 90% interval from 1,999 bootstrap resamples of states, and corrected for sampling error by dividing by the square root of the product of the two signal shares.
 
 Growth of GDP per person is measured in log points a year. The test of P40 is Spearman's rank correlation between the adjusted M1 of the 2005–2011 panels and growth over 2012–2019, across the 30 states other than Campeche and Tabasco, with a 90% interval from 1,999 bootstrap resamples of states. Partial rank correlations condition on log GDP per person in 2012 and the average formal share of employment in 2005–2011.
 
@@ -64,7 +64,7 @@ The informal-to-formal rate is not related to the size of a state's formal secto
 | M2, move to a higher-paid cell | 0.93 (0.89–0.96) | 0.93 (0.88–0.97) |
 | M3, exit to non-employment | 0.61 (0.26–0.77) | 0.55 (0.38–0.75) |
 
-The rankings of states by M1 and M2 are nearly the same across the three periods, which span the change of survey design in 2020 and the pandemic. Correcting for sampling error raises the correlations by at most 0.03. Exit rates are less stable.
+State rates of M1 and M2 are highly correlated between adjacent periods, which span the change of survey design in 2020 and the pandemic. Correcting for sampling error raises the correlations by at most 0.03. Exit rates are less stable.
 
 ### 4.3 Mobility and subsequent growth
 
@@ -82,7 +82,7 @@ The rankings of states by M1 and M2 are nearly the same across the three periods
 
 States with higher informal-to-formal and upward mobility in 2005–2011 grew somewhat faster in GDP per person over 2012–2019, and states with higher exit rates grew more slowly. The correlation of 0.32 is not driven by a single state: omitting one state at a time gives values between 0.26 and 0.37. It changes little when initial income and the formal share are held constant, and is slightly higher when Campeche and Tabasco are included, with or without oil.
 
-The relation depends on the period over which growth is measured. Mobility in 2005–2011 is unrelated to growth over 2005–2019 taken as a whole (ρ = −0.02), which implies that states with high mobility grew relatively slowly in 2005–2012. With 30 observations and a correlation of this size, the choice of window can change the conclusion.
+The relation depends on the period over which growth is measured. Mobility in 2005–2011 is unrelated to growth over 2005–2019 taken as a whole (ρ = −0.02), which implies that states with high mobility grew relatively slowly in 2005–2012. With 30 observations and a correlation of this size, the choice of window can change the conclusion. The contemporaneous correlation between mobility in the 2012–2018 panels and growth over 2012–2019 is higher (0.44, 90% interval 0.17–0.64), which is consistent with growth raising mobility as well as with the reverse.
 
 ### 4.4 Propositions
 
@@ -100,7 +100,7 @@ The correlations in Section 4.3 describe co-movement. Industrial structure, expo
 
 ## 6. Conclusions
 
-Mexican states differ in how often workers of given characteristics move from informal to formal employment or into better-paid types of job, and these differences have been stable for two decades. They are not a reflection of the size of the formal sector. States with more mobility in 2005–2011 grew somewhat faster in GDP per person in 2012–2019, but the correlation is modest, depends on the period and is not evidence of an effect of mobility on growth. Explaining why some states provide more mobility than others would require variation in state policies or in industry location that is unrelated to local labour-market conditions.
+Mexican states differ in how often workers of given characteristics move from informal to formal employment or into better-paid types of job, and these differences are highly correlated across the three periods examined. They are not a reflection of the size of the formal sector. States with more mobility in 2005–2011 grew somewhat faster in GDP per person in 2012–2019, but the correlation is modest, depends on the period and is not evidence of an effect of mobility on growth. Explaining why some states provide more mobility than others would require variation in state policies or in industry location that is unrelated to local labour-market conditions.
 
 ## Annex A. Implementation notes and further work
 

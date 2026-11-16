@@ -45,7 +45,7 @@ The comparisons condition on observed characteristics only. Unobserved motivatio
 | Manufacturing | 14.3% | 18.6% |
 | Construction | 4.2% | 8.5% |
 
-The informal share of first jobs is 16.6 percentage points higher than that of all jobs held by employed 15–24-year-olds. First jobs are more often unpaid, in commerce and in restaurants and lodging, and less often in manufacturing and construction. By type, 36.0% of first jobs are informal own-account or unpaid work, 29.1% informal wage jobs in units with premises, 19.9% other informal wage jobs and 14.9% formal jobs. Of the other informal wage jobs, 42% are in micro units without premises; most of the remainder are in units that INEGI does not classify by size.
+The informal share of first jobs is 16.6 percentage points higher than that of all jobs held by employed 15–24-year-olds. First jobs are more often unpaid, in commerce and in restaurants and lodging, and less often in manufacturing and construction. By type, 36.0% of first jobs are informal own-account or unpaid work, 29.1% informal wage jobs in units with premises, 19.9% other informal wage jobs and 14.9% formal jobs. Of the other informal wage jobs, 42% are in micro units without premises, 28% in agriculture or in units of unspecified size, 27% in INEGI's residual category (mostly domestic service) and 4% in government.
 
 Among entrants reporting earnings, the median formal first job pays 1.8 times the monthly minimum wage in force for a mean of 43 hours a week; informal wage jobs in units with premises pay a median of 1.0 times the minimum for 34 hours, and other informal wage jobs 0.8 times for 29 hours.
 
@@ -91,7 +91,7 @@ Three quarters is a short horizon. Transitions to formal employment that take lo
 
 The comparisons are conditional associations. The Oster calculations suggest that the difference between informal entry and remaining without work is robust to substantial selection on unobservables, while the size of the difference between formal and informal entry is not.
 
-The probit check was estimated with year rather than quarter effects and without clustered standard errors, for reasons of memory; only its point estimates are used.
+The probit check was estimated with year rather than quarter effects, without state effects, with a quadratic in schooling instead of single-year indicators and without clustered standard errors, for reasons of memory; only its point estimates are used.
 
 ## 6. Conclusions
 
@@ -99,7 +99,7 @@ Most first jobs of young Mexicans are informal, and many end within a year: half
 
 ## Annex A. Implementation notes and further work
 
-The analysis uses ENOE quarters through 2026Q2, the latest available. Controls that do not vary within a subsample (sex within a sex group, attendance among those not attending school) are dropped in that subsample. From 2025Q3 INEGI renamed the geographic codes (`cve_ent`, `cve_mun`); the shared reader maps them to the earlier names.
+The analysis uses ENOE quarters through 2026Q2, the latest available. Controls that do not vary within a subsample (sex within a sex group, attendance among those not attending school) are dropped in that subsample. The counts of formally and informally employed household members are capped at three. The plan's secondary outcomes at the fifth interview (informal employment, non-employment, wage employment in a unit with premises) were not estimated. From 2025Q3 INEGI renamed the geographic codes (`cve_ent`, `cve_mun`); the shared reader maps them to the earlier names.
 
 Further work could separate exits from first jobs into study, unemployment and inactivity (open question OQ-74); estimate how many first jobs fall between interviews (OQ-75); measure earnings growth over the quarters observed after entry; and link formal first jobs to IMSS records to follow them beyond a year.
 
