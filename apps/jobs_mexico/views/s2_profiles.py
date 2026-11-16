@@ -5,7 +5,7 @@ import streamlit as st
 
 from jobs_lib import C_HIGHLIGHT, CATEGORICAL, MUTED, TYPE_COLORS, base_layout, footer, load, show
 
-st.title("9.2 Which jobs build skills?")
+st.title("9.2 Experience–earnings profiles by type of job")
 st.markdown(
     "Wages rise much less with experience in poor countries than in rich ones (Lagakos, Moll, Porzio, Qian and "
     "Schoellman 2018). For Mexico, on the 1990–2010 censuses, men with 20–24 years of experience earned 41% more "

@@ -7,7 +7,7 @@ import streamlit as st
 
 from jobs_lib import C_CONTEXT, C_HIGHLIGHT, INK2, MUTED, OUT, TYPE_COLORS, base_layout, footer, load, show
 
-st.title("9.4 The 2019 border minimum wage")
+st.title("9.4 The 2019 minimum-wage increase in the northern border zone")
 st.markdown(
     "On 1 January 2019 the daily minimum wage in the 43 municipalities of the northern border zone (Zona Libre de la "
     "Frontera Norte) doubled, from 88.36 to 176.72 pesos; elsewhere it rose 16%. The same decree cut VAT from 16% to "

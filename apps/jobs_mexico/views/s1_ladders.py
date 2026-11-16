@@ -6,7 +6,7 @@ import streamlit as st
 
 from jobs_lib import C_CONTEXT, C_HIGHLIGHT, INK2, MUTED, SECTORS as ENOE_SECTORS, base_layout, footer, load, show
 
-st.title("9.1 Which jobs are rungs?")
+st.title("9.1 Job transitions by sector, establishment size and formality")
 st.markdown(
     "This page uses Mexico's quarterly labour-force survey (ENOE), which interviews the same dwellings in five "
     "consecutive quarters, to follow workers for a year. It asks which characteristics of a job predict whether "

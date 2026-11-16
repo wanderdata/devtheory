@@ -6,7 +6,7 @@ import streamlit as st
 
 from jobs_lib import C_CONTEXT, C_HIGHLIGHT, INK2, MUTED, TYPE_COLORS, base_layout, footer, load, show
 
-st.title("9.3 A productivity ladder for Mexico")
+st.title("9.3 Productivity ladder with formal and informal segments")
 st.markdown(
     "WP08 places every person aged 15 and over at the output per worker of the sector they work in, with people not "
     "employed at zero, and asks whether the resulting distribution improved over time. For Mexico, with one step per "

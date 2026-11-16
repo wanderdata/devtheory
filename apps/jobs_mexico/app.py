@@ -10,12 +10,12 @@ st.set_page_config(page_title="Jobs in Mexico", page_icon="🪜", layout="wide")
 pages = {
     "Overview": [st.Page("views/overview.py", title="The programme", default=True)],
     "Studies": [
-        st.Page("views/s1_ladders.py", title="9.1 Which jobs are rungs?", url_path="rungs"),
-        st.Page("views/s2_profiles.py", title="9.2 Which jobs build skills?", url_path="skills"),
-        st.Page("views/s3_ladder.py", title="9.3 A productivity ladder for Mexico", url_path="ladder"),
-        st.Page("views/s4_border.py", title="9.4 The 2019 border minimum wage", url_path="border"),
-        st.Page("views/s5_first_jobs.py", title="9.5 Where careers start", url_path="first-jobs"),
-        st.Page("views/s6_states.py", title="9.6 Where workers move up", url_path="states"),
+        st.Page("views/s1_ladders.py", title="9.1 Job transitions by sector, establishment size and formality", url_path="rungs"),
+        st.Page("views/s2_profiles.py", title="9.2 Experience–earnings profiles by type of job", url_path="skills"),
+        st.Page("views/s3_ladder.py", title="9.3 Productivity ladder with formal and informal segments", url_path="ladder"),
+        st.Page("views/s4_border.py", title="9.4 The 2019 minimum-wage increase in the northern border zone", url_path="border"),
+        st.Page("views/s5_first_jobs.py", title="9.5 First jobs and employment three quarters later", url_path="first-jobs"),
+        st.Page("views/s6_states.py", title="9.6 Job mobility and growth across states", url_path="states"),
     ],
 }
 st.navigation(pages).run()

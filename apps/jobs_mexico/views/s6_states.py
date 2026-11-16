@@ -7,7 +7,7 @@ import streamlit as st
 
 from jobs_lib import C_CONTEXT, C_HIGHLIGHT, INK2, MUTED, OUT, TYPE_COLORS, base_layout, footer, load, show
 
-st.title("9.6 Where workers move up")
+st.title("9.6 Job mobility and growth across states")
 st.markdown(
     "For each state, how often do workers move up within a year: from informal to formal employment, or into a "
     "better-paid type of job? Rates are adjusted for age, sex, schooling, sector and urban residence, so that states are "
@@ -25,13 +25,13 @@ per = sig[(sig["measure"] == "M1") & (sig["period"] == "2005-2011 vs 2012-2018")
 s1 = sig[(sig["measure"] == "M1") & (sig["period"] == "2005-2011") & (sig["kind"] == "adjusted")].iloc[0]
 lo, hi = st_.loc[st_["M1_2005-2011"].idxmin()], st_.loc[st_["M1_2005-2011"].idxmax()]
 st.info(
-    f"**Results.** The adjusted one-year rate at which informal workers become formal ranges from "
-    f"{100 * lo['M1_2005-2011']:.0f}% in {lo['name']} to {100 * hi['M1_2005-2011']:.0f}% in {hi['name']} (2005–2011); "
-    f"{100 * s1['signal_share']:.0f}% of the variation between states is real rather than sampling noise. The ranking "
-    f"barely changes over time: its correlation between 2005–2011 and 2012–2018 is {per['corr']:.2f}. States with more "
-    f"of these moves in 2005–2011 grew somewhat faster in GDP per person in 2012–2019 (rank correlation "
-    f"{p40['rho']:.2f}, 90% interval {p40['lo90']:.2f} to {p40['hi90']:.2f}, 30 states without the oil states), a weak "
-    "relation that describes co-movement, not cause.")
+    f"In panels starting in 2005–2011, the adjusted one-year rate at which informally employed persons become formally "
+    f"employed ranges from {100 * lo['M1_2005-2011']:.1f}% in {lo['name']} to {100 * hi['M1_2005-2011']:.1f}% in "
+    f"{hi['name']}; sampling error accounts for about {100 * (1 - s1['signal_share']):.0f}% of the variance across states. "
+    f"The correlation of state rates between the 2005–2011 and 2012–2018 panels is {per['corr']:.2f}. Across the 30 states "
+    f"other than Campeche and Tabasco, the 2005–2011 rate has a Spearman correlation of {p40['rho']:.2f} (90% interval "
+    f"{p40['lo90']:.2f} to {p40['hi90']:.2f}) with growth of GDP per person over 2012–2019; the correlation with growth over "
+    "2005–2019 is close to zero. The correlations describe co-movement, not an effect of mobility on growth.")
 
 MEAS = {"M1": "informal → formal within a year", "M2": "move to a better-paid type of job within a year",
         "M3": "exit to non-employment within a year"}
@@ -59,7 +59,7 @@ show(fig, x[["name", f"{m}_{p}", col]].sort_values(f"{m}_{p}", ascending=False).
              "CONABIO/INEGI 2020 municipal boundaries.")
 
 # ---------------------------------------------------------------- persistence
-st.subheader("The ranking persists")
+st.subheader("Persistence of state rates")
 a, b = st.columns(2)
 pa = a.selectbox("Earlier panels", PER[:2], index=0)
 pb = b.selectbox("Later panels", PER[1:], index=0 if pa == "2005-2011" else 1)
@@ -76,7 +76,7 @@ show(fig, st_[["state", f"{m}_{pa}", f"{m}_{pb}"]].round(4),
      caption=f"Correlation across states: {r:.2f}. Dotted line: no change.")
 
 # ---------------------------------------------------------------- growth
-st.subheader("Mobility and growth")
+st.subheader("Mobility and growth of GDP per person")
 oil = st.toggle("Include Campeche and Tabasco (non-oil GDP)", value=False)
 yv = "g_nonoil_2012_2019" if oil else "g_2012_2019"
 g = st_ if oil else st_[~st_["ent"].isin([4, 27])]

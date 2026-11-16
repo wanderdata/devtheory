@@ -5,7 +5,7 @@ import streamlit as st
 
 from jobs_lib import C_CONTEXT, C_HIGHLIGHT, INK2, MUTED, TYPE_COLORS, base_layout, footer, load, show
 
-st.title("9.5 Where careers start")
+st.title("9.5 First jobs and employment three quarters later")
 st.markdown(
     "A first job is defined by the respondent's own answer: a person aged 15–24 who, at their first ENOE interview, "
     "is not working and says they have never worked, and who is working at the next interview, three months later. "
@@ -21,20 +21,22 @@ m = est[est["spec"] == "main"].set_index("proposition")
 
 
 def pp(r):
-    return f"{100 * r['beta']:+.1f} points (90% interval {100 * r['lo90']:+.1f} to {100 * r['hi90']:+.1f})"
+    return f"{100 * r['beta']:.1f} percentage points (90% interval {100 * r['lo90']:.1f} to {100 * r['hi90']:.1f})"
 
 
 st.info(
-    f"**Results.** {100 * chk['informal share of first jobs']:.0f}% of first jobs are informal, against "
-    f"{100 * chk['informal share of stock 15-24']:.0f}% of all jobs held by 15–24-year-olds. Taking an informal first job "
-    f"changes the chance of being formally employed three quarters later by {pp(m.loc['P35'])} compared with young people "
-    f"who kept not working, of whom {100 * m.loc['P35', 'mean_control']:.1f}% are formal by then. Starting in a formal job "
-    f"raises it by {pp(m.loc['P36'])} relative to starting informally. Among informal first jobs, wage jobs in "
-    f"establishments with premises lead to formal work more often than own-account or unpaid work: {pp(m.loc['P37'])}. "
-    "All comparisons condition on age, sex, schooling, school attendance, household and place.")
+    f"Of first jobs, {100 * chk['informal share of first jobs']:.1f}% are informal, against "
+    f"{100 * chk['informal share of stock 15-24']:.1f}% of all jobs held by employed 15–24-year-olds. Conditional on age, "
+    "sex, schooling, school attendance, household employment, state, urban residence and quarter, entering an informal "
+    f"job is associated with a probability of formal employment three quarters later that is {pp(m.loc['P35'])} higher "
+    f"than for never-worked young people who remained without work, whose rate is {100 * m.loc['P35', 'mean_control']:.1f}%. "
+    f"Entering a formal rather than an informal job is associated with a difference of {pp(m.loc['P36'])}; this estimate is "
+    "sensitive to selection on unobservables (see below). Among informal first jobs, the difference between wage jobs in "
+    f"units with premises and own-account or unpaid work is {pp(m.loc['P37'])}. These are conditional associations, "
+    "not causal effects.")
 
 # ---------------------------------------------------------------- composition
-st.subheader("What first jobs are")
+st.subheader("Composition of first jobs")
 comp = load("first_jobs", "composition")
 dim = st.radio("By", ["formality", "position", "sector"], horizontal=True)
 c = comp[comp["dimension"] == dim].sort_values("first_jobs")
@@ -50,7 +52,7 @@ show(fig, c[["category", "first_jobs", "stock"]].round(4),
              "weighted. All jobs: every employed person aged 15–24 in the same quarters.")
 
 # ---------------------------------------------------------------- where they lead
-st.subheader("Where first jobs lead")
+st.subheader("Employment status after entry")
 tr = load("first_jobs", "transitions")
 v = st.select_slider("Interview", options=[3, 4, 5], value=5,
                      format_func=lambda x: {3: "one quarter after entry", 4: "two quarters after", 5: "three quarters after"}[x])
@@ -72,7 +74,7 @@ show(fig, t[["entry", "state", "share", "n"]].round(4),
              "had never worked and still were not working at the same interview. Not adjusted for who takes which job.")
 
 # ---------------------------------------------------------------- estimates
-st.subheader("Comparisons conditional on who takes which job")
+st.subheader("Conditional comparisons")
 LAB = {"P35": "informal first job vs. kept not working", "P36": "formal vs. informal first job",
        "P37": "informal wage job with premises vs. informal own-account or unpaid"}
 p = st.selectbox("Comparison", list(LAB), format_func=LAB.get)
@@ -94,7 +96,7 @@ show(fig, e[["spec", "beta", "lo90", "hi90", "mean_control", "n", "n_treated"]].
 o = load("first_jobs", "oster")
 o = o[o["proposition"] == p]
 st.markdown(
-    f"**Selection on unobservables.** Adding the controls moves the estimate from {100 * o['beta_short'].iloc[0]:+.1f} to "
+    f"Selection on unobservables: adding the controls moves the estimate from {100 * o['beta_short'].iloc[0]:+.1f} to "
     f"{100 * o['beta_long'].iloc[0]:+.1f} points. Following Oster (2019), selection on unobserved characteristics would "
     f"have to be {o['delta_for_zero'].iloc[0]:.1f} times as strong as selection on the observed ones (with R² max = 1.3 × "
     f"the controlled R²) to bring the difference to zero.")
