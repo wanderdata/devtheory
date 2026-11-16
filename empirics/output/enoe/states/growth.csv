@@ -1,0 +1,11 @@
+test,role,x,y,conditioning,states,rho,lo90,hi90
+"P40: M1 2005-2011 vs growth 2012-2019, without Campeche and Tabasco",P40,M1_2005-2011,g_2012_2019,,30,0.319689,0.0102094,0.554993
+conditional on initial GDP per person and formal share,secondary,M1_2005-2011,g_2012_2019,"lgdppc_2012, formal_2005_2011",30,0.327814,0.00103092,0.600965
+M2 (upward moves) instead of M1,secondary,M2_2005-2011,g_2012_2019,,30,0.312125,0.00591353,0.579992
+M3 (exits) instead of M1,secondary,M3_2005-2011,g_2012_2019,,30,-0.362403,-0.617562,-0.0428832
+contemporaneous: M1 2005-2011 vs growth 2005-2019,secondary,M1_2005-2011,g_2005_2019,,30,-0.01802,-0.308445,0.27034
+all 32 states,secondary,M1_2005-2011,g_2012_2019,,32,0.38673,0.101265,0.589478
+"all 32 states, non-oil GDP (added after the plan, D-061)",secondary,M1_2005-2011,g_nonoil_2012_2019,,32,0.396261,0.100914,0.605787
+M1 2012-2018 vs growth 2012-2019 (contemporaneous),secondary,M1_2012-2018,g_2012_2019,,30,0.444271,0.173777,0.644803
+descriptive: M1 2005-2011 vs formal share 2005-2011,descriptive,M1_2005-2011,formal_2005_2011,,32,-0.00549853,-0.304799,0.276278
+descriptive: M1 2005-2011 vs log GDP per person 2005,descriptive,M1_2005-2011,lgdppc_2005,,32,-0.242669,-0.546226,0.112564

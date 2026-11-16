@@ -12,3 +12,4 @@ Run locally: `streamlit run apps/jobs_mexico/app.py`. On Streamlit Community Clo
 | 9.3 A productivity ladder for Mexico | WP08's ladder with formal and informal steps within sectors; verdicts under several within-sector gaps; decomposition separating reallocation between formal and informal work |
 | 9.4 The 2019 border minimum wage | Municipality maps before, during and after; change against distance to the edge of the zone; event studies; effects by earnings bin; transitions and robustness |
 | 9.5 Where careers start | First jobs (self-reported) against all young workers' jobs; where they lead three quarters later; conditional comparisons with sensitivity to selection; pay and hours |
+| 9.6 Where workers move up | State map of adjusted one-year mobility; persistence across periods; mobility against growth of GDP per person |
