@@ -1,137 +1,101 @@
-# A Productivity Ladder for Mexico with Formal and Informal Steps, 2005–2024
+# A Productivity Ladder for Mexico with Formal and Informal Segments, 2005–2024
 
-*Paul Wander. Working draft v0.1, 2026-11-13. Pre-analysis plan: [`00_pre_analysis_plan.md`](00_pre_analysis_plan.md). Generated tables: [`empirics/output/enoe/productivity_ladder/results.md`](../../../empirics/output/enoe/productivity_ladder/results.md). App: Jobs in Mexico, page 9.3.*
+*Paul Wander. Working draft v0.2, 2026-11-16. Pre-analysis plan: [`00_pre_analysis_plan.md`](00_pre_analysis_plan.md). Generated tables: [`empirics/output/enoe/productivity_ladder/results.md`](../../../empirics/output/enoe/productivity_ladder/results.md). App: Jobs in Mexico, page 9.3.*
 
 ## Abstract
 
-WP08 judges productive development by the distribution of the working-age population over the productivity of the work they do. For Mexico, with one productivity level per sector, that distribution shows no unambiguous improvement or deterioration over any period since 2000.
-
-We split each sector into formal and informal workers. National-accounts value added is allocated between the two in proportion to their labour incomes in the national labour-force survey, so that each sector's total is preserved.
-
-**Verdicts.** Splitting the steps does not change any verdict, in four periods and under every specification tried, including within-sector gaps twice as wide as the income gap.
-
-**Reallocation.** The split reveals reallocation that sector data cannot show. Between 2005 and 2019, the movement of workers from informal to formal work within sectors added 0.07 percentage points a year to output per worker. Productivity within each formal or informal segment fell faster than the sector figures suggest: −0.34 against −0.27 points a year. In 2005–2008, all of the within-sector gain measured on sectors came from formalisation.
+WP08 assesses productive development by the distribution of the population aged 15 and over across the output per worker of the activities in which they work, with the non-employed at zero, and compares distributions over time by stochastic dominance. For Mexico, with one productivity level per sector, the comparisons are ambiguous for every period since 2008. This paper splits each of seven sectors into formal and informal segments, using employment and labour income from the national labour-force survey (ENOE) for 2005, 2008, 2019 and 2024 to allocate national-accounts value added between them, with each sector's total preserved and the productivity gap set equal to the income gap raised to a power θ between 0.5 and 2. The dominance verdicts are unchanged in all four periods and all seven specifications. In a shift-share decomposition, the reallocation of employment from informal to formal segments within sectors contributes 0.07 percentage points a year to the growth of output per worker over 2005–2019 at θ = 1, against a sector-level within-sector term of −0.27; this contribution scales with θ and is a consequence of the assumed gap rather than an independent measurement.
 
 ## 1. Introduction
 
-Sector averages hide the distinction between formal and informal work that is central to productivity in Latin America (WP06). WP08 proposed judging productive development by the whole distribution of the working-age population across productivity levels, with the non-employed at zero. It applied this to 29 countries with one step per sector, and flagged the resulting understatement of dispersion as its main limitation (P26).
+Sector averages of output per worker conceal the difference in productivity between formal and informal activity within sectors, which is large in Latin America (WP06). WP08 proposed assessing productive development by the distribution of the working-age population over the productivity of the work they do, with the non-employed at zero, and applied it to 29 countries with one productivity level per sector. It identified the resulting understatement of dispersion as its main limitation and stated, as proposition P26, that a finer split would make verdicts less favourable.
 
-This paper removes part of that limitation for Mexico, where informal work accounts for more than half of employment. It addresses two questions:
-- whether the verdicts change when sectors are split into formal and informal steps;
-- how much of what a sector-level decomposition calls within-sector productivity growth is in fact reallocation between the formal and informal parts of a sector.
-
-The second is a direct test of the project's propositions P1 and P2: that the region's productivity problem lies in segments within sectors, not between sectors.
+This paper tests P26 for Mexico, where informal employment accounts for more than half of the total, by splitting each sector into formal and informal segments. It also asks how much of what a sector-level decomposition records as productivity growth within sectors is reallocation between the formal and informal parts of a sector (proposition P30), which bears on the project's broader claim that Latin America's productivity problem lies within sectors rather than between them (propositions P1 and P2).
 
 ## 2. Data
 
-**Employment and population.** From ENOE, averaging the four quarters of 2005, 2008, 2019 and 2024:
-- persons aged 15 and over are classified as not employed, or employed in one of seven national-accounts sectors as formal or informal workers;
-- employment with no sector specified (under 1%) is distributed in proportion to specified employment.
+Employment and population come from ENOE, as averages of the four quarters of 2005, 2008, 2019 and 2024. Persons aged 15 and over are classified as not employed or as employed, formally or informally (INEGI's labour-informality definition), in one of seven sectors aligned with the national accounts: agriculture; mining and utilities; manufacturing; construction; trade, restaurants and hotels; transport, storage and communications; and finance, business, government and personal services. Employment with no sector recorded, under 1%, is distributed in proportion to recorded employment.
 
-**Value added.** UN National Accounts Main Aggregates, as in WP06 and WP08. Each period is valued at its initial-year prices and, for the verdicts, also at its final-year prices.
+Value added by sector comes from the UN National Accounts Main Aggregates, as in WP06 and WP08. Each period is valued at the prices of its initial year and, for the dominance comparisons, also at those of its final year. The periods are 2005–2008, 2008–2019, 2019–2024 and 2005–2019.
 
-**Periods.** 2005–2008, 2008–2019, 2019–2024 and 2005–2019. ENOE starts in 2005.
+*Table 1. Informal share of employment by sector*
 
-**Informal shares.** The informal share of employment differs widely across sectors and changed slowly:
-
-| Sector | 2005 | 2024 |
-|---|---|---|
-| Agriculture | 91% | 85% |
-| Construction | 83% | 78% |
-| Trade, restaurants and hotels | 65% | 62% |
-| Transport, storage and communications | 57% | 46% |
-| Manufacturing | 43% | 37% |
-| Finance, business, government and personal services | 43% | 43% |
-| Mining and utilities | 15% | 14% |
+| Sector | 2005 | 2008 | 2019 | 2024 |
+|---|---|---|---|---|
+| Agriculture | 91.4% | 90.9% | 87.4% | 84.8% |
+| Construction | 82.6% | 78.8% | 78.2% | 78.4% |
+| Trade, restaurants and hotels | 64.5% | 63.2% | 63.0% | 62.0% |
+| Transport, storage and communications | 57.4% | 55.0% | 51.7% | 46.0% |
+| Manufacturing | 43.2% | 43.2% | 37.0% | 36.6% |
+| Finance, business, government and personal services | 43.1% | 42.5% | 44.2% | 42.5% |
+| Mining and utilities | 15.1% | 11.2% | 13.3% | 13.6% |
 
 ## 3. Method
 
-**Allocation within sectors.** Value added Y_s of sector s is allocated between formal and informal workers so that output per worker in each segment is proportional to its mean monthly labour income raised to a power θ. Totals are preserved:
+Value added Y_s of sector s, with employment L_s, is allocated to segment f (formal or informal) so that output per worker in each segment is proportional to the segment's mean monthly labour income e_{s,f} raised to the power θ, and segment value added sums to the sector total:
 
-v_{s,f} = (Y_s / L_s) · e_{s,f}^θ / Σ_f (L_{s,f}/L_s) e_{s,f}^θ
+v_{s,f} = (Y_s / L_s) · e_{s,f}^θ / Σ_f (L_{s,f}/L_s) e_{s,f}^θ.
 
-**The size of the gap.** With θ = 1, productivity differs within a sector as labour income does. Informal workers earn 34–70% of what formal workers in the same sector earn, depending on sector and year.
+With θ = 1, output per worker differs between segments in the same proportion as labour income. Mean informal income is between 34% and 70% of mean formal income in the same sector, depending on sector and year. The income ratio probably understates the productivity gap, because the capital share of value added is higher in formal production; values of θ up to 2 show the consequences of a wider gap. A variant replacing means with medians (an income-weighted average of the medians of establishment-size sub-cells, not the median of the sector × formality cell), and a further split by establishment size, are also reported. INEGI's own measurement of value added in the informal economy, which would allow θ to be calibrated, is not used here (Annex A).
 
-The income ratio probably understates the productivity gap, because formal firms have higher capital shares than informal units. Values of θ up to 2 show the effect of a wider gap. The aggregate national-accounts measure of the informal economy published by INEGI, which would calibrate θ, is not used here (Annex A).
-
-**Ladders and verdicts.** These follow WP08. The ladder places each person aged 15+ at the output per worker of their segment, or at zero if not employed. The later ladder is compared with the earlier one by first- and second-order stochastic dominance at both price bases.
-
-**Decomposition.** The growth of output per worker is decomposed on segments and on sectors. The difference between the two "between" terms is reallocation between segments within sectors.
+The ladder places each person aged 15 and over at the output per worker of their segment, or at zero if not employed. As in WP08, the later ladder is compared with the earlier one by first- and second-order stochastic dominance at both price bases, and a verdict is recorded only if the comparison is the same at both. The growth of output per worker is decomposed into within and between terms on segments and on sectors, at initial-year prices (McMillan and Rodrik 2011); the difference between the two between terms is the contribution of reallocation between segments within sectors.
 
 ## 4. Results
 
-### 4.1 Verdicts
+### 4.1 Dominance verdicts
 
-| Period | One step per sector | Formal and informal steps (θ = 1) |
+*Table 2. Dominance verdicts, initial- and final-year prices*
+
+| Period | One level per sector | Formal and informal segments (θ = 1) |
 |---|---|---|
 | 2005–2008 | improvement, weighting the lower percentiles | improvement, weighting the lower percentiles |
 | 2008–2019 | ambiguous | ambiguous |
 | 2019–2024 | ambiguous | ambiguous |
 | 2005–2019 | ambiguous | ambiguous |
 
-No verdict changes, under any specification: θ = 0.5, 1, 1.5 or 2, medians instead of means, or a further split by establishment size. P26 is rejected for Mexico.
+No verdict changes when sectors are split, for any of θ = 0.5, 1, 1.5 or 2, for medians or for the further split by establishment size. With ENOE employment, the sector-level verdicts agree with those of WP08, which uses ILO modelled employment, for 2008–2019 and 2019–2024.
 
-The sector-only verdicts with ENOE employment agree with WP08's verdicts, which use ILO modelled employment, for 2008–2019 and 2019–2024.
+The verdicts are ambiguous because sectors at different levels of the ladder moved in opposite directions. Between 2008 and 2019, output per worker rose by 10% in agriculture, near the bottom of the ladder, and by 11% in transport and communications, while it fell by 15% in construction, 10% in manufacturing, 6% in trade, restaurants and hotels and 25% in mining and utilities. Between 2019 and 2024 it rose by 5% in agriculture and fell in four of the other six sectors. Splitting a sector moves its formal workers up and its informal workers down by similar proportions at both dates, so the crossings between sectors remain.
 
-**Why the split does not matter here.** The ladders cross because sectors at different heights moved in opposite directions.
-- **2008–2019:** output per worker rose in agriculture (+10%), near the bottom of the ladder, and in transport and communications (+11%). It fell in construction (−15%), manufacturing (−10%), trade, restaurants and hotels (−6%) and mining and utilities (−25%).
-- **2019–2024:** agriculture again rose (+5%) while most other sectors fell.
+The share of the population whose position improved, at initial-year prices, does change with the split. It rises from 61.8% to 66.7% in 2008–2019 and from 60.8% to 64.6% in 2019–2024, and falls from 79.1% to 71.3% in 2005–2008; at final-year prices the split raises it in 2005–2008 (from 69.5% to 71.1%).
 
-Splitting a sector moves its formal workers up and its informal workers down by similar proportions at both dates. The crossings between sectors therefore remain.
+### 4.2 Decomposition
 
-**Share of percentiles that gained.** This summary does change. With formal and informal steps, the share of the population whose position improved rises from 62% to 67% in 2008–2019 and from 61% to 65% in 2019–2024, but falls from 79% to 71% in 2005–2008.
+*Table 3. Contributions to the growth of output per worker (percentage points a year; θ = 1; initial-year prices)*
 
-### 4.2 Reallocation within sectors
-
-Contributions to the growth of output per worker are in percentage points a year (θ = 1, initial-year prices):
-
-| Period | Growth | Within segments | Between segments within sectors | Between sectors | Within sectors (one step per sector) |
+| Period | Growth | Within segments | Between segments within sectors | Between sectors | Within sectors (one level per sector) |
 |---|---|---|---|---|---|
-| 2005–2008 | +0.60 | −0.04 | +0.27 | +0.38 | +0.23 |
-| 2008–2019 | −0.46 | −0.46 | +0.03 | −0.03 | −0.43 |
-| 2019–2024 | −0.68 | −1.04 | +0.15 | +0.21 | −0.89 |
-| 2005–2019 | −0.21 | −0.34 | +0.07 | +0.06 | −0.27 |
+| 2005–2008 | 0.60 | −0.04 | 0.27 | 0.38 | 0.23 |
+| 2008–2019 | −0.46 | −0.46 | 0.03 | −0.03 | −0.43 |
+| 2019–2024 | −0.68 | −1.04 | 0.15 | 0.21 | −0.89 |
+| 2005–2019 | −0.21 | −0.34 | 0.07 | 0.06 | −0.27 |
 
-**Formalisation raised output per worker in every period.** Over 2005–2019 it contributed +0.07 points a year, a quarter of the size of the sector-level within term. That meets the threshold set for P30, narrowly, in the main specification.
+At θ = 1, the reallocation of employment from informal to formal segments within sectors makes a positive contribution in every period; with the further split by establishment size it is slightly negative in 2008–2019 (−0.015). The term also includes the dynamic component of reallocation. Over 2005–2019 it amounts to 0.071 points a year, 26% of the absolute value of the sector-level within-sector term. In 2005–2008 the sector-level within-sector gain of 0.23 points a year is more than accounted for by this reallocation, and output per worker within the formal and informal segments did not grow. After 2008 the reallocation term is small, and productivity within segments falls somewhat faster than productivity within sectors.
 
-**Sensitivity.** The result depends on the width of the gap:
-- **θ = 0.5:** +0.04 points a year;
-- **θ = 2:** +0.14;
-- **medians:** +0.06;
-- **adding establishment size:** +0.03.
+The reallocation term depends directly on the assumed gap. Over 2005–2019 it is 0.036 points a year at θ = 0.5, 0.107 at θ = 1.5 and 0.142 at θ = 2; with medians it is 0.057, and with the further split by establishment size 0.027. Because every shift towards formal employment raises measured output per worker whenever θ > 0, the term measures what reallocation would contribute if productivity differed as assumed, not an independently observed change.
 
-P30 is therefore supported in the main specification but not robustly.
+### 4.3 Propositions
 
-**Productivity within segments fell faster than sector figures show.** In 2005–2008 the sector-level within-sector gain of 0.23 points a year was entirely formalisation; productivity within formal and within informal work did not grow. After 2008 the reallocation term is small, and within-segment productivity falls slightly faster than within-sector productivity.
+P26, that a finer split makes verdicts less favourable, is rejected for Mexico: no verdict changes. P30 required the reallocation term over 2005–2019 to reach at least a quarter of the sector-level within-sector term; at 26% it meets the threshold in the main specification but not at θ = 0.5 (13%), with medians (21%) or with the size split (10%), and is therefore supported narrowly and not robustly.
 
-## 5. Robustness and limits
+## 5. Limitations
 
-- **The income proxy.** The allocation assumes that productivity differences within a sector follow income differences. With θ from 0.5 to 2 the verdicts are unchanged; the size of the reallocation term scales roughly with θ.
-- **Two segments are still averages.** Formal and informal work are themselves heterogeneous: the informal segment of trade includes both street vendors and small shops. More steps (establishment size, position in employment) would be needed to approach the distribution over workers. Establishment size was tried and changes nothing, but it is poorly reported in ENOE (study 9.1).
-- **Value added by segment.** The allocation does not use INEGI's own estimate of value added in the informal economy, which would anchor the gap. That is the natural next step.
+The allocation assumes that productivity differences within sectors follow income differences. The verdicts do not depend on this over the range of θ examined, but the size of the reallocation term does, roughly in proportion to θ.
+
+Formal and informal segments are themselves heterogeneous; the informal segment of trade includes both street vending and established small shops. A finer split, by position in employment or establishment size, would come closer to the distribution over workers. The split by establishment size changes nothing here, but establishment size is reported with substantial error in ENOE (study 9.1).
 
 ## 6. Conclusions
 
-For Mexico, splitting sectors into formal and informal steps does not change WP08's verdicts. What the ladder cannot settle at sector level, it cannot settle with two steps per sector either: Mexico's productive development since 2008 has been ambiguous.
+Splitting Mexican sectors into formal and informal segments does not change the dominance verdicts of WP08: the comparisons that are ambiguous with one level per sector remain ambiguous with two. The split changes the interpretation of the decomposition. Part of what sector data record as productivity growth within sectors is the movement of workers from informal to formal employment, all of it in 2005–2008 and about a quarter over 2005–2019, on the assumption that productivity differs as income does. On the same assumption, output per worker within the formal and informal segments has fallen since 2008, slightly faster than the sector figures indicate. A calibration of the gap with INEGI's informal-economy accounts would replace the assumption with a measurement.
 
-The split does change the reading of the decomposition. Part of what sector data record as productivity growth within sectors is the movement of workers from informal to formal work: all of it in 2005–2008, about a fifth over 2005–2019. Productivity within the formal and informal segments has been falling since 2008, a little faster than the sector figures indicate.
+## Annex A. Implementation notes and further work
 
-## Annex A. Notes on implementation and further work
+The choices set out in the pre-analysis plan were applied without change: annual figures are four-quarter averages, unspecified sectors are distributed in proportion, and unpaid family workers are placed at their segment's value. The plan asked for a decomposition of output per working-age person with an employment-rate term; the paper reports output per worker, and the employment-rate term is in the output files (column `emprate_log_pp`). Neither safeguard rule of the plan was triggered: every informal-to-formal income ratio lies between 0.34 and 0.70, and every difference between formal and informal workers in the share reporting income is below 17 points, against a threshold of 20. The code is in `empirics/code/enoe/productivity_ladder/` rather than `ladder/` as written in the plan, to avoid confusion with study 9.1.
 
-**A.1 Choices.** All were set out in the pre-analysis plan:
-- **Annual figures.** Four-quarter averages for ENOE.
-- **Unspecified sector.** Employment distributed in proportion.
-- **Unpaid family workers.** Placed at their segment's value.
-- **Safeguard rules (§5 of the plan).** Neither was triggered:
-  - every informal/formal income ratio lies between 0.34 and 0.70;
-  - every difference in income reporting between formal and informal workers in a sector is below 20 points.
-- **Folder name.** The code is in `empirics/code/enoe/productivity_ladder/`, not `ladder/` as written in the plan, to avoid confusion with study 9.1's `ladders/`.
-
-**A.2 Further work.**
-- **Calibrate the within-sector gap.** Use INEGI's measurement of the informal economy (value added by sector and formal or informal status), which would replace the income proxy.
-- **Extend the steps.** Split further by position in employment (employee, own-account, employer).
-- **Annual series.** Compute the decomposition annually and chained, as in WP06.
+Further work could calibrate θ with INEGI's measurement of the informal economy, value added by sector and formal or informal status, whose method is documented in section 4.4 of INEGI's national-accounts methodology (open question OQ-68); split segments further by position in employment; and compute the decomposition annually and chained, as in WP06.
 
 ## References
 
-Project papers WP06, WP08 and study 9.1; data sources as in WP08.
+McMillan, M. and Rodrik, D. (2011). Globalization, structural change and productivity growth. NBER Working Paper 17143. [L018]
+
+Project papers WP06 and WP08 and study 9.1 of this programme; data sources as in WP08.

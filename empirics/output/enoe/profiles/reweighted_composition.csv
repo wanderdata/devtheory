@@ -1,0 +1,3 @@
+weights,national_log,formal_log,informal_log,informal_share_0_4,informal_share_20_24,entry_gap_log,within_order1,composition_order1,within_order2,composition_order2
+raw,0.22838,0.22595,0.14501,0.54253,0.43661,-0.35657,-0.03534,0.03777,-0.04391,0.04634
+reweighted for non-response,0.25320,0.24769,0.15330,0.51392,0.40287,-0.39201,-0.03803,0.04353,-0.04851,0.05402

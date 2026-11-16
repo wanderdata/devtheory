@@ -1,68 +1,46 @@
-# Which Jobs Build Skills? Experience–Earnings Profiles by Type of Job in Mexico, 2005–2025
+# Experience–Earnings Profiles by Type of Job in Mexico, 2005–2025
 
-*Paul Wander. Working draft v0.1, 2026-11-13. Pre-analysis plan: [`00_pre_analysis_plan.md`](00_pre_analysis_plan.md). Generated tables: [`empirics/output/enoe/profiles/results.md`](../../../empirics/output/enoe/profiles/results.md). App: Jobs in Mexico, page 9.2.*
+*Paul Wander. Working draft v0.2, 2026-11-16. Pre-analysis plan: [`00_pre_analysis_plan.md`](00_pre_analysis_plan.md). Generated tables: [`empirics/output/enoe/profiles/results.md`](../../../empirics/output/enoe/profiles/results.md). App: Jobs in Mexico, page 9.2.*
 
 ## Abstract
 
-Wages rise much less with experience in poor countries than in rich ones. We ask whether Mexico's flat experience–earnings profile is general or concentrated in particular types of job, using 21 annual cross-sections of the national labour-force survey (ENOE, 2005–2025).
-
-**Size.** Among full-time male private-sector employees, those with 20–24 years of potential experience earn 26% more per hour than entrants. The figure is 25% in formal jobs and 16% in informal jobs, against about 89% in rich countries.
-
-**Formality versus sector.** Within the same sector, formal and informal profiles are almost identical. Differences across sectors, from 15% in agriculture and mining to 36% in professional, financial and social services, are larger than the difference by formality. The national profile is not flat because of where workers are employed: the formal profile is as flat as the national one.
-
-**Trend.** Formal profiles have flattened since the mid-2000s, from 36% to 19%, while informal profiles have stayed near 15%.
-
-**Cohort adjustment.** The method of Lagakos et al. (2018) produces implausible results in these data. We explain why, and base conclusions on cross-sectional profiles.
+Hourly earnings rise much less with potential experience in poor countries than in rich ones. Using 21 first-quarter cross-sections of Mexico's labour-force survey (ENOE), 2005–2025, and the sample definition of Lagakos et al. (2018), this paper estimates experience–earnings profiles by formality, sector and establishment size. Among full-time male private-sector wage employees (859,695 observations), hourly earnings at 20–24 years of potential experience are 25.7% above those at 0–4 years (90% interval 24.9–26.4%); 25.4% for formal and 15.6% for informal jobs. The height ranges across six sectors from 14.6% to 35.6%, more than the difference by formality, and in manufacturing and commerce, the two sectors with enough informal wage employees for separate estimates, formal and informal profiles are similar. The formal profile flattened from 35.6% in 2005–2009 to 18.6% in 2020–2025. Reweighting for earnings non-response raises the heights by between 0.6 and 5.6 points without changing these comparisons. The cohort correction of Heckman, Lochner and Taber produces negative heights in these data and is not used.
 
 ## 1. Introduction
 
-Lagakos, Moll, Porzio, Qian and Schoellman (2018; hereafter LMPQS) document that experience–wage profiles are about twice as steep in rich countries as in poor ones. For Mexico, on census data for 1990–2010, wages at 20–24 years of experience are 41% above those of entrants, against 89% on average in six rich countries. The result is read as evidence that workers in poor countries accumulate less human capital over their careers. It raises a question LMPQS do not address: which jobs, if any, offer the learning that most jobs in a poor country do not?
+Lagakos, Moll, Porzio, Qian and Schoellman (2018) show that experience–wage profiles are about twice as steep in rich countries as in poor ones; on Mexican census data for 1990–2010 they estimate wages at 20–24 years of potential experience to be 41% above those of entrants, against about 89% on average in the rich countries of their sample. The finding is read as evidence that workers in poor countries accumulate less human capital over their careers. It leaves open which jobs, if any, offer the learning that most jobs in a poor country do not.
 
-The question matters for this project. The search for sectors that act as "motors" of growth (WP07) and the evidence that sector averages hide most productivity dispersion (WP06, WP08) point toward jobs as the relevant unit. One property a motor job should have is that it builds skills: its holders' earnings rise with experience.
-
-Two hypotheses were set out before estimation:
-- **P28:** profiles are much steeper in formal than in informal jobs, and the formality gap exceeds differences across sectors.
-- **P29:** much of the flatness of the national profile reflects the type of job workers hold at each stage of their careers.
-
-Both are rejected.
+The question matters for this programme, which looks for the jobs that carry productivity growth. If formal jobs, or jobs in particular sectors, have markedly steeper profiles, they would be candidates for the jobs through which skills accumulate. Two propositions were stated before estimation: that profiles are much steeper in formal than in informal jobs, with a formality gap larger than differences across sectors (P28); and that much of the flatness of the national profile reflects the type of job workers hold at different stages of their careers (P29).
 
 ## 2. Data
 
-**Survey.** ENOE, first quarter of each year from 2005 to 2025.
+The paper uses the first quarter of each year from 2005 to 2025. The baseline sample follows Lagakos et al.: men working full time (35 hours a week or more) as private-sector wage employees, with 0–40 years of potential experience, defined as age minus 18 for those with fewer than 12 years of schooling and age minus schooling minus 6 otherwise. Estimates use those with positive hourly earnings (859,695 observations). Formality follows INEGI's labour-informality definition. Sectors are six groups formed from INEGI's eleven. Establishment size has two classes, micro and small against medium and large establishments, using INEGI's sector-specific thresholds (micro means up to 15 workers in industry and up to 5 in commerce and services); study 9.1 found size to be reported with substantial error.
 
-**Sample.** The baseline follows LMPQS: men, full-time (35 or more hours a week), private-sector wage employees with positive hourly earnings and 0–40 years of potential experience. Potential experience is age − 18 for those with fewer than 12 years of schooling, and age − schooling − 6 otherwise. The sample has 859,695 observations.
+The share of baseline workers reporting positive hourly earnings, computed before the positive-earnings restriction, fell over the period from 90% to 57% among formal workers and from 93% to 70% among informal ones. Pooled over all years, the formal–informal difference in reporting within an experience bin is at most 12.4 points. By year and experience bin, it exceeds 15 points in 12 of 168 cells (at most 17.6 points, in 2018 at 20–24 years), always with lower reporting among formal workers.
 
-**Formality.** INEGI's labour-informality definition: no social security through the job, or work in an informal unit.
+## 3. Estimation
 
-**Sectors.** Six groups formed from INEGI's eleven.
+Log hourly earnings are regressed on indicators for five-year experience bins and for years, pooled over 2005–2025 with survey weights. The height of a profile at bin *b* is the exponential of its coefficient minus one, relative to the 0–4 bin; the paper reports heights at 20–24 years. Intervals come from a bootstrap that resamples primary sampling units within state and year (199 replications).
 
-**Firm size.** Two classes: micro and small establishments, against medium and large ones. INEGI's thresholds depend on the sector: micro means up to 15 workers in industry and up to 5 in commerce and services, and small up to 50, 15 and 50 respectively. Study 9.1 found firm size to be reported with substantial error.
+Cross-sectional profiles mix experience effects with differences between birth cohorts. Lagakos et al. separate them with the Heckman–Lochner–Taber (HLT) restriction that earnings do not grow with experience late in the career, so that wage growth of late-career workers identifies time effects. The restriction is applied here with single-year birth cohorts.
 
-**Earnings reporting.** The share of baseline workers reporting positive hourly earnings fell over the period:
-- **formal:** from 90% in 2005 to 57% in 2025;
-- **informal:** from 93% to 70%.
+As a check on cohort effects and on selection out of formal jobs, one-year earnings growth of workers who stay in the same type of job is computed from the linked panels of study 9.1, net of the growth of workers with 30–39 years of experience in the same type of job.
 
-Within an experience bin, the formal–informal difference in reporting is at most 12 percentage points.
+Mean log earnings imply an exact decomposition of the difference between the national and the formal profile heights. With informal shares s₀ and s₂₀ at 0–4 and 20–24 years, heights c_F and c_I in logs, and an informal–formal earnings gap at entry g₀:
 
-## 3. Method
+national height − formal height = s₂₀(c_I − c_F) + (s₂₀ − s₀)g₀.
 
-**Cross-sectional profiles.** Log hourly earnings are regressed on dummies for five-year experience bins and on year dummies, pooled over 2005–2025 with survey weights. The height of a profile at bin *b* is exp(coefficient) − 1 relative to the 0–4 bin; we report heights at 20–24 years. Intervals come from a bootstrap that resamples primary sampling units within state and year (199 replications).
+The first term is the contribution of flatter informal profiles and the second that of the change in the informal share with experience. The decomposition can also be taken in the other order (weighting the profile difference by s₀ and the change in shares by the gap at 20–24 years); both are reported. Because the heights are year-adjusted regression coefficients, the identity holds only approximately.
 
-Cross-sectional profiles combine experience effects with differences between birth cohorts. LMPQS separate the two with the Heckman–Lochner–Taber (HLT) restriction: no experience effects in the last ten years of a career, so that wage growth among those workers identifies time effects. We apply it with single-year birth cohorts (Annex A).
-
-**Within-person profiles.** We also compute one-year earnings growth from the linked panels of study 9.1. Growth by experience bin is net of the growth of workers in the 30–39-year bin of the same type of job.
-
-**Composition decomposition.** With informal shares s₀ and s₂₀ at 0–4 and 20–24 years, profile heights c_F and c_I (in logs), and an informal–formal earnings gap g₀ at entry, mean log earnings imply exactly:
-
-national height − formal height = s₂₀(c_I − c_F) + (s₂₀ − s₀)·g₀
-
-The first term is the effect of flatter informal profiles; the second the effect of the informal share changing with experience.
+To meet the non-response rule of the plan (§5), profiles are also estimated with survey weights divided by the fitted probability of reporting earnings from a logit on year × formality, five-year age groups, single years of schooling and state; this analysis was carried out after the independent audit of the programme found the rule triggered by year and bin (D-064).
 
 ## 4. Results
 
-### 4.1 Flat profiles in every type of job
+### 4.1 Heights by type of job
 
-| Group | Height at 20–24 years | 90% interval | Observations |
+*Table 1. Height of the experience–earnings profile at 20–24 years relative to 0–4 years*
+
+| Group | Height | 90% interval | Observations |
 |---|---|---|---|
 | All baseline workers | 25.7% | 24.9–26.4% | 859,695 |
 | Formal | 25.4% | 24.5–26.4% | 506,847 |
@@ -72,45 +50,30 @@ The first term is the effect of flatter informal profiles; the second the effect
 | Women (otherwise baseline) | 16.8% | 15.9–17.6% | 469,198 |
 | Own-account men, all hours | −9.4% | −12.1 to −7.0% | 227,334 |
 
-**Level.** The national figure of 26% is lower than LMPQS's 41% for 1990–2010. Part of the difference may come from the source (census against labour-force survey) and part from the flattening documented in Section 4.4.
+The national height of 26% is below the 41% that Lagakos et al. estimate for Mexico on census data for 1990–2010; part of the difference may come from the source and part from the flattening described in Section 4.4. Profiles peak at 20–29 years and decline afterwards, with the baseline height at 16% at 35–39 years. Formal earnings at 20–24 years are a quarter above those at entry, less than a third of the rich-country average in Lagakos et al. Earnings of own-account workers fall with experience.
 
-**Shape.** Profiles peak at 20–29 years of experience and decline afterwards: the baseline height falls to 16% at 35–39 years.
+### 4.2 Sector and formality
 
-**Formal jobs.** Formal jobs, the best case in Mexico, reach a quarter of entry earnings after twenty years. That is less than a third of the rich-country figure.
+*Table 2. Height at 20–24 years by sector, and by formality within two sectors*
 
-**Own-account workers.** Their earnings fall with experience.
+| Sector | All | Formal | Informal |
+|---|---|---|---|
+| Professional, financial and social services | 35.6% | | |
+| Commerce | 29.4% | 24.0% | 23.3% |
+| Manufacturing | 27.9% | 22.7% | 22.9% |
+| Transport, restaurants and other services | 24.1% | | |
+| Construction | 21.4% | | |
+| Agriculture and mining | 14.6% | | |
 
-### 4.2 Sector matters more than formality
+The range of heights across sectors (21 points) is larger than the difference between pooled formal and informal profiles (9.8 points). In manufacturing and commerce, the only sectors with enough informal wage employees for separate estimates, formal and informal profiles are similar. In those two sectors at least, the pooled formality gap reflects the sectors in which formal and informal jobs are found; whether this holds in the other sectors cannot be established with these data. Profiles are steeper in medium and large establishments (31%) than in micro and small ones (25%), subject to the reporting error in establishment size.
 
-| Sector | Height at 20–24 years |
-|---|---|
-| Professional, financial and social services | 35.6% |
-| Commerce | 29.4% |
-| Manufacturing | 27.9% |
-| Transport, restaurants and other services | 24.1% |
-| Construction | 21.4% |
-| Agriculture and mining | 14.6% |
+### 4.3 Composition
 
-Within the two sectors with enough informal wage employees to estimate both profiles, formality makes no difference:
+At 0–4 years of experience, 54.3% of baseline workers are informal; at 20–24 years, 43.7%. Informal entrants earn 0.357 log points less than formal entrants. In the first ordering of the decomposition, flatter informal profiles lower the national height by 0.035 log points and the shift towards formal jobs with experience raises it by 0.038; in the second ordering the terms are −0.044 and 0.046. In both, the two effects nearly cancel, and the national height (0.228 log points) is almost equal to the formal height (0.226). The flatness of the national profile is therefore a property of formal jobs as much as of the economy as a whole.
 
-| | Formal | Informal |
-|---|---|---|
-| Manufacturing | 22.7% | 22.9% |
-| Commerce | 24.0% | 23.3% |
+### 4.4 Change over time
 
-The formal–informal gap in the pooled sample (9.8 points) therefore reflects which sectors formal and informal jobs are in. The sector range (21 points) exceeds the formality gap, so P28 is rejected under the rule stated in the plan, even though the pooled formal profile is 1.6 times as steep as the informal one. Profiles are steeper in medium and large establishments (31%) than in micro and small ones (25%), with the caveat about how firm size is reported.
-
-### 4.3 The national profile is not flat because of composition
-
-At 0–4 years of experience, 54% of baseline workers are informal; at 20–24 years, 44%. Informal entrants earn 0.36 log points less than formal entrants. The shift toward formal jobs with experience therefore steepens the national profile:
-- **composition term:** +0.038 log points;
-- **within term** (flatter informal profiles): −0.035.
-
-The two nearly cancel, and the national height (0.228 log points) is almost the same as the formal one (0.226). P29 is rejected: the flatness of Mexico's profile is a property of formal jobs as much as of the economy as a whole.
-
-### 4.4 Formal profiles have flattened
-
-Estimating the same model separately for four periods (an analysis not in the plan) gives:
+*Table 3. Height at 20–24 years by period (estimated separately; an analysis not in the plan)*
 
 | Period | All | Formal | Informal |
 |---|---|---|---|
@@ -119,51 +82,46 @@ Estimating the same model separately for four periods (an analysis not in the pl
 | 2015–2019 | 21.6% | 21.0% | 14.7% |
 | 2020–2025 | 21.7% | 18.6% | 15.0% |
 
-**Timing.** The formal profile lost about half of its height. Most of the change happened before 2019, so it is not mainly a result of the large increases in the minimum wage from 2019, which raised entry wages.
+The formal profile lost about half of its height, mostly before 2019, so the change is not mainly a result of the large increases in the minimum wage from 2019, which raised entry wages. Earnings reporting fell over the same years at every level of experience, from 0.90 to 0.74 at 0–4 years and from 0.88 to 0.71 at 20–24 years. A change in who reports could contribute to the flattening if the experienced formal workers who stopped reporting were higher earners.
 
-**Non-response.** Earnings reporting fell over the same years at every level of experience: from 0.90 to 0.74 at 0–4 years and from 0.88 to 0.71 at 20–24 years. A change in who reports could still produce part of the flattening if the experienced formal workers who stopped reporting were the higher earners. ENOE's income ranges, or administrative wage records, would allow a test.
+### 4.5 Reweighting for non-response
 
-## 5. Robustness and limits
+*Table 4. Height at 20–24 years, raw and reweighted for earnings non-response*
 
-**Cohort adjustment.** The HLT restriction gives negative heights: −26% for all baseline workers, −37% for formal and +6% for informal. With the flat spot at 35–39 years the figures are more negative still.
+| Group | Raw | Reweighted | 90% interval, reweighted |
+|---|---|---|---|
+| All baseline workers | 25.7% | 28.6% | 27.6–29.5% |
+| Formal | 25.4% | 28.1% | 26.6–29.8% |
+| Informal | 15.6% | 16.6% | 15.8–17.4% |
 
-The same happens on 2005–2018 alone, so the minimum-wage increases are not the cause. The restriction requires that earnings no longer change with experience late in the career and that time effects are common to all workers. In Mexico, cross-sectional earnings fall after 30 years of experience, and the relative wages of older, less-schooled workers changed over the period. Under those conditions the restriction misattributes economy-wide changes to experience. We do not use these estimates. Cohort effects therefore remain a possible source of bias in the cross-sectional profiles. If younger cohorts earn more at a given experience, the cross-section understates true profiles. The flattening across periods, however, compares the same experience bins at different dates.
+Reweighting raises all heights, by 1.0 point for informal, 2.8 for formal and between 0.6 and 5.6 points across sectors (from 16.1% in agriculture and mining to 41.2% in professional, financial and social services). The formal–informal difference becomes 11.5 points, still smaller than the sector range of 25 points, and in the composition decomposition the two terms again nearly cancel (−0.038 and 0.044 log points in the first ordering).
 
-**Within-person growth.** It avoids cohort effects but is too imprecise to be informative. With one rotation group in each of two windows (about 2,000 formal and 1,000 informal stayers per window), the 90% interval for the implied height runs from about −55% to more than +300%.
+### 4.6 Propositions
 
-**Age heaping.** Removing ages ending in 0 or 5 leaves the baseline height at 26.5%.
+P28 is rejected on the cross-sectional evidence: the range across sectors exceeds the formality gap, raw and reweighted, and the HLT estimates give a negative formal–informal ratio. The plan's §5 also states that if within-person estimates disagree with the cross-section by more than half the cross-sectional gap, the conclusion rests on the within-person estimates. They do disagree (formal minus informal implied heights of 0.19 and −1.18, against a cross-sectional gap of 0.098), but their 90% intervals run from about −50% to between 280% and 1,090% (Section 5), so that resting the conclusion on them would leave P28 undetermined. The verdict is reported as rejected on the cross-section and undetermined under the within-person rule.
+
+P29 is recorded as rejected, which departs from the plan's rule as written (D-064). The rule supports P29 if the composition term is at least a third of the gap between the national and the formal height. The gap is 0.002 log points and the composition term 0.038, so the rule read literally gives support. The rule presumed a national profile flatter than the formal one; here the two are equal, and composition steepens rather than flattens the national profile, which is the opposite of what P29 asserts.
+
+## 5. Limitations
+
+The HLT restriction gives negative heights: −26% for all baseline workers, −37% for formal and 6% for informal, and more negative with the flat spot at 35–39 years. The same happens on 2005–2018 alone, so the minimum-wage increases are not the cause. The restriction requires that earnings no longer change with experience late in the career and that time effects are common to all workers; in Mexico, cross-sectional earnings fall after 30 years of experience and the relative wages of older, less-schooled workers changed over the period. Under these conditions the restriction attributes economy-wide changes to experience, and its estimates are not used. Cohort effects therefore remain a possible source of bias in the cross-sectional profiles: if younger cohorts earn more at given experience, the cross-section understates true profiles. The comparison across periods in Section 4.4, which compares the same experience bins at different dates, is less affected.
+
+Within-person growth avoids cohort effects but is too imprecise to be informative. With one rotation group in each of two windows (about 2,000 formal and 1,000 informal stayers per window), the 90% intervals of the implied heights have lower bounds between −44% and −70% and upper bounds between 280% and 1,090%.
+
+Removing ages ending in 0 or 5 leaves the baseline height at 26.5%.
 
 ## 6. Conclusions
 
-Flat experience–earnings profiles are a general feature of Mexican wage jobs, not a feature of informal ones. On the margin that labour-force surveys observe, formality does not identify jobs that build skills. Sector does somewhat better, with professional, financial and social services and, to a lesser extent, commerce and manufacturing steeper than agriculture and construction. Firm size may matter as well. The steepest profiles in Mexico are still far below rich-country averages.
+Flat experience–earnings profiles are a general feature of Mexican wage employment and not a particular feature of informal jobs. In the two sectors where the comparison is possible, formal and informal profiles are similar, and differences across sectors are larger than differences by formality. Formal profiles have become flatter over two decades, from about 36% to 19% at 20–24 years, so the growth of formal employment has not been accompanied by steeper earnings growth with experience. These conclusions hold when the profiles are reweighted for earnings non-response. Profiles by occupation or employer, which ENOE does not record, a credible correction for cohort effects, and evidence on whether non-reporting is concentrated among high earners would test them further.
 
-**For WP09 and the search for motor jobs.** The job characteristics most often used in policy, such as formality and sector, are weak markers of where learning happens. The formal sector has also become flatter over two decades, which suggests that formal employment, as it has grown, has not offered more learning.
+## Annex A. Implementation notes and further work
 
-**What would change these conclusions:**
-- profiles by occupation or by employer, which ENOE does not identify;
-- a credible cohort adjustment;
-- evidence that the decline in earnings reporting is concentrated among high earners.
+Deviations from the plan made before estimates were examined: single birth years instead of five-year groups in the HLT restriction (with five-year groups a cohort trend within each group loads onto the time effects, and synthetic tests did not recover a known profile; single years did); and removal of time effects in the within-person estimates with the growth of flat-spot workers in the same panel instead of a consumer-price deflator. A coding error that dropped the year indicators was found by the same tests, and the first run of estimates was discarded without inspection.
 
-## Annex A. Notes on implementation and further work
+Analyses added after results were seen (D-051): profiles by period, HLT on 2005–2018, and earnings reporting by experience and period. Added after the independent audit (D-064): reweighting for non-response, the year-by-bin check of the non-response rule and the second ordering of the composition decomposition.
 
-**A.1 Deviations from the pre-analysis plan.** All were made before estimates were examined unless noted.
-- **Birth cohorts.** Single birth years were used instead of five-year groups in the HLT restriction. On synthetic data, five-year groups did not recover a known profile, because a cohort trend within each group loads onto the time effects. Single years did (`tests/test_enoe_profiles.py`).
-- **Within-person time effects.** Removed with the growth of flat-spot workers in the same panel, instead of a consumer-price deflator.
-- **Coding error.** An error that dropped the year dummies was found by the same tests, and the first run of the estimates was discarded without inspection.
-- **Analyses added after seeing the results** (decision D-051):
-  - profiles by period;
-  - HLT on 2005–2018, to test whether the minimum-wage increases explain the HLT result;
-  - earnings reporting by experience and period.
-
-**A.2 Rules applied.** The difference in earnings reporting between formal and informal workers within an experience bin (12.4 points) was below the 15-point threshold that would have required reweighting for non-response.
-
-**A.3 Further work:**
-- **Within-person profiles over all windows.** Use all five-quarter windows from 2005 onward, which would raise the within-person sample about twentyfold.
-- **Non-response.** Use INEGI's income ranges (`ingocup` brackets) to bound the effect of non-response on the flattening.
-- **Other countries' panels** to place Mexico among peers: Brazil's PNAD Contínua, Argentina's EPH, Chile's ENE.
-- **Administrative wage records.** Link to administrative records (IMSS) for formal workers, which would give employer identifiers and exact earnings.
+Further work could use all five-quarter windows from 2005 onward for within-person profiles, raising the sample about twentyfold; use INEGI's income ranges to bound the effect of non-response on the flattening; place Mexico among peers with Brazil's PNAD Contínua, Argentina's EPH and Chile's ENE; and link formal workers to IMSS records for employer identifiers and exact earnings.
 
 ## References
 
-- Abel, M., Carranza, E., Geronimo, K. and Ortega, M.E. (2022). Can temporary wage incentives increase formal employment? Experimental evidence from Mexico. IZA Discussion Paper 15740. [L149]
-- Lagakos, D., Moll, B., Porzio, T., Qian, N. and Schoellman, T. (2018). Life cycle wage growth across countries. *Journal of Political Economy* 126(2): 797–849. [L148]
+Lagakos, D., Moll, B., Porzio, T., Qian, N. and Schoellman, T. (2018). Life cycle wage growth across countries. *Journal of Political Economy* 126(2): 797–849. [L148]

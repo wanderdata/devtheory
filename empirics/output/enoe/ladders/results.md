@@ -40,6 +40,8 @@
 | pre | upward transition within a year (any) | formality alone vs sector | 24,875 | 0.0240 | 0.0013 | -0.0228 [-0.0289, -0.0192] |
 | pre | exit to non-employment within a year | formality alone vs sector, confirmed transitions | 6,700 | 0.0237 | 0.0086 | -0.0151 [-0.0303, -0.0083] |
 | pre | upward transition within a year (any) | formality alone vs sector, confirmed transitions | 6,699 | 0.0139 | 0.0011 | -0.0127 [-0.0255, -0.0092] |
+| pre | exit to non-employment within a year | main, excluding agricultural origins (post-audit) | 22,761 | 0.0078 | 0.0267 | +0.0189 [+0.0146, +0.0241] |
+| pre | upward transition within a year (any) | main, excluding agricultural origins (post-audit) | 22,752 | 0.0183 | 0.0690 | +0.0507 [+0.0419, +0.0598] |
 | pre | upward transition within a year (any) | main, conditional on origin rank decile (exploratory) | 24,875 | 0.0323 | 0.0610 | +0.0286 [+0.0202, +0.0375] |
 | post | exit to non-employment within a year | main | 26,419 | 0.0099 | 0.0192 | +0.0092 [+0.0046, +0.0139] |
 | post | upward transition within a year (any) | main | 26,419 | 0.0126 | 0.0559 | +0.0432 [+0.0349, +0.0517] |
@@ -59,6 +61,8 @@
 | post | exit to non-employment within a year | formality alone vs sector, confirmed transitions | 6,968 | 0.0161 | 0.0080 | -0.0081 [-0.0201, -0.0038] |
 | post | upward transition within a year (any) | formality alone vs sector, confirmed transitions | 6,968 | 0.0093 | 0.0007 | -0.0086 [-0.0194, -0.0058] |
 | post | upward transition within a year with a change of employer | formality alone vs sector, confirmed transitions | 6,922 | 0.0019 | 0.0017 | -0.0002 [-0.0046, +0.0005] |
+| post | exit to non-employment within a year | main, excluding agricultural origins (post-audit) | 24,383 | 0.0095 | 0.0221 | +0.0126 [+0.0075, +0.0177] |
+| post | upward transition within a year (any) | main, excluding agricultural origins (post-audit) | 24,383 | 0.0104 | 0.0752 | +0.0647 [+0.0547, +0.0749] |
 | post | upward transition within a year (any) | main, conditional on origin rank decile (exploratory) | 26,419 | 0.0303 | 0.0456 | +0.0154 [+0.0086, +0.0229] |
 
 ## 4. Manufacturing minus services within size × formality cells
@@ -71,12 +75,17 @@ Controls: size × formality, age group, sex, schooling level. Services: rama_est
 | pre | origin weights | upward transition within a year (any) | 19,164 | 0.248 | +0.0493 [+0.0232, +0.0745] |
 | pre | reweighted for attrition | exit to non-employment within a year | 19,171 | 0.158 | +0.0203 [-0.0013, +0.0425] |
 | pre | reweighted for attrition | upward transition within a year (any) | 19,164 | 0.250 | +0.0498 [+0.0230, +0.0762] |
+| pre | origin weights, conditional on origin rank decile (post-audit) | exit to non-employment within a year | 19,171 | 0.157 | -0.0063 [-0.0372, +0.0213] |
+| pre | origin weights, conditional on origin rank decile (post-audit) | upward transition within a year (any) | 19,164 | 0.248 | -0.0084 [-0.0383, +0.0252] |
 | post | origin weights | exit to non-employment within a year | 20,665 | 0.146 | +0.0167 [-0.0006, +0.0340] |
 | post | origin weights | upward transition within a year (any) | 20,665 | 0.237 | +0.0923 [+0.0676, +0.1169] |
 | post | origin weights | upward transition within a year with a change of employer | 20,523 | 0.040 | +0.0137 [+0.0024, +0.0249] |
 | post | reweighted for attrition | exit to non-employment within a year | 20,665 | 0.146 | +0.0160 [-0.0012, +0.0338] |
 | post | reweighted for attrition | upward transition within a year (any) | 20,665 | 0.238 | +0.0926 [+0.0679, +0.1177] |
 | post | reweighted for attrition | upward transition within a year with a change of employer | 20,523 | 0.042 | +0.0135 [+0.0022, +0.0253] |
+| post | origin weights, conditional on origin rank decile (post-audit) | exit to non-employment within a year | 20,665 | 0.146 | +0.0188 [+0.0010, +0.0374] |
+| post | origin weights, conditional on origin rank decile (post-audit) | upward transition within a year (any) | 20,665 | 0.237 | +0.0273 [-0.0022, +0.0554] |
+| post | origin weights, conditional on origin rank decile (post-audit) | upward transition within a year with a change of employer | 20,523 | 0.040 | +0.0008 [-0.0117, +0.0133] |
 
 ## 5. Same employer, different answers (two first-quarter visits a year apart)
 

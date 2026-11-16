@@ -8,6 +8,13 @@ Research project on productive development in Latin America and the Caribbean. A
 - Write as a careful development economist: precise, argued, sceptical of one's own results, plain English, no hype. State what the evidence shows, what it does not, and what would change the conclusion.
 - Papers and app text must read as written by an economist, not generated: no dramatic phrasing, no sentences built for effect, no stock devices ("not X but Y" contrasts, rhetorical questions, triads, "crucially", "it's worth noting"). Keep technical detail (definitions, units, samples, caveats) even when it makes a sentence plainer.
 - Papers are written as academic work for outside readers: outward-facing section titles (e.g. "Data", "Results", "Robustness"), not process titles ("gaps relative to the plan", "what failed"). Procedural material (deviations from a pre-analysis plan, choices made after seeing the data, implementation notes, further needs) goes in an annex at the end. The registers keep the full process record.
+- Style and tone (D-062): the goal is clear technical communication, not attention. Papers and all online content (app pages, READMEs meant for readers) are technical in register.
+  - Write in paragraphs of argued prose, as in an economics working paper. Use lists only for genuinely enumerable items (variable definitions, specification lists, sample rules) and tables for numbers. No bold lead-ins at the start of paragraphs or bullets, no bold for emphasis in running text.
+  - Abstracts are one or two plain paragraphs: question, data, method, main estimates with intervals, main caveat.
+  - Report estimates with units, sample, specification and interval. Give the size of an effect relative to its base. Say what is descriptive and what is identified, and state the identifying assumption when a causal reading is offered.
+  - Prefer neutral, specific titles ("Experience–earnings profiles by type of job in Mexico") to slogans ("Which jobs build skills?"). Headings name content.
+  - Results boxes in the app state estimates and their uncertainty in full sentences, without adjectives of magnitude ("large", "striking") unless the comparison that justifies them is given.
+  - Put verdicts on propositions in a separate, plainly labelled subsection; do not let them shape the narrative of the results.
 
 ## Registers (mandatory)
 

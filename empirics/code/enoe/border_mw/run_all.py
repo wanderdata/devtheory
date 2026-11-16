@@ -9,6 +9,6 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 
 if __name__ == "__main__":
-    for s in ["00_geo.py", "01_extract.py", "02_cells.py", "03_did.py", "04_maps.py", "06_ranges.py", "05_report.py"]:
+    for s in ["00_geo.py", "01_extract.py", "02_cells.py", "03_did.py", "04_maps.py", "06_ranges.py", "07_units.py", "05_report.py"]:
         print(f"== {s}")
         subprocess.run([sys.executable, str(HERE / s)], check=True, cwd=HERE)

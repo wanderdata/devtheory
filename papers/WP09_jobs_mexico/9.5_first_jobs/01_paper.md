@@ -1,168 +1,116 @@
-# Where Careers Start: First Jobs of Young Mexicans and Where They Lead, 2005–2026
+# First Jobs of Young Mexicans and Employment Three Quarters Later, 2005–2026
 
-*Paul Wander. Working draft v0.1, 2026-11-13. Pre-analysis plan: [`00_pre_analysis_plan.md`](00_pre_analysis_plan.md). Generated tables: [`empirics/output/enoe/first_jobs/results.md`](../../../empirics/output/enoe/first_jobs/results.md). App: Jobs in Mexico, page 9.5.*
+*Paul Wander. Working draft v0.2, 2026-11-16. Pre-analysis plan: [`00_pre_analysis_plan.md`](00_pre_analysis_plan.md). Generated tables: [`empirics/output/enoe/first_jobs/results.md`](../../../empirics/output/enoe/first_jobs/results.md). App: Jobs in Mexico, page 9.5.*
 
 ## Abstract
 
-We identify first jobs from the respondent's own report. A first job is held by someone aged 15–24 who, at their first interview in Mexico's labour-force survey (ENOE), is not working and says they have never worked, and who is working three months later. Pooling 70 five-quarter panels from 2005–2019 and 2022–2026, we observe 47,186 such entrants and follow them for three more quarters.
-
-**What first jobs are.** First jobs are much more informal than young people's jobs in general: 85% against 68%. 28% are unpaid work, mostly in family businesses.
-
-**Where they lead.** First jobs are short-lived. Three quarters after entry:
-- half of those who started in an informal job are not working;
-- so are 36% of those who started in a formal job.
-
-**Informal first jobs.** These are stepping stones, but weak ones. Compared with young people who had never worked and were still not working, and conditional on age, sex, schooling, school attendance, household and place, taking an informal first job raises the probability of formal employment three quarters later by 3.4 percentage points (90% interval 3.0–3.7), from 2.5%.
-
-**Formal first jobs.** Starting formally raises that probability by 34 points relative to starting informally.
-
-**Among informal first jobs.** Wage jobs in establishments with premises lead to formal work 4.2 points more often than own-account or unpaid work. This is less than the 10-point difference we expected.
+This paper identifies first jobs from respondents' own reports in Mexico's labour-force survey (ENOE). A first-job entrant is a person aged 15–24 who, at the first of five quarterly interviews, is not employed and reports never having worked, and who is employed at the second interview. Pooling 70 five-quarter panels from 2005–2019 and 2022–2026 gives 47,186 entrants, who are followed to the fifth interview, three quarters after entry. Of first jobs, 85.1% are informal, against 68.5% of all jobs held by employed 15–24-year-olds. Three quarters after entry, about half of those who entered informal jobs and 36% of those who entered formal jobs are not employed. In weighted linear probability models conditional on age, sex, schooling, school attendance, household employment, state, urban residence and quarter, entering an informal job is associated with a probability of formal employment three quarters later that is 3.4 percentage points higher (90% interval 3.0–3.7) than for never-worked young people who remained without work, whose rate is 2.5%. Entering a formal rather than an informal job is associated with a 34.0-point higher probability (32.3–35.8), an estimate that is sensitive to selection on unobservables.
 
 ## 1. Introduction
 
-**The question.** In Mexico, as elsewhere in Latin America, most young people start working in informal jobs. Whether that is a problem depends on what follows.
-- **Stepping stone.** An informal first job may teach skills, build a record and lead to formal employment.
-- **Trap.** It may leave young people in informal work or return them to inactivity.
+Most young Mexicans begin working in informal jobs. Whether this matters for their later employment depends on what such jobs lead to. An informal first job may provide skills, a work record and contacts that help a young person obtain formal employment later; it may also keep the person in informal work, or end in a return to inactivity.
 
-**Earlier evidence.**
-- Cruces, Ham and Viollaz (2012), with Brazilian cohort data, find that cohorts with more youth informality have more informality and lower wages as adults, mainly among the less educated.
-- With ENOE, Conover, Khamis and Pearlman (2021) find that informal wage work leads to formal work far more often for workers with upper-secondary schooling than for others.
-- Donovan, Lu and Schoellman (2023) document across countries a "slippery" job ladder: in poor countries workers move into and out of marginal jobs often but rarely reach or keep better ones.
+The evidence for Latin America points in both directions. Using cohort data for Brazil, Cruces, Ham and Viollaz (2012) find that cohorts with higher youth informality have higher informality and lower wages as adults, mainly among the less educated. Using ENOE panels for workers aged 20–40, Conover, Khamis and Pearlman (2021) find that informal wage employees with at least upper-secondary schooling move into formal wage employment far more often than less-educated ones. Across countries, Donovan, Lu and Schoellman (2023) show that workers in poorer countries enter and leave jobs more often but move into better-paid jobs less often.
 
-**This paper.** It contributes in two ways.
-- **A definition from the respondent's own answer.** It defines a first job by the respondent's statement that they had never worked, rather than by age or tenure, and observes the job within three months of its start.
-- **A comparison with continuing not to work.** It compares taking an informal first job with not working. This is the margin that matters for a young person deciding whether to accept an informal job. In this programme's terms, it asks whether the first rung of the ladder leads anywhere.
+This paper differs from earlier work in two respects. First jobs are identified from the respondent's statement that they have never worked, rather than from age or tenure, and the job is observed within three months of its start. And entry into an informal job is compared with remaining out of work, which is the alternative open to a young person who declines an informal job. The paper tests four propositions stated in the pre-analysis plan: that first jobs are more informal than young people's jobs in general (P34); that entering an informal job raises the probability of later formal employment relative to remaining out of work (P35); that the formality of the first job persists (P36); and that, among informal first jobs, wage jobs in units with premises lead to formal employment more often than own-account or unpaid work (P37).
 
 ## 2. Data
 
-**Survey and periods.** ENOE, every quarter from 2005Q1 to 2019Q4 and from 2022Q1 to 2026Q2. 2020–2021 are excluded because of the telephone survey and the change to ENOE^N. Persons are linked across the five interviews of each dwelling with the method of study 9.1. Of the never-worked, non-employed 15–24-year-olds at a first interview, 91.5% are linked to the second interview and 76.5% to the fifth.
+ENOE interviews each dwelling in five consecutive quarters. The paper uses every quarter of 2005–2019 and of 2022 to mid-2026; 2020 and 2021 are excluded because fieldwork moved to the telephone and the questionnaire changed. Persons are linked across interviews by dwelling, household and person identifiers, with checks on sex and age, as in study 9.1. Of never-worked, non-employed 15–24-year-olds at a first interview, 91.5% are linked to the second interview and 76.5% to the fifth.
 
-**Definitions.**
-- **Never worked.** Answer 4 ("has never worked") to question P2H, asked every quarter of everyone not employed.
-- **First-job entrant.** Aged 15–24 at the first interview, not employed and never worked then, and employed at the second interview.
-- **Comparison group.** Never worked and not employed at both the first and the second interview.
-- **Formality.** INEGI's labour-informality definition.
-- **Units with premises.** INEGI's micro units with premises and small, medium and large establishments.
+Question P2H asks everyone who is not employed whether they have ever worked; answer 4 means never. A first-job entrant is aged 15–24, not employed and has never worked at the first interview, and is employed at the second. The comparison group for P35 consists of persons who have never worked and are not employed at both the first and the second interview. Formality follows INEGI's labour-informality definition. Units with premises are INEGI's micro units with premises and small, medium and large establishments (codes 3–6 of `ambito2`).
 
-**Sample.** 397,978 never-worked, non-employed 15–24-year-olds at a first interview, among whom 47,186 take a formal or informal job by the second.
+The sample comprises 397,978 never-worked, non-employed persons aged 15–24 at a first interview, of whom 47,186 are employed, formally or informally, at the second.
 
-## 3. Method
+## 3. Estimation
 
-**Model.** The outcome is formal employment at the fifth interview, three quarters after entry. Weighted linear probability models include:
-- fixed effects for the quarter of the first interview, state, single years of age, single years of schooling, and relationship to the household head;
-- controls for sex, school attendance, the number of formally and informally employed household members, and urban residence.
+The outcome is formal employment at the fifth interview. Weighted linear probability models include an indicator for the type of entry and fixed effects for the quarter of the first interview, the state, single years of age, single years of schooling and the relationship to the household head, together with controls for sex, school attendance, the number of formally and of informally employed household members, and urban residence, all measured at the first interview. Weights are the survey weights at the first interview, and standard errors are clustered by primary sampling unit.
 
-All characteristics are measured at the first interview. Standard errors are clustered by primary sampling unit.
-
-**Selection on unobservables.** The comparisons are conditional on observables. Unobserved motivation, contacts or reasons for not working could bias them. Following Oster (2019), we report how strong selection on unobservables would have to be, relative to selection on observables, to reduce each difference to zero.
+The comparisons condition on observed characteristics only. Unobserved motivation, contacts and reasons for not working could bias them in either direction. To assess this, the paper reports Oster's (2019) δ: the ratio of selection on unobservables to selection on observables that would reduce each coefficient to zero, computed with the maximum R² set at 1.3 and at 2 times the R² of the model with controls.
 
 ## 4. Results
 
-### 4.1 First jobs
+### 4.1 Composition of first jobs
+
+*Table 1. First jobs and all jobs of employed 15–24-year-olds (weighted shares)*
 
 | | First jobs | All jobs, employed 15–24 |
 |---|---|---|
 | Informal | 85.1% | 68.5% |
 | Wage employee | 63.2% | 78.9% |
-| Unpaid | 27.9% | 13.2% |
-| Own-account | 8.5% | 7.2% |
+| Unpaid worker | 27.9% | 13.2% |
+| Own-account worker | 8.5% | 7.2% |
 | Commerce | 27.4% | 22.0% |
 | Restaurants and lodging | 12.7% | 9.6% |
 | Manufacturing | 14.3% | 18.6% |
 | Construction | 4.2% | 8.5% |
 
-**Composition.** First jobs are more informal than the jobs young people hold in general, by 17 points. P34 is supported. They are more often unpaid, mostly help in family businesses, and more often in commerce, restaurants and lodging. They are less often in manufacturing and construction.
+The informal share of first jobs is 16.6 percentage points higher than that of all jobs held by employed 15–24-year-olds. First jobs are more often unpaid, in commerce and in restaurants and lodging, and less often in manufacturing and construction. By type, 36.0% of first jobs are informal own-account or unpaid work, 29.1% informal wage jobs in units with premises, 19.9% other informal wage jobs and 14.9% formal jobs. Of the other informal wage jobs, 42% are in micro units without premises, 28% in agriculture or in units of unspecified size, 27% in INEGI's residual category (mostly domestic service) and 4% in government.
 
-**By type.** Classified by type:
-- 36% of first jobs are informal own-account or unpaid work;
-- 29% are informal wage jobs in units with premises;
-- 20% are other informal wage jobs, mostly in micro units without premises;
-- 15% are formal.
+Among entrants reporting earnings, the median formal first job pays 1.8 times the monthly minimum wage in force for a mean of 43 hours a week; informal wage jobs in units with premises pay a median of 1.0 times the minimum for 34 hours, and other informal wage jobs 0.8 times for 29 hours.
 
-**Pay and hours.** Formal first jobs pay a median of 1.8 times the monthly minimum wage for 43 hours a week. Informal wage jobs in units with premises pay about the minimum for 34 hours, and other informal wage jobs 0.8 times it for 29 hours.
+### 4.2 Employment three quarters after entry
 
-### 4.2 Where first jobs lead
+*Table 2. Employment status at the fifth interview by type of first job (weighted shares, unadjusted)*
 
-State three quarters after entry, by type of first job (weighted shares, not adjusted):
-
-| First job | Formal | Informal | Not employed |
+| Entry at the second interview | Formal | Informal | Not employed |
 |---|---|---|---|
-| Formal | 47.8% | 16.6% | 35.6% |
-| Informal wage, unit with premises | 10.2% | 40.0% | 49.8% |
-| Informal wage, other | 6.1% | 42.3% | 51.6% |
-| Informal own-account or unpaid | 3.9% | 39.3% | 56.9% |
-| Still not working at entry (comparison) | 2.5% | 9.8% | 87.7% |
+| Formal job | 47.8% | 16.6% | 35.6% |
+| Informal wage job, unit with premises | 10.2% | 40.0% | 49.8% |
+| Other informal wage job | 6.1% | 42.3% | 51.6% |
+| Informal own-account or unpaid work | 3.9% | 39.3% | 56.9% |
+| Not employed, never worked (comparison group) | 2.5% | 9.8% | 87.7% |
 
-**Fleeting jobs.** The most common destination of an informal first job, three quarters on, is no job. Even among formal entrants, a third are not working. This is the slippery ladder of Donovan, Lu and Schoellman (2023) at the start of careers.
+Between half and 57% of those who entered informal first jobs, and 36% of those who entered formal jobs, are not employed three quarters later. Formal employment at that point is reached by one in ten entrants into informal wage jobs in units with premises and by one in twenty-five entrants into informal own-account or unpaid work.
 
-**Formal destinations.** Among those who start informally, one in ten of those in units with premises, and one in twenty-five of those in own-account or unpaid work, are formal three quarters later.
+### 4.3 Conditional comparisons
 
-### 4.3 Comparisons conditional on observables
+*Table 3. Difference in the probability of formal employment at the fifth interview (percentage points; 90% interval; base = rate in the reference group)*
 
-Effect on the probability of formal employment three quarters after entry, percentage points:
-
-| Comparison | Estimate | 90% interval | Base | Proposition |
+| Comparison | Estimate | 90% interval | Base | Oster δ (1.3 R², 2 R²) |
 |---|---|---|---|---|
-| Informal first job vs. still not working | +3.4 | +3.0 to +3.7 | 2.5% | P35 supported |
-| Formal vs. informal first job | +34.0 | +32.3 to +35.8 | 6.5% | P36 supported |
-| Informal wage job, premises vs. informal own-account or unpaid | +4.2 | +3.4 to +5.0 | 3.9% | P37 rejected |
+| Informal first job vs. remained without work | 3.4 | 3.0 to 3.7 | 2.5% | 14.6, 4.4 |
+| Formal vs. informal first job | 34.0 | 32.3 to 35.8 | 6.5% | 3.2, 0.9 |
+| Informal wage job with premises vs. informal own-account or unpaid work | 4.2 | 3.4 to 5.0 | 3.9% | 5.4, 1.6 |
 
-**Informal first jobs are stepping stones, but weak ones.** Taking one more than doubles the probability of formal employment three quarters later. That probability rises from 2.5%, for those still not working, to about 6%. The difference is positive in every period, in each sex, among those not attending school, and with entry at the third interview.
-- **By schooling:** it is larger with at least 12 years of schooling (+6.0 points on a base of 5.0%) than with less (+2.2 on 1.7%), consistent with Conover, Khamis and Pearlman (2021).
-- **Selection:** adding controls lowers it only from 4.0 to 3.4 points, and selection on unobservables would have to be 14.6 times as strong as selection on observables to remove it (4.4 times with a more demanding maximum R²).
-- **Not a trap:** an informal first job does not reduce the chance of later formal work relative to continued search. P35 is supported.
+Young people who entered an informal job are more likely to be formally employed three quarters later than comparable young people who remained without work. The difference of 3.4 points more than doubles a base of 2.5%, but leaves the probability at about 6%. Adding the controls reduces the difference only from 4.0 to 3.4 points, and selection on unobservables would have to be 4.4 to 14.6 times as strong as selection on observables to remove it. The difference is positive in each period, for women and men, among those not attending school, for ages 15–29 and for entry at the third interview (2.3 points over two quarters). It is larger for those with at least 12 years of schooling (6.0 points on a base of 5.0%) than for those with less (2.2 points on 1.7%), as in Conover, Khamis and Pearlman (2021).
 
-**The formality of the first job persists.**
-- **Size:** formal entrants are 34 points more likely than informal entrants to be formal three quarters later. The probit average marginal effect is 27.5 points.
-- **Across samples:** the difference is 29–36 points across periods and groups. It is smallest in 2022 onward (29).
-- **Selection:** this comparison is the most exposed to selection. Controls lower it from 41 to 34 points, and selection on unobservables 3.2 times as strong as on observables would remove it. With the more demanding maximum R², 0.9 times would suffice.
+Entrants into formal first jobs are 34.0 points more likely than entrants into informal first jobs to be formally employed three quarters later. The estimate ranges from 29.3 points (2022 onward) to 36.4 points (those not attending school) across samples, and the probit average marginal effect is 27.5 points. This comparison is the most exposed to selection: controls reduce it from 41.2 to 34.0 points, and selection on unobservables 3.2 times as strong as on observables, or 0.9 times with the higher maximum R², would remove it.
 
-**The type of informal first job matters, but less than expected.** Informal wage jobs in units with premises lead to formal work 4.2 points more often than own-account or unpaid work, roughly doubling a low base. The difference is positive in every sample. Its upper bound, 5.0 points, is below the 10 points the plan set as a material difference, so P37 is rejected as stated.
+Among informal first jobs, wage jobs in units with premises are followed by formal employment 4.2 points more often than own-account or unpaid work, on a base of 3.9%. The difference is positive in every sample, from 3.0 points (2015–2019) to 6.4 points (12 or more years of schooling).
 
-## 5. Robustness and limits
+### 4.4 Propositions
 
-- **Robustness checks.** Results hold with:
-  - ages 15–29;
-  - entry at the third interview (two-quarter horizon);
-  - weights for attrition between the second and fifth interviews;
-  - 2005–2019 only.
-- **Recall.** Of the never-worked who are still not employed at the second interview, 14.5% now report having worked. Some had short jobs between interviews, which ENOE does not observe. Others give inconsistent answers. Excluding them from the comparison group, as the plan specified, keeps the group to people who stayed out of work. It also makes the comparison group somewhat more inactive than all non-entrants.
-- **Horizon.** Three quarters is short. Stepping stones that take a year or more cannot be seen in a five-quarter panel.
-- **Selection.** The conditional comparisons are not causal estimates. The Oster bounds show that P35 is robust to strong selection on unobservables, while the size of P36 is not.
+Under the decision rules of the pre-analysis plan, P34 is supported (a difference of 16.6 points against a threshold of 10), P35 is supported (90% interval above zero), P36 is supported (lower bound 32.3 points against a threshold of 25) and P37 is rejected (upper bound 5.0 points, below the 10 points set as a material difference). P34 was a weak test, since the high informality of youth employment was known in advance.
+
+## 5. Limitations
+
+Of the never-worked persons who are still not employed at the second interview, 14.5% report having worked by then. Some had short jobs between interviews, which the survey does not observe; others answer inconsistently. Excluding them from the comparison group, as the plan specified, restricts it to people who remained out of work, and makes it somewhat less attached to the labour market than all non-entrants.
+
+Three quarters is a short horizon. Transitions to formal employment that take longer cannot be observed in a five-quarter panel.
+
+The comparisons are conditional associations. The Oster calculations suggest that the difference between informal entry and remaining without work is robust to substantial selection on unobservables, while the size of the difference between formal and informal entry is not.
+
+The probit check was estimated with year rather than quarter effects, without state effects, with a quadratic in schooling instead of single-year indicators and without clustered standard errors, for reasons of memory; only its point estimates are used.
 
 ## 6. Conclusions
 
-**The start of careers.** Most young Mexicans' first jobs are informal, often unpaid work in a family business, and short-lived. Three quarters after starting, half of those in informal first jobs are not working.
+Most first jobs of young Mexicans are informal, and many end within a year: half of informal entrants and a third of formal entrants are not employed three quarters after entry. Entering an informal job is associated with a higher subsequent probability of formal employment than remaining out of work, but from a low base, and about 6% of informal entrants are formally employed three quarters later. The largest observed difference is between formal and informal first jobs, but it is also the one most exposed to selection. If a substantial part of it reflects the jobs rather than the people who obtain them, measures that increase access to formal first jobs, such as hiring subsidies of the kind evaluated by Abel et al. (2022), would act on the margin with the largest potential effect. Administrative records that follow workers from their first formal job, or variation in access to formal first jobs unrelated to young people's characteristics, would be needed to establish this.
 
-**Informal first jobs.** They are not traps relative to staying out of work: they raise the chance of formal employment later. But from very low levels: about 6% are formal three quarters on.
+## Annex A. Implementation notes and further work
 
-**Formal first jobs.** These are the clearest route to formal employment, yet a third of formal entrants are not working three quarters later.
+The analysis uses ENOE quarters through 2026Q2, the latest available. Controls that do not vary within a subsample (sex within a sex group, attendance among those not attending school) are dropped in that subsample. The counts of formally and informally employed household members are capped at three. The plan's secondary outcomes at the fifth interview (informal employment, non-employment, wage employment in a unit with premises) were not estimated. From 2025Q3 INEGI renamed the geographic codes (`cve_ent`, `cve_mun`); the shared reader maps them to the earlier names.
 
-**Within informal work.** Wage jobs in established units do somewhat better than own-account or unpaid work, by less than expected.
-
-**For this programme.** The first rung of the job ladder exists, but it is low and slippery. Policies that help young people into formal first jobs would act on the margin with the largest observed difference, if that difference is not mostly selection. The policies most commonly discussed for this are hiring subsidies and apprenticeships, as in the experiment of Abel et al. (2022).
-
-**What would change these conclusions:**
-- a longer panel, such as administrative records linked from the first formal job;
-- a source of variation in access to formal first jobs that is unrelated to young people's characteristics.
-
-## Annex A. Notes on implementation and further work
-
-**A.1 Choices.**
-- **Quarters.** The plan's periods were used, through 2026Q2, the latest available.
-- **Probit.** The probit check (plan §4) was estimated with year instead of quarter effects and without clustered standard errors. Only its point estimates are compared, because the clustered version exceeded the workspace's memory.
-- **Constant controls.** A control that does not vary within a subsample (sex within a sex group, attendance among those not attending) is dropped there.
-- **Reader fixes.** From 2025Q3 INEGI renamed the geographic codes (`cve_ent`, `cve_mun`); the shared reader maps them back. No earlier study uses those quarters.
-
-**A.2 Further work.**
-- **Who returns to non-employment.** Examine whether exits from first jobs are to study, unemployment or inactivity.
-- **Earnings growth in first jobs.** Use the two to four quarters observed.
-- **IMSS records.** Link formal first jobs to administrative records, for durations beyond a year.
+Further work could separate exits from first jobs into study, unemployment and inactivity (open question OQ-74); estimate how many first jobs fall between interviews (OQ-75); measure earnings growth over the quarters observed after entry; and link formal first jobs to IMSS records to follow them beyond a year.
 
 ## References
 
-- Abel, M., Carranza, E., Geronimo, K. and Ortega, M.E. (2022). Can temporary wage incentives increase formal employment? Experimental evidence from Mexico. IZA Discussion Paper 15740. [L149]
-- Conover, E., Khamis, M. and Pearlman, S. (2021). Job quality and labour market transitions: evidence from Mexican informal and formal workers. UNU-WIDER Working Paper 2021/23. [L159]
-- Cruces, G., Ham, A. and Viollaz, M. (2012). Scarring effects of youth unemployment and informality: evidence from Brazil. CEDLAS/IZA working paper. [L158]
-- Donovan, K., Lu, W.J. and Schoellman, T. (2023). Labor market dynamics and development. *Quarterly Journal of Economics* 138(4): 2287–2325. [L160]
-- Oster, E. (2019). Unobservable selection and coefficient stability: theory and evidence. *Journal of Business & Economic Statistics* 37(2): 187–204. [L161]
+Abel, M., Carranza, E., Geronimo, K. and Ortega, M.E. (2022). Can temporary wage incentives increase formal employment? Experimental evidence from Mexico. IZA Discussion Paper 15740. [L149]
+
+Conover, E., Khamis, M. and Pearlman, S. (2021). Job quality and labour market transitions: evidence from Mexican informal and formal workers. UNU-WIDER Working Paper 2021/23. [L159]
+
+Cruces, G., Ham, A. and Viollaz, M. (2012). Scarring effects of youth unemployment and informality: evidence from Brazil. CEDLAS/IZA working paper. [L158]
+
+Donovan, K., Lu, W.J. and Schoellman, T. (2023). Labor market dynamics and development. *Quarterly Journal of Economics* 138(4): 2287–2325. [L160]
+
+Oster, E. (2019). Unobservable selection and coefficient stability: theory and evidence. *Journal of Business & Economic Statistics* 37(2): 187–204. [L161]
