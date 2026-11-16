@@ -1,0 +1,5 @@
+proposition,outcome,post,lo90,hi90,p_pretrend,first_stage,ratio_to_first_stage,verdict
+P44,lemp,-0.150898,-0.355688,0.073711,0.988994,0.337294,-0.447379,Inconclusive
+P45,formal,0.048980,0.019478,0.072024,0.252626,0.337294,0.145215,Rejected
+P46,lprod,0.155028,0.003957,0.276250,0.600300,0.337294,0.459622,Supported
+P47,w_informal,0.256869,0.147257,0.369575,0.079540,0.337294,0.761559,Inconclusive (pre-trend test p < 0.10)

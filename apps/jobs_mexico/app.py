@@ -18,6 +18,8 @@ pages = {
         st.Page("views/s6_states.py", title="9.6 Job mobility and growth across states", url_path="states"),
         st.Page("views/s7_state_productivity.py", title="9.7 Labour productivity growth by state and activity",
                 url_path="state-productivity"),
+        st.Page("views/s8_minimum_wage_bite.py", title="9.8 Minimum-wage increases of 2019–2024 by state and activity",
+                url_path="minimum-wage"),
     ],
 }
 st.navigation(pages).run()

@@ -1,0 +1,181 @@
+year,beta,se,outcome,treat,specification
+2015,0.092178,0.064713,w_all,bite17,bite measured in 2017
+2016,0.113566,0.070083,w_all,bite17,bite measured in 2017
+2017,0.051695,0.032373,w_all,bite17,bite measured in 2017
+2018,0.000000,0.000000,w_all,bite17,bite measured in 2017
+2019,0.205239,0.075144,w_all,bite17,bite measured in 2017
+2020,0.130482,0.073567,w_all,bite17,bite measured in 2017
+2021,0.166834,0.051651,w_all,bite17,bite measured in 2017
+2022,0.252590,0.059142,w_all,bite17,bite measured in 2017
+2023,0.366746,0.066218,w_all,bite17,bite measured in 2017
+2024,0.316878,0.067748,w_all,bite17,bite measured in 2017
+2015,-0.043647,0.158725,lemp,bite17,bite measured in 2017
+2016,-0.034761,0.144616,lemp,bite17,bite measured in 2017
+2017,0.011551,0.083531,lemp,bite17,bite measured in 2017
+2018,0.000000,0.000000,lemp,bite17,bite measured in 2017
+2019,-0.168525,0.171669,lemp,bite17,bite measured in 2017
+2020,-0.193199,0.105928,lemp,bite17,bite measured in 2017
+2021,-0.124695,0.162249,lemp,bite17,bite measured in 2017
+2022,-0.222496,0.134675,lemp,bite17,bite measured in 2017
+2023,-0.275427,0.112800,lemp,bite17,bite measured in 2017
+2024,-0.176169,0.150171,lemp,bite17,bite measured in 2017
+2015,0.011615,0.015600,formal,bite17,bite measured in 2017
+2016,0.013539,0.019746,formal,bite17,bite measured in 2017
+2017,0.031870,0.024704,formal,bite17,bite measured in 2017
+2018,0.000000,0.000000,formal,bite17,bite measured in 2017
+2019,0.010351,0.017637,formal,bite17,bite measured in 2017
+2020,0.026375,0.033325,formal,bite17,bite measured in 2017
+2021,0.027197,0.031848,formal,bite17,bite measured in 2017
+2022,0.028803,0.022296,formal,bite17,bite measured in 2017
+2023,0.020842,0.018323,formal,bite17,bite measured in 2017
+2024,0.011587,0.027532,formal,bite17,bite measured in 2017
+2015,0.075689,0.161845,lprod,bite17,bite measured in 2017
+2016,0.012583,0.145706,lprod,bite17,bite measured in 2017
+2017,-0.046050,0.076402,lprod,bite17,bite measured in 2017
+2018,0.000000,0.000000,lprod,bite17,bite measured in 2017
+2019,0.182301,0.184844,lprod,bite17,bite measured in 2017
+2020,0.264793,0.090788,lprod,bite17,bite measured in 2017
+2021,0.197809,0.137046,lprod,bite17,bite measured in 2017
+2022,0.195157,0.090170,lprod,bite17,bite measured in 2017
+2023,0.242096,0.091633,lprod,bite17,bite measured in 2017
+2024,0.162980,0.159615,lprod,bite17,bite measured in 2017
+2015,0.032042,0.084612,lva,bite17,bite measured in 2017
+2016,-0.022178,0.068406,lva,bite17,bite measured in 2017
+2017,-0.034499,0.046214,lva,bite17,bite measured in 2017
+2018,0.000000,0.000000,lva,bite17,bite measured in 2017
+2019,0.013776,0.042325,lva,bite17,bite measured in 2017
+2020,0.071595,0.079096,lva,bite17,bite measured in 2017
+2021,0.073115,0.094577,lva,bite17,bite measured in 2017
+2022,-0.027339,0.092868,lva,bite17,bite measured in 2017
+2023,-0.033331,0.094918,lva,bite17,bite measured in 2017
+2024,-0.013189,0.110660,lva,bite17,bite measured in 2017
+2015,0.072974,0.060730,w_informal,bite17,bite measured in 2017
+2016,0.163734,0.071197,w_informal,bite17,bite measured in 2017
+2017,-0.065037,0.055521,w_informal,bite17,bite measured in 2017
+2018,0.000000,0.000000,w_informal,bite17,bite measured in 2017
+2019,0.123748,0.052814,w_informal,bite17,bite measured in 2017
+2020,0.062339,0.064199,w_informal,bite17,bite measured in 2017
+2021,0.093212,0.067098,w_informal,bite17,bite measured in 2017
+2022,0.185129,0.068206,w_informal,bite17,bite measured in 2017
+2023,0.242368,0.073641,w_informal,bite17,bite measured in 2017
+2024,0.212959,0.081277,w_informal,bite17,bite measured in 2017
+2015,0.257062,0.082166,w_all,bite18,excluding agriculture
+2016,0.288630,0.104375,w_all,bite18,excluding agriculture
+2017,0.299415,0.052519,w_all,bite18,excluding agriculture
+2018,0.000000,0.000000,w_all,bite18,excluding agriculture
+2019,0.357265,0.095172,w_all,bite18,excluding agriculture
+2020,0.243617,0.079382,w_all,bite18,excluding agriculture
+2021,0.265592,0.102690,w_all,bite18,excluding agriculture
+2022,0.371353,0.092199,w_all,bite18,excluding agriculture
+2023,0.531349,0.098285,w_all,bite18,excluding agriculture
+2024,0.509190,0.089294,w_all,bite18,excluding agriculture
+2015,0.290916,0.115126,lemp,bite18,excluding agriculture
+2016,0.369973,0.132389,lemp,bite18,excluding agriculture
+2017,0.198079,0.119012,lemp,bite18,excluding agriculture
+2018,0.000000,0.000000,lemp,bite18,excluding agriculture
+2019,0.235749,0.111509,lemp,bite18,excluding agriculture
+2020,0.125370,0.160453,lemp,bite18,excluding agriculture
+2021,0.274394,0.157833,lemp,bite18,excluding agriculture
+2022,0.190929,0.108554,lemp,bite18,excluding agriculture
+2023,0.238556,0.162315,lemp,bite18,excluding agriculture
+2024,0.185835,0.156902,lemp,bite18,excluding agriculture
+2015,0.047371,0.038295,formal,bite18,excluding agriculture
+2016,0.020224,0.033852,formal,bite18,excluding agriculture
+2017,0.010563,0.023346,formal,bite18,excluding agriculture
+2018,0.000000,0.000000,formal,bite18,excluding agriculture
+2019,0.075149,0.041176,formal,bite18,excluding agriculture
+2020,0.060223,0.038156,formal,bite18,excluding agriculture
+2021,0.010512,0.035553,formal,bite18,excluding agriculture
+2022,0.039574,0.034847,formal,bite18,excluding agriculture
+2023,0.063804,0.036237,formal,bite18,excluding agriculture
+2024,0.043594,0.037375,formal,bite18,excluding agriculture
+2015,-0.416812,0.108405,lprod,bite18,excluding agriculture
+2016,-0.431376,0.100997,lprod,bite18,excluding agriculture
+2017,-0.255884,0.109013,lprod,bite18,excluding agriculture
+2018,0.000000,0.000000,lprod,bite18,excluding agriculture
+2019,-0.151939,0.104212,lprod,bite18,excluding agriculture
+2020,0.113338,0.139481,lprod,bite18,excluding agriculture
+2021,-0.090124,0.146229,lprod,bite18,excluding agriculture
+2022,-0.082188,0.159064,lprod,bite18,excluding agriculture
+2023,-0.271530,0.138702,lprod,bite18,excluding agriculture
+2024,-0.207097,0.182945,lprod,bite18,excluding agriculture
+2015,-0.125897,0.087744,lva,bite18,excluding agriculture
+2016,-0.061404,0.075261,lva,bite18,excluding agriculture
+2017,-0.057805,0.050642,lva,bite18,excluding agriculture
+2018,0.000000,0.000000,lva,bite18,excluding agriculture
+2019,0.083810,0.040082,lva,bite18,excluding agriculture
+2020,0.238709,0.097967,lva,bite18,excluding agriculture
+2021,0.184270,0.140987,lva,bite18,excluding agriculture
+2022,0.108741,0.167330,lva,bite18,excluding agriculture
+2023,-0.032973,0.150523,lva,bite18,excluding agriculture
+2024,-0.021263,0.175671,lva,bite18,excluding agriculture
+2015,0.323633,0.102260,w_informal,bite18,excluding agriculture
+2016,0.472934,0.128806,w_informal,bite18,excluding agriculture
+2017,0.291718,0.101887,w_informal,bite18,excluding agriculture
+2018,0.000000,0.000000,w_informal,bite18,excluding agriculture
+2019,0.265099,0.095831,w_informal,bite18,excluding agriculture
+2020,0.100955,0.134623,w_informal,bite18,excluding agriculture
+2021,0.284694,0.196535,w_informal,bite18,excluding agriculture
+2022,0.365939,0.131020,w_informal,bite18,excluding agriculture
+2023,0.303603,0.134881,w_informal,bite18,excluding agriculture
+2024,0.461819,0.173197,w_informal,bite18,excluding agriculture
+2015,0.181020,0.132517,w_all,bite17,"bite measured in 2017, excluding agriculture"
+2016,0.227284,0.155738,w_all,bite17,"bite measured in 2017, excluding agriculture"
+2017,0.120662,0.073885,w_all,bite17,"bite measured in 2017, excluding agriculture"
+2018,0.000000,0.000000,w_all,bite17,"bite measured in 2017, excluding agriculture"
+2019,0.355591,0.092782,w_all,bite17,"bite measured in 2017, excluding agriculture"
+2020,0.213525,0.069881,w_all,bite17,"bite measured in 2017, excluding agriculture"
+2021,0.242592,0.091908,w_all,bite17,"bite measured in 2017, excluding agriculture"
+2022,0.415431,0.113630,w_all,bite17,"bite measured in 2017, excluding agriculture"
+2023,0.558868,0.126619,w_all,bite17,"bite measured in 2017, excluding agriculture"
+2024,0.551387,0.109197,w_all,bite17,"bite measured in 2017, excluding agriculture"
+2015,0.297425,0.175525,lemp,bite17,"bite measured in 2017, excluding agriculture"
+2016,0.361722,0.170319,lemp,bite17,"bite measured in 2017, excluding agriculture"
+2017,0.270483,0.157581,lemp,bite17,"bite measured in 2017, excluding agriculture"
+2018,0.000000,0.000000,lemp,bite17,"bite measured in 2017, excluding agriculture"
+2019,0.166420,0.094955,lemp,bite17,"bite measured in 2017, excluding agriculture"
+2020,-0.023326,0.110384,lemp,bite17,"bite measured in 2017, excluding agriculture"
+2021,0.215015,0.201732,lemp,bite17,"bite measured in 2017, excluding agriculture"
+2022,0.229181,0.166391,lemp,bite17,"bite measured in 2017, excluding agriculture"
+2023,0.236602,0.194321,lemp,bite17,"bite measured in 2017, excluding agriculture"
+2024,0.194566,0.188045,lemp,bite17,"bite measured in 2017, excluding agriculture"
+2015,-0.004715,0.030482,formal,bite17,"bite measured in 2017, excluding agriculture"
+2016,-0.034887,0.032155,formal,bite17,"bite measured in 2017, excluding agriculture"
+2017,-0.051702,0.031730,formal,bite17,"bite measured in 2017, excluding agriculture"
+2018,0.000000,0.000000,formal,bite17,"bite measured in 2017, excluding agriculture"
+2019,0.014009,0.024874,formal,bite17,"bite measured in 2017, excluding agriculture"
+2020,0.018337,0.030986,formal,bite17,"bite measured in 2017, excluding agriculture"
+2021,-0.039289,0.036449,formal,bite17,"bite measured in 2017, excluding agriculture"
+2022,-0.001351,0.038772,formal,bite17,"bite measured in 2017, excluding agriculture"
+2023,0.030384,0.027298,formal,bite17,"bite measured in 2017, excluding agriculture"
+2024,0.010285,0.037955,formal,bite17,"bite measured in 2017, excluding agriculture"
+2015,-0.366831,0.165348,lprod,bite17,"bite measured in 2017, excluding agriculture"
+2016,-0.351819,0.170849,lprod,bite17,"bite measured in 2017, excluding agriculture"
+2017,-0.265867,0.157817,lprod,bite17,"bite measured in 2017, excluding agriculture"
+2018,0.000000,0.000000,lprod,bite17,"bite measured in 2017, excluding agriculture"
+2019,-0.111469,0.078474,lprod,bite17,"bite measured in 2017, excluding agriculture"
+2020,0.240048,0.101143,lprod,bite17,"bite measured in 2017, excluding agriculture"
+2021,-0.074223,0.190462,lprod,bite17,"bite measured in 2017, excluding agriculture"
+2022,-0.124124,0.132863,lprod,bite17,"bite measured in 2017, excluding agriculture"
+2023,-0.232096,0.176153,lprod,bite17,"bite measured in 2017, excluding agriculture"
+2024,-0.209651,0.283111,lprod,bite17,"bite measured in 2017, excluding agriculture"
+2015,-0.069407,0.118263,lva,bite17,"bite measured in 2017, excluding agriculture"
+2016,0.009902,0.090994,lva,bite17,"bite measured in 2017, excluding agriculture"
+2017,0.004616,0.055354,lva,bite17,"bite measured in 2017, excluding agriculture"
+2018,0.000000,0.000000,lva,bite17,"bite measured in 2017, excluding agriculture"
+2019,0.054952,0.053310,lva,bite17,"bite measured in 2017, excluding agriculture"
+2020,0.216722,0.105786,lva,bite17,"bite measured in 2017, excluding agriculture"
+2021,0.140793,0.140327,lva,bite17,"bite measured in 2017, excluding agriculture"
+2022,0.105057,0.162429,lva,bite17,"bite measured in 2017, excluding agriculture"
+2023,0.004506,0.201722,lva,bite17,"bite measured in 2017, excluding agriculture"
+2024,-0.015086,0.230272,lva,bite17,"bite measured in 2017, excluding agriculture"
+2015,0.215762,0.128354,w_informal,bite17,"bite measured in 2017, excluding agriculture"
+2016,0.428283,0.161885,w_informal,bite17,"bite measured in 2017, excluding agriculture"
+2017,-0.086711,0.097303,w_informal,bite17,"bite measured in 2017, excluding agriculture"
+2018,0.000000,0.000000,w_informal,bite17,"bite measured in 2017, excluding agriculture"
+2019,0.185016,0.119699,w_informal,bite17,"bite measured in 2017, excluding agriculture"
+2020,0.009427,0.151362,w_informal,bite17,"bite measured in 2017, excluding agriculture"
+2021,0.135269,0.200389,w_informal,bite17,"bite measured in 2017, excluding agriculture"
+2022,0.312399,0.158693,w_informal,bite17,"bite measured in 2017, excluding agriculture"
+2023,0.273770,0.173393,w_informal,bite17,"bite measured in 2017, excluding agriculture"
+2024,0.403871,0.233205,w_informal,bite17,"bite measured in 2017, excluding agriculture"

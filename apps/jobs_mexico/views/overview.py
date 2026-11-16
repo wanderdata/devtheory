@@ -31,7 +31,9 @@ st.markdown(
     "| 9.6 Job mobility and growth across states | How much do states differ in job mobility at given workforce "
     "composition, and is mobility related to growth? | Draft paper |\n"
     "| 9.7 Labour productivity growth by state and activity | Where did non-oil labour productivity grow, through "
-    "which channels, and did formality and pay move with it? | Draft paper |")
+    "which channels, and did formality and pay move with it? | Draft paper |\n"
+    "| 9.8 Minimum-wage increases of 2019–2024 by state and activity | How did wages, employment, formality and value "
+    "added per worker respond where the increases reached more workers? | Draft paper |")
 st.markdown(
     "Each study has a pre-analysis plan written before its estimates, a paper and a page in this application. "
     "Results are descriptive unless a page states an identifying assumption. The studies were checked by an "
