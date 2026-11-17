@@ -4,6 +4,21 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-17 — Session 30: literature note on the allocation of innovative effort; data plan for the DENUE study
+
+**Prompt (user):** discussion of Baumol (1990) — whether it is the cost-disease paper (it is not; that is Baumol 1967 and Baumol and Bowen 1966); the author's reading that innovation, his preferred term, takes non-economic forms with spillovers and that Roman inventions did not transfer to production; whether some innovation, such as an added supply-chain link, is neutral for growth; whether spending on it is multiplicative in a closed economy. Register the worthwhile points; then the data needed for the DENUE study.
+
+**Done**
+- Literature note 10 (`docs/literature/10_allocation_of_innovative_effort.md`): Baumol (1990); the author's views, attributed; adoption conditions (payoffs, relative prices, complementary capabilities, diffusion of knowledge); a classification of innovation by its effect on production possibilities (resource-saving, variety or quality, redistributive, destructive); intermediation and when it raises productivity; demand multipliers against growth, with the Lewis exception for informal retail.
+- Theory note 04 §5.3: paragraph on intermediation margins in the static term.
+- Registers: OQ-87 (classification of innovative activity, left open at the author's request), OQ-88 (price-response test of resource-saving against redistributive innovation and intermediation), OQ-89 (opportunity cost of labour in informal retail); L179–L187 (all from memory).
+
+**Key results:** none empirical. The classification of innovation types is deliberately not fixed.
+
+**What failed:** nothing.
+
+---
+
 ## 2026-11-16 — Session 29: theory note on unbalanced growth and the reallocation term; explainer page
 
 **Prompt (user):** develop the theory of Baumol's cost disease and its relation to the McMillan–Rodrik decomposition, with extensions for developing economies, in the repository and in an interactive explainer tab of the app; keep the data list for a planned DENUE study of rents and innovation in Mexico.
