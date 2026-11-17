@@ -2,11 +2,11 @@
 
 Code for **[WP04](../papers/WP04_trap_model/WP04_segment_trap_model.md)**. Current version: **0.1.1** (see [CHANGELOG](CHANGELOG.md)).
 
-The model is deliberately small. It is meant to be tuned, extended and confronted with data. It is not meant to forecast.
+The model is a caricature, meant to be tuned, extended and tested. It is obviously not meant to forecast.
 
 ## Files
 
-| File | What it is |
+| File | Model |
 |---|---|
 | `trapmodel.py` | The model: parameters (`DEFAULTS`), static equilibrium (`solve_static`), dynamics (`step`, `simulate`, `steady_state`) |
 | `scenarios/*.toml` | Scenarios. Each one lists only what differs from `baseline.toml` (via `inherit`) |
