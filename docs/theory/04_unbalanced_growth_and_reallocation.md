@@ -90,6 +90,8 @@ using $\sum_i \Delta \ell_i = 0$ and setting $\varphi = 0$ for clarity. Growth-r
 
 The second term has the opposite sign from the first and a different interpretation. A movement of labour into a sector with a high markup raises the static term, although nothing about technology has changed: the term counts rents as productivity. McMillan and Rodrik's finding that structural change reduced growth in Latin America after 1990 is consistent with movements into informal work at lower wages; a positive static term in a period when employment grew in protected, high-margin services would need to be checked against those sectors' operating surplus before being read as productive reallocation (P50).
 
+The same ambiguity applies to intermediation. An additional link in a supply chain appears in the accounts as value added in distributive trade, measured by its margin, whether it lowers the total cost of delivering goods to consumers (by specialisation, scale or cheaper search) or exists because a barrier lets it charge a toll. Employment growth in such links raises or lowers the static term according to their margins, not according to whether delivered prices fell. Literature note 10 (`docs/literature/10_allocation_of_innovative_effort.md`) discusses the distinction and the evidence for retail, and OQ-88 records a test based on the price response to the entry or removal of intermediaries.
+
 ## 6. Three features of developing economies
 
 The three parameters added to Baumol's model correspond to features documented elsewhere in this project.
