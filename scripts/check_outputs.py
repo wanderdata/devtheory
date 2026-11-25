@@ -3,12 +3,14 @@
     python empirics/code/lp/run_all.py && python scripts/check_outputs.py
 
 CSV files are compared numerically (relative tolerance 1e-9, so harmless floating-point
-noise across machines passes); Markdown reports and Excel workbooks must match exactly;
+noise across machines passes); Markdown reports must match exactly; Excel workbooks must
+have identical contents once unzipped (compressed bytes vary with the zlib build);
 PNG and SVG figures are skipped (their bytes depend on the fonts installed, D-072). Exit code 1 if anything changed.
 """
 import io
 import subprocess
 import sys
+import zipfile
 
 import numpy as np
 import pandas as pd
@@ -42,6 +44,13 @@ def same_csv(old, new):
     return True
 
 
+def same_zip(old, new):
+    a, b = zipfile.ZipFile(io.BytesIO(old)), zipfile.ZipFile(new)
+    if sorted(a.namelist()) != sorted(b.namelist()):
+        return False
+    return all(a.read(n) == b.read(n) for n in a.namelist())
+
+
 def main():
     bad = []
     for f in changed_files():
@@ -53,6 +62,9 @@ def main():
         elif f.endswith(".csv"):
             if not same_csv(old, f):
                 bad.append(f"{f}: values differ")
+        elif f.endswith(".xlsx"):
+            if not same_zip(old, f):
+                bad.append(f"{f}: contents differ")
         else:
             bad.append(f"{f}: content differs")
     if bad:
