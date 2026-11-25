@@ -16,6 +16,8 @@ def build_specs():
              for t in TYPES}
     rel = {TYPE_SHORT[t]: s2[s2["type"] == t].set_index("sector").loc[list(SECTOR_SHORT), "rel_lp"].round(2).tolist()
            for t in TYPES}
+    b1 = pd.read_csv(DATA / "box1_sectors.csv")
+    b1 = b1[(b1["period"] == "2000–2019") & (b1["base"] == "chained")].set_index("sector").loc[list(SECTOR_SHORT)]
     g4 = pd.read_csv(DATA / "g4_clusters.csv")
     g5 = pd.read_csv(DATA / "g5_sti.csv")
     return {
@@ -23,6 +25,10 @@ def build_specs():
                         height_in=3.4, gap=40),
         "graph2b": Spec("graph2b", cats, rel, number_format="General", log=True, axis_min=0.1, axis_max=10,
                         height_in=3.4, gap=40),
+        "box1": Spec("box1", cats, {"Within sector": b1["within_pp"].round(2).tolist(),
+                                    "Reallocation": b1["struct_pp"].round(2).tolist()},
+                     number_format="0.0", axis_min=-0.5, axis_max=0.5, major_unit=0.1, width_in=6.0, height_in=3.0,
+                     gap=50),
         "graph4": Spec("graph4", g4["name"].tolist(), {"Initiatives": g4["count"].tolist()}, number_format="0",
                        axis_min=0, axis_max=4, major_unit=1, data_labels=True, legend=False, height_in=2.7),
         "graph5": Spec("graph5", g5["name"].tolist(), {"Instruments": g5["count"].tolist()}, number_format="0",

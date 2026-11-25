@@ -48,6 +48,9 @@ def q(tag):
     return "{%s}%s" % (NS[p], t)
 
 
+TRACK = True   # the box document (06_box_docx.py) sets this to False: plain, untracked content
+
+
 class Ids:
     def __init__(self, start):
         self.n = start
@@ -111,11 +114,15 @@ def para(runs, ids, ppr=None, align=None, keep_next=False, after=None, before=No
     if align:
         etree.SubElement(pp, W + "jc").set(W + "val", align)
     _order_ppr(pp)
+    p.append(pp)
+    if not TRACK:
+        for r in runs:
+            p.append(r)
+        return p
     rpr = pp.find(W + "rPr")
     if rpr is None:
         rpr = etree.SubElement(pp, W + "rPr")
     rpr.insert(0, mark("ins", ids))
-    p.append(pp)
     ins = mark("ins", ids)
     for r in runs:
         ins.append(r)
@@ -441,7 +448,8 @@ def word_table(df, ids, numfmt, first_cols=1, size=16):
         trpr = etree.SubElement(tr, W + "trPr")
         if header:
             etree.SubElement(trpr, W + "tblHeader")
-        trpr.append(mark("ins", ids))
+        if TRACK:
+            trpr.append(mark("ins", ids))
         for j, v in enumerate(values):
             tc = etree.SubElement(tr, W + "tc")
             tcp = etree.SubElement(tc, W + "tcPr")
@@ -510,7 +518,7 @@ def find_placeholder(body, label):
 
 def find_para(body, start):
     for e in body:
-        if e.tag == W + "p" and text_of(e).startswith(start):
+        if e.tag == W + "p" and text_of(e).startswith(plain(start)):
             return e
     raise ValueError(f"paragraph starting {start!r} not found")
 
@@ -578,6 +586,32 @@ def main(src, dst):
                     "against 367 in Brazil (graph 4).", ids)
     tracked_replace(find_para(body, "ECLAC's data indicate a thin STI"), "and 109 in Brazil.",
                     "and 109 in Brazil (graph 5).", ids)
+
+    # Nuance from the data (session 31, second round): new paragraph in 3.1 and sentences added to
+    # 3.3, 3.4, 4.8, 4.9 and 6, all as tracked insertions after existing sentences
+    find_para(body, "Scale also differs within these groups").addprevious(para([run(P["3.1_within"])], ids))
+    adds = [("In resource and energy economies, extraction", "hit by lower commodity prices (ECLAC, 2025a).",
+             P["3.3_resource"]),
+            ("In resource and energy economies, extraction", "before the resource sector weakens.", P["3.3_guyana"]),
+            ("In tourism and services economies, the central issue",
+             "the central issue is the type of services that can drive productivity growth.", P["3.3_tourism"]),
+            ("In mixed economies, and in most island economies",
+             "import competition is as relevant as export promotion.", P["3.3_food"]),
+            ("In 2024, total employment was below", "the failure or departure of a few can reverse it.",
+             P["3.4_guyana"]),
+            ("Tourism is the dominant activity", "Development for Latin America and the Caribbean, 2026).",
+             P["4.8_measure"]),
+            ("Energy cost acts as a tax", "small and medium-sized enterprises (CDB, 2026).", P["4.9_caution"]),
+            ("The new vision applies to the Caribbean", "fields in which policy has to act.", P["6_nuance"])]
+    for start, anchor, text in adds:
+        tracked_replace(find_para(body, start), anchor, anchor + text, ids)
+    for label, text in (("Graph 4", "Counts as cited in the draft (section 4.4); not yet checked against ECLAC "
+                                    "(2025a). The period 2023–2025 is also taken from the draft."),
+                        ("Graph 5", "Counts as cited in the draft (section 4.5); not yet checked against ECLAC "
+                                    "(2025b), table II.12. Barbados has no entry, although section 3.1 says it has "
+                                    "an agency that administers STI instruments.")):
+        lab = next(e for e in body if e.tag == W + "p" and text_of(e) == label)
+        add_comment(pkg, lab, text, ids)
 
     # Comments on the placeholders still to be filled
     needs = {"Graph 3": "Needs IMF World Economic Outlook (gross debt, interest, revenue) for Caribbean States; "

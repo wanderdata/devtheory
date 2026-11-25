@@ -120,3 +120,22 @@ def test_tracked_replace(mods):
     deleted = "".join(t.text for t in p.iter(W + "delText"))
     assert kept == "In Saint Lucia, five is 0.1 percent."
     assert deleted.strip() and "Saint" not in deleted
+
+
+def test_box_numbers_hold_at_all_price_bases(mods):
+    b = pd.read_csv(DATA / "box1_sectors.csv")
+    s = b.groupby(["period", "base"])[["within_pp", "struct_pp"]].sum()
+    g = pd.read_csv(DATA / "g1_decomposition.csv")
+    pooled = g[(g["unit"] == "type") & (g["name"] == "Tourism and services economies")].set_index(["period", "base"])
+    assert np.allclose(s["within_pp"], pooled.loc[s.index, "within_pp"])
+    assert np.allclose(s["struct_pp"], pooled.loc[s.index, "struct_pp"])
+    t = mods["texts"].box_texts()           # asserts the signs the box states
+    assert "0.40 points a year" in t["paragraphs"][1]
+
+
+def test_report_additions_build(mods):
+    p = mods["texts"].report_paragraphs()
+    for k in ("3.1_within", "3.3_resource", "3.3_guyana", "3.3_tourism", "3.3_food", "3.4_guyana", "4.8_measure",
+              "4.9_caution", "6_nuance"):
+        assert p[k].strip()
+    assert "graph 1" not in " ".join(str(v) for v in p.values())
