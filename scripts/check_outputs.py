@@ -3,8 +3,8 @@
     python empirics/code/lp/run_all.py && python scripts/check_outputs.py
 
 CSV files are compared numerically (relative tolerance 1e-9, so harmless floating-point
-noise across machines passes); Markdown reports must match exactly; PNG figures are
-skipped (their bytes depend on font and library builds). Exit code 1 if anything changed.
+noise across machines passes); Markdown reports and Excel workbooks must match exactly;
+PNG and SVG figures are skipped (their bytes depend on the fonts installed, D-072). Exit code 1 if anything changed.
 """
 import io
 import subprocess
@@ -45,7 +45,7 @@ def same_csv(old, new):
 def main():
     bad = []
     for f in changed_files():
-        if f.endswith(".png"):
+        if f.endswith((".png", ".svg")):
             continue
         old = committed(f)
         if old is None:

@@ -28,5 +28,7 @@ jobs:
         run: python empirics/code/lp/run_all.py
       - name: Rebuild development-motors outputs (WP07)
         run: python empirics/code/motors/run_all.py
+      - name: Rebuild Caribbean PDP report figures (D-072)
+        run: python empirics/code/carib_pdp/run_all.py
       - name: Compare rebuilt outputs with committed outputs
         run: python scripts/check_outputs.py
