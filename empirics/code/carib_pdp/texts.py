@@ -22,7 +22,7 @@ def _g1():
 
 def the(name):
     """Country name with the article English text needs in running prose."""
-    return "the " + name if name in ("Dominican Republic", "Bahamas") else name
+    return {"Dominican Republic": "the Dominican Republic", "Bahamas": "The Bahamas"}.get(name, name)
 
 
 def fmt(x, nd=2):
@@ -64,8 +64,8 @@ def figure_texts():
             ("Note", "Labour productivity is value added per person employed, in seven sectors. The decomposition "
                      "follows McMillan and Rodrik (2011): within-sector growth weighted by initial employment "
                      "shares, and a structural change term for the reallocation of employment between sectors. "
-                     "Values are averages of annual decompositions at previous-year prices (chained); table A.1 "
-                     "of the annex gives the results at initial-year and final-year prices. “Pooled” treats the "
+                     "Values are averages of annual decompositions at previous-year prices (chained); Table A.1 "
+                     "in the annex gives the results at initial-year and final-year prices. “Pooled” treats the "
                      "economies of each type as a single economy, so a shift of workers between countries within "
                      "a sector counts as within-sector change. Pooled groups: resource and energy, "
                      f"{names(pooled_members['Resource and energy economies'])}; tourism and services, "
@@ -94,8 +94,8 @@ def figure_texts():
             ("Note", "Each production type is treated as one economy: value added at current dollars and "
                      "employment (ILO modelled estimates) are summed over its countries. Relative productivity "
                      "is a sector's value added per person employed divided by that of the whole group. Groups "
-                     "as in graph 1. Cuba is excluded because its dollar values are not comparable. Tables A.2 "
-                     "and A.3 of the annex give the figures by country."),
+                     "as in Graph 1. Cuba is excluded because its dollar values are not comparable. Tables A.2 "
+                     "and A.3 in the annex give the figures by country."),
         ])
     t["graph4"] = dict(
         label="Graph 4",
@@ -123,7 +123,7 @@ def figure_texts():
                "production type at three price bases, 2000–2019 and 2019–2024"),
         unit="(Percentage points per year)",
         source=SRC_LP,
-        notes=[("Note", "Growth and within-sector terms at chained prices, as in graph 1. The structural change "
+        notes=[("Note", "Growth and within-sector terms at chained prices, as in Graph 1. The structural change "
                         "term is shown at chained, initial-year and final-year prices. Fixed-base figures are "
                         "linear averages of the change over the period; chained figures are averages of annual "
                         "changes. Data grade: A, both ends of the period within two years of a usable labour force "
@@ -178,11 +178,26 @@ def report_paragraphs():
     small = emp[emp["employment_thousands"] < 300]
     big = emp[emp["employment_thousands"] >= 300]
     p = {}
+    three = big.loc[["DOM", "HTI", "CUB"], "employment_thousands"]
+    dom = country(g, "Dominican Republic", P1)
+    a2 = pd.read_csv(DATA / "a2_sectors_countries.csv").set_index(["iso3", "sector"])
     p["3.1_other"] = ("Other Caribbean economies: the Dominican Republic, Haiti and Cuba. Each had more than "
-                      f"{int(big.loc[['DOM', 'HTI', 'CUB'], 'employment_thousands'].min() // 1000)} million "
-                      "people employed in 2024, far more than any economy in the three types above, and their "
-                      "production structures differ from those types and from one another. They are shown "
-                      "separately.")
+                      f"{int(three.min() // 1000)} million people employed in 2024, and together they accounted for "
+                      f"{fmt(100 * three.sum() / emp['employment_thousands'].sum(), 0)} percent of employment in the "
+                      f"{len(emp)} Caribbean economies with ILO estimates. Their production structures differ from "
+                      "the three types above and from one another: agriculture employed "
+                      f"{fmt(a2.loc[('HTI', 'AGR'), 'emp_share_pct'], 1)} percent of workers in Haiti in 2024, while "
+                      f"labour productivity in the Dominican Republic grew by {fmt(dom['growth_pp'], 1)} percent a "
+                      "year in 2000–2019, with a structural change term close to zero. They are shown separately, and the "
+                      "discussion that follows concerns mainly the economies of the three types.")
+    bhs, brb, vct = (country(g, x, P1) for x in ("Bahamas", "Barbados", "Saint Vincent and the Grenadines"))
+    sur2, tto2 = country(g, "Suriname", P2), country(g, "Trinidad and Tobago", P2)
+    p["3.1_within"] = ("Outcomes also differ within each type. In 2000–2019, labour productivity fell in The Bahamas "
+                       f"({fmt(bhs['growth_pp'])} percent a year) and Saint Lucia ({fmt(lcs['growth_pp'])}) and grew "
+                       f"in Barbados ({fmt(brb['growth_pp'])}) and Saint Vincent and the Grenadines "
+                       f"({fmt(vct['growth_pp'])}); in 2019–2024 it rose by {fmt(guy['growth_pp'], 1)} percent a year "
+                       f"in Guyana and fell in Suriname ({fmt(sur2['growth_pp'], 1)}) and Trinidad and Tobago "
+                       f"({fmt(tto2['growth_pp'], 1)}) (Graph 1).")
     p["3.2_lead"] = ("ECLAC’s published decomposition covers the region as a whole. Graph 1 applies the same "
                      f"decomposition to {c1['iso3'].nunique()} Caribbean economies, grouped by production type, "
                      "with value added from the United Nations National Accounts Main Aggregates Database and "
@@ -192,8 +207,10 @@ def report_paragraphs():
     p["3.2_after"] = [
         (f"In {P1}, the reallocation of employment between sectors added between "
          f"{fmt(gp['struct_pp'].min())} and {fmt(gp['struct_pp'].max())} percentage points a year to labour "
-         "productivity growth in the four pooled groups, at chained prices (graph 1). Differences in "
-         "productivity growth between the groups came mainly from within sectors. In the tourism and services "
+         "productivity growth in the four pooled groups, at chained prices (Graph 1). Differences in "
+         "productivity growth between the groups came mainly from within sectors. In the tourism and services and the mixed "
+         "economies, the pattern differs from the regional one described above: reallocation added to productivity "
+         "growth, while productivity within sectors fell. In the tourism and services "
          f"economies, productivity grew by {fmt(tt['growth_pp'])} percent a year: reallocation added "
          f"{fmt(tt['struct_pp'])} points, and productivity within sectors subtracted "
          f"{fmt(-tt['within_pp'])}. In the mixed economies, productivity fell by {fmt(-m['growth_pp'])} percent a "
@@ -214,7 +231,7 @@ def report_paragraphs():
          f"{fmt(shi2['struct_pp'])} ({shi2['name']})."),
         ("In 2024, trade, restaurants and hotels and other services together employed between "
          f"{fmt(min(serv.values()), 0)} and {fmt(max(serv.values()), 0)} percent of workers in the four groups "
-         f"(graph 2), and {fmt(serv[T], 0)} percent in the tourism and services economies, where trade, "
+         f"(Graph 2), and {fmt(serv[T], 0)} percent in the tourism and services economies, where trade, "
          f"restaurants and hotels alone employed {fmt(sh(T, 'TRH'), 1)} percent at "
          f"{fmt(rl(T, 'TRH'))} times the group’s average productivity. Mining and utilities had the highest "
          f"relative productivity in every group, {fmt(rl(R, 'MIU'), 1)} times the average in the resource and "
@@ -223,11 +240,38 @@ def report_paragraphs():
          f"workers in the other Caribbean group, at {fmt(rl(O, 'AGR'))} times its average productivity."),
         ("These decompositions are descriptive. Employment by sector rests "
          "on ILO modelled estimates, which for some country-periods are not anchored to a labour force survey "
-         "near either end of the period (pale bars in graph 1). Because constant-price value added is "
-         "chain-linked, the terms depend on the price base used to weight sectors; table A.1 of the annex reports "
+         "near either end of the period (pale bars in Graph 1). Because constant-price value added is "
+         "chain-linked, the terms depend on the price base used to weight sectors; Table A.1 in the annex reports "
          "all three. Pooling treats each group as one economy, so movements of workers between countries "
          "within a sector count as within-sector change."),
     ]
+    p["3.3_resource"] = (f" In the Caribbean resource economies, labour productivity fell by {fmt(-sur2['growth_pp'], 1)} "
+                         f"percent a year in Suriname and {fmt(-tto2['growth_pp'], 1)} percent in Trinidad and Tobago "
+                         "in 2019–2024 (Graph 1).")
+    p["3.3_guyana"] = (" In Guyana, where the resource sector is expanding with the start of oil production in 2019, "
+                       "the same need arises together with that of spreading the gains of the boom to other "
+                       "activities.")
+    p["3.3_tourism"] = (" In the tourism and services economies with sector data, labour productivity grew by "
+                        f"{fmt(tt['growth_pp'])} percent a year in 2000–2019, and fell in The Bahamas and Saint Lucia "
+                        "(Graph 1; Box 1).")
+    p["3.3_food"] = (" Agriculture employed "
+                     f"{fmt(sh(M, 'AGR'), 1)} percent of workers in the mixed economies in 2024, at {fmt(rl(M, 'AGR'))} "
+                     f"times their average productivity, and {fmt(a2.loc[('HTI', 'AGR'), 'emp_share_pct'], 1)} percent "
+                     "in Haiti (Graph 2; Table A.2).")
+    p["3.4_guyana"] = (f" In Guyana, the start of oil production raised national labour productivity by an average of "
+                       f"{fmt(guy['growth_pp'], 1)} percent a year in 2019–2024 (Graph 1).")
+    p["4.8_measure"] = (" The sector data used in Graph 2 do not isolate tourism: trade, restaurants and hotels "
+                        "includes all wholesale and retail trade and leaves out transport and other services sold "
+                        "to visitors (Box 1).")
+    p["4.9_caution"] = (" Measured value added per worker in mining and utilities was "
+                        f"{fmt(rl(T, 'MIU'))} times the average of the tourism and services economies in 2024 "
+                        "(Graph 2), where mining is small. Electricity tariffs enter that measure, so high tariffs "
+                        "raise the measured productivity of utilities, and the ratio is not a measure of their "
+                        "efficiency.")
+    p["6_nuance"] = (" The evidence in Section 3 qualifies the reference to weak structural change for the tourism and "
+                     "services and the mixed economies: in 2000–2019 the reallocation of workers between sectors added to their productivity "
+                     "growth, while productivity within sectors stagnated or fell, which places weight on raising "
+                     "productivity within existing activities.")
     lca = emp.loc["LCA", "employment_thousands"]
     p["3.4"] = ("In 2024, total employment was below 300,000 in "
                 f"{len(small)} of the {len(emp)} Caribbean economies with ILO estimates, from about "
@@ -239,6 +283,80 @@ def report_paragraphs():
                 f"{round(lca):,},000 people employed, a cluster or firm employing 5,000 workers accounts for "
                 f"{fmt(500000 / (lca * 1000), 1)} percent of employment.")
     return p
+
+
+def box_texts():
+    """Box 1: labour productivity in the tourism and services economies (D-073)."""
+    g = _g1()
+    b = pd.read_csv(DATA / "box1_sectors.csv").set_index(["period", "base", "sector"])
+    rp = pd.read_csv(DATA / "box1_relprices.csv")
+    P1, P2 = "2000–2019", "2019–2024"
+    T = "Tourism and services economies"
+    t1, t2 = pooled(g, T, P1), pooled(g, T, P2)
+    c = {n: country(g, n, P1) for n in ("Bahamas", "Saint Lucia", "Barbados", "Saint Vincent and the Grenadines")}
+
+    def v(per, base, sec, col):
+        return b.loc[(per, base, sec), col]
+
+    # the box states signs that must hold at all three price bases
+    for sec, col, sign in (("OTH", "within_pp", -1), ("TRH", "within_pp", 1), ("OTH", "struct_pp", 1)):
+        assert all(sign * v(P1, base, sec, col) > 0 for base in ("chained", "initial", "final")), (sec, col)
+    oth = rp[rp["sector"] == "OTH"]
+    assert (oth["d_real_pp"] < 0).all()
+    members = b.loc[(P1, "chained", "OTH"), "members"].split()
+    names = [the(OFFICIAL[i]) for i in members]
+    t = dict(
+        label="Box 1",
+        title="Labour productivity in the tourism and services economies, 2000–2024",
+        paragraphs=[
+            (f"The tourism and services economies with series of employment by sector ({', '.join(names[:-1])} and "
+             f"{names[-1]}) recorded little growth of labour productivity in {P1}: {fmt(t1['growth_pp'])} percent a "
+             "year for the four economies pooled, at chained prices. The reallocation of workers between sectors "
+             f"added {fmt(t1['struct_pp'])} percentage points a year and changes in productivity within sectors "
+             f"subtracted {fmt(-t1['within_pp'])} (Graph 1). The average covers different paths: productivity fell "
+             f"in The Bahamas ({fmt(c['Bahamas']['growth_pp'])} percent a year) and Saint Lucia "
+             f"({fmt(c['Saint Lucia']['growth_pp'])}) and grew in Barbados ({fmt(c['Barbados']['growth_pp'])}) and "
+             f"Saint Vincent and the Grenadines ({fmt(c['Saint Vincent and the Grenadines']['growth_pp'])})."),
+            ("Graph B1 shows which sectors account for these terms. The negative within-sector term comes from "
+             "other services (finance, business services, government and personal services), which subtracted "
+             f"{fmt(-v(P1, 'chained', 'OTH', 'within_pp'))} points a year; trade, restaurants and hotels, the "
+             f"sector closest to tourism in these data, added {fmt(v(P1, 'chained', 'TRH', 'within_pp'))}. Other "
+             "services also account for most of the gain from reallocation "
+             f"({fmt(v(P1, 'chained', 'OTH', 'struct_pp'))} points), through the rise in their share of "
+             "employment. The signs of these three contributions are the same at initial-year and final-year "
+             "prices."),
+            ("In all four economies, value added per worker in other services fell relative to the economy-wide "
+             f"average at constant prices in {P1}, by between {fmt(-oth['d_real_pp'].max())} and "
+             f"{fmt(-oth['d_real_pp'].min())} log points a year, so the decline does not come from a fall in the "
+             "relative price of these services. Part of it may come from measurement: in national accounts the "
+             "output of government services is largely valued by its inputs, so their measured productivity "
+             "changes little by construction."),
+            (f"In {P2}, a period that includes the pandemic, productivity in the group grew by "
+             f"{fmt(t2['growth_pp'])} percent a year, and the within-sector term of trade, restaurants and hotels "
+             f"was {fmt(v(P2, 'chained', 'TRH', 'within_pp'))} points. Five years that include the collapse and "
+             "recovery of visitor arrivals are too short to separate lasting changes from the recovery."),
+            ("The sector data do not isolate tourism. Trade, restaurants and hotels includes all wholesale and "
+             "retail trade and leaves out transport and other services sold to visitors; hotel output is difficult "
+             "to measure at constant prices; and employment comes from ILO modelled estimates. A tourism satellite "
+             "account, or series of visitor expenditure and tourism employment from UN Tourism, would be needed to "
+             "measure productivity in tourism itself."),
+            ("For the discussion in Section 4.8, these figures suggest that upgrading within tourism is one part "
+             "of the productivity question in these economies, and the services that employ most of their workers "
+             "outside tourism are another."),
+        ],
+        graph=dict(
+            label="Graph B1",
+            title=(f"Caribbean tourism and services economies ({len(members)} countries): contributions to labour "
+                   f"productivity growth by sector, {P1}"),
+            unit="(Percentage points per year)",
+            source=SRC_LP,
+            notes=[("Note", "The four economies are pooled and treated as one economy (see Graph 1). Values are "
+                            "averages of annual decompositions at previous-year prices (chained). Within sector: "
+                            "productivity growth in the sector weighted by its employment share; reallocation: the "
+                            "sector's contribution to the structural change term. The bars sum to "
+                            f"{fmt(t1['growth_pp'])} percent a year.")]),
+    )
+    return t
 
 
 if __name__ == "__main__":

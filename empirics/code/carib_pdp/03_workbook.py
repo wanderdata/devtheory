@@ -15,7 +15,7 @@ import xlsxwriter
 from charts import add_to_workbook
 from config import DATA, OUTPUT, SECTOR_LABEL, SECTORS, TYPE_SHORT
 from specs import build_specs
-from texts import figure_texts
+from texts import box_texts, figure_texts
 
 FONT = "Calibri"
 
@@ -104,7 +104,7 @@ def main():
     ws = wb.add_worksheet("Contents")
     rows = [("Graph 1", "SVG figure (figures/graph1_decomposition.svg); data in sheet 'Graph 1'"),
             ("Graph 2", "Excel charts, panels A and B"), ("Graph 4", "Excel chart"), ("Graph 5", "Excel chart"),
-            ("Table A.1", "Annex"), ("Table A.2", "Annex"), ("Table A.3", "Annex"),
+            ("Box 1", "Excel chart (Graph B1) and supporting data"), ("Table A.1", "Annex"), ("Table A.2", "Annex"), ("Table A.3", "Annex"),
             ("Section 3.4", "Total employment by country, 2024")]
     ws.write(0, 0, "Productive Development Policy in the Caribbean: data for graphs and annex tables",
              wb.add_format({"bold": True, "font_name": FONT, "font_size": 11}))
@@ -142,6 +142,30 @@ def main():
         footer(wb, ws, texts[key], r + len(specs[key].categories) + 14)
         ws.set_column(0, 0, 32)
         ws.set_column(1, 1, 12)
+
+    bt = box_texts()
+    ws = wb.add_worksheet("Box 1")
+    gb = dict(bt["graph"])
+    r = header(wb, ws, gb)
+    end = add_to_workbook(wb, ws, specs["box1"], r, 0, f"E{r + 1}")
+    r += len(specs["box1"].categories) + 18
+    b1 = pd.read_csv(DATA / "box1_sectors.csv")
+    b1 = b1.pivot_table(index=["period", "sector"], columns="base", values=["within_pp", "struct_pp"]).reset_index()
+    b1.columns = [f"{a} ({b})" if b else a for a, b in b1.columns]
+    b1["sector"] = b1["sector"].map(SECTOR_LABEL)
+    ws.write(r, 0, "All price bases (percentage points per year)", wb.add_format({"bold": True, "font_name": FONT}))
+    r = table(wb, ws, b1, r + 1, "0.00")
+    rp = pd.read_csv(DATA / "box1_relprices.csv")
+    rp = pd.DataFrame({"Economy": rp["country"], "Sector": rp["sector"].map(SECTOR_LABEL),
+                       "Change in relative productivity, current prices": rp["d_nom_pp"],
+                       "of which real (constant prices)": rp["d_real_pp"],
+                       "of which relative price": rp["d_price_pp"]})
+    ws.write(r, 0, "Change in productivity relative to the economy-wide average, 2000–2019 (log points per year)",
+             wb.add_format({"bold": True, "font_name": FONT}))
+    r = table(wb, ws, rp, r + 1, "0.00")
+    footer(wb, ws, gb, r)
+    ws.set_column(0, 1, 30)
+    ws.set_column(2, 7, 16)
 
     for key, df, fmt in [("tableA1", g1_table(), "0.00"),
                          ("tableA2", sector_wide("emp_share_pct"), "0.0"),

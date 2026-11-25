@@ -7,6 +7,10 @@
     a2_sectors_countries.csv  Annex: the same by country
     g4_clusters.csv, g5_sti.csv  Graphs 4 and 5: counts cited in the draft (inputs/)
     s34_employment.csv     Section 3.4: total employment by country, 2024 (ILO modelled)
+    box1_sectors.csv       Box 1: sector contributions to the within and structural terms, tourism and
+                           services economies pooled, 2000-2019 and 2019-2024, three price bases (D-073)
+    box1_relprices.csv     Box 1: change in relative productivity of trade, restaurants and hotels and of
+                           other services, split into real and relative-price parts, 2000-2019 (lp step 09)
 
 Country terms are read from the lp pipeline's outputs (grid A, 7 sectors). Pooled terms use
 the lp pipeline's own pooling function (07_lac_summary.pooled_period): a type is treated as one
@@ -129,6 +133,26 @@ def main():
     e["type"] = e["iso3"].map(TYPE_OF)
     e = e.rename(columns={"emp_model": "employment_thousands"}).sort_values("employment_thousands")
     e[["iso3", "name", "official_name", "type", "employment_thousands"]].to_csv(DATA / "s34_employment.csv", index=False)
+    tour = "Tourism and services economies"
+    m = [c for c in TYPES[tour] if c in set(panel["iso3"]) and c not in NO_POOL]
+    rows = []
+    for t0, T in PERIODS:
+        for base in BASES:
+            _, sec = summ.pooled_period(panel, m, t0, T, base)
+            sec = sec.reindex(SECTORS).reset_index().rename(columns={"index": "sector", "within": "within_pp",
+                                                                       "struct": "struct_pp"})
+            sec.insert(0, "period", period_label(t0, T))
+            sec.insert(1, "base", base)
+            sec["members"] = " ".join(m)
+            rows.append(sec)
+    b1 = pd.concat(rows, ignore_index=True)
+    b1["sector_name"] = b1["sector"].map(SECTOR_LABEL)
+    b1.to_csv(DATA / "box1_sectors.csv", index=False)
+    bm = pd.read_csv(LP_OUT / "baumol" / "sectors.csv")
+    bm = bm[bm["iso3"].isin(m) & bm["sector"].isin(["TRH", "OTH"]) & (bm["period"] == "2000–2019")]
+    bm = bm[["iso3", "country", "period", "sector", "emp_share0", "rel_nom0", "rel_nomT", "d_nom_pp", "d_real_pp",
+             "d_price_pp"]]
+    bm.to_csv(DATA / "box1_relprices.csv", index=False)
     print("figure data written to", DATA)
 
 

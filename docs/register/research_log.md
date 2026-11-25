@@ -17,6 +17,11 @@ One entry per work session, newest first.
 
 **What failed:** the first SVG of graph 1 put the structural term on the same axis as total growth, where it could not be read; a detail panel was added. python-pptx writes negative chart axis ids, which fail the schema; replaced. The first tracked edits split deletions around the insertion and put "(graph 4)" in the wrong place; the helper now works on whole words and has a test. Value axes of the bar charts first sat at the top because categories run top-down; fixed in both renderers. Graphs 4 and 5 rest on counts cited in the draft, not checked against the sources (OQ-90).
 
+**Second round (same session).** Prompt: given the numbers, which parts of the text need correction or larger change (listed for review, not applied); then the rule that results must not change the narrative but may qualify it; a box on productivity in tourism as a separate document; apply the changes as tracked edits.
+- Revised draft rebuilt from the original with all changes tracked (D-073); Box 1 as a separate Word document with Graph B1 as a Word chart; workbook gains a "Box 1" sheet; tests for the box's sign claims and the new text.
+- Key results for the box (tourism and services economies pooled, 2000–2019, chained): within-sector term −0.19 pp/yr, of which other services −0.40 and trade, restaurants and hotels +0.08; other services also give 0.39 of the 0.29 structural term; signs the same at initial-year and final-year prices. Real relative productivity of other services fell in all four economies (0.64 to 1.83 log points a year).
+- What failed: in LibreOffice the box first moved whole to page 2 because of keep-with-next settings inside the one-cell table; removed.
+
 ---
 
 ## 2026-11-17 — Session 30: literature note on the allocation of innovative effort; data plan for the DENUE study
