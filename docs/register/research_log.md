@@ -4,6 +4,21 @@ One entry per work session, newest first.
 
 ---
 
+## 2026-11-25 — Session 31: figures for the Caribbean productive development policy report
+
+**Prompt (user):** whether the session has the project's productivity data and discussion, especially on the Caribbean; how to fill the gaps in the report *Productive Development Policy in the Caribbean* (draft narrative, October 2026, supplied as .docx) with the repository's analysis and other sources; then, working only with data in hand, insert the figures with ECLAC-style titles and notes as document text, figures as Excel charts where simple and SVG otherwise, no PNG; the Dominican Republic, Haiti and Cuba as "other Caribbean economies"; graph 2 relative to the group average instead of EU = 100; national figures in an annex where useful.
+
+**Done**
+- New project `empirics/code/carib_pdp/` (D-072): figure data from the lp outputs and lp's pooling function; graph 1 (decomposition by country and production type, 2000–2019 and 2019–2024, chained prices, with a detail panel for the structural term) as SVG; graphs 2 (employment shares and relative productivity by sector and type, 2024), 4 (cluster initiatives) and 5 (STI instruments) as native Excel charts; workbook with every graph's and annex table's data, titles, units, sources and notes; tests (identities, agreement with lp, single-country pooling, chart parts, tracked-change helper); added to CI.
+- `05_insert_docx.py` (run by hand, report not committed): replaced the placeholders of graphs 1, 2, 4 and 5 with ECLAC-style text and Word charts or SVG; new bullet for other Caribbean economies (3.1); new lead and four paragraphs in 3.2; real employment figures in 3.4 instead of the illustrative example; in-text references to graphs 4 and 5; annex tables A.1–A.3; comments on graphs 3 and 6–10 saying what data they need. All changes tracked; validated against the OOXML schema and rendered in LibreOffice.
+- `scripts/check_outputs.py` skips SVG like PNG; requirements gain XlsxWriter, python-pptx and lxml (pinned). Registers: D-072, OQ-90, OQ-91, L209–L210.
+
+**Key results** (chained prices, pp/yr): in 2000–2019 the structural term of the four pooled groups ranged from −0.01 (resource and energy) to 0.29 (tourism and services); tourism and services productivity grew 0.10%/yr (structural 0.29, within −0.19); mixed economies −0.47%/yr (within −0.71); resource and energy 1.91%/yr, almost all within sectors (structural −0.26 at initial-year prices); other Caribbean (DOM, HTI) 1.84%/yr. Country structural terms 2000–2019 from −0.31 (Guyana) to 0.73 (Saint Lucia); sign depends on the price base in Barbados and the Dominican Republic. 2019–2024: Guyana 34.5%/yr chained (79.1 at initial-year prices); elsewhere growth from −4.9 (Suriname) to 4.7 (Belize). 2024: trade, restaurants and hotels plus other services employ 55–73% of workers across groups; mining and utilities has the highest relative productivity in every group (6.6 times the average in resource and energy economies, 6.2% of employment there). Seven of twelve economies with ILO estimates had fewer than 300,000 people employed in 2024.
+
+**What failed:** the first SVG of graph 1 put the structural term on the same axis as total growth, where it could not be read; a detail panel was added. python-pptx writes negative chart axis ids, which fail the schema; replaced. The first tracked edits split deletions around the insertion and put "(graph 4)" in the wrong place; the helper now works on whole words and has a test. Value axes of the bar charts first sat at the top because categories run top-down; fixed in both renderers. Graphs 4 and 5 rest on counts cited in the draft, not checked against the sources (OQ-90).
+
+---
+
 ## 2026-11-17 — Session 30: literature note on the allocation of innovative effort; data plan for the DENUE study
 
 **Prompt (user):** discussion of Baumol (1990) — whether it is the cost-disease paper (it is not; that is Baumol 1967 and Baumol and Bowen 1966); the author's reading that innovation, his preferred term, takes non-economic forms with spillovers and that Roman inventions did not transfer to production; whether some innovation, such as an added supply-chain link, is neutral for growth; whether spending on it is multiplicative in a closed economy. Register the worthwhile points; then the data needed for the DENUE study.

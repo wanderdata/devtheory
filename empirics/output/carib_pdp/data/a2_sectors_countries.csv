@@ -1,0 +1,85 @@
+iso3,name,type,sector,va,emp,emp_share_pct,rel_lp,sector_name
+GUY,Guyana,Resource and energy economies,AGR,1882172396.47482,35.94025126805072,12.563402535751866,0.6185542999012317,"Agriculture, forestry and fishing"
+GUY,Guyana,Resource and energy economies,MIU,17253702932.17266,19.12913373696556,6.686848277863033,10.65335875482025,Mining and utilities
+GUY,Guyana,Resource and energy economies,MAN,410014448.0959232,34.09923839703009,11.919851504357341,0.14202147569561457,Manufacturing
+GUY,Guyana,Resource and energy economies,CON,1123615149.0983214,33.87523683097435,11.841548717267512,0.3917732552900257,Construction
+GUY,Guyana,Resource and energy economies,TRH,647944545.3764988,55.27838646620222,19.323310110497818,0.13844651235902272,"Trade, restaurants and hotels"
+GUY,Guyana,Resource and energy economies,TSC,417511641.2326139,20.458143028430207,7.151421510195093,0.24104710396488538,"Transport, storage and communications"
+GUY,Guyana,Resource and energy economies,OTH,2485047579.342925,87.29061027234688,30.513617344067335,0.33625342599155833,Other services
+SUR,Suriname,Resource and energy economies,AGR,361417216.52106416,16.640858145690284,7.092715485826076,1.1845100828136657,"Agriculture, forestry and fishing"
+SUR,Suriname,Resource and energy economies,MIU,279580946.2179432,9.86391591545514,4.204227243085658,1.5458375496311727,Mining and utilities
+SUR,Suriname,Resource and energy economies,MAN,1108713890.2201316,29.30975015024231,12.492487884716201,2.063065496043262,Manufacturing
+SUR,Suriname,Resource and energy economies,CON,382838396.7696747,22.11481148320057,9.425839971699038,0.944143246149172,Construction
+SUR,Suriname,Resource and energy economies,TRH,984230297.9189988,38.586671069512114,16.44652439466203,1.391121492924942,"Trade, restaurants and hotels"
+SUR,Suriname,Resource and energy economies,TSC,223432038.72790787,26.893770745159216,11.462742039288896,0.4531055621195319,"Transport, storage and communications"
+SUR,Suriname,Resource and energy economies,OTH,961659726.8952398,91.2092224907404,38.8754629807221,0.5750271078783197,Other services
+TTO,Trinidad and Tobago,Resource and energy economies,AGR,199334165.2329024,32.44504653841409,4.65384140936305,0.17662660530067312,"Agriculture, forestry and fishing"
+TTO,Trinidad and Tobago,Resource and energy economies,MIU,3998887464.0437,46.42806659533023,6.659533023698803,2.4761751763140416,Mining and utilities
+TTO,Trinidad and Tobago,Resource and energy economies,MAN,3685839483.711621,48.51306958600964,6.9586009644761795,2.184240446960856,Manufacturing
+TTO,Trinidad and Tobago,Resource and energy economies,CON,1195682478.6195304,73.88510597906381,10.5979063809767,0.46524503412736923,Construction
+TTO,Trinidad and Tobago,Resource and energy economies,TRH,6865309675.180276,169.86124364498554,24.364498555580738,1.1619531405267465,"Trade, restaurants and hotels"
+TTO,Trinidad and Tobago,Resource and energy economies,TSC,1724583338.5681906,36.11905180832112,5.180832111720882,1.3726841750628171,"Transport, storage and communications"
+TTO,Trinidad and Tobago,Resource and energy economies,OTH,6580491664.728602,289.91541584787547,41.58478755418365,0.6525440230174052,Other services
+BHS,Bahamas,Tourism and services economies,AGR,81500000.0,1.7759919890661575,0.8010933842135888,0.7358200690854457,"Agriculture, forestry and fishing"
+BHS,Bahamas,Tourism and services economies,MIU,567000000.0,7.081968055499172,3.194450082770629,1.283760822838668,Mining and utilities
+BHS,Bahamas,Tourism and services economies,MAN,99700000.0,5.992972967608944,2.7032391056261478,0.2667521092333006,Manufacturing
+BHS,Bahamas,Tourism and services economies,CON,857300000.0,19.82891055810408,8.944189592100932,0.6932485860382761,Construction
+BHS,Bahamas,Tourism and services economies,TRH,3729100000.0,71.08367936417723,32.06358227671101,0.8411804156797689,"Trade, restaurants and hotels"
+BHS,Bahamas,Tourism and services economies,TSC,1240400000.0,20.279908523795992,9.147620400817333,0.980732999068144,"Transport, storage and communications"
+BHS,Bahamas,Tourism and services economies,OTH,7251200000.0,95.6525685417484,43.145825157760356,1.215537243133932,Other services
+BRB,Barbados,Tourism and services economies,AGR,118123826.0,1.8500130194588127,1.3019458812766107,1.3327313373903544,"Agriculture, forestry and fishing"
+BRB,Barbados,Tourism and services economies,MIU,194634215.0,2.791019641788944,1.964178894401633,1.4555803505158615,Mining and utilities
+BRB,Barbados,Tourism and services economies,MAN,376046060.5,8.118057130792781,5.713079277947853,0.9668716564981438,Manufacturing
+BRB,Barbados,Tourism and services economies,CON,356778678.0,12.101085161335728,8.516133572609874,0.6153957092732589,Construction
+BRB,Barbados,Tourism and services economies,TRH,2026793147.0,36.34925580773427,25.580773426228934,1.1638413754175443,"Trade, restaurants and hotels"
+BRB,Barbados,Tourism and services economies,TSC,741205760.0,8.328058608677294,5.860867729336007,1.857697095161639,"Transport, storage and communications"
+BRB,Barbados,Tourism and services economies,OTH,2994142678.5,72.5585106302122,51.0630212181991,0.8613189878250775,Other services
+LCA,Saint Lucia,Tourism and services economies,AGR,35492297.4074074,6.968923264110638,7.673588936113987,0.2080959698707552,"Agriculture, forestry and fishing"
+LCA,Saint Lucia,Tourism and services economies,MIU,67880971.1111111,1.2919857737452924,1.422625470721663,2.1467701849135987,Mining and utilities
+LCA,Saint Lucia,Tourism and services economies,MAN,101259821.1111111,4.446951033936003,4.896606399612412,0.9304007424928463,Manufacturing
+LCA,Saint Lucia,Tourism and services economies,CON,120067130.37037036,8.998900911713536,9.908828646303597,0.5451674291449919,Construction
+LCA,Saint Lucia,Tourism and services economies,TRH,839632850.7407407,28.95368118654892,31.88134510779802,1.1848977476742544,"Trade, restaurants and hotels"
+LCA,Saint Lucia,Tourism and services economies,TSC,286470335.5555555,5.868935376246998,6.462375300050651,1.9944151715547116,"Transport, storage and communications"
+LCA,Saint Lucia,Tourism and services economies,OTH,771850850.7407407,34.2876224536986,37.75463013939969,0.9197954468707971,Other services
+VCT,Saint Vincent and the Grenadines,Tourism and services economies,AGR,41384033.7037037,4.121999999999999,9.34016133417928,0.45961199411917725,"Agriculture, forestry and fishing"
+VCT,Saint Vincent and the Grenadines,Tourism and services economies,MIU,31770717.407407403,0.8839999999999999,2.0030816640986133,1.6452855314854007,Mining and utilities
+VCT,Saint Vincent and the Grenadines,Tourism and services economies,MAN,37370963.33333333,2.248,5.0938094806489636,0.7610347856317851,Manufacturing
+VCT,Saint Vincent and the Grenadines,Tourism and services economies,CON,105761828.14814812,6.166999999999999,13.97398712952053,0.7850937548773315,Construction
+VCT,Saint Vincent and the Grenadines,Tourism and services economies,TRH,185389647.4074074,11.236999999999998,25.46224961479199,0.7552689305832466,"Trade, restaurants and hotels"
+VCT,Saint Vincent and the Grenadines,Tourism and services economies,TSC,128838215.55555557,3.447,7.810658932294029,1.7110785208094683,"Transport, storage and communications"
+VCT,Saint Vincent and the Grenadines,Tourism and services economies,OTH,433506910.7407407,16.026999999999997,36.31605184446661,1.2382556268662082,Other services
+BLZ,Belize,Mixed economies,AGR,254620731.0,26.051,16.389946207807732,0.5707656045290306,"Agriculture, forestry and fishing"
+BLZ,Belize,Mixed economies,MIU,95530474.0,1.269,0.7983893799742049,4.396111940460735,Mining and utilities
+BLZ,Belize,Mixed economies,MAN,211245008.0,12.088,7.605146434301173,1.0205174507006194,Manufacturing
+BLZ,Belize,Mixed economies,CON,160039214.0,11.142,7.0099720028940835,0.8387869937613851,Construction
+BLZ,Belize,Mixed economies,TRH,685040533.0,44.449,27.96501934631476,0.9000004076676625,"Trade, restaurants and hotels"
+BLZ,Belize,Mixed economies,TSC,236539035.5,6.959,4.3782440466828145,1.9849264418861847,"Transport, storage and communications"
+BLZ,Belize,Mixed economies,OTH,1078798973.5,56.987,35.85328258202523,1.1054857831769562,Other services
+JAM,Jamaica,Mixed economies,AGR,2158399198.624229,221.1382849040949,14.245204745266586,0.7790131371706013,"Agriculture, forestry and fishing"
+JAM,Jamaica,Mixed economies,MIU,891543445.2134528,15.24301963838471,0.9819192356451562,4.668189201962759,Mining and utilities
+JAM,Jamaica,Mixed economies,MAN,1706894798.1258454,95.00912240525442,6.120262721210435,1.4338984517705446,Manufacturing
+JAM,Jamaica,Mixed economies,CON,1427147364.006914,155.75320066504847,10.033252424682805,0.7313222507862429,Construction
+JAM,Jamaica,Mixed economies,TRH,4369250588.254341,417.23153754135615,26.877067808663927,0.8358084790211063,"Trade, restaurants and hotels"
+JAM,Jamaica,Mixed economies,TSC,1242492854.3943832,89.69711556151634,5.778075817074303,1.1055855908029355,"Transport, storage and communications"
+JAM,Jamaica,Mixed economies,OTH,7654212997.695417,558.2977192843449,35.96421724745679,1.0942376084542202,Other services
+CUB,Cuba,Other Caribbean economies,AGR,7576538739.0,761.9708415665712,15.843342881286015,0.18231643505656278,"Agriculture, forestry and fishing"
+CUB,Cuba,Other Caribbean economies,MIU,2274921045.0,122.89197444758273,2.5552417262166154,0.33941898546078175,Mining and utilities
+CUB,Cuba,Other Caribbean economies,MAN,22046494580.0,392.06591847936375,8.152063621967612,1.0310358798624044,Manufacturing
+CUB,Cuba,Other Caribbean economies,CON,26218984164.0,300.74793746673186,6.253326812780284,1.598477502259063,Construction
+CUB,Cuba,Other Caribbean economies,TRH,69635903318.0,665.1628616954519,13.830454808575194,1.9195460932707857,"Trade, restaurants and hotels"
+CUB,Cuba,Other Caribbean economies,TSC,18628197439.0,203.70195764509893,4.2354901060587915,1.6767524676741874,"Transport, storage and communications"
+CUB,Cuba,Other Caribbean economies,OTH,115918909985.0,2362.8655086991994,49.1300800431155,0.8995154153347181,Other services
+DOM,Dominican Republic,Other Caribbean economies,AGR,5535511904.1844425,369.233,7.189083849507684,0.6662485270870018,"Agriculture, forestry and fishing"
+DOM,Dominican Republic,Other Caribbean economies,MIU,3939352030.74058,46.63,0.9079009186680044,3.7543811314062587,Mining and utilities
+DOM,Dominican Republic,Other Caribbean economies,MAN,15490441906.685911,501.971,9.773534892659164,1.3714000515162652,Manufacturing
+DOM,Dominican Republic,Other Caribbean economies,CON,16269520858.483215,430.376,8.379557490299401,1.6799861447278492,Construction
+DOM,Dominican Republic,Other Caribbean economies,TRH,25189936899.51729,1483.831,28.890661120481738,0.754434640729146,"Trade, restaurants and hotels"
+DOM,Dominican Republic,Other Caribbean economies,TSC,10236108338.36238,344.187,6.7014302700747255,1.3216589237657543,"Transport, storage and communications"
+DOM,Dominican Republic,Other Caribbean economies,OTH,38909890430.1454,1959.795,38.157831458309275,0.8823245113777789,Other services
+HTI,Haiti,Other Caribbean economies,AGR,4014557265.2862544,2067.029,46.7134698784834,0.3481112939105843,"Agriculture, forestry and fishing"
+HTI,Haiti,Other Caribbean economies,MIU,405753682.1151571,16.598,0.3751036744250166,4.381610164105914,Mining and utilities
+HTI,Haiti,Other Caribbean economies,MAN,6639790389.767097,230.047,5.198908000388709,5.173266139417647,Manufacturing
+HTI,Haiti,Other Caribbean economies,CON,1398337380.20205,147.34,3.329785238569824,1.70105489015097,Construction
+HTI,Haiti,Other Caribbean economies,TRH,5581204319.283214,1292.5159999999998,29.20999523154143,0.773960897801592,"Trade, restaurants and hotels"
+HTI,Haiti,Other Caribbean economies,TSC,1386828927.380178,148.637,3.3590965691957577,1.672333873782669,"Transport, storage and communications"
+HTI,Haiti,Other Caribbean economies,OTH,5261045253.370714,522.743,11.813641407395858,1.8038932666447114,Other services
